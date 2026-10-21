@@ -1,0 +1,8 @@
+Receipt ID,Received Date,Customer,Method,Amount,ST Payment ID,Entered In ST,Deposit Reference,Check Number,Evidence Document
+OFF550001,09/02/2026,Taylor Miller 337,Check,199.22,,No,DEP660001,2401,synthetic/office_receipt_register.pdf#OFF550001
+OFF550002,09/04/2026,Jordan Miller 338,ACH,464.35,,No,DEP660002,,synthetic/office_receipt_register.pdf#OFF550002
+OFF550003,09/09/2026,Casey Miller 339,Check,289.05,,No,DEP660003,2403,synthetic/office_receipt_register.pdf#OFF550003
+OFF550004,09/11/2026,Avery Miller 340,ACH,164.38,,No,DEP660004,,synthetic/office_receipt_register.pdf#OFF550004
+OFF550005,09/15/2026,Riley Miller 341,Check,149.14,,No,DEP660005,2405,synthetic/office_receipt_register.pdf#OFF550005
+OFF550006,09/17/2026,Parker Miller 342,ACH,223.72,,No,DEP660006,,synthetic/office_receipt_register.pdf#OFF550006
+OFF559901,09/16/2026,Morgan Miller 336,Check,6150.00,,No,CONSOL260918,2704,synthetic/office_receipt_register.pdf#OFF559901

@@ -1,0 +1,58 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run --reporter=dot
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+································································································································································x····x··
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/adversarial-boundaries.test.ts > parser and engine adversarial integration boundaries > rejects misleading settlement evidence: malformed raw-row hash
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ assertBlocked tests/integration/adversarial-boundaries.test.ts:11:64
+      9|
+     10| function assertBlocked(result: ReconcileResult) {
+     11|   expect(result.warnings.some(w => w.severity === 'BLOCKING')).toBe(tr…
+       |                                                                ^
+     12|   expect(result.groups.some(g => g.accepted)).toBe(false);
+     13|   expect(result.allocations).toEqual([]);
+ ❯ tests/integration/adversarial-boundaries.test.ts:146:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/adversarial-boundaries.test.ts > parser and engine adversarial integration boundaries > does not allow a processor fee assertion to cite an ST payment row as its independently imported processor source
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ assertBlocked tests/integration/adversarial-boundaries.test.ts:11:64
+      9|
+     10| function assertBlocked(result: ReconcileResult) {
+     11|   expect(result.warnings.some(w => w.severity === 'BLOCKING')).toBe(tr…
+       |                                                                ^
+     12|   expect(result.groups.some(g => g.accepted)).toBe(false);
+     13|   expect(result.allocations).toEqual([]);
+ ❯ tests/integration/adversarial-boundaries.test.ts:153:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  2 failed | 166 passed (168)
+   Start at  18:41:15
+   Duration  4.85s (transform 1.04s, setup 0ms, import 1.58s, tests 7.53s, environment 1ms)
+

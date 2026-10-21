@@ -1,0 +1,31 @@
+{
+  "source": "Real parser and engine on public/demo CSVs; no answer key",
+  "isBrowserExecution": false,
+  "baseline": {
+    "st_gross_cents": 24236014,
+    "parsed_payment_gross_cents": 24236014,
+    "source_hashes": [
+      "50b48fc3351743d59acd14cfe7a7383f7b4b832d812345067b6410c0bd1f1fa4",
+      "6763e4ff4db727e2ad69c1ef665cd52fdb76e79285fb9a06cf704ce385cded3b",
+      "ae6ed4c2fa4e5919c5b32eef54aeaeaf0b2d976069971d158bca7fc64d7bff94"
+    ]
+  },
+  "enhanced": {
+    "st_gross_cents": 24236014,
+    "hold": {
+      "impact_cents": 2000000,
+      "diagnosis": {
+        "cause": "PROCESSOR_HOLD",
+        "evidence_level": "SUPPORTED",
+        "score": 100,
+        "evidence_refs": [
+          "synthetic/processor_statement_2026_09.pdf#PS720234"
+        ],
+        "missing_evidence": [
+          "BANK_AND_PROCESSOR_RELEASE_COVERAGE_THROUGH_HOLD_AS_OF"
+        ]
+      }
+    },
+    "main_run_import_eligible": false
+  }
+}

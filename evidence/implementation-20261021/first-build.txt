@@ -1,0 +1,21 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 3 modules transformed.
+✗ Build failed in 63ms
+error during build:
+Could not resolve "./styles.css" from "src/main.tsx"
+file: /workspace/scratch/c01bd6fe117d/reconciliation-desk/src/main.tsx
+    at getRollupError (file:///workspace/scratch/c01bd6fe117d/reconciliation-desk/node_modules/rollup/dist/es/shared/parseAst.js:337:41)
+    at error (file:///workspace/scratch/c01bd6fe117d/reconciliation-desk/node_modules/rollup/dist/es/shared/parseAst.js:333:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///workspace/scratch/c01bd6fe117d/reconciliation-desk/node_modules/rollup/dist/es/shared/node-entry.js:22833:24)
+    at file:///workspace/scratch/c01bd6fe117d/reconciliation-desk/node_modules/rollup/dist/es/shared/node-entry.js:22793:26
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

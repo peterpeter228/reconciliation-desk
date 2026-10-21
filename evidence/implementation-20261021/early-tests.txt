@@ -1,0 +1,36 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run --reporter=dot
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+·····················x··········x·········
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/synthetic-evidence.test.ts > actual CSV → engine evidence boundaries, seed 20261021 > independently agrees with test-only source golden totals without counting corrections as cash refunds
+ FAIL  tests/integration/synthetic-evidence.test.ts > actual CSV → engine evidence boundaries, seed 804203 > independently agrees with test-only source golden totals without counting corrections as cash refunds
+AssertionError: expected 0 to be less than 0
+ ❯ tests/integration/synthetic-evidence.test.ts:77:54
+     75|       expect(baseline.controls.bank_signed_cents).toBe(b.bank_receipt_…
+     76|       expect(baseline.controls.st_refunds_cents).toBe(-b.bank_refund_d…
+     77|       expect(baseline.controls.st_corrections_cents).toBeLessThan(0);
+       |                                                      ^
+     78|       expect(baseline.controls.st_gross_cents - baseline.controls.st_r…
+     79|       expect(enhanced.controls.bank_signed_cents).toBe(baseline.contro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 40 passed (42)
+   Start at  18:35:46
+   Duration  3.11s (transform 588ms, setup 0ms, import 750ms, tests 3.10s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,46 @@
+{
+  "name": "reconciliation-desk",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:reference": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+    "preview": "vite preview --host 127.0.0.1",
+    "reconcile": "node --import tsx scripts/reconcile.ts",
+    "benchmark": "node --import tsx scripts/benchmark.ts",
+    "check:artifacts": "node scripts/check-artifacts.mjs",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"tests/**/*.{ts,tsx}\" \"scripts/*.ts\" vite.config.ts vitest.config.ts",
+    "benchmark:3000": "node --import tsx scripts/benchmark-3000.ts"
+  },
+  "dependencies": {
+    "@noble/hashes": "2.4.0",
+    "fflate": "0.8.3",
+    "lucide-react": "0.468.0",
+    "papaparse": "5.5.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/node": "24.10.0",
+    "@types/papaparse": "5.3.16",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "jsdom": "30.1.3",
+    "prettier": "3.9.10",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vite": "6.4.4",
+    "vitest": "4.1.12"
+  }
+}

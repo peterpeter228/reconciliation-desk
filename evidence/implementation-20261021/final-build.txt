@@ -1,0 +1,22 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 1611 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.49 kB │ gzip:   0.33 kB
+dist/assets/reconcile.worker-xjXjYq4U.js   47.16 kB
+dist/assets/import.worker-BJqBw4L8.js     104.36 kB
+dist/assets/xlsx.worker-BWoJ7Jh0.js       498.50 kB
+dist/assets/index-BKPxVfH_.css             38.17 kB │ gzip:   8.24 kB
+dist/assets/index-DpY71sEE.js             355.84 kB │ gzip: 107.03 kB
+✓ built in 3.36s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

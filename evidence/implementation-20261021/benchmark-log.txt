@@ -1,0 +1,20 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 benchmark
+> node --import tsx scripts/benchmark.ts
+
+{
+  "scope": "Node TS production engine on supplied sample only. Not browser worker, not 3000-row acceptance, excludes parsing.",
+  "node": "v24.19.0",
+  "os": "linux",
+  "arch": "x64",
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "source_rows": 837,
+  "repetitions": 20,
+  "warmup": 1,
+  "p50_ms": 104.37225000000012,
+  "p95_ms": 126.70939199999998,
+  "max_ms": 142.52091799999994,
+  "incomplete_searches": 22,
+  "timestamp": "2026-10-21T09:40:31.182Z"
+}

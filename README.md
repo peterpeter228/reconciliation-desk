@@ -1,72 +1,105 @@
-# Reconciliation Desk 工程开发包
+# Reconciliation Desk
 
-本包把 ServiceTitan、QuickBooks Online/Desktop、银行三方存款对账需求转化为
-可以交给 Cursor / Claude Code 执行的工程 PRD、算法规格、数据契约、阶段指令和
-可运行合成样本。研究基准日：2026-10-21。
+A private, local-file workbench for ServiceTitan → QuickBooks → bank activity.
+The goal is evidence you can review, not a green checkmark from coincident amounts.
 
-**交付是工程规格与已测试参考组件，不是已经上线的 SaaS。** 原始真实账簿、
-目标QBO账号导入、QBD真机和完整浏览器性能仍需在18小时实施阶段核验。
+**Current stage: runnable private pilot implementation; browser acceptance and
+real QuickBooks import are not established.** No financial account is connected,
+no entries are posted, no real payment service is configured, and no public launch
+is implied. Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
 
-## 先看这些文件
+## Run locally
 
-| 文件 | 用途 |
-|---|---|
-| docs/PRD_ENGINEERING.zh-CN.md | 六模块主PRD、数据模型、UI、会计门、技术栈、18h计划、60秒演示 |
-| docs/ALGORITHM_SPEC.zh-CN.md | Waterfall流水线、三条边、冲突与allocation、六类状态机和伪代码 |
-| docs/ACCOUNTING_EXPORT_SPEC.zh-CN.md | 10k/9.1k费用AJE的状态分支、UF专用流程、QBO CSV与QBD IIF |
-| docs/SOURCES_AND_EXPORT_PROFILES.zh-CN.md | 44条编号来源、实际报表字段、银行模板待验范围和事实纠偏 |
-| docs/synthetic_contract.md | 350个经济收款事件的定义、精确金额、证据强弱和测试答案契约 |
-| contracts/canonical.ts | 三张核心表及provenance、import manifest、reconciliation group |
-| contracts/header_mapping.schema.json | 受约束的LLM表头映射JSON，不允许可执行表达式 |
-| reference/core.py | 整数金额、有界subset、fee候选、带审批hash的fee-only导出 |
-| scripts/generate_synthetic.py | 完整标准库Python生成器 |
-| prompts/START_HERE.md | 交给开发AI的第一条指令，后续按G1-G4执行 |
-| examples/ | 可检查的QBO/IIF文件、独立教学案例证据、两页支持PDF、性能记录 |
-| docs/VALIDATION_REPORT.md | 本包实际执行的验证和明确尚未执行的产品验收 |
-
-## 五分钟运行
-
-Python 3.10+，核心生成器和测试不需要安装依赖。在本目录运行：
+Tested implementation environment: Node 24.19.0 and Python 3.12.14. Node >=22 required.
 
 ```bash
-python3 scripts/generate_synthetic.py --out samples --seed 20261021
-python3 -m unittest discover -s tests -v
-python3 scripts/benchmark_reference.py --out examples/benchmark_reference.json
+npm ci --ignore-scripts
+npm run dev
 ```
 
-Windows可用`py`替代`python3`。生成器会替换目标目录内同名fixture文件，
-请使用专门的samples目录，不要指向真实客户文件目录。
+Open the loopback URL Vite prints. Click **Load demo**. The sample is explicitly
+synthetic. Its $20,000 missing settlement and $50,000 consolidated deposit are
+investigation cases, not recovered money or customer revenue. Add synthetic
+supporting evidence to see which conclusions the evidence actually supports.
 
-重建可选PDF/示例需安装reportlab后执行`python3 scripts/build_example_exports.py`。
-PDF使用reportlab自带字体；它是独立模板，没有发送给ServiceTitan。
+**Import** accepts explicit CSV/TSV and guarded values-only XLSX profiles. Review
+company/account, period, row grain, signed amounts and posted-ledger semantics.
+All financial processing stays in browser workers. Raw files are not uploaded,
+stored in a backend, sent to a model, or retained across reloads. Downloads remain
+on the user's device.
 
-## 已生成样本
+**Exports** provides JSON evidence, formula-safe review CSV and a printable
+workpaper. The separate $900 teaching journal is prominently marked synthetic and
+must not be imported into real books. Main-run accounting imports remain disabled
+without the complete verified facts required by the typed fee-only builder.
 
-350个原始经济收款事件，毛收款精确250,000美元；297正常、53异常，
-比例84.857%/15.143%（350×85%=297.5，无法精确分成整数）。
+## Validation
 
-三个主文件：`samples/st_export.csv`359行、`samples/qbo_clearing_gl.csv`338行、
-`samples/chase_bank.csv`140行。源文件行数、收入、毛收款和银行净额不是同一口径。
-另外包含processor、audit、external receipts、next-period bank、deposit components
-五种增强CSV。答案位于`ground_truth_answer_key.json`，严禁进生产引擎或bundle。
+```bash
+npm test
+npm run typecheck
+npm run build
+npm run check:artifacts
+npm run test:reference
+npm run benchmark
+```
 
-20k未到账只有加processor Hold证据才能确诊冻结。50k归集案例的四个净额组成是
-18,200+13,650+12,000+6,150；融资净扣3,150只属于两个融资部分。它是有manifest
-支持的合成归集压力场景，不是把GreenSky ACH与支票天然视为一笔银行流水。
-纯三文件不得凭答案推导6,150外部支票。
+The original Python kit and the new TypeScript product tests are separate. Do not
+add their counts together as independent quality coverage. Actual dated results,
+including failed intermediate checks, are in `evidence/implementation-20261021/`.
+Browser environment blockers and an unexecuted normal-browser QA script are in
+`evidence/browser-20261021/`. A prepared test is not a passing browser test.
 
-本fixture仍缺完整QB银行/费用科目证据。12个费用案例共3,518.72只表示数学
-底稿已就绪；所有案例的fee_aje_draft_eligible=false，补齐证据后才能进入草稿与审批。
-独立900美元教学示例在examples中有
-明示的完整既存分录和虚构Reviewer批准，与主样本分开。
+### CLI (same production engine)
 
-## 推荐实施方式
+```bash
+npm run reconcile -- --st samples/st_export.csv --qb samples/qbo_clearing_gl.csv --bank samples/chase_bank.csv --profile examples/demo-profile.json --out /tmp/reconciliation-result.json
+```
 
-把整个目录交给Cursor/Claude Code，粘贴prompts/START_HERE.md。
-先G1引擎，再G2界面与导出，最后G3反例/隐私/性能和G4部署。
-完整应用选择React+TypeScript+Vite、浏览器Web Worker、Cloudflare静态托管。
-先卖199美元单公司单月人工复核诊断服务；订阅和云多租户在真实案例验证后开放。
+Optional `--processor`, `--components`, `--receipts`, and `--audit` flags add
+explicit evidence files. The supplied profile is **synthetic only**. For actual
+exports, create a reviewed manual profile rather than assuming demo semantics.
+No production path imports `ground_truth_answer_key.json`; it remains test-only.
 
-关键约束：LLM只映射表头；普通clearing和UF分流；手续费区间不等于证据；
-缺记录不等于Hold；匹配有歧义必须保留；任何调整改科目/日期/金额都要重新批准。
-产品不连接或回写财务系统，导出后由客户复核导入，并重新读取GL验证结果。
+## Core safety model
+
+- Integer USD cents, exact identity namespaces and physical-row provenance.
+- ST→QB receipt, QB→bank posting, and gross→net cash evidence assessed separately.
+- Only clearing GL cannot prove the bank leg. Missing opening balances stay unknown.
+- Fee ranges create hypotheses; missing deposits do not prove processor holds.
+- Ambiguous, conflicting, bounded or incomplete searches cannot become confirmed.
+- Accepted allocation conserves source amounts; noncash corrections are not refunds.
+- Ordinary asset-clearing fee-only exports require documented existing net-bank
+  posting, missing expense, reviewed accounts and exact immutable approval.
+- Undeposited Funds requires payment/deposit object linkage, not a generic journal.
+- Download is not posting. QBO CSV/QBD IIF remain Beta until target-version testing.
+- No third-party analytics, financial APIs, live checkout or paid model adapter.
+
+## Project layout
+
+- `src/ingestion`, `src/mapping`: local parsing, bounds, provenance and explicit semantics.
+- `src/engine`, `src/contracts`: deterministic evidence, conflict and amount logic.
+- `src/export`: guarded journal serializers and human review workpapers.
+- `src/workers`: isolated file parsing and reconciliation with cancellation.
+- `src/pages`, `src/components`: evidence desk, imports and separate teaching workflow.
+- `tests`: independent integration, engine, ingestion/export, workbook and source-kit checks.
+- `samples`: synthetic inputs and test-only answers; `public/demo` contains inputs only.
+- `docs`: original specification, source recovery, limits and implementation status.
+
+## Source specification and remaining gates
+
+The user-designated engineering kit was recovered intact (41 files, 40 manifest
+hashes verified) before implementation. Its historical README is preserved in
+[ORIGINAL_KIT_README.md](docs/ORIGINAL_KIT_README.md). Root `MANIFEST.sha256` describes
+that original kit, not this evolving implementation. See [source provenance](docs/SOURCE_RECOVERY.md).
+
+[Engineering PRD](docs/PRD_ENGINEERING.zh-CN.md) ·
+[Algorithm](docs/ALGORITHM_SPEC.zh-CN.md) ·
+[Accounting export](docs/ACCOUNTING_EXPORT_SPEC.zh-CN.md) ·
+[Independent safety research](docs/INDEPENDENT_ACCOUNTING_SAFETY_REVIEW.md) ·
+[Phase status](docs/phase-status.md)
+
+The specification's $199 service and subscription prices are business hypotheses,
+not configured payment products or proven revenue. Actual customer files, human
+accounting review, target QBO/QBD import/re-import, and any launch/payment/account
+steps require separate evidence and the applicable owner authorization.

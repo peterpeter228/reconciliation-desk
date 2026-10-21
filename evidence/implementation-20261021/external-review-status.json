@@ -1,0 +1,16 @@
+{
+  "provider": "api.xiaoyiapi.xyz",
+  "requested_model": "gemini-4-argon-high",
+  "request_started_at_utc": "2026-10-21T09:43:43.971638+00:00",
+  "scope": "45 core source, test and accounting-specification files; no customer files or unrelated credentials",
+  "request_bytes": 303682,
+  "request_sha256": "5ee1b2097c6408cc0a9ad4bb99eeff387c9159028e9ec8d2b8e45ad241c59bf2",
+  "duration_seconds": 6.379,
+  "error_class": "URLError",
+  "outcome": "transport_uncertain_no_retry",
+  "review_received": false,
+  "remote_receipt_or_billing": "unknown",
+  "additional_private_source_disclosure_and_retry_authorization": "pending",
+  "automatic_retry": false,
+  "independent_external_approval_claim": false
+}

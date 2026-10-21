@@ -1,0 +1,121 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run --reporter=dot
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+········x··x·················x································x········································x·················x·························xx·x····
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/engine.test.ts > exact deterministic primitives > uses SHA-256 rather than an unstable or non-collision-resistant source fingerprint
+AssertionError: expected 'b0a0af312d668c984c348b66d8e4b07b89fe6…' to be 'ba7816bf8f01cfea414140de5dae2223b0036…' // Object.is equality
+
+Expected: "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+Received: "b0a0af312d668c984c348b66d8e4b07b89fe6a3864206078cb1d7c0ed6242328"
+
+ ❯ tests/engine/engine.test.ts:6:117
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/integration/adversarial-boundaries.test.ts > parser and engine adversarial integration boundaries > rejects misleading settlement evidence: malformed provenance
+ FAIL  tests/integration/adversarial-boundaries.test.ts > parser and engine adversarial integration boundaries > rejects misleading settlement evidence: unimported provenance hash
+ FAIL  tests/integration/adversarial-boundaries.test.ts > parser and engine adversarial integration boundaries > rejects misleading settlement evidence: future observation
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ assertBlocked tests/integration/adversarial-boundaries.test.ts:11:64
+      9|
+     10| function assertBlocked(result: ReconcileResult) {
+     11|   expect(result.warnings.some(w => w.severity === 'BLOCKING')).toBe(tr…
+       |                                                                ^
+     12|   expect(result.groups.some(g => g.accepted)).toBe(false);
+     13|   expect(result.allocations).toEqual([]);
+ ❯ tests/integration/adversarial-boundaries.test.ts:115:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/integration/synthetic-evidence.test.ts > actual CSV → engine evidence boundaries, seed 20261021 > independently agrees with test-only source golden totals without counting corrections as cash refunds
+ FAIL  tests/integration/synthetic-evidence.test.ts > actual CSV → engine evidence boundaries, seed 804203 > independently agrees with test-only source golden totals without counting corrections as cash refunds
+AssertionError: expected 0 to be less than 0
+ ❯ tests/integration/synthetic-evidence.test.ts:77:54
+     75|       expect(baseline.controls.bank_signed_cents).toBe(b.bank_receipt_…
+     76|       expect(baseline.controls.st_refunds_cents).toBe(-b.bank_refund_d…
+     77|       expect(baseline.controls.st_corrections_cents).toBeLessThan(0);
+       |                                                      ^
+     78|       expect(baseline.controls.st_gross_cents - baseline.controls.st_r…
+     79|       expect(enhanced.controls.bank_signed_cents).toBe(baseline.contro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/xlsx/xlsx.test.ts > values-only XLSX import > parses amounts without display rounding and preserves original byte/row provenance
+AssertionError: [{"code":"ROW_INVALID","message":"Confirm bank signs: credits/inflows positive, debits/outflows negative.","severity":"error","physicalRow":4},{"code":"ROW_INVALID","message":"Confirm bank signs: credits/inflows positive, debits/outflows negative.","severity":"error","physicalRow":6},{"code":"COVERAGE_UNKNOWN","message":"Coverage not confirmed. Results are activity reconciliation, not a verified month-end close.","severity":"warning"}]: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/xlsx/xlsx.test.ts:21:52
+     19|   const sheet = utils.aoa_to_sheet([['Monthly bank report'], [], ['Dat…
+     20|   const input = workbook({ Data: sheet }), result = await parseXlsx(in…
+     21|   expect(result.ok, JSON.stringify(result.issues)).toBe(true); expect(…
+       |                                                    ^
+     22|   expect(result.rows.map(r => r.source_refs[0].physical_row)).toEqual(…
+     23|   expect(result.rows[0].source_refs[0].file_sha256).toBe(await sha256(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/xlsx/xlsx.test.ts > values-only XLSX import > requires explicit multi-sheet selection instead of merging or selecting first
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/xlsx/xlsx.test.ts:31:105
+     29|   expect(inspectXlsx(input).requiresSheetSelection).toBe(true);
+     30|   expect((await parseXlsx(input, 'BANK', options)).issues[0].code).toB…
+     31|   const result = await parseXlsx(input, 'BANK', { ...options, sheetNam…
+       |                                                                                                         ^
+     32|   expect((await parseXlsx(input, 'BANK', { ...options, sheetName: 'Mis…
+     33|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/xlsx/xlsx.test.ts > active workbook content rejection > accepts safe escaped customer text without interpreting it as markup
+AssertionError: [{"code":"ROW_INVALID","message":"Confirm bank signs: credits/inflows positive, debits/outflows negative.","severity":"error","physicalRow":2},{"code":"COVERAGE_UNKNOWN","message":"Coverage not confirmed. Results are activity reconciliation, not a verified month-end close.","severity":"warning"}]: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/xlsx/xlsx.test.ts:54:314
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+
+ Test Files  4 failed | 3 passed (7)
+      Tests  9 failed | 146 passed (155)
+   Start at  18:39:22
+   Duration  6.97s (transform 1.37s, setup 0ms, import 1.77s, tests 10.37s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

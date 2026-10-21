@@ -1,0 +1,24 @@
+{
+  "timestamp_utc": "2026-10-21T09:53:33.431651+00:00",
+  "stage": "PRIVATE_LOCAL_IMPLEMENTATION_CANDIDATE",
+  "source_baseline_commit": "98c144f5cccfd28fe195cd19f7da511eecef9eda",
+  "vitest": {
+    "passed": 187,
+    "failed": 0,
+    "suites": 9
+  },
+  "reference_tests": {
+    "passed": 33,
+    "scope": "original Python reference kit"
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "artifact_checks": "passed",
+  "browser_acceptance": "BLOCKED_NOT_RUN",
+  "real_quickbooks_import": "NOT_RUN",
+  "external_model_review": "NO_REVIEW_TRANSPORT_UNCERTAIN",
+  "publication": "NOT_DONE",
+  "financial_account_writes": false,
+  "customer_data_used": false,
+  "mainnet_or_wallet_actions": false
+}

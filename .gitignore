@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.playwright/
+test-results/
+evidence/implementation-20261021/minimal-run.json

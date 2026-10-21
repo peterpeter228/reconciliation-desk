@@ -1,0 +1,65 @@
+{
+  "status": "BLOCKED_BEFORE_RENDERED_VALIDATION",
+  "target": "http://127.0.0.1:5173",
+  "requested_viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 375,
+      "height": 812
+    }
+  ],
+  "browser_screenshots": [],
+  "actual_click_checks_executed": 0,
+  "attempts": [
+    {
+      "route": "Cloud CUA Chromium",
+      "action": "Open loopback URL",
+      "result": "net::ERR_CONNECTION_REFUSED",
+      "notes": "Vite and subsequent exec calls appear to have isolated network namespaces; no public host exposure attempted."
+    },
+    {
+      "route": "Cloud CUA Chromium",
+      "action": "Observe failed-navigation tab",
+      "result": "Denied by browser URL protocol policy because failed navigation produced a non-http(s) error page",
+      "notes": "No bypass or error-page inspection attempted."
+    },
+    {
+      "route": "Regular Playwright with installed system Chromium",
+      "action": "Launch headless browser, no custom flags",
+      "result": "FATAL process_singleton_posix.cc socket() failed: Operation not permitted (1)",
+      "notes": "No page was created. Playwright default launch flags included its default no-sandbox flag; no additional bypass flags were supplied or retried."
+    },
+    {
+      "route": "Sanctioned require_escalated exec request",
+      "action": "Run local-only Vite plus Chromium with chromiumSandbox:true and no custom flags",
+      "result": "Runtime read-only filesystem initialization failed before execution.",
+      "exit_code": 1,
+      "notes": "Wrapper failed before script execution. No filesystem restriction was changed or retried around."
+    }
+  ],
+  "source_checks": {
+    "typescript": "npm run typecheck passed on current UI before browser attempt",
+    "qa_script_syntax": "node --check passed",
+    "not_a_browser_test": true,
+    "pipeline_expectations": "Real parser/engine preflight executed: supplied PAYMENT gross 24236014 cents; enhanced hold SUPPORTED with missing release coverage; all main-run accounting imports ineligible.",
+    "pipeline_preflight_is_not_browser_validation": true
+  },
+  "remaining_unverified": [
+    "Desktop appearance and responsive layout",
+    "One-click demo rendered amounts and sort",
+    "20k/50k evidence UI transitions",
+    "Supplemental import and recalculation",
+    "Real file input error/validate/reconcile/reset flow",
+    "Independent $900 approval, downloads and invalidation",
+    "Print preview / PDF layout",
+    "Browser console health",
+    "Runtime network egress",
+    "XLSX explicit worksheet selection and browser worker parsing"
+  ],
+  "prepared_script": "qa-run.cjs",
+  "prepared_script_status": "Updated for current UI semantics; syntax checked only; browser workflow has not executed.",
+  "scope": "Synthetic local files only. No deployments, external accounts, financial actions or remote uploads."
+}
