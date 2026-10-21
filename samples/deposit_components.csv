@@ -1,0 +1,5 @@
+Deposit Reference,Bank Posting Date,Bank Amount,Component Reference,ST Payment ID,Component Type,Gross Amount,Fee Amount,Net Amount,Fee Mode,Contract Reference,Evidence Document
+CONSOL260918,09/18/2026,50000.00,FUND790001,PMT740308,NETTED_FINANCING,20000.00,1800.00,18200.00,netted,SYNTHETIC-NETTED-FUNDING-09,synthetic/consolidation_manifest_20260918.pdf
+CONSOL260918,09/18/2026,50000.00,FUND790002,PMT740309,NETTED_FINANCING,15000.00,1350.00,13650.00,netted,SYNTHETIC-NETTED-FUNDING-09,synthetic/consolidation_manifest_20260918.pdf
+CONSOL260918,09/18/2026,50000.00,2703,PMT740001,ST_CHECK,12000.00,0.00,12000.00,none,,synthetic/consolidation_manifest_20260918.pdf
+CONSOL260918,09/18/2026,50000.00,2704,,OFFICE_CHECK,6150.00,0.00,6150.00,none,,synthetic/consolidation_manifest_20260918.pdf

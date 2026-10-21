@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/recondesk/header-mapping-v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_kind", "row_grain", "bindings", "ambiguities", "unmapped_column_indices"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "source_kind": {"enum": ["ST_PAYMENT", "QB_LEDGER", "BANK", "UNKNOWN"]},
+    "row_grain": {"enum": ["PAYMENT", "PAYMENT_APPLICATION", "BATCH_SUMMARY", "POSTING_LINE", "TRANSACTION_SUMMARY", "BANK_TRANSACTION", "UNKNOWN"]},
+    "bindings": {
+      "type": "array", "maxItems": 40,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["target", "column_indices", "transform", "confidence", "reason_code"],
+        "properties": {
+          "target": {"enum": ["source_payment_id", "invoice_id", "accounting_batch_id", "processor_batch_id", "deposit_id", "payment_date", "batch_close_date", "batch_post_date", "export_status", "customer", "business_unit", "payment_method", "processor", "gross_cents", "reported_net_cents", "reported_fee_cents", "reference", "gl_account_code", "record_type", "transaction_id", "line_id", "transaction_type", "posting_date", "num", "name", "memo_local", "account_full_name", "split_account", "debit_cents", "credit_cents", "signed_cents", "running_balance_cents", "cleared_status", "posted_date", "description_local", "bank_type", "check_number", "balance_cents", "unknown"]},
+          "column_indices": {"type": "array", "minItems": 1, "maxItems": 2, "items": {"type": "integer", "minimum": 0}},
+          "transform": {"enum": ["TEXT", "DATE_MDY", "DATE_ISO", "EXCEL_DATE", "MONEY_US", "DEBIT_MINUS_CREDIT", "CREDIT_MINUS_DEBIT", "SIGNED_MONEY", "ENUM_LOOKUP", "NEEDS_CONFIRMATION"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "reason_code": {"enum": ["EXACT_HEADER", "KNOWN_ALIAS", "TYPE_EVIDENCE", "AMBIGUOUS_SEMANTICS", "INSUFFICIENT_EVIDENCE"]}
+        }
+      }
+    },
+    "ambiguities": {"type": "array", "maxItems": 40, "items": {"type": "string", "maxLength": 240}},
+    "unmapped_column_indices": {"type": "array", "items": {"type": "integer", "minimum": 0}}
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "synthetic_only": true,
+  "separate_teaching_example_not_a_result_from_main_fixture": true,
+  "currency": "USD",
+  "processor_statement": {
+    "gross_cents": 1000000,
+    "netted_fee_cents": 90000,
+    "bank_net_cents": 910000,
+    "fee_mode": "NETTED"
+  },
+  "prior_posted_gl": [
+    {
+      "journal": "DEMO-RECEIPT",
+      "account": "ServiceTitan Clearing",
+      "debit_cents": 1000000,
+      "credit_cents": 0
+    },
+    {
+      "journal": "DEMO-RECEIPT",
+      "account": "Accounts Receivable",
+      "debit_cents": 0,
+      "credit_cents": 1000000
+    },
+    {
+      "journal": "DEMO-DEPOSIT",
+      "account": "Collections Checking",
+      "debit_cents": 910000,
+      "credit_cents": 0
+    },
+    {
+      "journal": "DEMO-DEPOSIT",
+      "account": "ServiceTitan Clearing",
+      "debit_cents": 0,
+      "credit_cents": 910000
+    }
+  ],
+  "assumptions": [
+    "No existing fee entry or earlier AJE for this case",
+    "Full relevant account coverage reviewed by the fictional Demo Reviewer",
+    "Ordinary asset clearing, not Undeposited Funds or finance liability clearing",
+    "Accounting period open and account names/types verified in this fictional chart"
+  ]
+}

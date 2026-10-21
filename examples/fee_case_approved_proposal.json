@@ -1,0 +1,26 @@
+{
+  "journal_id": "RD3AE04CDD6",
+  "date": "2026-09-30",
+  "memo": "Approved financing or processing fee RD3AE04CDD6",
+  "lines": [
+    {
+      "account": "Merchant Financing Fees",
+      "debit_cents": 90000,
+      "credit_cents": 0
+    },
+    {
+      "account": "ServiceTitan Clearing",
+      "debit_cents": 0,
+      "credit_cents": 90000
+    }
+  ],
+  "evidence_refs": [
+    "fee_case_evidence.json:processor_statement",
+    "fee_case_evidence.json:prior_posted_gl"
+  ],
+  "source_version_hash": "88824ea0b733d0418a7014797feb679a56c640cd9d83e01d8b0bc27a2bf1545d",
+  "approved_by": "Demo Reviewer (fictional)",
+  "case_approval_hash": "49402b3efb8d4ec1488ea12115cee8585f657e7657e93170bc51d22df0bed3b8",
+  "status": "APPROVED_FOR_EXPORT_NOT_POSTED",
+  "approved_payload_hash": "0b07613c9845fceb60cbd722fb2782f18c60fe144280c796493bfde40a42f53b"
+}

@@ -1,0 +1,50 @@
+{
+  "scope": "Python primitives only; no parser, browser, LLM, full waterfall, or QB import included",
+  "environment": {
+    "python": "3.12.14",
+    "os": "Linux",
+    "machine": "x86_64",
+    "cpu": "AMD EPYC 9V74 80-Core Processor"
+  },
+  "workloads": [
+    {
+      "workload": "3000_row_identity_index_only",
+      "repetitions": 40,
+      "statuses": {
+        "3000": 40
+      },
+      "min_ms": 0.69,
+      "median_ms": 0.78,
+      "p95_ms": 1.041,
+      "max_ms": 1.177
+    },
+    {
+      "workload": "28_candidate_mitm_bounded",
+      "repetitions": 40,
+      "statuses": {
+        "CARDINALITY_CAP": 40
+      },
+      "min_ms": 20.668,
+      "median_ms": 25.162,
+      "p95_ms": 30.758,
+      "max_ms": 39.146
+    },
+    {
+      "workload": "28_candidate_multiple_solutions",
+      "repetitions": 40,
+      "statuses": {
+        "AMBIGUOUS": 40
+      },
+      "min_ms": 1.495,
+      "median_ms": 1.99,
+      "p95_ms": 2.579,
+      "max_ms": 4.415
+    }
+  ],
+  "unrestricted_3000_candidate_test": {
+    "status": "CANDIDATE_CAP",
+    "complete_search": false,
+    "elapsed_ms": 0.458
+  },
+  "production_500ms_status": "NOT_VERIFIED: requires G3 full browser benchmark including coverage and false acceptance metrics"
+}
