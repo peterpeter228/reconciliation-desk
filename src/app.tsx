@@ -59,6 +59,9 @@ export default function App() {
     isDemo: boolean,
     token: number,
   ) {
+    // A cancelled parser may finish after a newer run has started. It must not
+    // abort that run or install a new worker before its stale token is checked.
+    if (token !== operation.current) return;
     const controller = new AbortController();
     abortRef.current?.abort();
     abortRef.current = controller;
@@ -174,6 +177,7 @@ export default function App() {
           originalBytes: entry.bytes,
           seenFileHashes: files.map((f) => f.hash),
         });
+        if (token !== operation.current) return;
         if (parsed.duplicate) continue;
         if (!parsed.ok || !parsed.manifest)
           throw new Error(

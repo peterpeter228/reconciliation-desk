@@ -22,7 +22,7 @@ completion, market demand or permitted external financial actions.
   source semantics, QBO/QBD choice, sorted cases, three-source evidence display,
   supplemental evidence and scope, JSON/CSV/print workpapers. Separate synthetic
   $900 fee-only approval/export demonstration with content-bound invalidation.
-- **G3 executed:** 329 TypeScript tests in 12 suites, including the original 187 and 142
+- **G3 executed:** 330 TypeScript tests in 13 suites, including the original 187 and 143
   additional post-review regressions. The original coverage includes independent
   held-out-seed integration, input/export, XLSX and jsdom UI checks. Typecheck/build/artifact checks pass.
   Original Python reference suite separately passes 33 tests. Counts are not a
@@ -66,21 +66,26 @@ Regression assertions were preserved; intermediate failures remain in dated logs
 
 Cloud browser cannot access shell loopback. Normal Chromium could not start in the
 restricted runtime; a sanctioned execution request failed during runtime startup.
-Zero real browser click checks/screenshots were completed. Static contrast and
-jsdom tests do not replace this acceptance. A normal-browser QA script is prepared.
+The follow-up reached an owner-private deployed Site in the real cloud browser,
+but stopped at its ChatGPT sign-in gate. A gate screenshot is not app acceptance;
+no app workflow has run. Static contrast and jsdom tests do not replace it.
+A cancelled supplemental-parser race was reproduced and narrowly fixed with a
+new lifecycle regression; this is source-level evidence, not browser validation.
 
 The first Argon attempt returned a transport error with unknown receipt/billing.
 After explicit owner approval of the private-code batch and one retry, Argon
 returned HTTP200 in103.228s. Its static claims were independently reproduced,
 triaged and fixed; see ARGON_REVIEW_TRIAGE_20261021.md and the final dated tests.
 The fixed code was not sent for a second external review. No model certification
-or browser acceptance is claimed. Owner-private Sites preview permission remains
-pending; no Site was created and no public deployment occurred.
+or browser acceptance is claimed. An owner-private QA Site was deployed after the
+owner requested another acceptance attempt; sign-in approval is pending. No public
+deployment or financial-account integration occurred. See the dated follow-up
+evidence and QuickBooks acceptance packet.
 
 ## Remaining completion gates
 
 1. Actual browser desktop/mobile, keyboard/zoom/print/download and live network
-   egress inspection; approved owner-private preview is one proposed route.
+   egress inspection; the owner-private QA Site currently stops at sign-in.
 2. Complete real-file pilot inputs and reviewed account/settlement evidence, not
    just the supplied clearing-only samples. Headerless bank profiles and split
    settlements remain unsupported; missing evidence must stay unresolved.

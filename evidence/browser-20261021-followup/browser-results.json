@@ -1,0 +1,92 @@
+{
+  "as_of_utc": "2026-10-21T10:57:53Z",
+  "status": "BLOCKED_AT_OWNER_AUTHENTICATION_BEFORE_APP_VALIDATION",
+  "target": "https://reconciliation-desk-private-qa.blueboot64.chatgpt.site/",
+  "browser": "Real cloud Chromium through supported CUA API, browser 1, tab 5",
+  "browser_documentation_read": true,
+  "access_boundary": "Owner-private ChatGPT sign-in. No sign-in action, bypass token, public deployment or security change performed by this worker.",
+  "rendered_observation": {
+    "title": "需要登录",
+    "heading": "登录后即可访问",
+    "continue_link": "使用 ChatGPT 继续",
+    "screenshot": "private-site-login-gate.jpg",
+    "viewport_pixels": [
+      1180,
+      757
+    ]
+  },
+  "app_page_rendered": false,
+  "app_workflow_checks_executed": 0,
+  "checks": [
+    {
+      "name": "Navigate real browser to private QA deployment",
+      "status": "ATTEMPTED",
+      "result": "Owner authentication gate rendered"
+    },
+    {
+      "name": "Capture real gate screenshot",
+      "status": "PASS",
+      "result": "private-site-login-gate.jpg"
+    },
+    {
+      "name": "Application identity, layout and primary interaction",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "Demo, $20k/$50k evidence and source provenance",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "Supplemental import and repeated input behavior",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "Browser cancellation and stale-result isolation",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "CSV/XLSX file chooser, validation and errors",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "$900 approval, CSV/IIF export and invalidation",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "Print/PDF and mobile responsive rendering",
+      "status": "NOT_RUN"
+    },
+    {
+      "name": "App runtime console and network egress",
+      "status": "NOT_RUN"
+    }
+  ],
+  "gate_console": [
+    {
+      "level": "error",
+      "source": "chrome-extension content script",
+      "message": "Error sending browser metadata to extension: Object",
+      "application_error": false
+    }
+  ],
+  "source_level_regression": {
+    "browser_evidence": false,
+    "scope": "jsdom lifecycle test, parser and reconciliation workers mocked; native dialog open/close stubs, no browser worker proof",
+    "reproduced_defect": "Cancelled supplemental parsing could finish later and call calculate(), which aborted the newer current worker before checking its stale operation token.",
+    "before": "Regression failed: newer AbortSignal.aborted was true, expected false.",
+    "fix": "Check operation token before calculate() touches abortRef, and immediately after awaited supplemental parsing.",
+    "files": [
+      "src/app.tsx",
+      "tests/ui/supplemental-cancellation-race.test.ts"
+    ],
+    "after": "Targeted 10/10 and full 330/330 tests passed; typecheck, build, artifact scan and format check passed.",
+    "typecheck_initial_harness_failure": "A generic type mismatch in the new test helper was corrected before final successful typecheck."
+  },
+  "not_claimed": [
+    "Real-browser app acceptance",
+    "QuickBooks import acceptance",
+    "Public or production launch",
+    "Financial posting"
+  ],
+  "awaiting": "Owner approval to continue existing ChatGPT account sign-in; tab 5 retained by handoff mark."
+}

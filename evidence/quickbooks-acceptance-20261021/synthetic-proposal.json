@@ -1,0 +1,148 @@
+{
+  "proposalId": "1e1baa9efd1c36b0304af323a969e056743d16ab218b5a3f725fb51074ea803a",
+  "journalId": "RD1E1BAA9EFD",
+  "date": "2026-09-30",
+  "feeCase": {
+    "companyId": "SYNTHETIC_TEACHING_ONLY",
+    "caseId": "TEN_THOUSAND_NINE_THOUSAND_ONE_HUNDRED",
+    "adjustmentVersion": "1",
+    "bankAccountId": "BANK",
+    "clearingAccountId": "CLEARING",
+    "feeAccountId": "FEES",
+    "accounts": [
+      {
+        "id": "BANK",
+        "name": "Collections Checking",
+        "type": "BANK",
+        "exists": true,
+        "isUndepositedFunds": false
+      },
+      {
+        "id": "CLEARING",
+        "name": "ServiceTitan Clearing",
+        "type": "OTHER_CURRENT_ASSET",
+        "exists": true,
+        "isUndepositedFunds": false
+      },
+      {
+        "id": "FEES",
+        "name": "Merchant Financing Fees",
+        "type": "EXPENSE",
+        "exists": true,
+        "isUndepositedFunds": false
+      },
+      {
+        "id": "AR",
+        "name": "Accounts Receivable",
+        "type": "OTHER",
+        "exists": true,
+        "isUndepositedFunds": false
+      }
+    ],
+    "grossCents": 1000000,
+    "bankNetCents": 910000,
+    "confirmedFeeCents": 90000,
+    "clearingResidualCents": 90000,
+    "feeMode": "NETTED",
+    "settlementReference": "DEMO-PAYOUT-900",
+    "settlementEvidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
+    "stEvidenceRefs": [
+      "fee_case_evidence.json:separate-synthetic-teaching-example"
+    ],
+    "bankEvidenceRefs": [
+      "fee_case_evidence.json:separate-synthetic-teaching-example"
+    ],
+    "sourceFileHashes": [
+      "b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d"
+    ],
+    "mappingVersion": "synthetic-teaching-1",
+    "ruleVersion": "fee-only-1.1",
+    "journalDate": "2026-09-30",
+    "periodOpenConfirmed": true,
+    "netFeeConfirmed": true,
+    "receiptTransactionId": "DEMO-RECEIPT",
+    "settlementTransactionId": "DEMO-DEPOSIT",
+    "postedGL": [
+      {
+        "transactionId": "DEMO-RECEIPT",
+        "journalId": "DEMO-RECEIPT",
+        "date": "2026-09-01",
+        "accountId": "CLEARING",
+        "debitCents": 1000000,
+        "creditCents": 0,
+        "posted": true,
+        "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example"
+      },
+      {
+        "transactionId": "DEMO-RECEIPT",
+        "journalId": "DEMO-RECEIPT",
+        "date": "2026-09-01",
+        "accountId": "AR",
+        "debitCents": 0,
+        "creditCents": 1000000,
+        "posted": true,
+        "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example"
+      },
+      {
+        "transactionId": "DEMO-DEPOSIT",
+        "journalId": "DEMO-DEPOSIT",
+        "date": "2026-09-03",
+        "accountId": "BANK",
+        "debitCents": 910000,
+        "creditCents": 0,
+        "posted": true,
+        "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example"
+      },
+      {
+        "transactionId": "DEMO-DEPOSIT",
+        "journalId": "DEMO-DEPOSIT",
+        "date": "2026-09-03",
+        "accountId": "CLEARING",
+        "debitCents": 0,
+        "creditCents": 910000,
+        "posted": true,
+        "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example"
+      }
+    ],
+    "ledgerCoverage": {
+      "periodStart": "2026-09-01",
+      "periodEnd": "2026-09-30",
+      "asOfDate": "2026-09-30",
+      "accountIds": [
+        "BANK",
+        "CLEARING",
+        "FEES",
+        "AR"
+      ],
+      "confirmed": true,
+      "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
+      "reviewer": "Fictional Demo Reviewer"
+    },
+    "expenseNotRecordedConfirmed": true,
+    "existingJournalIds": [],
+    "existingImportStatus": "NEVER_IMPORTED",
+    "syntheticOnly": true
+  },
+  "lines": [
+    {
+      "accountId": "FEES",
+      "account": "Merchant Financing Fees",
+      "debitCents": 90000,
+      "creditCents": 0,
+      "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD"
+    },
+    {
+      "accountId": "CLEARING",
+      "account": "ServiceTitan Clearing",
+      "debitCents": 0,
+      "creditCents": 90000,
+      "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD"
+    }
+  ],
+  "state": "APPROVED",
+  "approval": {
+    "reviewer": "Synthetic Fixture Generator - NOT accountant approval",
+    "approvedAt": "2026-10-21T10:53:00.000Z",
+    "payloadHash": "c6400ede3dac3036a8185cc50628d71d120447bedaa7316021a42815d5533a51"
+  }
+}

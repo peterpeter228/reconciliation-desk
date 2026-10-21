@@ -8,6 +8,16 @@ real QuickBooks import are not established.** No financial account is connected,
 no entries are posted, no real payment service is configured, and no public launch
 is implied. Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
 
+## Owner-private QA deployment
+
+https://reconciliation-desk-private-qa.blueboot64.chatgpt.site
+
+Private to the owner, synthetic-only acceptance target. Deployment succeeded;
+cloud-browser testing currently stops at ChatGPT sign-in. No completed app-flow
+or QuickBooks import acceptance is implied. See
+[evidence](evidence/browser-20261021-followup/) and
+[QuickBooks acceptance attempt](evidence/quickbooks-acceptance-20261021/README.zh-CN.md).
+
 ## Run locally
 
 Tested implementation environment: Node 24.19.0 and Python 3.12.14. Node >=22 required.

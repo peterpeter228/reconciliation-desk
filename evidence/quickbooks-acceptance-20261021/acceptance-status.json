@@ -1,0 +1,21 @@
+{
+  "checked_date_utc": "2026-10-21",
+  "target": "QuickBooks Online public US Plus test drive",
+  "browser_type": "isolated cloud browser",
+  "entry_url": "https://qbo.intuit.com/redir/testdrive",
+  "observed_url": "https://qbo.intuit.com/api/samplecompany/validated?SKU=7&bc=QBP-T39",
+  "observed_title": "QuickBooks Online Security Verification",
+  "status": "BLOCKED_RECAPTCHA_APPROVAL_PENDING",
+  "captcha_attempted": false,
+  "account_login_performed": false,
+  "upload_performed": false,
+  "import_performed": false,
+  "import_acceptance": "NOT_VERIFIED",
+  "gl_round_trip": "NOT_RUN",
+  "local_export_tests": {
+    "passed": 7,
+    "failed": 0,
+    "scope": "Vitest tests/import-export/exports.test.ts only"
+  },
+  "screenshot": "testdrive-security-verification.png"
+}

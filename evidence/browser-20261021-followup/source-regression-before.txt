@@ -1,0 +1,33 @@
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+ ❯ tests/ui/supplemental-cancellation-race.test.ts (1 test | 1 failed) 479ms
+     × does not let stale supplemental parsing abort a newer reconciliation 478ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/supplemental-cancellation-race.test.ts > Supplemental parsing cancellation race (jsdom only) > does not let stale supplemental parsing abort a newer reconciliation
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/ui/supplemental-cancellation-race.test.ts:144:32
+    142|     await waitFor(() => expect(runImport).toHaveBeenCalledTimes(11));
+    143|     // Safety expectation: work cancelled during parsing may not touch…
+    144|     expect(newSignal?.aborted).toBe(false);
+       |                                ^
+    145|     expect(runReconciliation).toHaveBeenCalledTimes(2);
+    146|     await act(async () => { newerRun.resolve({ result: result(200), du…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  19:55:43
+   Duration  1.68s (transform 355ms, setup 0ms, import 549ms, tests 479ms, environment 509ms)
+
