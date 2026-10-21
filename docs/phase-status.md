@@ -96,10 +96,15 @@ evidence and QuickBooks acceptance packet.
 2. Complete real-file pilot inputs and reviewed account/settlement evidence, not
    just the supplied clearing-only samples. Headerless bank profiles and split
    settlements remain unsupported; missing evidence must stay unresolved.
-3. Real-company accounting proposal UI and target QBO/QBD import/re-import in an
-   authorized sample/backup company. Typed helpers are not equivalent to that test.
+3. Complete target QBO/QBD round-trip and real-company proposal UI. QBO public
+   Sample Company accepted one synthetic two-leg $900 journal (transaction145),
+   visually verified with correct date/accounts/amounts. Its untouched native
+   Transaction Journal CSV and XLSX fail the current production parser, so round-trip
+   verification is explicitly failed, not passed. QBD import remains untested.
+   See evidence/quickbooks-acceptance-20261021 for native artifacts and next criteria.
 4. Optional mapping persistence/model integration, payment/fulfillment and launch
    remain separate scope and permission decisions; none is secretly enabled.
 
 See IMPLEMENTATION_LIMITS.md and dated evidence. All raw financial data remains
-local; no financial system is modified by this implementation.
+local. The app itself does not post financial entries; the only external posting
+in this QA round was the explicitly scoped synthetic entry in QBO public Sample Company.

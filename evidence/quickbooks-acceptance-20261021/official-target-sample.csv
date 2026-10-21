@@ -1,0 +1,10 @@
+*JournalNo,*JournalDate,*AccountName,Memo,Debits,Credits,TaxCode,Description,Name,Location,Class
+4,11/10/2026,Stock Asset,,700,,20%,Furniture purchase,,Main Office,Office Equipment
+4,,Cash on hand,,,840,,,,Main Office,Office Equipment
+5,12/10/2026,Debtors,,100,,20%,Sale of goods,Mark White,Warehouse,Sales
+5,,Cash on hand,,,100,,,,Warehouse,Sales
+5,,Vat Suspense,,,20,,,,Warehouse,Sales
+,,,,,,,,,,
+All data is for sample purposes only,,,,,,,,,,
+* denotes a mandatory column,,,,,,,,,,
+Keep your VAT codes as you will be able to map them later,,,,,,,,,,

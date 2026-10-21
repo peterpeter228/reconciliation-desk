@@ -4,8 +4,8 @@ A private, local-file workbench for ServiceTitan → QuickBooks → bank activit
 The goal is evidence you can review, not a green checkmark from coincident amounts.
 
 **Current stage: private pilot with scoped real-browser checks passed; complete
-browser acceptance and target QuickBooks import are not yet established.** No financial account is connected,
-no entries are posted, no real payment service is configured, and no public launch
+browser acceptance and complete QuickBooks round-trip are not established.** No real financial account is connected,
+no entries are posted to real books, no real payment service is configured, and no public launch
 is implied. Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
 
 ## Owner-private QA deployment
@@ -15,7 +15,10 @@ https://reconciliation-desk-private-qa.blueboot64.chatgpt.site
 Private to the owner, synthetic-only acceptance target. Real cloud-browser demo,
 XLSX/CSV upload, evidence, approval/export and reset paths were exercised; two
 workflow defects were fixed and retested. PDF/mobile/network-egress and target
-QuickBooks acceptance remain separate gates. See
+QuickBooks round-trip remain separate gates. One synthetic journal was imported
+and visually checked in the official public QBO Sample Company; its untouched
+CSV/XLSX report fails the current round-trip parser. This is a measured limitation,
+not end-to-end accounting acceptance. See
 [evidence](evidence/browser-20261021-followup/) and
 [QuickBooks acceptance attempt](evidence/quickbooks-acceptance-20261021/README.zh-CN.md).
 

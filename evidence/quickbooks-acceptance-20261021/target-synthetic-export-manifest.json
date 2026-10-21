@@ -1,0 +1,20 @@
+{
+  "status": "EXPORTED_NOT_POSTED",
+  "compatibility": "BETA_NOT_TARGET_TESTED",
+  "synthetic_only": true,
+  "proposalId": "ce641c900e9cc211975a1114a09ed753f1363f1867600a25f1d42778bfdb3177",
+  "proposalHash": "5030bcbbf444b4683757fd5e6a8ebb79a4f6b54513a33d9d7b8959f30232c05c",
+  "journalId": "RDCE641C900E",
+  "sourceFileHashes": [
+    "b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d"
+  ],
+  "approvedBy": "Synthetic Fixture Generator - NOT accountant approval",
+  "approvedAt": "2026-10-21T11:28:00.000Z",
+  "warnings": [
+    "SYNTHETIC TEACHING ONLY. Never import this example into real company books.",
+    "Export is not posting. Review in a backup/sample company, then re-import GL to verify.",
+    "Target QuickBooks product, region and version import has not been tested.",
+    "Hash detects changes; it does not authenticate an accounting reviewer.",
+    "Do not re-import a partially successful or uncertain package."
+  ]
+}

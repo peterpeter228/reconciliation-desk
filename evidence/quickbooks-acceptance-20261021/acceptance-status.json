@@ -1,21 +1,125 @@
 {
   "checked_date_utc": "2026-10-21",
   "target": "QuickBooks Online public US Plus test drive",
-  "browser_type": "isolated cloud browser",
+  "browser_type": "real cloud Chromium CUA browser",
   "entry_url": "https://qbo.intuit.com/redir/testdrive",
-  "observed_url": "https://qbo.intuit.com/api/samplecompany/validated?SKU=7&bc=QBP-T39",
-  "observed_title": "QuickBooks Online Security Verification",
-  "status": "BLOCKED_RECAPTCHA_APPROVAL_PENDING",
-  "captcha_attempted": false,
+  "observed_url": "https://qbo.intuit.com/app/journal?txnId=145",
+  "observed_title": "Journal Entry",
+  "status": "SCOPED_NATIVE_QBO_IMPORT_PASSED_RAW_ROUNDTRIP_FAILED",
+  "captcha_attempted": true,
   "account_login_performed": false,
-  "upload_performed": false,
-  "import_performed": false,
-  "import_acceptance": "NOT_VERIFIED",
-  "gl_round_trip": "NOT_RUN",
+  "upload_performed": true,
+  "import_performed": true,
+  "import_acceptance": "PASSED_FOR_THIS_SYNTHETIC_PUBLIC_SAMPLE_JOURNAL",
+  "gl_round_trip": "FAILED_CURRENT_PRODUCTION_PARSER_ON_UNTOUCHED_NATIVE_EXPORT",
   "local_export_tests": {
     "passed": 7,
     "failed": 0,
     "scope": "Vitest tests/import-export/exports.test.ts only"
   },
-  "screenshot": "testdrive-security-verification.png"
+  "screenshot": "target-import-success.png",
+  "last_checked_utc": "2026-10-21T11:56:00Z",
+  "captcha_approved": true,
+  "captcha_success": true,
+  "captcha_outcomes": [
+    "Original retained session had been destroyed before resume.",
+    "Fresh ordinary UI image challenge expired.",
+    "Bicycle challenge Verify returned Please try again.",
+    "Bus challenge Verify returned Please try again.",
+    "Approved normal cloud Chromium checkbox succeeded; Continue opened official Sample Company."
+  ],
+  "explicit_automated_access_denial_observed": false,
+  "company_opened": true,
+  "journal_import_ui_observed": true,
+  "previous_firecrawl_attempt": {
+    "observed_url": "https://qbo.intuit.com/api/samplecompany/validated?SKU=7&bc=QBP-T39",
+    "observed_title": "QuickBooks Online Security Verification",
+    "status": "BLOCKED_RECAPTCHA_NOT_ACCEPTED",
+    "captcha_outcomes": [
+      "Original retained session had been destroyed before resume.",
+      "Fresh ordinary UI image challenge expired.",
+      "Bicycle challenge Verify returned Please try again.",
+      "Bus challenge Verify returned Please try again."
+    ],
+    "explicit_automated_access_denial_observed": false,
+    "screenshot_initial": "testdrive-security-verification.png",
+    "screenshot_after_approval": "testdrive-challenge-not-accepted.png"
+  },
+  "company_display_name": "Sample Company",
+  "journal_import_url": "https://qbo.intuit.com/app/dataimport/journalentries",
+  "target_sample_csv": "official-target-sample.csv",
+  "target_fixture_csv": "PUBLIC_DEMO_ONLY_RDCE641C900E.csv",
+  "target_fixture_sha256": "2d195090a36cc1da73cfbdd3bc60ba77e758f2ef30ddb36eebd3df7c5cdfd1a8",
+  "test_only_account_mapping": {
+    "debit": {
+      "name": "Bank Charges",
+      "type": "Expenses",
+      "detail_type": "Bank Charges"
+    },
+    "credit": {
+      "name": "Uncategorized Asset",
+      "type": "Other Current Assets",
+      "detail_type": "Other Current Assets",
+      "balance_before": "0.00"
+    }
+  },
+  "upload_transport_timeout_recovered": true,
+  "complete_import_click_count": 1,
+  "import_success_count": 1,
+  "import_total_count": 1,
+  "import_success_message": "Nicely done. 1 out of 1 journal entry was added.",
+  "journal_number": "RDCE641C900E",
+  "actual_qbo_transaction_id": "145",
+  "date_observed": "2026-09-30",
+  "posted_legs_observed": [
+    {
+      "account": "Bank Charges",
+      "debit_cents": 90000,
+      "credit_cents": 0
+    },
+    {
+      "account": "Uncategorized Asset",
+      "debit_cents": 0,
+      "credit_cents": 90000
+    }
+  ],
+  "filled_posting_line_count": 2,
+  "description_preserved": true,
+  "asset_account_balance_after": "-900.00",
+  "csv_parse_errors": [
+    {
+      "physical_row": 6,
+      "code": "ROW_INVALID",
+      "message": "Both debit and credit are blank; an unknown ledger amount cannot become zero."
+    },
+    {
+      "physical_row": 14,
+      "code": "ROW_INVALID",
+      "message": "Both debit and credit are blank; an unknown ledger amount cannot become zero."
+    }
+  ],
+  "xlsx_parse_error": {
+    "code": "XLSX_DATE",
+    "message": "Workbook date epoch is invalid or ambiguous."
+  },
+  "roundtrip_verified": false,
+  "real_books_accessed": false,
+  "account_or_subscription_created": false,
+  "production_code_changed": false,
+  "screenshots": [
+    "target-demo-bank-charges-accounts.png",
+    "target-demo-asset-account.png",
+    "target-mapped-fields.png",
+    "target-ready-one-journal.png",
+    "target-import-success.png",
+    "target-imported-journal-145.png",
+    "target-transaction-journal-report.png"
+  ],
+  "native_downloads": [
+    "official-target-sample.csv",
+    "target-posted-journal-145.xls",
+    "target-transaction-journal-145.csv",
+    "target-transaction-journal-145.xlsx"
+  ],
+  "xlsx_namespace_compatibility_finding": "LIKELY_PENDING_INDEPENDENT_REPRO_REVIEW: standard workbookPr and x15:workbookPr extension appear counted together"
 }

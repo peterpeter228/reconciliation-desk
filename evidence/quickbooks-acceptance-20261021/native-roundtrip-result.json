@@ -1,0 +1,157 @@
+{
+  "scope": "Untouched native QBO Transaction Journal exports. No row rewriting, group-ID propagation or invented metadata.",
+  "uiObservedTransactionId": "145",
+  "csv": {
+    "fileName": "target-transaction-journal-145.csv",
+    "ok": false,
+    "rowCount": 0,
+    "issues": [
+      {
+        "code": "ROW_INVALID",
+        "message": "Both debit and credit are blank; an unknown ledger amount cannot become zero.",
+        "severity": "error",
+        "physicalRow": 6
+      },
+      {
+        "code": "ROW_INVALID",
+        "message": "Both debit and credit are blank; an unknown ledger amount cannot become zero.",
+        "severity": "error",
+        "physicalRow": 14
+      },
+      {
+        "code": "COVERAGE_UNKNOWN",
+        "message": "Coverage not confirmed. Results are activity reconciliation, not a verified month-end close.",
+        "severity": "warning"
+      }
+    ],
+    "mapping": {
+      "headers": [
+        "",
+        "Transaction date",
+        "Transaction type",
+        "Num",
+        "Name",
+        "Description",
+        "Account Name",
+        "Debit",
+        "Credit"
+      ],
+      "bindings": {
+        "posting_date": 1,
+        "transaction_type": 2,
+        "num": 3,
+        "name": 4,
+        "memo_local": 5,
+        "debit_cents": 7,
+        "credit_cents": 8,
+        "account_full_name": 6
+      },
+      "headerRow": 5
+    },
+    "controls": {
+      "signedCents": 0,
+      "debitCents": 0,
+      "creditCents": 0,
+      "excludedRows": [
+        {
+          "physicalRow": 1,
+          "reason": "Report preamble"
+        },
+        {
+          "physicalRow": 2,
+          "reason": "Report preamble"
+        },
+        {
+          "physicalRow": 3,
+          "reason": "Report preamble"
+        },
+        {
+          "physicalRow": 4,
+          "reason": "Report preamble"
+        },
+        {
+          "physicalRow": 9,
+          "reason": "Report summary/control row, not a posting atom"
+        },
+        {
+          "physicalRow": 10,
+          "reason": "Report summary/control row, not a posting atom"
+        },
+        {
+          "physicalRow": 11,
+          "reason": "Blank row"
+        },
+        {
+          "physicalRow": 12,
+          "reason": "Blank row"
+        },
+        {
+          "physicalRow": 13,
+          "reason": "Blank row"
+        }
+      ]
+    },
+    "manifest": {
+      "company_id": "SYNTHETIC_TEACHING_ONLY",
+      "source_system": "QBO",
+      "source_file_sha256": "d8e334975acbc74cc7a0b7b9f157f8f3f39f67f18bd85769deefceec5d690234",
+      "report_name": "target-transaction-journal-145.csv",
+      "report_grain": "POSTING_LINE",
+      "period_start": "2026-09-30",
+      "period_end": "2026-09-30",
+      "as_of_date": "2026-10-21",
+      "company_timezone": "Etc/UTC",
+      "basis": "UNKNOWN",
+      "accounts": [],
+      "account_balances": [],
+      "header_row": 5,
+      "raw_row_count": 6,
+      "normalized_row_count": 0,
+      "excluded_summary_rows": [
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "opening_debit_balance_cents": null,
+      "closing_debit_balance_cents": null,
+      "coverage_confirmed": false,
+      "missing_required_fields": []
+    },
+    "verification": {
+      "verified": false,
+      "reason": "Exact posted journal lines/date not found in the re-imported ledger.",
+      "matchingRowIds": []
+    }
+  },
+  "xlsx": {
+    "fileName": "target-transaction-journal-145.xlsx",
+    "ok": false,
+    "rowCount": 0,
+    "issues": [
+      {
+        "code": "XLSX_DATE",
+        "message": "Workbook date epoch is invalid or ambiguous.",
+        "severity": "error"
+      }
+    ],
+    "mapping": null,
+    "controls": {
+      "signedCents": 0,
+      "debitCents": null,
+      "creditCents": null,
+      "excludedRows": []
+    },
+    "manifest": null,
+    "verification": {
+      "verified": false,
+      "reason": "Exact posted journal lines/date not found in the re-imported ledger.",
+      "matchingRowIds": []
+    }
+  }
+}
