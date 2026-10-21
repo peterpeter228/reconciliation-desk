@@ -3,8 +3,8 @@
 A private, local-file workbench for ServiceTitan → QuickBooks → bank activity.
 The goal is evidence you can review, not a green checkmark from coincident amounts.
 
-**Current stage: runnable private pilot implementation; browser acceptance and
-real QuickBooks import are not established.** No financial account is connected,
+**Current stage: private pilot with scoped real-browser checks passed; complete
+browser acceptance and target QuickBooks import are not yet established.** No financial account is connected,
 no entries are posted, no real payment service is configured, and no public launch
 is implied. Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
 
@@ -12,9 +12,10 @@ is implied. Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
 
 https://reconciliation-desk-private-qa.blueboot64.chatgpt.site
 
-Private to the owner, synthetic-only acceptance target. Deployment succeeded;
-cloud-browser testing currently stops at ChatGPT sign-in. No completed app-flow
-or QuickBooks import acceptance is implied. See
+Private to the owner, synthetic-only acceptance target. Real cloud-browser demo,
+XLSX/CSV upload, evidence, approval/export and reset paths were exercised; two
+workflow defects were fixed and retested. PDF/mobile/network-egress and target
+QuickBooks acceptance remain separate gates. See
 [evidence](evidence/browser-20261021-followup/) and
 [QuickBooks acceptance attempt](evidence/quickbooks-acceptance-20261021/README.zh-CN.md).
 

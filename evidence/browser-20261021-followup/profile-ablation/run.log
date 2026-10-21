@@ -1,0 +1,431 @@
+{
+  "scope": "Read-only synthetic diagnostic; no browser automation or source mutation. Each case changes only stated input/config.",
+  "cases": {
+    "manualXlsx": {
+      "groups": 416,
+      "acceptedGroups": 0,
+      "allocations": 0,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 218,
+          "CANDIDATE": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 416
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 213,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manualCsv": {
+      "groups": 416,
+      "acceptedGroups": 0,
+      "allocations": 0,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 218,
+          "CANDIDATE": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 416
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 213,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "demoCsv": {
+      "groups": 221,
+      "acceptedGroups": 18,
+      "allocations": 36,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 23,
+          "CONFIRMED": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 34,
+          "SUPPORTED": 187
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 18,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "demoXlsx": {
+      "groups": 221,
+      "acceptedGroups": 18,
+      "allocations": 36,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 23,
+          "CONFIRMED": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 34,
+          "SUPPORTED": 187
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 18,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manualDemoSplitConfig": {
+      "groups": 416,
+      "acceptedGroups": 0,
+      "allocations": 0,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 218,
+          "CANDIDATE": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 416
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 213,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "demoManualSplitConfig": {
+      "groups": 221,
+      "acceptedGroups": 12,
+      "allocations": 24,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 23,
+          "CONFIRMED": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 34,
+          "CANDIDATE": 187
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 18,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manual_plus_qb_batch_ids": {
+      "groups": 413,
+      "acceptedGroups": 12,
+      "allocations": 24,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 215,
+          "CONFIRMED": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 413
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 210,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manual_plus_qb_bank_deposit_ids": {
+      "groups": 296,
+      "acceptedGroups": 0,
+      "allocations": 0,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 26,
+          "CANDIDATE": 270
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 37,
+          "CANDIDATE": 259
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 21,
+          "CANDIDATE": 275
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manual_plus_fee_roles": {
+      "groups": 416,
+      "acceptedGroups": 0,
+      "allocations": 0,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 218,
+          "CANDIDATE": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 416
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 213,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manual_plus_all_inferred_ids_and_fee_roles": {
+      "groups": 221,
+      "acceptedGroups": 12,
+      "allocations": 24,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 23,
+          "CONFIRMED": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 34,
+          "CANDIDATE": 187
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 18,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manual_plus_all_inferred_and_demo_config": {
+      "groups": 221,
+      "acceptedGroups": 18,
+      "allocations": 36,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 23,
+          "CONFIRMED": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 34,
+          "SUPPORTED": 187
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 18,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    },
+    "manual_same_labels_as_demo": {
+      "groups": 416,
+      "acceptedGroups": 0,
+      "allocations": 0,
+      "edgeStates": {
+        "ST_QB_RECEIPT": {
+          "ABSENT": 218,
+          "CANDIDATE": 198
+        },
+        "QB_BANK_SETTLEMENT": {
+          "ABSENT": 416
+        },
+        "ST_BANK_CASH": {
+          "ABSENT": 213,
+          "CANDIDATE": 203
+        }
+      },
+      "controls": {
+        "st_gross_cents": 24236014,
+        "st_refunds_cents": 154326,
+        "st_corrections_cents": -84396,
+        "qb_debits_cents": 24236014,
+        "qb_credits_cents": 21975512,
+        "bank_signed_cents": 21564869,
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "search": {
+        "CANDIDATE_CAP": 18,
+        "CARDINALITY_CAP": 4,
+        "COMPLETE": 468
+      }
+    }
+  },
+  "csvXlsxNormalizedRowsEqual": {
+    "manual": true,
+    "demo": true
+  },
+  "normalizedProfileDifferencesSameLabelsAndCsv": {
+    "st": {
+      "id": 359,
+      "source_refs": 359,
+      "export_status_basis": 359
+    },
+    "qb": {
+      "id": 338,
+      "source_refs": 338,
+      "accounting_batch_id": 203,
+      "linked_deposit_id": 192,
+      "role": 57
+    },
+    "bank": {
+      "id": 132,
+      "source_refs": 140,
+      "deposit_id": 132
+    }
+  },
+  "verification": "PASS: fixture hash, input row counts, CSV/XLSX parity, ablation counts and monetary controls asserted."
+}

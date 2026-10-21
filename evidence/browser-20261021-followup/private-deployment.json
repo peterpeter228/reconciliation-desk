@@ -1,14 +1,17 @@
 {
-  "checked_at": "2026-10-21T10:53:15Z",
-  "github_base_sha": "8171be5774bcaeca6e42203ff092d1b9ef07e776",
-  "site_source_sha": "efe3ad37a16e2cdd56eb807f9e45baa7b336ed9f",
+  "checked_at": "2026-10-21T11:37:46.369414+00:00",
+  "github_base_sha": "fff1ef93a119750005c9ebe5f43c576a308fc624",
+  "site_source_sha": "3c2dde8b25a6a9402e0de1e238227393b4572b74",
   "project_id": "appgprj_6ad899470bac81919b5cd538ff547314",
-  "deployment_id": "appgdep_6ad89976633c81919842ee641ad260fa",
+  "deployment_id": "appgdep_6ad8a196b9a88191871ad20e184d3c7e",
   "status": "succeeded",
   "access": "owner-private",
   "url": "https://reconciliation-desk-private-qa.blueboot64.chatgpt.site",
-  "source_files_matched": 197,
+  "source_files_matched": null,
   "dist_files_matched": 16,
-  "browser_acceptance": "pending",
-  "quickbooks_import": "not_verified"
+  "browser_acceptance": "scoped_core_flows_passed_after_retest",
+  "quickbooks_import": "not_verified",
+  "previous_deployment_id": "appgdep_6ad89976633c81919842ee641ad260fa",
+  "signin_authorized_at": "2026-10-21T10:59:50Z",
+  "note": "Initial197sourcefiles matched; follow-up26GitHub delta hashesverified plus rebuilt16asset private deployment. App browser acceptance still pending."
 }

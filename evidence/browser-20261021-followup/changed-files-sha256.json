@@ -1,4 +1,6 @@
 {
   "src/app.tsx": "876ef09d148a34844897544e197ad10e52c8cee548470efe1cb44926be04caad",
-  "tests/ui/supplemental-cancellation-race.test.ts": "37edde08ea79f179358c072f58237379f26a7b86b60819d1fdf171936e389667"
+  "tests/ui/supplemental-cancellation-race.test.ts": "37edde08ea79f179358c072f58237379f26a7b86b60819d1fdf171936e389667",
+  "src/pages/import.tsx": "8bd523ad456908441f674796efc436baa13387c6d7979e48a1c6c07d1c93b5e3",
+  "tests/ui/import-validation.test.ts": "cc17bf472a7d1a5733606f81f7c2dd6355e3b8a1711a7bc49d515cfdeb99f935"
 }

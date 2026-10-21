@@ -1,0 +1,150 @@
+{
+  "scope": "Synthetic source replay explaining distinct browser workflows; no claim of manual/demo semantic equivalence",
+  "demo": {
+    "options": {
+      "companyId": "SYNTHETIC_DEMO",
+      "bankAccountId": "DEMO_BANK",
+      "companyTimezone": "America/New_York",
+      "periodStart": "2026-09-01",
+      "periodEnd": "2026-09-30",
+      "asOfDate": "2026-09-30",
+      "currency": "USD",
+      "profile": "synthetic-v1",
+      "rowGrain": "PAYMENT",
+      "exportMode": "JE_TO_CLEARING",
+      "postedLedgerConfirmed": true,
+      "bankPostedConfirmed": true,
+      "coverageConfirmed": true,
+      "basis": "ACCRUAL"
+    },
+    "config": {
+      "company_id": "SYNTHETIC_DEMO",
+      "bank_account_id": "DEMO_BANK",
+      "period_cutoff": "2026-09-30",
+      "qb_bank_account_names": [
+        "Collections Checking"
+      ],
+      "clearing_split_semantics_confirmed": true
+    },
+    "source_rows": [
+      359,
+      338,
+      140
+    ],
+    "source_hashes": [
+      "50b48fc3351743d59acd14cfe7a7383f7b4b832d812345067b6410c0bd1f1fa4",
+      "6763e4ff4db727e2ad69c1ef665cd52fdb76e79285fb9a06cf704ce385cded3b",
+      "ae6ed4c2fa4e5919c5b32eef54aeaeaf0b2d976069971d158bca7fc64d7bff94"
+    ],
+    "normalized": {
+      "st_export_status_basis": {
+        "SYSTEM": 359
+      },
+      "st_fee_mode": {
+        "UNKNOWN": 359
+      },
+      "qb_roles": {
+        "CLEARING_RECEIPT": 146,
+        "CLEARING_SETTLEMENT": 135,
+        "FEE": 57
+      },
+      "qb_linked_deposit_ids": 192,
+      "qb_accounting_batch_ids": 203,
+      "bank_deposit_ids": 132
+    },
+    "groups": 221,
+    "allocations": 36,
+    "controls": {
+      "st_gross_cents": 24236014,
+      "st_refunds_cents": 154326,
+      "st_corrections_cents": -84396,
+      "qb_debits_cents": 24236014,
+      "qb_credits_cents": 21975512,
+      "bank_signed_cents": 21564869,
+      "conservation_ok": true,
+      "coverage_confirmed": true
+    },
+    "browser_comparison": {
+      "groups": 221,
+      "allocations": 36,
+      "controls_equal": true
+    }
+  },
+  "manual": {
+    "options": {
+      "companyId": "SYNTHETIC_QA",
+      "bankAccountId": "Synthetic checking",
+      "companyTimezone": "America/New_York",
+      "periodStart": "2026-09-01",
+      "periodEnd": "2026-09-30",
+      "asOfDate": "2026-09-30",
+      "currency": "USD",
+      "profile": "manual",
+      "rowGrain": "PAYMENT",
+      "exportMode": "JE_TO_CLEARING",
+      "postedLedgerConfirmed": true,
+      "bankPostedConfirmed": true,
+      "coverageConfirmed": true,
+      "basis": "ACCRUAL",
+      "dateFormat": "MDY",
+      "bankName": "",
+      "bankSignConvention": "INFLOW_POSITIVE",
+      "headerRow": 1,
+      "accountMap": {
+        "ServiceTitan Clearing": {
+          "accountType": "OTHER_CURRENT_ASSET",
+          "role": "CLEARING",
+          "isUndepositedFunds": false
+        }
+      }
+    },
+    "config": {
+      "company_id": "SYNTHETIC_QA",
+      "bank_account_id": "Synthetic checking",
+      "period_cutoff": "2026-09-30",
+      "clearing_split_semantics_confirmed": false
+    },
+    "source_rows": [
+      359,
+      338,
+      140
+    ],
+    "source_hashes": [
+      "4e3ed6b1762accb6460dcda3e31e60944db6447a8cc049bd41b879630c9f3cc6",
+      "6763e4ff4db727e2ad69c1ef665cd52fdb76e79285fb9a06cf704ce385cded3b",
+      "ae6ed4c2fa4e5919c5b32eef54aeaeaf0b2d976069971d158bca7fc64d7bff94"
+    ],
+    "normalized": {
+      "st_export_status_basis": {
+        "UNKNOWN": 359
+      },
+      "st_fee_mode": {
+        "UNKNOWN": 359
+      },
+      "qb_roles": {
+        "CLEARING_RECEIPT": 146,
+        "CLEARING_SETTLEMENT": 192
+      },
+      "qb_linked_deposit_ids": 0,
+      "qb_accounting_batch_ids": 0,
+      "bank_deposit_ids": 0
+    },
+    "groups": 416,
+    "allocations": 0,
+    "controls": {
+      "st_gross_cents": 24236014,
+      "st_refunds_cents": 154326,
+      "st_corrections_cents": -84396,
+      "qb_debits_cents": 24236014,
+      "qb_credits_cents": 21975512,
+      "bank_signed_cents": 21564869,
+      "conservation_ok": true,
+      "coverage_confirmed": true
+    },
+    "browser_comparison": {
+      "groups": 416,
+      "allocations": 0,
+      "controls_equal": true
+    }
+  }
+}

@@ -159,7 +159,7 @@ export function ImportPage({
           controls: { signedCents: 0, debitCents: null, creditCents: null, excludedRows: [] },
         },
       };
-      let result = inspection?.requiresSheetSelection
+      const result = inspection?.requiresSheetSelection
         ? {
             ...source.result,
             issues: [
@@ -171,12 +171,15 @@ export function ImportPage({
             ],
           }
         : await parseFile(source, kind, options());
-      if (!result.mapping && !inspection?.requiresSheetSelection)
-        result = await parseFile(source, kind, { ...options(), headerRow: 1 });
       if (token !== parseToken.current) return;
       setFiles((previous) => ({
         ...previous,
-        [kind]: { ...source, result, bindings: result.mapping?.bindings },
+        [kind]: {
+          ...source,
+          result,
+          bindings: result.mapping?.bindings,
+          headerRow: result.mapping?.headerRow,
+        },
       }));
     } catch (e) {
       if (token === parseToken.current)
@@ -209,7 +212,12 @@ export function ImportPage({
       const result = await parseFile(next, kind, options());
       setFiles((previous) => ({
         ...previous,
-        [kind]: { ...next, result, bindings: result.mapping?.bindings },
+        [kind]: {
+          ...next,
+          result,
+          bindings: result.mapping?.bindings,
+          headerRow: result.mapping?.headerRow,
+        },
       }));
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Worksheet preview failed.');
@@ -230,7 +238,13 @@ export function ImportPage({
       });
       setFiles((previous) => ({
         ...previous,
-        [kind]: { ...source, result, bindings: result.mapping?.bindings, excludedTargets: [] },
+        [kind]: {
+          ...source,
+          result,
+          bindings: result.mapping?.bindings,
+          headerRow: source.headerRow ?? result.mapping?.headerRow,
+          excludedTargets: [],
+        },
       }));
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Header preview failed.');
@@ -263,7 +277,9 @@ export function ImportPage({
           ...options(true),
           bindings: source.bindings,
           excludedTargets: source.excludedTargets,
-          headerRow: source.headerRow,
+          // Approved column bindings belong to the resolved physical header, not
+          // to every candidate row considered by automatic header detection.
+          headerRow: source.headerRow ?? source.result.mapping?.headerRow,
           seenFileHashes: seen,
         });
         if (result.manifest) seen.push(result.manifest.source_file_sha256);
@@ -674,59 +690,64 @@ function MappingCard({
         </Status>
       </summary>
       <div className="mapping-body">
+        <div className="mapping-meta">
+          <span>
+            {mapping
+              ? `Detected header: physical row ${mapping.headerRow}`
+              : 'No header resolved. Select the physical header row explicitly.'}
+          </span>
+          <label>
+            Header row
+            <input
+              type="number"
+              min="1"
+              max="30"
+              value={state.headerRow ?? mapping?.headerRow ?? 1}
+              disabled={disabled || (state.isXlsx && !state.sheetName)}
+              onChange={(e) =>
+                onChange(state.bindings ?? {}, Number(e.target.value), state.excludedTargets)
+              }
+            />
+          </label>
+          <button
+            className="text-button"
+            onClick={onPreview}
+            disabled={disabled || (state.isXlsx && !state.sheetName)}
+          >
+            Reload selected header
+          </button>
+        </div>
         {mapping && (
-          <>
-            <div className="mapping-meta">
-              <span>Detected header: physical row {mapping.headerRow}</span>
-              <label>
-                Header row
-                <input
-                  type="number"
-                  min="1"
-                  max="30"
-                  value={state.headerRow ?? mapping.headerRow}
-                  onChange={(e) =>
-                    onChange(state.bindings ?? {}, Number(e.target.value), state.excludedTargets)
-                  }
-                />
+          <div className="mapping-grid">
+            {fields.map((field) => (
+              <label key={field}>
+                {humanize(field)}
+                {requiredFields[kind].includes(field) && <span className="required-star"> *</span>}
+                <select
+                  value={state.bindings?.[field] ?? ''}
+                  onChange={(e) => {
+                    const next = { ...state.bindings };
+                    let excluded = [...(state.excludedTargets ?? [])];
+                    if (e.target.value === '') {
+                      delete next[field];
+                      excluded = [...new Set([...excluded, field])];
+                    } else {
+                      next[field] = Number(e.target.value);
+                      excluded = excluded.filter((target) => target !== field);
+                    }
+                    onChange(next, state.headerRow, excluded);
+                  }}
+                >
+                  <option value="">Not mapped</option>
+                  {mapping.headers.map((header, i) => (
+                    <option key={i} value={i}>
+                      {i + 1}. {header}
+                    </option>
+                  ))}
+                </select>
               </label>
-              <button className="text-button" onClick={onPreview} disabled={disabled}>
-                Reload selected header
-              </button>
-            </div>
-            <div className="mapping-grid">
-              {fields.map((field) => (
-                <label key={field}>
-                  {humanize(field)}
-                  {requiredFields[kind].includes(field) && (
-                    <span className="required-star"> *</span>
-                  )}
-                  <select
-                    value={state.bindings?.[field] ?? ''}
-                    onChange={(e) => {
-                      const next = { ...state.bindings };
-                      let excluded = [...(state.excludedTargets ?? [])];
-                      if (e.target.value === '') {
-                        delete next[field];
-                        excluded = [...new Set([...excluded, field])];
-                      } else {
-                        next[field] = Number(e.target.value);
-                        excluded = excluded.filter((target) => target !== field);
-                      }
-                      onChange(next, state.headerRow, excluded);
-                    }}
-                  >
-                    <option value="">Not mapped</option>
-                    {mapping.headers.map((header, i) => (
-                      <option key={i} value={i}>
-                        {i + 1}. {header}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              ))}
-            </div>
-          </>
+            ))}
+          </div>
         )}
         {state.result.manifest && (
           <div className="import-control-row">

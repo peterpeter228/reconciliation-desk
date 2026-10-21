@@ -1,0 +1,521 @@
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+ ❯ tests/ui/import-validation.test.ts (4 tests | 4 failed) 2146ms
+     × retains the selected XLSX sheet and resolved header through validation 395ms
+     × preserves detected physical header rows with the approved bindings 860ms
+     × retains an explicit header override instead of reverting to automatic detection 843ms
+     × keeps manual header recovery visible and never silently selects the first ambiguous row 47ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/import-validation.test.ts > Resolved import headers survive validation (real parsers, jsdom) > retains the selected XLSX sheet and resolved header through validation
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Reload selected header"
+
+Here are the accessible roles:
+
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------list:
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"validation-list"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"validation-error"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<details[39m
+  [33mclass[39m=[32m"mapping-card panel"[39m
+  [33mopen[39m=[32m""[39m
+[36m>[39m
+  [36m<summary>[39m
+    [36m<span>[39m
+      [36m<strong>[39m
+        [0mServiceTitan[0m
+      [36m</strong>[39m
+      [36m<span>[39m
+        [0msynthetic-multisheet.xlsx[0m
+      [36m</span>[39m
+    [36m</span>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"status status-amber"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"status-dot"[39m
+      [36m/>[39m
+      [0mReview needed[0m
+    [36m</span>[39m
+  [36m</summary>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"mapping-body"[39m
+  [36m>[39m
+    [36m<ul[39m
+      [33mclass[39m=[32m"validation-list"[39m
+    [36m>[39m
+      [36m<li[39m
+        [33mclass[39m=[32m"validation-error"[39m
+      [36m>[39m
+        [36m<strong>[39m
+          [0mCHOOSE_WORKSHEET[0m
+        [36m</strong>[39m
+        [0m [0m
+        [0mChoose one worksheet explicitly. Sheets are never silently combined.[0m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</details>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/ui/import-validation.test.ts:84:21
+     82|     const card = document.querySelector('.mapping-card') as HTMLElemen…
+     83|     expect(
+     84|       (within(card).getByRole('button', { name: 'Reload selected heade…
+       |                     ^
+     85|         .disabled,
+     86|     ).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/ui/import-validation.test.ts > Resolved import headers survive validation (real parsers, jsdom) > preserves detected physical header rows with the approved bindings
+AssertionError: expected [ undefined, undefined, undefined ] to deeply equal [ 1, 1, 1 ]
+
+- Expected
++ Received
+
+  [
+-   1,
+-   1,
+-   1,
++   undefined,
++   undefined,
++   undefined,
+  ]
+
+ ❯ tests/ui/import-validation.test.ts:102:46
+    100|     await validate();
+    101|     const calls = vi.mocked(runImport).mock.calls.filter((c) => c[2].c…
+    102|     expect(calls.map((c) => c[2].headerRow)).toEqual([1, 1, 1]);
+       |                                              ^
+    103|     expect(screen.getByText('Validation passed')).toBeTruthy();
+    104|     expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/ui/import-validation.test.ts > Resolved import headers survive validation (real parsers, jsdom) > retains an explicit header override instead of reverting to automatic detection
+AssertionError: expected undefined to be 2 // Object.is equality
+
+- Expected:
+2
+
++ Received:
+undefined
+
+ ❯ tests/ui/import-validation.test.ts:126:35
+    124|       .reverse()
+    125|       .find((c) => c[1] === 'ST' && c[2].coverageConfirmed);
+    126|     expect(stCall?.[2].headerRow).toBe(2);
+       |                                   ^
+    127|     expect(screen.getByText('Validation passed')).toBeTruthy();
+    128|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/ui/import-validation.test.ts > Resolved import headers survive validation (real parsers, jsdom) > keeps manual header recovery visible and never silently selects the first ambiguous row
+TestingLibraryElementError: Unable to find an element with the text: /Ambiguous header rows/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<details[39m
+  [33mclass[39m=[32m"mapping-card panel"[39m
+  [33mopen[39m=[32m""[39m
+[36m>[39m
+  [36m<summary>[39m
+    [36m<span>[39m
+      [36m<strong>[39m
+        [0mServiceTitan[0m
+      [36m</strong>[39m
+      [36m<span>[39m
+        [0mambiguous.csv[0m
+      [36m</span>[39m
+    [36m</span>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"status status-amber"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"status-dot"[39m
+      [36m/>[39m
+      [0mReview needed[0m
+    [36m</span>[39m
+  [36m</summary>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"mapping-body"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"mapping-meta"[39m
+    [36m>[39m
+      [36m<span>[39m
+        [0mDetected header: physical row [0m
+        [0m1[0m
+      [36m</span>[39m
+      [36m<label>[39m
+        [0mHeader row[0m
+        [36m<input[39m
+          [33mmax[39m=[32m"30"[39m
+          [33mmin[39m=[32m"1"[39m
+          [33mtype[39m=[32m"number"[39m
+          [33mvalue[39m=[32m"1"[39m
+        [36m/>[39m
+      [36m</label>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"text-button"[39m
+      [36m>[39m
+        [0mReload selected header[0m
+      [36m</button>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"mapping-grid"[39m
+    [36m>[39m
+      [36m<label>[39m
+        [0mPayment date[0m
+        [36m<span[39m
+          [33mclass[39m=[32m"required-star"[39m
+        [36m>[39m
+          [0m *[0m
+        [36m</span>[39m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<label>[39m
+        [0mGross cents[0m
+        [36m<span[39m
+          [33mclass[39m=[32m"required-star"[39m
+        [36m>[39m
+          [0m *[0m
+        [36m</span>[39m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<label>[39m
+        [0mSource payment id[0m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<label>[39m
+        [0mAccounting batch id[0m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<label>[39m
+        [0mPayment method[0m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<label>[39m
+        [0mPayment status[0m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<label>[39m
+        [0mExport status[0m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+      [36m<label>[39m
+        [0mReference[0m
+        [36m<select>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m""[39m
+          [36m>[39m
+            [0mNot mapped[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"0"[39m
+          [36m>[39m
+            [0m1[0m
+            [0m. [0m
+            [0mPayment ID[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"1"[39m
+          [36m>[39m
+            [0m2[0m
+            [0m. [0m
+            [0mPayment Date[0m
+          [36m</option>[39m
+          [36m<option[39m
+            [33mvalue[39m=[32m"2"[39m
+          [36m>[39m
+            [0m3[0m
+            [0m. [0m
+            [0mPayment Amount[0m
+          [36m</option>[39m
+        [36m</select>[39m
+      [36m</label>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"import-control-row"[39m
+    [36m>[39m
+      [36m<span>[39m
+        [0m1[0m
+        [0m source rows[0m
+      [36m</span>[39m
+      [36m<span>[39m
+        [0m0[0m
+        [0m normalized[0m
+      [36m</span>[39m
+      [36m<span>[39m
+        [0m0[0m
+        [0m summaries excluded[0m
+      [36m</span>[39m
+      [36m<span>[39m
+        [0mSigned activity: [0m
+        [0m$0.00[0m
+      [36m</span>[39m
+    [36m</div>[39m
+    [36m<ul[39m
+      [33mclass[39m=[32m"validation-list"[39m
+    [36m>[39m
+      [36m<li[39m
+        [33mclass[39m=[32m"validation-error"[39m
+      [36m>[39m
+        [36m<strong>[39m
+          [0mRow 2: [0m
+          [0mROW_INVALID[0m
+        [36m</strong>[39m
+        [0m [0m
+        [0mAmount must use unambiguous US decimal format with at most two decimal places.[0m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mclass[39m=[32m""[39m
+      [36m>[39m
+        [36m<strong>[39m
+          [0mCOVERAGE_UNKNOWN[0m
+        [36m</strong>[39m
+        [0m [0m
+        [0mCoverage not confirmed. Results are activity reconciliation, not a verified month-end close.[0m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</details>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/ui/import-validation.test.ts:134:25
+    132|     await upload('Choose ServiceTitan CSV', 'ambiguous.csv', csv);
+    133|     const card = document.querySelector('.mapping-card') as HTMLElemen…
+    134|     expect(within(card).getByText(/Ambiguous header rows/)).toBeTruthy…
+       |                         ^
+    135|     expect(within(card).getByLabelText('Header row')).toBeTruthy();
+    136|     expect(within(card).getByRole('button', { name: 'Reload selected h…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  20:26:10
+   Duration  3.18s (transform 183ms, setup 0ms, import 412ms, tests 2.15s, environment 492ms)
+

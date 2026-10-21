@@ -1,0 +1,9 @@
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  20:25:40
+   Duration  4.95s (transform 186ms, setup 0ms, import 378ms, tests 3.93s, environment 512ms)
+

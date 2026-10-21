@@ -22,7 +22,7 @@ completion, market demand or permitted external financial actions.
   source semantics, QBO/QBD choice, sorted cases, three-source evidence display,
   supplemental evidence and scope, JSON/CSV/print workpapers. Separate synthetic
   $900 fee-only approval/export demonstration with content-bound invalidation.
-- **G3 executed:** 330 TypeScript tests in 13 suites, including the original 187 and 143
+- **G3 executed:** 334 TypeScript tests in 14 suites, including the original 187 and 147
   additional post-review regressions. The original coverage includes independent
   held-out-seed integration, input/export, XLSX and jsdom UI checks. Typecheck/build/artifact checks pass.
   Original Python reference suite separately passes 33 tests. Counts are not a
@@ -66,11 +66,18 @@ Regression assertions were preserved; intermediate failures remain in dated logs
 
 Cloud browser cannot access shell loopback. Normal Chromium could not start in the
 restricted runtime; a sanctioned execution request failed during runtime startup.
-The follow-up reached an owner-private deployed Site in the real cloud browser,
-but stopped at its ChatGPT sign-in gate. A gate screenshot is not app acceptance;
-no app workflow has run. Static contrast and jsdom tests do not replace it.
-A cancelled supplemental-parser race was reproduced and narrowly fixed with a
-new lifecycle regression; this is source-level evidence, not browser validation.
+The follow-up reached an owner-private deployed Site and, after owner-authorized
+existing-account sign-in, exercised actual cloud Chromium. Demo, evidence, native
+file chooser, XLSX worksheet selection, CSV/XLSX validation and reconciliation,
+synthetic approval/CSV/IIF export, date invalidation, cancellation and clearing
+passed their documented checks. Two source defects were fixed: cancelled
+supplemental parsing could abort a newer run; resolved header state was lost during
+validation and ambiguity recovery controls disappeared. The import fix was retested
+in the deployed browser. These are scoped checks, not full browser acceptance:
+PDF/mobile/runtime-egress and manifest-download verification remain unverified.
+Manual uploaded fixtures deliberately retain more unknown identity semantics than
+the synthetic demo; matching counts are not equivalent, and conservation is true
+in both. See the real-browser evidence and independent profile ablation.
 
 The first Argon attempt returned a transport error with unknown receipt/billing.
 After explicit owner approval of the private-code batch and one retry, Argon
@@ -78,14 +85,14 @@ returned HTTP200 in103.228s. Its static claims were independently reproduced,
 triaged and fixed; see ARGON_REVIEW_TRIAGE_20261021.md and the final dated tests.
 The fixed code was not sent for a second external review. No model certification
 or browser acceptance is claimed. An owner-private QA Site was deployed after the
-owner requested another acceptance attempt; sign-in approval is pending. No public
+owner requested another acceptance attempt; authorized sign-in succeeded. No public
 deployment or financial-account integration occurred. See the dated follow-up
 evidence and QuickBooks acceptance packet.
 
 ## Remaining completion gates
 
-1. Actual browser desktop/mobile, keyboard/zoom/print/download and live network
-   egress inspection; the owner-private QA Site currently stops at sign-in.
+1. Remaining mobile, print/PDF, comprehensive keyboard/zoom, download-manifest
+   and runtime network-egress checks. Scoped desktop app flows passed; not all gates.
 2. Complete real-file pilot inputs and reviewed account/settlement evidence, not
    just the supplied clearing-only samples. Headerless bank profiles and split
    settlements remain unsupported; missing evidence must stay unresolved.

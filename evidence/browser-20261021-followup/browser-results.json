@@ -1,64 +1,123 @@
 {
-  "as_of_utc": "2026-10-21T10:57:53Z",
-  "status": "BLOCKED_AT_OWNER_AUTHENTICATION_BEFORE_APP_VALIDATION",
+  "as_of_utc": "2026-10-21T11:34:00Z",
+  "status": "SCOPED_REAL_BROWSER_PASS_WITH_UNVERIFIED_REMAINDER",
   "target": "https://reconciliation-desk-private-qa.blueboot64.chatgpt.site/",
   "browser": "Real cloud Chromium through supported CUA API, browser 1, tab 5",
   "browser_documentation_read": true,
-  "access_boundary": "Owner-private ChatGPT sign-in. No sign-in action, bypass token, public deployment or security change performed by this worker.",
+  "access_boundary": "Owner explicitly approved existing ChatGPT sign-in. The one existing account was selected; no password, new account, persistent grant prompt or bypass token was used.",
   "rendered_observation": {
-    "title": "需要登录",
-    "heading": "登录后即可访问",
-    "continue_link": "使用 ChatGPT 继续",
+    "title": "\u9700\u8981\u767b\u5f55",
+    "heading": "\u767b\u5f55\u540e\u5373\u53ef\u8bbf\u95ee",
+    "continue_link": "\u4f7f\u7528 ChatGPT \u7ee7\u7eed",
     "screenshot": "private-site-login-gate.jpg",
     "viewport_pixels": [
       1180,
       757
-    ]
+    ],
+    "scope": "Initial authentication gate only; authorized sign-in later reached application."
   },
-  "app_page_rendered": false,
-  "app_workflow_checks_executed": 0,
+  "app_page_rendered": true,
+  "app_workflow_checks_executed": 20,
   "checks": [
     {
-      "name": "Navigate real browser to private QA deployment",
-      "status": "ATTEMPTED",
-      "result": "Owner authentication gate rendered"
-    },
-    {
-      "name": "Capture real gate screenshot",
+      "name": "Application identity and nonblank desktop rendering",
       "status": "PASS",
-      "result": "private-site-login-gate.jpg"
+      "result": "Title Reconciliation Desk; screenshot 01-app-empty.jpg; 1165px DOM client width with equal scrollWidth; no Vite overlay."
     },
     {
-      "name": "Application identity, layout and primary interaction",
-      "status": "NOT_RUN"
+      "name": "Synthetic demo baseline and largest-first queue",
+      "status": "PASS",
+      "result": "$242,360.14 source gross; $50,000 first; screenshot 02-baseline-demo.jpg."
     },
     {
-      "name": "Demo, $20k/$50k evidence and source provenance",
-      "status": "NOT_RUN"
+      "name": "Browser-downloaded baseline evidence",
+      "status": "PASS",
+      "result": "24,236,014 cents; conservation true; 3 expected source hashes; no confirmed processor hold. baseline-browser-evidence.json."
     },
     {
-      "name": "Supplemental import and repeated input behavior",
-      "status": "NOT_RUN"
+      "name": "$20k missing settlement before supplemental evidence",
+      "status": "PASS",
+      "result": "Absence explicitly not proof of cause; bank link absent; screenshot 03-missing-settlement.jpg."
     },
     {
-      "name": "Browser cancellation and stale-result isolation",
-      "status": "NOT_RUN"
+      "name": "Physical row and hash provenance dialog",
+      "status": "PASS",
+      "result": "QB row 308, file and row SHA-256 displayed; screenshot 04-source-provenance.jpg."
     },
     {
-      "name": "CSV/XLSX file chooser, validation and errors",
-      "status": "NOT_RUN"
+      "name": "Supplemental evidence and conservative $20k hold",
+      "status": "PASS",
+      "result": "Processor hold SUPPORTED, not CONFIRMED, with missing bank/processor release coverage; screenshot 05-hold-supported-not-confirmed.jpg."
     },
     {
-      "name": "$900 approval, CSV/IIF export and invalidation",
-      "status": "NOT_RUN"
+      "name": "Repeat sample evidence guard",
+      "status": "PASS",
+      "result": "Sample evidence already loaded button disabled."
     },
     {
-      "name": "Print/PDF and mobile responsive rendering",
-      "status": "NOT_RUN"
+      "name": "$50k bridge and main-run accounting gate",
+      "status": "PASS",
+      "result": "$47,000 - $3,150 + $6,150 = $50,000. No import-ready adjustment; requires full bank/expense proof."
     },
     {
-      "name": "App runtime console and network egress",
-      "status": "NOT_RUN"
+      "name": "Browser-downloaded enhanced evidence",
+      "status": "PASS",
+      "result": "8 source files, same gross, conservation true, missing release coverage retained and all main-run accounting imports ineligible. enhanced-browser-evidence.json."
+    },
+    {
+      "name": "Synthetic approval and export buttons",
+      "status": "PASS",
+      "result": "Both formats disabled before explicit approval, enabled after name and specific fictional-only attestation. Screenshot 06-approved-synthetic-fee.jpg."
+    },
+    {
+      "name": "Synthetic QBO CSV and QBD IIF downloads",
+      "status": "PASS",
+      "result": "Actual downloaded files contain only $900 fee debit/clearing credit, no second bank deposit. CSV/IIF stored beside report. Manifest transfer not yet independently verified."
+    },
+    {
+      "name": "Native date-picker approval invalidation",
+      "status": "PASS",
+      "result": "Native calendar moved to September 28; state reset to Draft for review, attestation unchecked, both exports disabled. Screenshot 08-native-date-invalidated.jpg."
+    },
+    {
+      "name": "Unsupported file through actual file chooser",
+      "status": "PASS",
+      "result": "Synthetic invalid.pdf rejected; CSV/TSV/XLSX error and disabled reconciliation. Screenshot 09-file-error.jpg."
+    },
+    {
+      "name": "Multi-sheet XLSX explicit worksheet choice",
+      "status": "PASS",
+      "result": "Payments and Read me sheets shown; no automatic selection or combination; CHOOSE_WORKSHEET blocked reconciliation until Payments selected. Screenshot 10-xlsx-selection-state.jpg."
+    },
+    {
+      "name": "CSV/XLSX selection and validation",
+      "status": "PASS_AFTER_FIX",
+      "result": "Same actual file-chooser flow retested on index-Bx7ddThs.js. Selected Payments in XLSX, 359 ST / 338 QB / 140 bank rows validated. Reconciliation completed with gross 24,236,014 cents and conservation true. Screenshots 12-import-validation-passed.jpg and 13-upload-reconciliation.jpg. Earlier failure preserved in 11-import-validation-blocked.jpg. Manual/demo semantic equivalence is not claimed; profile comparison attached."
+    },
+    {
+      "name": "Browser cancellation, reset, repeated run",
+      "status": "PASS",
+      "result": "Started sample reset then clicked Cancel; existing uploaded 416-case result remained unchanged, including after later observations. Two subsequent completed resets each returned 221 sample cases and same gross without accumulation. Screenshot 14-cancel-preserves-result.jpg."
+    },
+    {
+      "name": "Cancel and confirm workspace clearing",
+      "status": "PASS",
+      "result": "Keep workspace retained results. Reopened confirmation and explicitly cleared: empty state and in-memory-cleared notice returned, downloaded files unaffected. Screenshot 15-workspace-cleared.jpg."
+    },
+    {
+      "name": "Uploaded-source evidence controls and scope comparison",
+      "status": "PASS_SCOPED",
+      "result": "Actual upload-browser-evidence.json has equal scalar controls and row counts to baseline, conservation true, no eligible main-run fee draft. Manual 416 groups/0 allocations differs from demo 221/36. Diagnostic source replay reproduces both exactly under their distinct profiles/config. This is not matching-equivalence acceptance."
+    },
+    {
+      "name": "Print/PDF and mobile viewport",
+      "status": "ATTEMPTED_UNVERIFIED",
+      "result": "Evidence summary button created print-summary DOM; neither app print action nor native Ctrl+P produced an observed dialog or PDF. Native window-corner resize did not alter DOM width (1165px). Actual mobile viewport and rendered PDF acceptance remain NOT_RUN; no output is claimed."
+    },
+    {
+      "name": "Application console and runtime egress",
+      "status": "PARTIAL",
+      "result": "Scoped console request returned 149 warning/error records, all chrome-extension-origin; no app-origin warnings/errors in that captured set. Network-request observation API is not exposed; runtime egress acceptance NOT_RUN."
     }
   ],
   "gate_console": [
@@ -83,10 +142,61 @@
     "typecheck_initial_harness_failure": "A generic type mismatch in the new test helper was corrected before final successful typecheck."
   },
   "not_claimed": [
-    "Real-browser app acceptance",
+    "Unqualified full browser acceptance",
+    "Manual/demo semantic equivalence",
+    "Rendered PDF or mobile acceptance",
+    "Runtime network-egress acceptance",
     "QuickBooks import acceptance",
     "Public or production launch",
     "Financial posting"
   ],
-  "awaiting": "Owner approval to continue existing ChatGPT account sign-in; tab 5 retained by handoff mark."
+  "awaiting": "Separately owned QuickBooks sample import acceptance. App browser task complete within stated scope; app tab 5 retained. PDF/mobile/egress exclusions remain.",
+  "current_deployment": {
+    "site_source": "3c2dde8b25a6a9402e0de1e238227393b4572b74",
+    "deployment": "appgdep_6ad8a196b9a88191871ad20e184d3c7e",
+    "observed_script": "/assets/index-Bx7ddThs.js",
+    "reported_success_at_utc": "2026-10-21T11:27:24Z"
+  },
+  "automation_limitations": [
+    "CUA locator.fill changed date DOM value without committing React state. Do not count that as a user-change test; native calendar interaction subsequently passed. Screenshot 07-date-fill-uncommitted.jpg preserves the observation.",
+    "Clicking the visually hidden file input timed out waiting for chooser. The visible upload button opened the actual chooser and invalid.pdf selection succeeded; no retry of an uncertain selection was made."
+  ],
+  "source_import_fix": {
+    "files": [
+      "src/pages/import.tsx",
+      "tests/ui/import-validation.test.ts"
+    ],
+    "scope": "Persist resolved physical header rows and explicit overrides, remove silent first-row fallback, preserve manual recovery control when mapping is absent. No parser ambiguity checks weakened.",
+    "tests": "334 passed in 14 files; 4 targeted import UI tests with real parsers and mocked worker transports",
+    "other_checks": [
+      "typecheck passed",
+      "production build passed",
+      "artifact scan passed",
+      "format passed"
+    ],
+    "app_asset": "index-Bx7ddThs.js",
+    "browser_retest": "PASS_EXACT_UPLOAD_VALIDATION_RECONCILIATION_FLOW"
+  },
+  "previous_deployment": {
+    "github_main": "fff1ef93a119750005c9ebe5f43c576a308fc624",
+    "site_source": "86af75e681f458d9648d33486e38f16a3e2bd977",
+    "deployment": "appgdep_6ad89b676c3c81919178cdeedc8447d3",
+    "observed_script": "/assets/index-yiHw3WrN.js"
+  },
+  "profile_comparison": "import-profile-comparison.json; exact source replay and browser controls comparison; no parser/engine changes made for differing output",
+  "console_summary": {
+    "requested_limit": 200,
+    "returned": 149,
+    "extension_origin": 149,
+    "other_origins": 0,
+    "runtime_network": "NOT_RUN"
+  },
+  "manual_difference_review": {
+    "status": "EXPLAINED_NOT_PARSER_REGRESSION",
+    "result": "Independent ablations: manual CSV and XLSX both 416 groups/0 allocations; synthetic CSV and XLSX both 221/36. Fixture-only identity/fee-role restoration gives 221/24; demo split config restores 221/36. 36 allocations correspond to 18 partial groups, not complete three-way matches.",
+    "artifacts": [
+      "profile-ablation/README.md",
+      "profile-ablation/results.json"
+    ]
+  }
 }
