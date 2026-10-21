@@ -267,11 +267,27 @@ function inflatePart(bytes: Uint8Array, part: ZipPart): Uint8Array {
   return out;
 }
 
-interface XmlTag {
+interface XmlElement {
   name: string;
+  namespace: string | undefined;
   attrs: Record<string, string>;
+}
+interface XmlTag extends XmlElement {
+  ancestors: readonly XmlElement[];
   closing: boolean;
 }
+interface XmlFrame extends XmlElement {
+  fullName: string;
+  namespaces: Record<string, string>;
+}
+const spreadsheetNamespaces = new Set([
+  'http://schemas.openxmlformats.org/spreadsheetml/2006/main',
+  'http://purl.oclc.org/ooxml/spreadsheetml/main',
+]);
+const x15Namespace = 'http://schemas.microsoft.com/office/spreadsheetml/2010/11/main';
+const x15WorkbookExtension = '{140A7094-0E35-4892-8432-C4D2E57EDEB5}';
+const xmlNamespace = 'http://www.w3.org/XML/1998/namespace';
+const xmlnsNamespace = 'http://www.w3.org/2000/xmlns/';
 const packageMetadata: Record<string, { name: string; attrs: readonly string[] }> = {
   relationship: { name: 'Relationship', attrs: ['Id', 'Type', 'Target', 'TargetMode'] },
   override: { name: 'Override', attrs: ['PartName', 'ContentType'] },
@@ -299,7 +315,7 @@ function decodeEntities(value: string): string {
 }
 /** Strict, non-expanding XML lexer: rejects DTD/CDATA, invalid nesting and ambiguous attributes. */
 function walkXml(xml: string, visit: (tag: XmlTag) => void, text: (value: string) => void): void {
-  const stack: string[] = [];
+  const stack: XmlFrame[] = [];
   let p = 0,
     roots = 0;
   while (p < xml.length) {
@@ -404,20 +420,43 @@ function walkXml(xml: string, visit: (tag: XmlTag) => void, text: (value: string
           'XLSX_XML_UNSUPPORTED',
           'Encoded or aliased structural cell attributes are not accepted.',
         );
+      if (name === 'workbookPr' && alias === 'date1904' && key !== 'date1904')
+        fail(
+          'XLSX_XML_UNSUPPORTED',
+          'Workbook date epoch requires the canonical date1904 attribute.',
+        );
       attrs[key] = decodeEntities(raw);
       rest = rest.slice(a[0].length);
     }
     if (closing) {
-      if (selfClosing || Object.keys(attrs).length || stack.pop() !== fullName)
+      const frame = stack.pop();
+      if (selfClosing || Object.keys(attrs).length || frame?.fullName !== fullName)
         fail('XLSX_XML_INVALID', 'XML elements are not correctly nested.');
-      visit({ name, attrs, closing: true });
+      visit({ ...frame, ancestors: stack, closing: true });
     } else {
       if (!stack.length && ++roots > 1) fail('XLSX_XML_INVALID', 'Multiple XML document roots.');
       if (stack.length >= XLSX_LIMITS.xmlDepth)
         fail('XLSX_XML_LIMIT', 'XML nesting exceeds the safety limit.');
-      visit({ name, attrs, closing: false });
-      if (selfClosing) visit({ name, attrs, closing: true });
-      else stack.push(fullName);
+      // Namespace scope belongs to the element, not the prefix spelling. A child may
+      // rebind a prefix or the default namespace without affecting its siblings.
+      const namespaces: Record<string, string> = Object.create(stack.at(-1)?.namespaces ?? null);
+      for (const [key, value] of Object.entries(attrs)) {
+        if (key !== 'xmlns' && !key.startsWith('xmlns:')) continue;
+        const prefix = key === 'xmlns' ? '' : key.slice(6);
+        if (
+          prefix === 'xmlns' ||
+          (prefix === 'xml') !== (value === xmlNamespace) ||
+          value === xmlnsNamespace ||
+          (prefix && !value)
+        )
+          fail('XLSX_XML_UNSUPPORTED', 'Invalid or reserved XML namespace declaration.');
+        namespaces[prefix] = value;
+      }
+      const prefix = fullName.includes(':') ? fullName.split(':')[0] : '';
+      const frame = { name, fullName, attrs, namespace: namespaces[prefix], namespaces };
+      visit({ ...frame, ancestors: stack, closing: false });
+      if (selfClosing) visit({ ...frame, ancestors: stack, closing: true });
+      else stack.push(frame);
     }
     p = end + 1;
   }
@@ -465,9 +504,10 @@ function validateXml(bytes: Uint8Array): {
     elements = 0,
     styles = 0,
     sharedStrings = 0;
+  let inExtensionProperties = false;
   walkXml(
     xml,
-    ({ name: tag, attrs, closing }) => {
+    ({ name: tag, namespace, ancestors, attrs, closing }) => {
       if (!closing) {
         if (
           ++elements > XLSX_LIMITS.xmlElements ||
@@ -518,12 +558,47 @@ function validateXml(bytes: Uint8Array): {
               'Macro-enabled or binary workbook content is not accepted.',
             );
         }
-        if (
-          tag === 'workbookPr' &&
-          (++workbookProperties > 1 ||
-            (attrs.date1904 !== undefined && !/^(?:0|1|true|false)$/.test(attrs.date1904)))
-        )
-          fail('XLSX_DATE', 'Workbook date epoch is invalid or ambiguous.');
+        if (inExtensionProperties)
+          fail('XLSX_XML_UNSUPPORTED', 'Workbook extension properties must be empty metadata.');
+        if (tag.toLowerCase() === 'workbookpr') {
+          if (tag !== 'workbookPr')
+            fail('XLSX_XML_UNSUPPORTED', 'Nonstandard workbook property names are not accepted.');
+          if (spreadsheetNamespaces.has(namespace ?? '')) {
+            if (
+              ++workbookProperties > 1 ||
+              ancestors.length !== 1 ||
+              ancestors[0].name !== 'workbook' ||
+              ancestors[0].namespace !== namespace ||
+              (attrs.date1904 !== undefined && !/^(?:0|1|true|false)$/.test(attrs.date1904))
+            )
+              fail('XLSX_DATE', 'Workbook date epoch is invalid or ambiguous.');
+          } else {
+            // Only the observed, non-date x15 chart-tracking extension is supported.
+            // SheetJS strips element namespaces too: never let extension attributes
+            // (especially date1904 or its aliases) override the real workbook epoch.
+            if (
+              namespace !== x15Namespace ||
+              ancestors.length !== 3 ||
+              ancestors[0].name !== 'workbook' ||
+              !spreadsheetNamespaces.has(ancestors[0].namespace ?? '') ||
+              ancestors[1].name !== 'extLst' ||
+              ancestors[2].name !== 'ext' ||
+              ancestors.slice(1).some((parent) => parent.namespace !== ancestors[0].namespace) ||
+              ancestors[2].attrs.uri !== x15WorkbookExtension ||
+              Object.keys(attrs).some(
+                (key) =>
+                  key !== 'xmlns' && !key.startsWith('xmlns:') && key !== 'chartTrackingRefBase',
+              ) ||
+              (attrs.chartTrackingRefBase !== undefined &&
+                !/^(?:0|1|true|false)$/.test(attrs.chartTrackingRefBase))
+            )
+              fail(
+                'XLSX_XML_UNSUPPORTED',
+                'Unsupported or ambiguous workbook property namespace or extension.',
+              );
+            inExtensionProperties = true;
+          }
+        }
         if (tag === 'sheet') {
           if (++sheetCount > XLSX_LIMITS.sheets)
             fail(
@@ -585,6 +660,7 @@ function validateXml(bytes: Uint8Array): {
           cellBytes = 0;
         }
       } else {
+        if (tag === 'workbookPr' && namespace === x15Namespace) inExtensionProperties = false;
         if (inCell && tag === 'v') {
           const value = valueText.trim();
           if (
@@ -606,6 +682,8 @@ function validateXml(bytes: Uint8Array): {
       }
     },
     (value) => {
+      if (inExtensionProperties && value.trim())
+        fail('XLSX_XML_UNSUPPORTED', 'Workbook extension properties must be empty metadata.');
       if (valueDepth) valueText += value;
       if (aggregateDepth && (cellBytes += encoder.encode(value).length) > XLSX_LIMITS.cellBytes)
         fail('XLSX_CELL_LIMIT', 'Cell or shared-string content exceeds 4 KB.');
@@ -790,7 +868,7 @@ export async function readXlsxMatrix(
       fileHash: await sha256(bytes),
       sheet: name,
       byteLength: bytes.length,
-      parserVersion: 'xlsx-local-1.1/sheetjs-0.20.3',
+      parserVersion: 'xlsx-local-1.2/sheetjs-0.20.3',
     },
   };
 }

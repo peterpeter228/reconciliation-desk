@@ -1,5 +1,7 @@
 # QuickBooks 实际导入验收记录
 
+> 后续本地工程复核：2026-10-21 新增显式 `qbo-transaction-journal-v1` profile 后，**未经修改的原生 CSV 已得到单笔精确过账匹配**；这不是完整期间/科目覆盖，也没有证明清算余额归零。原生 XLSX 仍因实际控制总计公式而被安全拒绝。新结果见 `native-profile-roundtrip-result.json`，可复现脚本 `check-native-profile-roundtrip.mjs`，约束见 [profile 文档](../../docs/QBO_TRANSACTION_JOURNAL_PROFILE.md)。下文原失败过程和 `native-roundtrip-result.json` 均保留，不改写历史结果。
+
 核验日：2026-10-21。最终状态：**官方公开 Sample Company 的单笔合成 CSV 导入成功；原生报表回导未通过，因此仍不能当作已上线产品。**
 
 ## 已由真实浏览器证实

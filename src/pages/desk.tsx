@@ -245,7 +245,10 @@ export function DeskPage({
                   m.report_name}
               </strong>
               <span>
-                {m.normalized_row_count} rows · {m.excluded_summary_rows.length} summaries excluded
+                {m.normalized_row_count} rows · {m.excluded_summary_rows.length}{' '}
+                {m.qbo_transaction_journal
+                  ? 'non-posting rows (includes preamble/blanks)'
+                  : 'summaries excluded'}
               </span>
               <span>
                 {m.period_start} – {m.period_end}

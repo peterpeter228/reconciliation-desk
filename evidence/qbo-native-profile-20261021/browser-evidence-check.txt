@@ -1,0 +1,1 @@
+PASS: unchanged CSV hash, 2 rows, transaction 145 distinct from Num, physical provenance, $900 balanced controls, no full-period coverage or false acceptance; ST exclusion explained.

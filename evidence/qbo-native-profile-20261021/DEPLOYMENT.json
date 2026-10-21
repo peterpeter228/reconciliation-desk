@@ -1,0 +1,10 @@
+{
+  "status": "succeeded",
+  "project_id": "appgprj_6ad899470bac81919b5cd538ff547314",
+  "source_sha": "eeefde5fef8e7d57d9b076204bd1ba287ebba7a1",
+  "deployment_id": "appgdep_6ad8b075ebb4819193536f284933b267",
+  "url": "https://reconciliation-desk-private-qa.blueboot64.chatgpt.site",
+  "access": "owner-private",
+  "deployed_at": "2026-10-21T12:30:53.464112Z",
+  "note": "Final mapping-display patch included; runtime asset index-Fhbk5JSD.js. Scoped browser result recorded separately."
+}

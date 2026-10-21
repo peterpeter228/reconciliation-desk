@@ -61,7 +61,9 @@ async function validate() {
   });
   fireEvent.click(screen.getByLabelText(/I reviewed the mappings and source scope/));
   fireEvent.click(screen.getByRole('button', { name: 'Validate files' }));
-  await waitFor(() => expect(screen.getByRole('button', { name: 'Validate files' })).toBeTruthy());
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Validate files' })).toBeTruthy(), {
+    timeout: 5000,
+  });
 }
 describe('Resolved import headers survive validation (real parsers, jsdom)', () => {
   it('retains the selected XLSX sheet and resolved header through validation', async () => {

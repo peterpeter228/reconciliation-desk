@@ -1,0 +1,270 @@
+{
+  "scope": "Local namespace regression only. Original captured QBO XLSX remains unsupported because it contains formulas. The separate derived fixture is newly generated from the companion public-demo CSV, not a sanitized or accepted original XLSX.",
+  "original": {
+    "fileName": "target-transaction-journal-145.xlsx",
+    "sha256": "ac1b896b3377199496c67132968e8e61949f388eaa7a13c43ed52fcace95e033",
+    "bytes": 8880,
+    "epoch": "Standard workbookPr has no date1904; default 1900 epoch. Posting dates B7/B8 are shared strings, not serials.",
+    "standardProperties": "<workbookPr defaultThemeVersion=\"166925\" />",
+    "extensionProperties": "<x15:workbookPr chartTrackingRefBase=\"1\"/>",
+    "formulaCells": [
+      {
+        "address": "H9",
+        "formula": "H7+H8"
+      },
+      {
+        "address": "I9",
+        "formula": "I7+I8"
+      },
+      {
+        "address": "H10",
+        "formula": "H9"
+      },
+      {
+        "address": "I10",
+        "formula": "I9"
+      }
+    ],
+    "result": {
+      "accepted": false,
+      "code": "XLSX_FORMULA",
+      "message": "Formula cells and defined names are not accepted, even when a cached value exists. Export all formulas as values."
+    },
+    "unchangedAfter": true
+  },
+  "derived": {
+    "fileName": "SYNTHETIC_DERIVED_VALUES_ONLY_NOT_NATIVE.xlsx",
+    "nativeExport": false,
+    "generatedFrom": "companion public-demo CSV with numeric amount cells and independently added inert x15 metadata",
+    "records": [
+      {
+        "values": [
+          "Craig's Design and Landscaping Services",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 1,
+        "raw": "[{\"address\":\"A1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Craig's Design and Landscaping Services\"},{\"address\":\"B1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"C1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"D1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"E1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"G1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"H1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"I1\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"}]"
+      },
+      {
+        "values": [
+          "Transaction Journal",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 2,
+        "raw": "[{\"address\":\"A2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Transaction Journal\"},{\"address\":\"B2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"C2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"D2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"E2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"G2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"H2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"I2\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"}]"
+      },
+      {
+        "values": [
+          "All Dates",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 3,
+        "raw": "[{\"address\":\"A3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"All Dates\"},{\"address\":\"B3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"C3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"D3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"E3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"G3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"H3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"I3\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"}]"
+      },
+      {
+        "values": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 4,
+        "raw": "[{\"address\":\"A4\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},null,null,null,null,null,null,null,null]"
+      },
+      {
+        "values": [
+          "",
+          "Transaction date",
+          "Transaction type",
+          "Num",
+          "Name",
+          "Description",
+          "Account Name",
+          "Debit",
+          "Credit"
+        ],
+        "physicalRow": 5,
+        "raw": "[{\"address\":\"A5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"B5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Transaction date\"},{\"address\":\"C5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Transaction type\"},{\"address\":\"D5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Num\"},{\"address\":\"E5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Name\"},{\"address\":\"F5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Description\"},{\"address\":\"G5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Account Name\"},{\"address\":\"H5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Debit\"},{\"address\":\"I5\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Credit\"}]"
+      },
+      {
+        "values": [
+          "145",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 6,
+        "raw": "[{\"address\":\"A6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"145\"},{\"address\":\"B6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"C6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"D6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"E6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"G6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"H6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"I6\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"}]"
+      },
+      {
+        "values": [
+          "",
+          "09/30/2026",
+          "Journal Entry",
+          "RDCE641C900E",
+          "",
+          "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RDCE641C900E",
+          "Bank Charges",
+          "900",
+          ""
+        ],
+        "physicalRow": 7,
+        "raw": "[{\"address\":\"A7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"B7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"09/30/2026\"},{\"address\":\"C7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Journal Entry\"},{\"address\":\"D7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"RDCE641C900E\"},{\"address\":\"E7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RDCE641C900E\"},{\"address\":\"G7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Bank Charges\"},{\"address\":\"H7\",\"numberFormat\":\"General\",\"type\":\"n\",\"value\":900},{\"address\":\"I7\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"}]"
+      },
+      {
+        "values": [
+          "",
+          "09/30/2026",
+          "Journal Entry",
+          "RDCE641C900E",
+          "",
+          "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RDCE641C900E",
+          "Uncategorized Asset",
+          "",
+          "900"
+        ],
+        "physicalRow": 8,
+        "raw": "[{\"address\":\"A8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"B8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"09/30/2026\"},{\"address\":\"C8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Journal Entry\"},{\"address\":\"D8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"RDCE641C900E\"},{\"address\":\"E8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RDCE641C900E\"},{\"address\":\"G8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Uncategorized Asset\"},{\"address\":\"H8\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"I8\",\"numberFormat\":\"General\",\"type\":\"n\",\"value\":900}]"
+      },
+      {
+        "values": [
+          "Total for 145",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "900",
+          "900"
+        ],
+        "physicalRow": 9,
+        "raw": "[{\"address\":\"A9\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"Total for 145\"},{\"address\":\"B9\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"C9\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"D9\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"E9\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F9\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"G9\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"H9\",\"numberFormat\":\"General\",\"type\":\"n\",\"value\":900},{\"address\":\"I9\",\"numberFormat\":\"General\",\"type\":\"n\",\"value\":900}]"
+      },
+      {
+        "values": [
+          "TOTAL",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "900",
+          "900"
+        ],
+        "physicalRow": 10,
+        "raw": "[{\"address\":\"A10\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"TOTAL\"},{\"address\":\"B10\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"C10\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"D10\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"E10\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F10\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"G10\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"H10\",\"numberFormat\":\"General\",\"type\":\"n\",\"value\":900},{\"address\":\"I10\",\"numberFormat\":\"General\",\"type\":\"n\",\"value\":900}]"
+      },
+      {
+        "values": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 11,
+        "raw": "[{\"address\":\"A11\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},null,null,null,null,null,null,null,null]"
+      },
+      {
+        "values": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 12,
+        "raw": "[{\"address\":\"A12\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},null,null,null,null,null,null,null,null]"
+      },
+      {
+        "values": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 13,
+        "raw": "[{\"address\":\"A13\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},null,null,null,null,null,null,null,null]"
+      },
+      {
+        "values": [
+          " Wednesday, October 21, 2026 11:52 AM GMTZ",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "physicalRow": 14,
+        "raw": "[{\"address\":\"A14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\" Wednesday, October 21, 2026 11:52 AM GMTZ\"},{\"address\":\"B14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"C14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"D14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"E14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"F14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"G14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"H14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"},{\"address\":\"I14\",\"numberFormat\":\"General\",\"type\":\"s\",\"value\":\"\"}]"
+      }
+    ],
+    "inspection": {
+      "sheets": [
+        {
+          "name": "Sheet1",
+          "rows": 14,
+          "columns": 9,
+          "hidden": false
+        }
+      ],
+      "date1904": false,
+      "requiresSheetSelection": false
+    },
+    "source": {
+      "fileHash": "a48e41300a042cca1bf92d77952486c9d93a32bb1254af1164bb3e2a17c4c242",
+      "sheet": "Sheet1",
+      "byteLength": 19458,
+      "parserVersion": "xlsx-local-1.2/sheetjs-0.20.3"
+    }
+  }
+}

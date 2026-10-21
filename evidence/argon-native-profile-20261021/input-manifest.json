@@ -1,0 +1,113 @@
+{
+  "created_at": "2026-10-21T12:17:42.639533+00:00",
+  "files": [
+    {
+      "path": "src/ingestion/csv.ts",
+      "bytes": 17493,
+      "sha256": "c621235bd67b2db1878a7b769900e18830c188e4fe79a2df76ec8d541f2cfb39"
+    },
+    {
+      "path": "src/ingestion/qbo-transaction-journal.ts",
+      "bytes": 14210,
+      "sha256": "696b35243576f1693c2bb776797c2a6da33cc53511b16d1220629eded1aad4a3"
+    },
+    {
+      "path": "src/ingestion/xlsx.ts",
+      "bytes": 36573,
+      "sha256": "ffb8677372030b07261d09845dfc6ca43ed4b1831e9a41b7702d930527925351"
+    },
+    {
+      "path": "src/ingestion/types.ts",
+      "bytes": 2061,
+      "sha256": "a2b4e73720f0b0c1adee31417a1bdb5ed2ee5eaf39edef93ee04c97d531dd00c"
+    },
+    {
+      "path": "src/ingestion/primitives.ts",
+      "bytes": 3995,
+      "sha256": "3caf36464b3d5c1535266325bec5d9be5d8aa3b132af8446d1096eaba639bacb"
+    },
+    {
+      "path": "src/ingestion/normalize.ts",
+      "bytes": 22731,
+      "sha256": "ff1b43a402d897d743a46ada0471d982d2a5a937db371744f2dd0d339f51b575"
+    },
+    {
+      "path": "src/export/aje.ts",
+      "bytes": 25474,
+      "sha256": "d7547c3d71b401d2201cfc13405939865cb7bb828b4f8dad50184a88cbae4079"
+    },
+    {
+      "path": "src/export/journal-posting.ts",
+      "bytes": 12688,
+      "sha256": "eb9749a31a309fb3dc26f53810191318de044bb069a114312c65f001afb72d2c"
+    },
+    {
+      "path": "src/pages/import.tsx",
+      "bytes": 31469,
+      "sha256": "7b4f995cd6fef5b8fe1719672c3ddb411641d03dc0b011cb158501eb31faa967"
+    },
+    {
+      "path": "src/contracts/canonical.ts",
+      "bytes": 8517,
+      "sha256": "dcdf46261432c2cd2aa86d364aa59bb7ec58739b5f118479b109a80f2525e1b4"
+    },
+    {
+      "path": "src/mapping/aliases.ts",
+      "bytes": 8703,
+      "sha256": "b4193c289d48d31b1b5be219adab5c47b9618c0e5044b6d63fc1272c279c78e2"
+    },
+    {
+      "path": "src/ingestion/index.ts",
+      "bytes": 493,
+      "sha256": "7bed418a93b5570151fb93048b3ec5f53da8bc4d27af935932579d67351056d0"
+    },
+    {
+      "path": "src/workers/import-client.ts",
+      "bytes": 1699,
+      "sha256": "d5e1527d301411599b61247a56ceedb98fb5baec350d8529b5ca7f2de169520f"
+    },
+    {
+      "path": "src/workers/xlsx-client.ts",
+      "bytes": 2083,
+      "sha256": "c76bb0b4a531e5cd98b7ff201880556dcd78147962171194c95c1dbc9405dc8a"
+    },
+    {
+      "path": "docs/QBO_TRANSACTION_JOURNAL_PROFILE.md",
+      "bytes": 6772,
+      "sha256": "cf115a84f3f4c05a4b5fcae35337971f5a4a6a6e0e37548185711bb3e0c869b4"
+    },
+    {
+      "path": "tests/import-export/native-journal-profile.test.ts",
+      "bytes": 3398,
+      "sha256": "e4400ca871eac035701d6724766cddff4be7588a1e60f51fe6ab7f520e893d16"
+    },
+    {
+      "path": "tests/ui/qbo-journal-profile.test.ts",
+      "bytes": 12863,
+      "sha256": "2c8da8760cce2af0d2eca00a7bdcadc3dea96422b9d5238b90148914de441b66"
+    },
+    {
+      "path": "tests/qbo-roundtrip-adversarial/parser.test.ts",
+      "bytes": 12148,
+      "sha256": "83e1abe8a19bd917ddf57074cca741d063f22805f51656c2ff903efd52cabde7"
+    },
+    {
+      "path": "tests/qbo-roundtrip-adversarial/fixtures.ts",
+      "bytes": 2698,
+      "sha256": "bf69c6b46ee83ffde670dc6c192a83c20d2e447a7d20f32626eb8700002c40e5"
+    },
+    {
+      "path": "tests/qbo-roundtrip-adversarial/posting-proof.test.ts",
+      "bytes": 16685,
+      "sha256": "9cd61bac168648c5ed9647bcfff252cfabbd8718cf030d755c6234b599313623"
+    },
+    {
+      "path": "tests/qbo-xlsx/workbook-properties.test.ts",
+      "bytes": 14361,
+      "sha256": "31ef0bcb660a23a12006ddd1a841089a5b3dfdc6b7acfc77f0602eca4b04957e"
+    }
+  ],
+  "request_sha256": "061f3b2ee2660f828a5376c2c4341fae0146964da4fc152b2155c4b32f02cd7b",
+  "request_bytes": 267807,
+  "scope": "sanitized source and synthetic-test code; no raw financial files; one requested static review"
+}

@@ -1,4 +1,4 @@
-import { useRef, useState, type DragEvent } from 'react';
+import { useEffect, useRef, useState, type DragEvent } from 'react';
 import {
   Upload,
   FileText,
@@ -72,6 +72,10 @@ export function ImportPage({
   const [validated, setValidated] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [qbProduct, setQbProduct] = useState<'QBO' | 'QBD'>('QBO');
+  const [qbReportProfile, setQbReportProfile] = useState<'manual' | 'qbo-transaction-journal-v1'>(
+    'manual',
+  );
+  const [reportCompanyName, setReportCompanyName] = useState('');
   const [companyId, setCompanyId] = useState('');
   const [bankAccountId, setBankAccountId] = useState('');
   const [periodStart, setPeriodStart] = useState('2026-09-01');
@@ -85,6 +89,13 @@ export function ImportPage({
   const [uf, setUf] = useState(false);
   const [dateFormat, setDateFormat] = useState<'MDY' | 'ISO'>('MDY');
   const parseToken = useRef(0);
+  const nativeJournal = qbProduct === 'QBO' && qbReportProfile === 'qbo-transaction-journal-v1';
+  useEffect(
+    () => () => {
+      ++parseToken.current;
+    },
+    [],
+  );
   const options = (semantic = false): ParseOptions => ({
     companyId: companyId.trim() || 'unconfirmed-local-company',
     bankAccountId: bankAccountId.trim() || 'unconfirmed-local-bank',
@@ -114,13 +125,47 @@ export function ImportPage({
       : {},
   });
   const invalidate = () => {
+    ++parseToken.current;
+    setReading(false);
     setValidated(false);
     setConfirmed(false);
   };
+  function invalidateQbPreview() {
+    invalidate();
+    setError('');
+    setFiles((previous) => {
+      const source = previous.QBO;
+      if (!source) return previous;
+      return {
+        ...previous,
+        QBO: {
+          ...source,
+          bindings: undefined,
+          excludedTargets: [],
+          result: {
+            ok: false,
+            rows: [],
+            manifest: null,
+            mapping: null,
+            duplicate: false,
+            controls: { signedCents: 0, debitCents: null, creditCents: null, excludedRows: [] },
+            issues: [
+              {
+                code: 'REPORT_SETTINGS_CHANGED',
+                severity: 'error',
+                message:
+                  'QuickBooks report settings changed. Reload the selected header or validate again. Existing worksheet and header choices are retained.',
+              },
+            ],
+          },
+        },
+      };
+    });
+  }
   async function readFile(kind: MainKind, file: File) {
     setError('');
-    setReading(true);
     invalidate();
+    setReading(true);
     const token = ++parseToken.current;
     try {
       if (!/\.(csv|tsv|xlsx)$/i.test(file.name))
@@ -190,7 +235,18 @@ export function ImportPage({
   }
   function parseFile(source: FileState, kind: MainKind, settings: ParseOptions) {
     const resolvedKind = kind === 'QBO' ? qbProduct : kind;
-    const opts = { ...settings, fileName: source.file.name, originalBytes: source.bytes };
+    const opts: ParseOptions = {
+      ...settings,
+      ...(kind === 'QBO' && nativeJournal
+        ? {
+            profile: 'qbo-transaction-journal-v1',
+            qboTransactionJournalCompanyName: reportCompanyName.trim(),
+            coverageConfirmed: false,
+          }
+        : {}),
+      fileName: source.file.name,
+      originalBytes: source.bytes,
+    };
     return source.isXlsx
       ? runXlsxImport(source.bytes, resolvedKind, { ...opts, sheetName: source.sheetName })
       : parseSource(source.text, resolvedKind, opts);
@@ -199,6 +255,7 @@ export function ImportPage({
     const source = files[kind];
     if (!source) return;
     invalidate();
+    const token = ++parseToken.current;
     setReading(true);
     setError('');
     try {
@@ -210,6 +267,7 @@ export function ImportPage({
         excludedTargets: [],
       };
       const result = await parseFile(next, kind, options());
+      if (token !== parseToken.current) return;
       setFiles((previous) => ({
         ...previous,
         [kind]: {
@@ -220,22 +278,28 @@ export function ImportPage({
         },
       }));
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Worksheet preview failed.');
+      if (token === parseToken.current)
+        setError(e instanceof Error ? e.message : 'Worksheet preview failed.');
     } finally {
-      setReading(false);
+      if (token === parseToken.current) setReading(false);
     }
   }
   async function previewHeader(kind: MainKind) {
     const source = files[kind];
     if (!source) return;
-    setReading(true);
     setError('');
     invalidate();
+    const token = ++parseToken.current;
+    setReading(true);
     try {
       const result = await parseFile(source, kind, {
         ...options(),
-        headerRow: source.headerRow ?? source.result.mapping?.headerRow ?? 1,
+        headerRow:
+          source.headerRow ??
+          source.result.mapping?.headerRow ??
+          (kind === 'QBO' && nativeJournal ? 5 : 1),
       });
+      if (token !== parseToken.current) return;
       setFiles((previous) => ({
         ...previous,
         [kind]: {
@@ -247,12 +311,14 @@ export function ImportPage({
         },
       }));
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Header preview failed.');
+      if (token === parseToken.current)
+        setError(e instanceof Error ? e.message : 'Header preview failed.');
     } finally {
-      setReading(false);
+      if (token === parseToken.current) setReading(false);
     }
   }
   async function validate() {
+    const token = ++parseToken.current;
     setError('');
     setReading(true);
     setValidated(false);
@@ -268,6 +334,10 @@ export function ImportPage({
         );
       if (!confirmed)
         throw new Error('Confirm the report semantics and coverage before validation.');
+      if (nativeJournal && !reportCompanyName.trim())
+        throw new Error(
+          'Enter the independently reviewed company name printed on the QBO Transaction Journal.',
+        );
       const next: Partial<Record<MainKind, FileState>> = {};
       let seen: string[] = [];
       for (const kind of ['ST', 'QBO', 'BANK'] as MainKind[]) {
@@ -282,6 +352,7 @@ export function ImportPage({
           headerRow: source.headerRow ?? source.result.mapping?.headerRow,
           seenFileHashes: seen,
         });
+        if (token !== parseToken.current) return;
         if (result.manifest) seen.push(result.manifest.source_file_sha256);
         next[kind] = { ...source, result };
       }
@@ -292,9 +363,10 @@ export function ImportPage({
           'Some files need attention. Review the validation messages below; no reconciliation has run.',
         );
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Validation failed.');
+      if (token === parseToken.current)
+        setError(e instanceof Error ? e.message : 'Validation failed.');
     } finally {
-      setReading(false);
+      if (token === parseToken.current) setReading(false);
     }
   }
   async function run() {
@@ -328,7 +400,7 @@ export function ImportPage({
         },
       },
       sourceFiles,
-      options(true),
+      { ...options(true), coverageConfirmed: nativeJournal ? false : true },
     );
   }
   const present = Object.keys(files).length;
@@ -402,12 +474,50 @@ export function ImportPage({
             QuickBooks product
             <select
               value={qbProduct}
-              onChange={(e) => setQbProduct(e.target.value as 'QBO' | 'QBD')}
+              disabled={busy}
+              onChange={(e) => {
+                setQbProduct(e.target.value as 'QBO' | 'QBD');
+                setQbReportProfile('manual');
+                invalidateQbPreview();
+              }}
             >
               <option value="QBO">QuickBooks Online</option>
               <option value="QBD">QuickBooks Desktop</option>
             </select>
           </label>
+          {qbProduct === 'QBO' && (
+            <label>
+              QuickBooks report profile
+              <select
+                value={qbReportProfile}
+                disabled={busy}
+                onChange={(e) => {
+                  setQbReportProfile(e.target.value as typeof qbReportProfile);
+                  invalidateQbPreview();
+                }}
+              >
+                <option value="manual">Manual column mapping (default)</option>
+                <option value="qbo-transaction-journal-v1">
+                  Native QBO Transaction Journal (scoped evidence)
+                </option>
+              </select>
+            </label>
+          )}
+          {nativeJournal && (
+            <label>
+              Expected report company name
+              <input
+                value={reportCompanyName}
+                disabled={busy}
+                required
+                placeholder="Exact company name printed on the report"
+                onChange={(e) => {
+                  setReportCompanyName(e.target.value);
+                  invalidateQbPreview();
+                }}
+              />
+            </label>
+          )}
           <label>
             Company time zone
             <input
@@ -487,6 +597,16 @@ export function ImportPage({
             This account uses Undeposited Funds
           </label>
         </div>
+        {nativeJournal && (
+          <Notice>
+            <strong>Transaction-only evidence, not full-period coverage.</strong> Choose this
+            profile explicitly for the native QBO Transaction Journal and independently verify its
+            printed company name. It supports only the reported journals, not the entire clearing
+            account or month. Native CSV is the primary route. XLSX formulas, macros and external
+            links remain blocked; nothing is silently stripped. This profile uses fixed report
+            columns and physical header row 5, never Num as a transaction ID.
+          </Notice>
+        )}
       </section>
       {present > 0 && (
         <section className="mapping-section">
@@ -504,6 +624,7 @@ export function ImportPage({
                 state={files[kind]!}
                 onPreview={() => previewHeader(kind)}
                 disabled={reading || busy}
+                fixedJournalProfile={kind === 'QBO' && nativeJournal}
                 onChange={(bindings, headerRow, excludedTargets) => {
                   setFiles((previous) => ({
                     ...previous,
@@ -526,10 +647,9 @@ export function ImportPage({
             }}
           />
           <span>
-            I reviewed the mappings and source scope. The QB file is posted accrual ledger activity,
-            not Bank Feed “For review”; bank rows are posted with inflows positive and outflows
-            negative; the selected payment grain, export mode, account, and date coverage are
-            correct.
+            {nativeJournal
+              ? 'I reviewed the mappings and source scope. The QB file is a posted accrual Transaction Journal for the expected company, not Bank Feed “For review”. Bank rows are posted with inflows positive and outflows negative; the selected payment grain, export mode and account are correct. This confirms only the reported journals, not full-period QB coverage.'
+              : 'I reviewed the mappings and source scope. The QB file is posted accrual ledger activity, not Bank Feed “For review”; bank rows are posted with inflows positive and outflows negative; the selected payment grain, export mode, account, and date coverage are correct.'}
           </span>
         </label>
         <p className="body-muted">
@@ -663,21 +783,26 @@ function MappingCard({
   onChange,
   onPreview,
   disabled,
+  fixedJournalProfile,
 }: {
   kind: MainKind;
   state: FileState;
   onPreview: () => void;
   disabled: boolean;
+  fixedJournalProfile: boolean;
   onChange: (bindings: ColumnBindings, headerRow?: number, excludedTargets?: string[]) => void;
 }) {
   const mapping = state.result.mapping;
-  const fields = [
-    ...new Set([
-      ...requiredFields[kind],
-      ...extraFields[kind],
-      ...Object.keys(state.bindings ?? {}),
-    ]),
-  ];
+  const fields =
+    fixedJournalProfile && mapping
+      ? Object.keys(mapping.bindings)
+      : [
+          ...new Set([
+            ...requiredFields[kind],
+            ...extraFields[kind],
+            ...Object.keys(state.bindings ?? {}),
+          ]),
+        ];
   return (
     <details className="mapping-card panel" open={!state.result.ok}>
       <summary>
@@ -702,7 +827,7 @@ function MappingCard({
               type="number"
               min="1"
               max="30"
-              value={state.headerRow ?? mapping?.headerRow ?? 1}
+              value={state.headerRow ?? mapping?.headerRow ?? (fixedJournalProfile ? 5 : 1)}
               disabled={disabled || (state.isXlsx && !state.sheetName)}
               onChange={(e) =>
                 onChange(state.bindings ?? {}, Number(e.target.value), state.excludedTargets)
@@ -724,7 +849,10 @@ function MappingCard({
                 {humanize(field)}
                 {requiredFields[kind].includes(field) && <span className="required-star"> *</span>}
                 <select
-                  value={state.bindings?.[field] ?? ''}
+                  value={
+                    (fixedJournalProfile ? mapping.bindings[field] : state.bindings?.[field]) ?? ''
+                  }
+                  disabled={disabled || fixedJournalProfile}
                   onChange={(e) => {
                     const next = { ...state.bindings };
                     let excluded = [...(state.excludedTargets ?? [])];
@@ -749,13 +877,45 @@ function MappingCard({
             ))}
           </div>
         )}
+        {fixedJournalProfile && mapping && (
+          <p className="body-muted">
+            Fixed native report columns are shown above. Transaction IDs come from validated group
+            rows, not the Num column. Posting lines retain their own physical row references.
+          </p>
+        )}
         {state.result.manifest && (
           <div className="import-control-row">
-            <span>{state.result.manifest.raw_row_count} source rows</span>
+            <span>
+              {state.result.manifest.raw_row_count}{' '}
+              {fixedJournalProfile ? 'nonempty records after header' : 'source rows'}
+            </span>
             <span>{state.result.manifest.normalized_row_count} normalized</span>
-            <span>{state.result.manifest.excluded_summary_rows.length} summaries excluded</span>
+            <span>
+              {state.result.manifest.excluded_summary_rows.length}{' '}
+              {fixedJournalProfile
+                ? 'non-posting rows (includes preamble/blanks)'
+                : 'summaries excluded'}
+            </span>
             <span>Signed activity: {money(state.result.controls.signedCents)}</span>
+            {fixedJournalProfile && (
+              <>
+                <span>Debit total: {money(state.result.controls.debitCents ?? 0)}</span>
+                <span>Credit total: {money(state.result.controls.creditCents ?? 0)}</span>
+              </>
+            )}
           </div>
+        )}
+        {fixedJournalProfile && state.result.manifest && (
+          <details>
+            <summary>Non-posting physical rows and classifications</summary>
+            <ul className="validation-list">
+              {state.result.controls.excludedRows.map((row) => (
+                <li key={row.physicalRow}>
+                  Row {row.physicalRow}: {row.reason}
+                </li>
+              ))}
+            </ul>
+          </details>
         )}
         {state.result.issues.length > 0 && (
           <ul className="validation-list">

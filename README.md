@@ -16,9 +16,10 @@ Private to the owner, synthetic-only acceptance target. Real cloud-browser demo,
 XLSX/CSV upload, evidence, approval/export and reset paths were exercised; two
 workflow defects were fixed and retested. PDF/mobile/network-egress and target
 QuickBooks round-trip remain separate gates. One synthetic journal was imported
-and visually checked in the official public QBO Sample Company; its untouched
-CSV/XLSX report fails the current round-trip parser. This is a measured limitation,
-not end-to-end accounting acceptance. See
+and visually checked in the official public QBO Sample Company. The explicit
+native CSV profile now matches its exact approved journal with group provenance;
+this does not prove full-period coverage or a cleared balance. Formula-bearing
+native XLSX remains rejected. See [profile contract](docs/QBO_TRANSACTION_JOURNAL_PROFILE.md) and
 [evidence](evidence/browser-20261021-followup/) and
 [QuickBooks acceptance attempt](evidence/quickbooks-acceptance-20261021/README.zh-CN.md).
 

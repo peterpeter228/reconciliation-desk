@@ -167,6 +167,14 @@ INELIGIBLE → DRAFT → APPROVED → EXPORTED → VERIFIED_IN_QB
 - 不能因收到付款、下载完成、用户口头点击“已完成”就自动记已过账。
 - 重新导出同一文件不会自动说明它未曾导入。
 
+2026-10-21 实现补充：显式 `qbo-transaction-journal-v1` 原生交易日记账 profile
+只支持严格验证的完整交易分组。`matchProposalJournalPosting` 可给出
+`EXACT_JOURNAL_POSTING_ONLY`（精确分录过账匹配），但这不是上述
+`VERIFIED_IN_QB` 生命周期状态，不证明全科目/全期间覆盖、清算余额归零或
+完整三方对账。既有完整账簿验证器仍拒绝这类交易范围报表，即便覆盖标记被
+手动改为 true。具体边界、物理行来源和控制合计见
+[原生交易报表 profile](QBO_TRANSACTION_JOURNAL_PROFILE.md)。
+
 ### 5.2 批准签名
 
 批准必须绑定不可变 payload，至少覆盖：

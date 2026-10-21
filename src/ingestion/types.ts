@@ -20,7 +20,9 @@ export interface ParseOptions {
   asOfDate: string;
   currency: 'USD';
   fileName?: string;
-  profile?: 'synthetic-v1' | 'manual';
+  profile?: 'synthetic-v1' | 'manual' | 'qbo-transaction-journal-v1';
+  /** Independently reviewed company label; never inferred from the local company ID. */
+  qboTransactionJournalCompanyName?: string;
   bindings?: ColumnBindings;
   excludedTargets?: string[];
   headerRow?: number;

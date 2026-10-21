@@ -1,0 +1,8 @@
+{
+  "as_of_utc": "2026-10-21T12:21:13.673246+00:00",
+  "status": "tool_security_denial_after_initial_request_dispatch",
+  "new_request_sent_after_denial": false,
+  "review_verified": false,
+  "remote_receipt_and_billing": "unknown",
+  "note": "Initial stdin dispatch returned running; subsequent poll rejected by tool security review. No retry or alternate transmission. No receipt/review was available at this check."
+}

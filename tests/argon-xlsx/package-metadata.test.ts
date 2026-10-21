@@ -208,7 +208,7 @@ describe('Argon P2-2 package metadata guard', () => {
       { name: 'Data', rows: 2, columns: 3, hidden: false },
     ]);
     const matrix = await readXlsxMatrix(input);
-    expect(matrix.source.parserVersion).toBe('xlsx-local-1.1/sheetjs-0.20.3');
+    expect(matrix.source.parserVersion).toBe('xlsx-local-1.2/sheetjs-0.20.3');
     expect(matrix.records[1].values).toEqual(['2026-09-01', '12.34', 'ACH & café']);
   });
 

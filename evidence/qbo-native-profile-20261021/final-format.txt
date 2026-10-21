@@ -1,0 +1,7 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 format:check
+> prettier --check "src/**/*.{ts,tsx,css}" "tests/**/*.{ts,tsx}" "scripts/*.ts" vite.config.ts vitest.config.ts
+
+Checking formatting...
+All matched files use Prettier code style!

@@ -22,7 +22,7 @@ completion, market demand or permitted external financial actions.
   source semantics, QBO/QBD choice, sorted cases, three-source evidence display,
   supplemental evidence and scope, JSON/CSV/print workpapers. Separate synthetic
   $900 fee-only approval/export demonstration with content-bound invalidation.
-- **G3 executed:** 334 TypeScript tests in 14 suites, including the original 187 and 147
+- **G3 executed:** 529 TypeScript tests in 19 suites, including the original 187 and 342
   additional post-review regressions. The original coverage includes independent
   held-out-seed integration, input/export, XLSX and jsdom UI checks. Typecheck/build/artifact checks pass.
   Original Python reference suite separately passes 33 tests. Counts are not a
@@ -98,9 +98,12 @@ evidence and QuickBooks acceptance packet.
    settlements remain unsupported; missing evidence must stay unresolved.
 3. Complete target QBO/QBD round-trip and real-company proposal UI. QBO public
    Sample Company accepted one synthetic two-leg $900 journal (transaction145),
-   visually verified with correct date/accounts/amounts. Its untouched native
-   Transaction Journal CSV and XLSX fail the current production parser, so round-trip
-   verification is explicitly failed, not passed. QBD import remains untested.
+   visually verified with correct date/accounts/amounts. The explicit native
+   Transaction Journal CSV profile now supports an exact-posting-only match using
+   group identity and all posting legs. Full-period/clearing verification stays false.
+   Native XLSX remains rejected because its subtotals contain formulas; the
+   workbookPr namespace false-positive was independently reproduced and fixed.
+   QBD import remains untested.
    See evidence/quickbooks-acceptance-20261021 for native artifacts and next criteria.
 4. Optional mapping persistence/model integration, payment/fulfillment and launch
    remain separate scope and permission decisions; none is secretly enabled.
@@ -108,3 +111,24 @@ evidence and QuickBooks acceptance packet.
 See IMPLEMENTATION_LIMITS.md and dated evidence. All raw financial data remains
 local. The app itself does not post financial entries; the only external posting
 in this QA round was the explicitly scoped synthetic entry in QBO public Sample Company.
+
+## Native report follow-up (2026-10-21)
+
+A strict opt-in QBO Transaction Journal profile now binds the expected printed
+company name, fixed native schema, group boundaries/control totals and exact source
+bytes. Group-derived IDs retain both group and posting-row provenance.
+An independent 123-case adversarial suite closed stripped-proof coverage promotion
+and mismatched text/originalBytes gaps. The exact-posting API does not make a
+VERIFIED_IN_QB lifecycle transition or claim whole-period/clearing coverage.
+
+XLSX namespace checks preserve standard and observed x15 metadata semantics while
+retaining duplicate/alias/epoch/XML/ZIP/formula restrictions. The unchanged native
+QBO workbook still rejects XLSX_FORMULA, intentionally. Derived values-only fixtures
+are labeled and are not original native exports.
+
+Combined tests:529/529, typecheck/format/build/static artifacts pass. Actual new
+profile browser regression is recorded separately under evidence/qbo-native-profile-20261021.
+This phase requested another Argon review; transport/tool outcome is documented
+separately, and must not be assumed successful from the earlier Argon review.
+
+Requested Argon follow-up was blocked at tool security review with no verified review output; remote receipt/billing remain unknown and no retry occurred. See evidence/argon-native-profile-20261021.

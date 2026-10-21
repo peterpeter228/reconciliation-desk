@@ -599,6 +599,26 @@ export async function verifyProposalInLedger(
   await validateApprovedProposal(p);
   const matches = rows.filter((r) => r.company_id === p.feeCase.companyId && r.num === p.journalId);
   if (
+    matches.some((r) =>
+      r.source_refs?.some(
+        (ref) =>
+          ref.transaction_id_derivation?.kind === 'QBO_TRANSACTION_JOURNAL_GROUP' ||
+          ref.mapping_version?.startsWith('qbo-transaction-journal-v1:'),
+      ),
+    ) ||
+    manifests.some(
+      (m) =>
+        m.qbo_transaction_journal &&
+        matches.some((r) => r.source_refs?.some((ref) => ref.file_sha256 === m.source_file_sha256)),
+    )
+  )
+    return {
+      verified: false,
+      reason:
+        'A transaction-scoped journal report cannot prove complete account-period coverage. Use the separate exact-posting match; full ledger verification remains pending.',
+      matchingRowIds: matches.map((r) => r.id),
+    };
+  if (
     matches.length !== p.lines.length ||
     matches.some(
       (r) => !r.is_posted_ledger || r.posting_date !== p.date || r.line_grain !== 'POSTING_LINE',
@@ -622,7 +642,18 @@ export async function verifyProposalInLedger(
   const product = matches[0].qb_product;
   if (
     !transactionId?.trim() ||
-    matches.some((r) => r.transaction_id !== transactionId || r.qb_product !== product)
+    matches.some(
+      (r) =>
+        r.transaction_id !== transactionId ||
+        r.qb_product !== product ||
+        r.source_refs.some(
+          (ref) =>
+            !ref.column_indices.transaction_id?.length ||
+            ref.column_indices.transaction_id.some((column) =>
+              ref.column_indices.num?.includes(column),
+            ),
+        ),
+    )
   )
     return {
       verified: false,

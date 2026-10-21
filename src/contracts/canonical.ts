@@ -14,6 +14,17 @@ export interface Provenance {
   raw_row_sha256: string;
   parser_version: string;
   mapping_version: string;
+  /** Transaction identity derives only from the validated native report group, not Num. */
+  transaction_id_derivation?: {
+    kind: "QBO_TRANSACTION_JOURNAL_GROUP";
+    profile_version: "qbo-transaction-journal-v1";
+    transaction_id: string;
+    group_physical_row: number;
+    group_column_index: 0;
+    group_raw_row_sha256: string;
+    group_total_physical_row: number;
+    group_total_raw_row_sha256: string;
+  };
 }
 export interface BaseRecord {
   id: string; // sha256(company_id + source system + stable source identity + version)
@@ -100,6 +111,35 @@ export interface Bank_Deposit_Row extends BaseRecord {
   granularity: "TRANSACTION" | "DAILY_SUMMARY";
 }
 // Supporting envelopes do not replace the three core transaction tables.
+export interface QboTransactionJournalReport {
+  profile_version: "qbo-transaction-journal-v1";
+  scope: "TRANSACTION_GROUPS";
+  report_title: "Transaction Journal";
+  report_company_name: string;
+  date_label: "All Dates";
+  groups: Array<{
+    transaction_id: string;
+    journal_num: string;
+    posting_date: ISODate;
+    group_physical_row: number;
+    group_raw_row_sha256: string;
+    posting_physical_rows: number[];
+    total_physical_row: number;
+    total_raw_row_sha256: string;
+    debit_cents: Cents;
+    credit_cents: Cents;
+  }>;
+  total_physical_row: number;
+  total_raw_row_sha256: string;
+  debit_cents: Cents;
+  credit_cents: Cents;
+  footer_physical_row: number;
+  footer_raw_row_sha256: string;
+  generated_at: string;
+  /** Change detection only, not authentication of a report or reviewer. */
+  normalized_rows_sha256: string;
+  manifest_payload_sha256: string;
+}
 export interface ImportManifest {
   company_id: string;
   source_system: SourceSystem;
@@ -127,6 +167,7 @@ export interface ImportManifest {
   closing_debit_balance_cents: Cents | null;
   coverage_confirmed: boolean;
   missing_required_fields: string[];
+  qbo_transaction_journal?: QboTransactionJournalReport;
 }
 export type Cause = "DATE_LAG" | "NET_FEE_DRIFT" | "UNBATCHED_REFUND" | "POST_EXPORT_DRIFT" | "OUT_OF_SYSTEM_DEPOSIT" | "PROCESSOR_HOLD" | "UNEXPLAINED";
 export type SearchStatus = "COMPLETE" | "AMBIGUOUS" | "CANDIDATE_CAP" | "CARDINALITY_CAP" | "TIMEOUT" | "UNSUPPORTED";

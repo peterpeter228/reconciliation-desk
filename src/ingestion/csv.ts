@@ -1,4 +1,5 @@
 import Papa from 'papaparse';
+import { parseQboTransactionJournal } from './qbo-transaction-journal';
 import type { ImportManifest, SourceSystem } from '../../contracts/canonical';
 import { mapHeaders, normalizeHeader, requiredFields } from '../mapping/aliases';
 import type { ParseOptions, ParseResult, SourceKind } from './types';
@@ -97,6 +98,13 @@ export async function parseSource<K extends SourceKind>(
   const result = empty<K>();
   try {
     const bytes = options.originalBytes ?? new TextEncoder().encode(text);
+    if (options.profile === 'qbo-transaction-journal-v1' && options.originalBytes) {
+      // This observed native CSV profile is UTF-8, optionally with a BOM. Bind
+      // parsed content to the actual hashed source bytes, not a stale preview.
+      const decoded = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes);
+      if (decoded.replace(/^\uFEFF/, '') !== text.replace(/^\uFEFF/, ''))
+        throw new Error('Native QBO CSV text does not match its original UTF-8 source bytes.');
+    }
     if (
       bytes.byteLength > IMPORT_LIMITS.fileBytes ||
       bytes.byteLength + (options.existingTotalBytes ?? 0) > IMPORT_LIMITS.totalBytes
@@ -182,6 +190,12 @@ export async function parseMatrix<K extends SourceKind>(
         severity: 'warning',
       });
       return result;
+    }
+    if (options.profile === 'qbo-transaction-journal-v1') {
+      if (kind !== 'QBO') throw new Error('QBO Transaction Journal profile is only for QBO.');
+      return (await parseQboTransactionJournal(records, options, source)) as ParseResult<
+        RowByKind[K]
+      >;
     }
     let headerIndex =
       options.headerRow === undefined

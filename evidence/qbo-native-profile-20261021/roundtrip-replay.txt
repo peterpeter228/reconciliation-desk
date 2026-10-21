@@ -1,0 +1,389 @@
+{
+  "scope": "Untouched official public-sample QBO reports. Exact journal-posting match only; NOT full-period reconciliation or clearing-balance verification.",
+  "profile": "qbo-transaction-journal-v1",
+  "historicalResultPreserved": "native-roundtrip-result.json",
+  "source": "Only the previously authorized synthetic transaction in the public Sample Company; no new external posting, account access, or import.",
+  "csv": {
+    "fileName": "target-transaction-journal-145.csv",
+    "ok": true,
+    "rowCount": 2,
+    "issues": [
+      {
+        "code": "TRANSACTION_SCOPE_ONLY",
+        "severity": "warning",
+        "message": "Validated complete journal groups only. This report does not prove company/account-period coverage, a cleared balance, or a month-end close."
+      }
+    ],
+    "mapping": {
+      "headers": [
+        "",
+        "Transaction date",
+        "Transaction type",
+        "Num",
+        "Name",
+        "Description",
+        "Account Name",
+        "Debit",
+        "Credit"
+      ],
+      "bindings": {
+        "posting_date": 1,
+        "transaction_type": 2,
+        "num": 3,
+        "name": 4,
+        "memo_local": 5,
+        "account_full_name": 6,
+        "debit_cents": 7,
+        "credit_cents": 8
+      },
+      "headerRow": 5
+    },
+    "controls": {
+      "signedCents": 0,
+      "debitCents": 90000,
+      "creditCents": 90000,
+      "excludedRows": [
+        {
+          "physicalRow": 1,
+          "reason": "Validated native report preamble"
+        },
+        {
+          "physicalRow": 2,
+          "reason": "Validated native report preamble"
+        },
+        {
+          "physicalRow": 3,
+          "reason": "Validated native report preamble"
+        },
+        {
+          "physicalRow": 4,
+          "reason": "Validated native report preamble"
+        },
+        {
+          "physicalRow": 6,
+          "reason": "Validated transaction identity group"
+        },
+        {
+          "physicalRow": 9,
+          "reason": "Validated balanced transaction group control"
+        },
+        {
+          "physicalRow": 10,
+          "reason": "Validated report grand total"
+        },
+        {
+          "physicalRow": 11,
+          "reason": "Blank after validated grand total"
+        },
+        {
+          "physicalRow": 12,
+          "reason": "Blank after validated grand total"
+        },
+        {
+          "physicalRow": 13,
+          "reason": "Blank after validated grand total"
+        },
+        {
+          "physicalRow": 14,
+          "reason": "Validated native report timestamp footer"
+        }
+      ]
+    },
+    "manifest": {
+      "company_id": "SYNTHETIC_TEACHING_ONLY",
+      "source_system": "QBO",
+      "source_file_sha256": "d8e334975acbc74cc7a0b7b9f157f8f3f39f67f18bd85769deefceec5d690234",
+      "report_name": "target-transaction-journal-145.csv",
+      "report_grain": "POSTING_LINE",
+      "period_start": "2026-09-30",
+      "period_end": "2026-09-30",
+      "as_of_date": "2026-10-21",
+      "company_timezone": "Etc/UTC",
+      "basis": "UNKNOWN",
+      "accounts": [
+        "Bank Charges",
+        "Uncategorized Asset"
+      ],
+      "account_balances": [
+        {
+          "account_id": null,
+          "account_full_name": "Bank Charges",
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": false
+        },
+        {
+          "account_id": null,
+          "account_full_name": "Uncategorized Asset",
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": false
+        }
+      ],
+      "header_row": 5,
+      "raw_row_count": 6,
+      "normalized_row_count": 2,
+      "excluded_summary_rows": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "opening_debit_balance_cents": null,
+      "closing_debit_balance_cents": null,
+      "coverage_confirmed": false,
+      "missing_required_fields": [],
+      "qbo_transaction_journal": {
+        "profile_version": "qbo-transaction-journal-v1",
+        "scope": "TRANSACTION_GROUPS",
+        "report_title": "Transaction Journal",
+        "report_company_name": "Craig's Design and Landscaping Services",
+        "date_label": "All Dates",
+        "groups": [
+          {
+            "transaction_id": "145",
+            "journal_num": "RDCE641C900E",
+            "posting_date": "2026-09-30",
+            "group_physical_row": 6,
+            "group_raw_row_sha256": "d662dfe6c68d3c78ed11a473037b00b3d0455f8fe638aaffc5e760e63440fb6f",
+            "posting_physical_rows": [
+              7,
+              8
+            ],
+            "total_physical_row": 9,
+            "total_raw_row_sha256": "94b7745b08335250af196bafce48eb47d26b573028c2fa4f9827b11c45d2ee67",
+            "debit_cents": 90000,
+            "credit_cents": 90000
+          }
+        ],
+        "total_physical_row": 10,
+        "total_raw_row_sha256": "e139cddc223e115180962d024f5191ef74f90a35bfc1ce835edb662df84c65e2",
+        "debit_cents": 90000,
+        "credit_cents": 90000,
+        "footer_physical_row": 14,
+        "footer_raw_row_sha256": "a5022eabc42f1a22ceb64460531f72ac9f9d1ceeca7f2b1d7d028dcaacdc2088",
+        "generated_at": "2026-10-21T11:52:00.000Z",
+        "normalized_rows_sha256": "5d7540975e2140d5ead55f5ba91985097668a103e42beb12076fb79f525db90c",
+        "manifest_payload_sha256": "82d51984127d2b6ee80149ab67f5c8de6e0bb20c10d8760e0fbb5da00b601b72"
+      }
+    },
+    "rows": [
+      {
+        "id": "69bc1a25aafa9dd3e049189db4de467eb47fd7a025be49dde86ba78808ce4e9f",
+        "company_id": "SYNTHETIC_TEACHING_ONLY",
+        "currency": "USD",
+        "source_refs": [
+          {
+            "file_sha256": "d8e334975acbc74cc7a0b7b9f157f8f3f39f67f18bd85769deefceec5d690234",
+            "sheet": null,
+            "physical_row": 7,
+            "column_indices": {
+              "posting_date": [
+                1
+              ],
+              "transaction_type": [
+                2
+              ],
+              "num": [
+                3
+              ],
+              "name": [
+                4
+              ],
+              "memo_local": [
+                5
+              ],
+              "account_full_name": [
+                6
+              ],
+              "debit_cents": [
+                7
+              ],
+              "credit_cents": [
+                8
+              ]
+            },
+            "raw_row_sha256": "108dc6d9eb32b6f5e7b12106f7275013cc470b44f700da714d84c687bd4d9291",
+            "parser_version": "csv-local-1.0",
+            "mapping_version": "qbo-transaction-journal-v1:61f02ada8230d334b447e9f07adfeec2537b7a2ac0e829d66792057b93ff7fbf",
+            "transaction_id_derivation": {
+              "kind": "QBO_TRANSACTION_JOURNAL_GROUP",
+              "profile_version": "qbo-transaction-journal-v1",
+              "transaction_id": "145",
+              "group_physical_row": 6,
+              "group_column_index": 0,
+              "group_raw_row_sha256": "d662dfe6c68d3c78ed11a473037b00b3d0455f8fe638aaffc5e760e63440fb6f",
+              "group_total_physical_row": 9,
+              "group_total_raw_row_sha256": "94b7745b08335250af196bafce48eb47d26b573028c2fa4f9827b11c45d2ee67"
+            }
+          }
+        ],
+        "validation_errors": [],
+        "qb_product": "QBO",
+        "transaction_id": "145",
+        "line_id": null,
+        "transaction_type": "Journal Entry",
+        "posting_date": "2026-09-30",
+        "num": "RDCE641C900E",
+        "name_token": null,
+        "memo_local": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RDCE641C900E",
+        "account_id": null,
+        "account_full_name": "Bank Charges",
+        "account_type": "EXPENSE",
+        "split_account": null,
+        "debit_cents": 90000,
+        "credit_cents": 0,
+        "signed_cents": 90000,
+        "running_balance_cents": null,
+        "cleared_status": "UNKNOWN",
+        "role": "FEE",
+        "line_grain": "POSTING_LINE",
+        "linked_payment_id": null,
+        "linked_deposit_id": null,
+        "accounting_batch_id": null,
+        "is_posted_ledger": true,
+        "class_name": null,
+        "location_name": null
+      },
+      {
+        "id": "5787fe429dd123f3161d3635774e6d4ac3f9f3f51306b404108ff3ba3c445c73",
+        "company_id": "SYNTHETIC_TEACHING_ONLY",
+        "currency": "USD",
+        "source_refs": [
+          {
+            "file_sha256": "d8e334975acbc74cc7a0b7b9f157f8f3f39f67f18bd85769deefceec5d690234",
+            "sheet": null,
+            "physical_row": 8,
+            "column_indices": {
+              "posting_date": [
+                1
+              ],
+              "transaction_type": [
+                2
+              ],
+              "num": [
+                3
+              ],
+              "name": [
+                4
+              ],
+              "memo_local": [
+                5
+              ],
+              "account_full_name": [
+                6
+              ],
+              "debit_cents": [
+                7
+              ],
+              "credit_cents": [
+                8
+              ]
+            },
+            "raw_row_sha256": "32f8e40dbe21771ed498ce59ec7861053f69092e85a3eeb47b0f36678b418508",
+            "parser_version": "csv-local-1.0",
+            "mapping_version": "qbo-transaction-journal-v1:61f02ada8230d334b447e9f07adfeec2537b7a2ac0e829d66792057b93ff7fbf",
+            "transaction_id_derivation": {
+              "kind": "QBO_TRANSACTION_JOURNAL_GROUP",
+              "profile_version": "qbo-transaction-journal-v1",
+              "transaction_id": "145",
+              "group_physical_row": 6,
+              "group_column_index": 0,
+              "group_raw_row_sha256": "d662dfe6c68d3c78ed11a473037b00b3d0455f8fe638aaffc5e760e63440fb6f",
+              "group_total_physical_row": 9,
+              "group_total_raw_row_sha256": "94b7745b08335250af196bafce48eb47d26b573028c2fa4f9827b11c45d2ee67"
+            }
+          }
+        ],
+        "validation_errors": [],
+        "qb_product": "QBO",
+        "transaction_id": "145",
+        "line_id": null,
+        "transaction_type": "Journal Entry",
+        "posting_date": "2026-09-30",
+        "num": "RDCE641C900E",
+        "name_token": null,
+        "memo_local": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RDCE641C900E",
+        "account_id": null,
+        "account_full_name": "Uncategorized Asset",
+        "account_type": "OTHER_CURRENT_ASSET",
+        "split_account": null,
+        "debit_cents": 0,
+        "credit_cents": 90000,
+        "signed_cents": -90000,
+        "running_balance_cents": null,
+        "cleared_status": "UNKNOWN",
+        "role": "CLEARING_SETTLEMENT",
+        "line_grain": "POSTING_LINE",
+        "linked_payment_id": null,
+        "linked_deposit_id": null,
+        "accounting_batch_id": null,
+        "is_posted_ledger": true,
+        "class_name": null,
+        "location_name": null
+      }
+    ],
+    "exactPostingMatch": {
+      "matched": true,
+      "scope": "EXACT_JOURNAL_POSTING_ONLY",
+      "periodReconciliationVerified": false,
+      "clearingBalanceVerified": false,
+      "transactionId": "145",
+      "matchingRowIds": [
+        "69bc1a25aafa9dd3e049189db4de467eb47fd7a025be49dde86ba78808ce4e9f",
+        "5787fe429dd123f3161d3635774e6d4ac3f9f3f51306b404108ff3ba3c445c73"
+      ],
+      "reason": "Exact approved journal posting found in validated complete QBO transaction group. Account-period coverage, clearing balances, and a full reconciliation are NOT verified."
+    },
+    "fullLedgerVerification": {
+      "verified": false,
+      "reason": "A transaction-scoped journal report cannot prove complete account-period coverage. Use the separate exact-posting match; full ledger verification remains pending.",
+      "matchingRowIds": [
+        "69bc1a25aafa9dd3e049189db4de467eb47fd7a025be49dde86ba78808ce4e9f",
+        "5787fe429dd123f3161d3635774e6d4ac3f9f3f51306b404108ff3ba3c445c73"
+      ]
+    }
+  },
+  "xlsx": {
+    "fileName": "target-transaction-journal-145.xlsx",
+    "ok": false,
+    "rowCount": 0,
+    "issues": [
+      {
+        "code": "XLSX_FORMULA",
+        "message": "Formula cells and defined names are not accepted, even when a cached value exists. Export all formulas as values.",
+        "severity": "error"
+      }
+    ],
+    "mapping": null,
+    "controls": {
+      "signedCents": 0,
+      "debitCents": null,
+      "creditCents": null,
+      "excludedRows": []
+    },
+    "manifest": null,
+    "rows": [],
+    "exactPostingMatch": {
+      "matched": false,
+      "scope": "EXACT_JOURNAL_POSTING_ONLY",
+      "periodReconciliationVerified": false,
+      "clearingBalanceVerified": false,
+      "transactionId": null,
+      "matchingRowIds": [],
+      "reason": "Exact approved posted USD journal lines and valid native-report provenance are required."
+    },
+    "fullLedgerVerification": {
+      "verified": false,
+      "reason": "Exact posted journal lines/date not found in the re-imported ledger.",
+      "matchingRowIds": []
+    }
+  }
+}
