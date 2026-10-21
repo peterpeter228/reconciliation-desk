@@ -1,0 +1,368 @@
+{
+  "created_at": "2026-10-21T13:06:07.568454+00:00",
+  "intended_reviewer_model": "gemini-4-argon-high",
+  "preparation_only_external_call_not_performed": true,
+  "credentials_read_or_handled": false,
+  "repository": "peterpeter228/reconciliation-desk",
+  "verified_main_commit": "44b996e74aa718d7276b325157204cf624af7f12",
+  "verified_remote_tree": "1529aeccaf49bb2c2ec9e2385dec2cc248ed4f95",
+  "remote_verification": "Read-only GitHub branch/main and recursive Git tree; all selected file Git blobs and sizes exactly match.",
+  "file_count": 33,
+  "exact_repository_input_bytes": 311714,
+  "files": [
+    {
+      "path": "src/ingestion/csv.ts",
+      "bytes": 17493,
+      "sha256": "c621235bd67b2db1878a7b769900e18830c188e4fe79a2df76ec8d541f2cfb39",
+      "git_blob_sha1": "47ef1438263de34d9a939cb196a193d36e5c68ea",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/ingestion/qbo-transaction-journal.ts",
+      "bytes": 14210,
+      "sha256": "696b35243576f1693c2bb776797c2a6da33cc53511b16d1220629eded1aad4a3",
+      "git_blob_sha1": "bd3e93a95200a5c205dba45d805631b031f4c607",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/ingestion/xlsx.ts",
+      "bytes": 36573,
+      "sha256": "ffb8677372030b07261d09845dfc6ca43ed4b1831e9a41b7702d930527925351",
+      "git_blob_sha1": "17d561cb957db5a6a7e7eca6158143f9bfa5b70f",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/ingestion/types.ts",
+      "bytes": 2061,
+      "sha256": "a2b4e73720f0b0c1adee31417a1bdb5ed2ee5eaf39edef93ee04c97d531dd00c",
+      "git_blob_sha1": "b4630e78ff02a0b1cd3efbaaaf576725e77844d0",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/ingestion/primitives.ts",
+      "bytes": 3995,
+      "sha256": "3caf36464b3d5c1535266325bec5d9be5d8aa3b132af8446d1096eaba639bacb",
+      "git_blob_sha1": "dbaaca897b5d50294e0e9f9790cca4dd836c293a",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/ingestion/normalize.ts",
+      "bytes": 22731,
+      "sha256": "ff1b43a402d897d743a46ada0471d982d2a5a937db371744f2dd0d339f51b575",
+      "git_blob_sha1": "73b249d9e028a55dd1401fefed99ee002acdd0cd",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/export/aje.ts",
+      "bytes": 25474,
+      "sha256": "d7547c3d71b401d2201cfc13405939865cb7bb828b4f8dad50184a88cbae4079",
+      "git_blob_sha1": "09f860fc9f2cd573b40c2497180cf4e999703ca0",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/export/journal-posting.ts",
+      "bytes": 12688,
+      "sha256": "eb9749a31a309fb3dc26f53810191318de044bb069a114312c65f001afb72d2c",
+      "git_blob_sha1": "93c95fc8f1a12cae8f811314197fd72c54858b85",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/pages/import.tsx",
+      "bytes": 32958,
+      "sha256": "2018996ee2f5a34bd5b8cf612ae38371220e6878e36c96c3a6ac15cec5ef2551",
+      "git_blob_sha1": "5861160c30571cb02ed4b2c3fc8a5ce3183bd20e",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/contracts/canonical.ts",
+      "bytes": 8517,
+      "sha256": "dcdf46261432c2cd2aa86d364aa59bb7ec58739b5f118479b109a80f2525e1b4",
+      "git_blob_sha1": "f370efab98e311d052d9de16f703725195e70562",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/mapping/aliases.ts",
+      "bytes": 8703,
+      "sha256": "b4193c289d48d31b1b5be219adab5c47b9618c0e5044b6d63fc1272c279c78e2",
+      "git_blob_sha1": "f082f20a5cece1288becec17e28a2a4ab3a49d4e",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/ingestion/index.ts",
+      "bytes": 493,
+      "sha256": "7bed418a93b5570151fb93048b3ec5f53da8bc4d27af935932579d67351056d0",
+      "git_blob_sha1": "df700310b78c904025d8f2a96bb4cffad6640db7",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/workers/import-client.ts",
+      "bytes": 1699,
+      "sha256": "d5e1527d301411599b61247a56ceedb98fb5baec350d8529b5ca7f2de169520f",
+      "git_blob_sha1": "75d22c2d79b662d3a5e4a28eee017414f57096ac",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/workers/xlsx-client.ts",
+      "bytes": 2083,
+      "sha256": "c76bb0b4a531e5cd98b7ff201880556dcd78147962171194c95c1dbc9405dc8a",
+      "git_blob_sha1": "5eeccab32868a3d5a5227defd41390c6c975dfa9",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "docs/QBO_TRANSACTION_JOURNAL_PROFILE.md",
+      "bytes": 6772,
+      "sha256": "cf115a84f3f4c05a4b5fcae35337971f5a4a6a6e0e37548185711bb3e0c869b4",
+      "git_blob_sha1": "71648621417bbfeafa139336ab8ac940e23de8a9",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/import-export/native-journal-profile.test.ts",
+      "bytes": 3398,
+      "sha256": "e4400ca871eac035701d6724766cddff4be7588a1e60f51fe6ab7f520e893d16",
+      "git_blob_sha1": "b33eac62f991319469af7e0df0bbc1dcc6414583",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/ui/qbo-journal-profile.test.ts",
+      "bytes": 16688,
+      "sha256": "886527aa45180c5c41c7bf840a7a986155a08f02562afb014c689c14ab52eb88",
+      "git_blob_sha1": "34c9aa2dd87c2e3a61c9779c771f135dd55f9e3d",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/qbo-roundtrip-adversarial/parser.test.ts",
+      "bytes": 12148,
+      "sha256": "83e1abe8a19bd917ddf57074cca741d063f22805f51656c2ff903efd52cabde7",
+      "git_blob_sha1": "2be6c56490ec1ea3dca775ba070e3a7a0924ddb5",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/qbo-roundtrip-adversarial/fixtures.ts",
+      "bytes": 2698,
+      "sha256": "bf69c6b46ee83ffde670dc6c192a83c20d2e447a7d20f32626eb8700002c40e5",
+      "git_blob_sha1": "ee60ebd77ca09ba93c011b302cbb4b9622f2dbd7",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/qbo-roundtrip-adversarial/posting-proof.test.ts",
+      "bytes": 16685,
+      "sha256": "9cd61bac168648c5ed9647bcfff252cfabbd8718cf030d755c6234b599313623",
+      "git_blob_sha1": "81d1b7b57801db1833a12a681b4a72a38c6d2107",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/qbo-xlsx/workbook-properties.test.ts",
+      "bytes": 14361,
+      "sha256": "31ef0bcb660a23a12006ddd1a841089a5b3dfdc6b7acfc77f0602eca4b04957e",
+      "git_blob_sha1": "1912460c22fb137b538b92a66d403c36a9a21d6c",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/pages/desk.tsx",
+      "bytes": 10077,
+      "sha256": "82f8945ae761fff13c41f36711282ae434b56383c8ad2060e8934410d214b9e6",
+      "git_blob_sha1": "65fdb56413de0454f508dd072a6b880745882cb2",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "contracts/canonical.ts",
+      "bytes": 8517,
+      "sha256": "dcdf46261432c2cd2aa86d364aa59bb7ec58739b5f118479b109a80f2525e1b4",
+      "git_blob_sha1": "f370efab98e311d052d9de16f703725195e70562",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/contracts/engine.ts",
+      "bytes": 6707,
+      "sha256": "aa2b732183bf8f24a949bc1035af7c82ed8746048810400c5f07951732d08db7",
+      "git_blob_sha1": "939f19d5660b4a624c3e92a9f981984b99ed5cf8",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/components/workspace.ts",
+      "bytes": 3297,
+      "sha256": "cfe2fb9bad86bc9f543b42abba300d4f5a1482ec81e09bf996bcca82ada903d4",
+      "git_blob_sha1": "d8f5973e978d7823f67e68c43a4b67fd80820ee0",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/workers/import.worker.ts",
+      "bytes": 572,
+      "sha256": "410cb3836c2a267ab62e40ca49749cf16b807f1631c3eeaf7cdb5da713cf5769",
+      "git_blob_sha1": "5432db203b9851baaec28712c9cd1c92a779c618",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/workers/xlsx.worker.ts",
+      "bytes": 784,
+      "sha256": "e89ff4b7cff2d4e690a42cddbd8fa5e6677c5ed441b66ea37a9644bf343d7571",
+      "git_blob_sha1": "4212d8b28bc7b96c6495936306d2114bcc354521",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "src/export/index.ts",
+      "bytes": 132,
+      "sha256": "95e78a4f06f52b2979ad3e517ba054fd7cf303b6c6fa2bd06a9c321e1d70c501",
+      "git_blob_sha1": "fdd972d9fa513addfa6a939ff7721740872b76c4",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/ui/import-validation.test.ts",
+      "bytes": 7138,
+      "sha256": "af31762d433d97b98697314461a272724fd4857e24c178cd6cc0280fdedc6df4",
+      "git_blob_sha1": "ab0149cfbfce0830d9395602c1635ca560b0cc98",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/qbo-roundtrip-adversarial/README.md",
+      "bytes": 4626,
+      "sha256": "2979aac3ce0cfe96b08c702f31c5d7a8faf5d9413e2e67098818051eedf26f07",
+      "git_blob_sha1": "01aa66b617748ead05690f66cca6d184b9a80329",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tests/qbo-xlsx/README.md",
+      "bytes": 5443,
+      "sha256": "c33e25011d0094c821557809b0782313723c1605bff46ce768c9efdf41bf5635",
+      "git_blob_sha1": "69bfd8bcaf6426c3e017c70e699a830466554542",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 1462,
+      "sha256": "fd0963f832d137b9919257dc352cefba804f26c919d0245c7a7db98a181eded4",
+      "git_blob_sha1": "e882bc0f5a573c8743d56f08c0997935629e9ba8",
+      "matches_verified_main_commit": true
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 531,
+      "sha256": "a83bab14693bf41e50a719d15fe5269826d4cfd939743b2e82a34b043deaad1a",
+      "git_blob_sha1": "a56bdd51164cf30d73735cd244cee55f31fa7591",
+      "matches_verified_main_commit": true
+    }
+  ],
+  "generated_context": {
+    "path": "sanitized-evidence-summary.md",
+    "bytes": 5198,
+    "sha256": "426c5cbf316850c6a1926520bc1e4b0145aaf5beaacec560aacc6be095bbbf5d",
+    "source_records": [
+      {
+        "path": "evidence/qbo-native-profile-20261021/final-tests.txt",
+        "bytes": 600,
+        "sha256": "6084ef3aee74e75e6c945ee05f091edf97b1168b5bc5ff651f52e80c1f380341",
+        "git_blob_sha1": "9d9d95971ec5b550d5218174e4abe170b5465530",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/qbo-native-profile-20261021/final-typecheck.txt",
+        "bytes": 362,
+        "sha256": "87918d904d93c1472dfdcbf12eba67f1575d0fff53a6ad6c65a9f58361bd52c9",
+        "git_blob_sha1": "09cf428f3c0ca7c1c54dbd93f17effb3957da3b4",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/qbo-native-profile-20261021/final-format.txt",
+        "bytes": 320,
+        "sha256": "23ce8581cca5471e2f39024f4a9769f7e1141e76f4f91b28487549b4bcef8d96",
+        "git_blob_sha1": "9fb8d2f4f94d1e9df3c0221bacfefa5296c66313",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/qbo-native-profile-20261021/final-build.txt",
+        "bytes": 891,
+        "sha256": "fb4b815c9e026883b7ad03650ba6bbd493f8a4ab6c10c1af4302aedca11ba760",
+        "git_blob_sha1": "c58f860d144d606ffd20e314c20e64fb4bd39038",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/qbo-native-profile-20261021/final-artifacts.txt",
+        "bytes": 394,
+        "sha256": "82073bbb5ee03b63fcd5138ea96caf89067fc8e71c8f8d6247abbbfcdcfd1f09",
+        "git_blob_sha1": "ff91d9a7c59ae6b7b304a442bb5fb6660e1df345",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/qbo-native-profile-20261021/ui-display-tests.txt",
+        "bytes": 667,
+        "sha256": "336804e1d2d337e91d50b8c7ea72f666cd45227c85bf6e0efd5f7433ee71e270",
+        "git_blob_sha1": "0b4199d51c19f6458d43e683bee1e44067642de2",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/qbo-native-profile-20261021/browser-report.md",
+        "bytes": 7790,
+        "sha256": "e6048d503d31549825513947578e457ed4119553ae50eaf7d3528800596da74a",
+        "git_blob_sha1": "e76921bda436258f0043fb7620650142e12afdd1",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/qbo-native-profile-20261021/browser-final-evidence-check.txt",
+        "bytes": 183,
+        "sha256": "a9b50c3fd43753014808df34f2f3d1c601a007e7a18ae4cb0eda405c64cd13c7",
+        "git_blob_sha1": "6939742bc45bf03cc03f7ef19a239b14ff40ba5a",
+        "matches_verified_main_commit": true
+      },
+      {
+        "path": "evidence/argon-native-profile-20261021/README.md",
+        "bytes": 986,
+        "sha256": "6ce352f4ad0573d01edf678f7d5f4938bc95c97b74d66f538a6fcc3cf314e7a9",
+        "git_blob_sha1": "85e1f0973793122ea51a368799e6c882313ebe50",
+        "matches_verified_main_commit": true
+      }
+    ],
+    "raw_evidence_source_contents_not_attached": true
+  },
+  "request_sha256": "13e4545f1593e95336b1eb9d34e5d9a82d8749146c54453bf2de24a49131b55d",
+  "request_bytes": 335111,
+  "review_text_sha256": "07607e84ebdba14e6407f3c82c21ea7817c708aefd4e67158a95e76cde45389c",
+  "review_text_bytes": 325332,
+  "previous_packet_request_sha256": "061f3b2ee2660f828a5376c2c4341fae0146964da4fc152b2155c4b32f02cd7b",
+  "changed_since_previous_packet": [
+    "src/pages/import.tsx",
+    "tests/ui/qbo-journal-profile.test.ts"
+  ],
+  "added_since_previous_packet": [
+    "src/pages/desk.tsx",
+    "contracts/canonical.ts",
+    "src/contracts/engine.ts",
+    "src/components/workspace.ts",
+    "src/workers/import.worker.ts",
+    "src/workers/xlsx.worker.ts",
+    "src/export/index.ts",
+    "tests/ui/import-validation.test.ts",
+    "tests/qbo-roundtrip-adversarial/README.md",
+    "tests/qbo-xlsx/README.md",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "sanitization": {
+    "inclusion": "Allowlisted exact project source, synthetic/public-demo test code, technical design, package/compiler configuration; generated test/browser evidence summary only.",
+    "excluded": [
+      "raw native financial files",
+      "financial downloads and normalized ledger evidence",
+      "screenshots",
+      "real customer data",
+      "real ledgers",
+      "credentials",
+      "unrelated project data",
+      "external-call scripts and receipts"
+    ],
+    "credential_pattern_scan": "no_match",
+    "pattern_names": [
+      "private_key_block",
+      "openai_style_key",
+      "google_api_key",
+      "aws_access_key",
+      "github_token",
+      "slack_token",
+      "bearer_literal",
+      "jwt_literal",
+      "url_user_password",
+      "credential_query_value",
+      "long_secret_assignment"
+    ],
+    "limitation": "Pattern scanning is a bounded check, not proof that arbitrary data cannot contain a secret. Inputs were also selected by explicit path and known project content."
+  },
+  "prior_argon_outcome": "Unknown remote receipt/billing and no usable native-profile review; never a review pass."
+}

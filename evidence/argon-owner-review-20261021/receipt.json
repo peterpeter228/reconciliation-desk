@@ -1,0 +1,17 @@
+{
+  "requested_model": "gemini-4-argon-high",
+  "provider": "api.xiaoyiapi.xyz",
+  "started_at_utc": "2026-10-21T13:06:38.844972+00:00",
+  "request_bytes": 335111,
+  "automatic_retry": false,
+  "http_status": 200,
+  "request_id": "82235eff-71e6-4806-a386-5b5d240e17d6",
+  "duration_seconds": 113.918,
+  "model_version": "gemini-4-argon",
+  "usage": {
+    "promptTokenCount": 97819,
+    "candidatesTokenCount": 5514,
+    "totalTokenCount": 103333
+  },
+  "review_characters": 12486
+}

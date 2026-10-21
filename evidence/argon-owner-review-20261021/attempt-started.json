@@ -1,0 +1,10 @@
+{
+  "requested_model": "gemini-4-argon-high",
+  "provider": "api.xiaoyiapi.xyz",
+  "started_at_utc": "2026-10-21T13:06:38.844972+00:00",
+  "request_bytes": 335111,
+  "automatic_retry": false,
+  "status": "dispatching_once",
+  "owner_retry_requested": true,
+  "ownership": "user_states_endpoint_is_their_own"
+}
