@@ -22,7 +22,7 @@ completion, market demand or permitted external financial actions.
   source semantics, QBO/QBD choice, sorted cases, three-source evidence display,
   supplemental evidence and scope, JSON/CSV/print workpapers. Separate synthetic
   $900 fee-only approval/export demonstration with content-bound invalidation.
-- **G3 executed:** 529 TypeScript tests in 19 suites, including the original 187 and 342
+- **G3 executed:** 639 TypeScript tests in 22 suites, including the original 187 and 452
   additional post-review regressions. The original coverage includes independent
   held-out-seed integration, input/export, XLSX and jsdom UI checks. Typecheck/build/artifact checks pass.
   Original Python reference suite separately passes 33 tests. Counts are not a
@@ -132,3 +132,19 @@ This phase requested another Argon review; transport/tool outcome is documented
 separately, and must not be assumed successful from the earlier Argon review.
 
 Requested Argon follow-up was blocked at tool security review with no verified review output; remote receipt/billing remain unknown and no retry occurred. See evidence/argon-native-profile-20261021.
+
+## Owner-requested Argon follow-up (13:06 UTC)
+
+A new explicitly requested single call succeeded (HTTP200,113.918s) on source44b996e.
+It does not resolve the earlier unknown request. Raw output and receipt are saved
+under evidence/argon-owner-review-20261021; model claims were independently tested.
+Confirmed fixes: all CSV original-byte/text binding with explicit encoding; clearer
+cancelled-upload recovery and parser-side other-slot budgets; narrowly scoped
+OOXML namespaces/part context; excluded-row audit classification integrity.
+The specific retained-three-slot30MiB overflow and BOM-hash forgery claims were
+not reproduced as alleged. Native formula XLSX stays blocked.
+
+Final aggregate:639tests22files, typecheck/format/build/artifact checks passed using
+installed local tools. Post-fix browser regression is recorded separately.
+No second external model review of these fixes is claimed. See
+docs/ARGON_OWNER_REVIEW_TRIAGE_20261021.md.

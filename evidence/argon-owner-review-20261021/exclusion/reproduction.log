@@ -1,0 +1,40 @@
+{
+  "originalExclusions": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "unmodifiedReport": {
+    "matched": true,
+    "scope": "EXACT_JOURNAL_POSTING_ONLY",
+    "periodReconciliationVerified": false,
+    "clearingBalanceVerified": false,
+    "transactionId": "145",
+    "matchingRowIds": [
+      "69bc1a25aafa9dd3e049189db4de467eb47fd7a025be49dde86ba78808ce4e9f",
+      "5787fe429dd123f3161d3635774e6d4ac3f9f3f51306b404108ff3ba3c445c73"
+    ],
+    "reason": "Exact approved journal posting found in validated complete QBO transaction group. Account-period coverage, clearing balances, and a full reconciliation are NOT verified."
+  },
+  "clearedExclusionsWithRecomputedDigest": {
+    "matched": false,
+    "scope": "EXACT_JOURNAL_POSTING_ONLY",
+    "periodReconciliationVerified": false,
+    "clearingBalanceVerified": false,
+    "transactionId": null,
+    "matchingRowIds": [
+      "69bc1a25aafa9dd3e049189db4de467eb47fd7a025be49dde86ba78808ce4e9f",
+      "5787fe429dd123f3161d3635774e6d4ac3f9f3f51306b404108ff3ba3c445c73"
+    ],
+    "reason": "Native report exclusions must uniquely classify all controls and no posting/header rows."
+  },
+  "scopeLimit": "Hashes check local evidence consistency, not QuickBooks source authenticity. This does not verify period coverage or clearing balances."
+}

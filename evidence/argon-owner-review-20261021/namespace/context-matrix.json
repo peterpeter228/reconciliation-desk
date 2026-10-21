@@ -1,0 +1,150 @@
+{
+  "syntheticContextCases": 24,
+  "allRejected": true,
+  "observations": [
+    {
+      "wrapper": "unknown",
+      "foreignElement": "sheetData",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "unknown",
+      "foreignElement": "row",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "unknown",
+      "foreignElement": "c",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "unknown",
+      "foreignElement": "v",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "workbook",
+      "foreignElement": "sheetData",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "workbook",
+      "foreignElement": "row",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "workbook",
+      "foreignElement": "c",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "workbook",
+      "foreignElement": "v",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sheets",
+      "foreignElement": "sheetData",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sheets",
+      "foreignElement": "row",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sheets",
+      "foreignElement": "c",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sheets",
+      "foreignElement": "v",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sst",
+      "foreignElement": "sheetData",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sst",
+      "foreignElement": "row",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sst",
+      "foreignElement": "c",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "sst",
+      "foreignElement": "v",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "styleSheet",
+      "foreignElement": "sheetData",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "styleSheet",
+      "foreignElement": "row",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "styleSheet",
+      "foreignElement": "c",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "styleSheet",
+      "foreignElement": "v",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "worksheet",
+      "foreignElement": "sheetData",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "worksheet",
+      "foreignElement": "row",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "worksheet",
+      "foreignElement": "c",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    },
+    {
+      "wrapper": "worksheet",
+      "foreignElement": "v",
+      "sheetjsValue": 900,
+      "guard": "XLSX_XML_UNSUPPORTED"
+    }
+  ]
+}

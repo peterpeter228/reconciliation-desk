@@ -1,0 +1,245 @@
+{
+  "evidenceDate": "2026-10-21",
+  "reviewedRevision": "44b996e74aa718d7276b325157204cf624af7f12",
+  "baselineSourceSha256": "ffb8677372030b07261d09845dfc6ca43ed4b1831e9a41b7702d930527925351",
+  "patchedSourceSha256": "65843cbb68de889596733799a1f9872a6812fcc74a82b8ffde369d4c3748debf",
+  "observations": [
+    {
+      "name": "foreign cell default namespace",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "reported foreign prefixed c/v shape",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign value namespace",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign sheet namespace",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign relationship root",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign Relationship child",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign Override child",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign Default child",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign content-types root",
+      "before": {
+        "accepted": false,
+        "code": "XLSX_PARSE"
+      },
+      "sheetjs": {
+        "accepted": false,
+        "message": "Unknown Namespace: urn:spoof"
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "misplaced inert Relationship",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "misplaced inert Override",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign cell under unknown worksheet wrapper",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    },
+    {
+      "name": "foreign cell under recognized but wrong workbook wrapper",
+      "before": {
+        "accepted": true,
+        "amount": "900"
+      },
+      "sheetjs": {
+        "accepted": true,
+        "sheets": [
+          "Data"
+        ],
+        "amount": 900
+      },
+      "after": {
+        "accepted": false,
+        "code": "XLSX_XML_UNSUPPORTED"
+      }
+    }
+  ],
+  "nativeQbo": {
+    "bytes": 8880,
+    "sha256": "ac1b896b3377199496c67132968e8e61949f388eaa7a13c43ed52fcace95e033",
+    "rejection": "XLSX_FORMULA"
+  },
+  "scope": "Local synthetic parsing only; no formula execution, network exploit, remote model, credentials, browser or deployment tested."
+}

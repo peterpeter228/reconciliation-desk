@@ -1,0 +1,7 @@
+{
+  "files": 16,
+  "answer_key_absent": true,
+  "credential_pattern_scan": "no_match",
+  "headers_template_present": true,
+  "scope": "Static artifact checks only; not a guarantee of safety or deployed headers."
+}

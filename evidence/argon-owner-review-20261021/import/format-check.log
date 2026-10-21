@@ -1,0 +1,4 @@
+Command: node node_modules/prettier/bin/prettier.cjs --check src/ingestion/csv.ts src/ingestion/types.ts src/pages/import.tsx tests/import-export/source-byte-binding.test.ts tests/ui/qbo-journal-profile.test.ts
+Checking formatting...
+All matched files use Prettier code style!
+Exit code: 0

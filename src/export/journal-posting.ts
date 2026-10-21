@@ -293,6 +293,37 @@ export async function matchProposalJournalPosting(
       checkedSum(reportRows.map((r) => r.credit_cents)) !== proof.credit_cents
     )
       return no('Report membership, grand totals, or terminal footer are inconsistent.');
+    const mandatoryExcluded = new Set([
+      1,
+      2,
+      3,
+      4,
+      ...proof.groups.flatMap((g) => [g.group_physical_row, g.total_physical_row]),
+      proof.total_physical_row,
+      proof.footer_physical_row,
+    ]);
+    const excluded = new Set(manifest.excluded_summary_rows);
+    // Before TOTAL, only the preamble and group controls may be excluded. Optional
+    // blank records occur after TOTAL. Their complete inventory is not retained in
+    // this proof, and CSV continuation lines are not separate records: do not infer
+    // a full physical-row complement or source authenticity from these locators.
+    if (
+      excluded.size !== manifest.excluded_summary_rows.length ||
+      [...mandatoryExcluded].some((row) => !excluded.has(row)) ||
+      manifest.excluded_summary_rows.some(
+        (row) =>
+          row === manifest.header_row ||
+          allLocators.has(row) ||
+          (row <= proof.total_physical_row && !mandatoryExcluded.has(row)),
+      )
+    )
+      return no(
+        'Native report exclusions must uniquely classify all controls and no posting/header rows.',
+      );
+    // raw_row_count counts nonempty records after the header, not physical lines
+    // or the optional blank records included in excluded_summary_rows.
+    if (manifest.raw_row_count !== reportRows.length + proof.groups.length * 2 + 2)
+      return no('Native report nonempty record count does not match postings and controls.');
     const accounts = [...new Set(reportRows.map((r) => r.account_full_name))].sort();
     if (
       canonicalJson(accounts) !== canonicalJson([...manifest.accounts].sort()) ||

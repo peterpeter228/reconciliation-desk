@@ -488,7 +488,8 @@ describe('archive and allocation budgets', () => {
     const b = edit(
       workbook(),
       (p) => {
-        let body = '<worksheet><sheetData>';
+        let body =
+          '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>';
         for (let r = 1; r <= 6251; r++) {
           body += `<row r="${r}">`;
           for (let c = 0; c < 80; c++) body += `<c r="${utils.encode_col(c)}${r}"><v>0</v></c>`;

@@ -40,6 +40,8 @@ export interface ParseOptions {
   coverageConfirmed?: boolean;
   accountBalances?: ImportManifest['account_balances'];
   existingTotalBytes?: number;
+  /** Explicit original CSV byte encoding; UTF-8 by default. The UI supports UTF-8 only. */
+  encoding?: 'utf-8' | 'utf-16le' | 'utf-16be';
   originalBytes?: Uint8Array;
 }
 export interface ImportIssue {

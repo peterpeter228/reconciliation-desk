@@ -64,7 +64,7 @@ describe('QBO workbook property namespace compatibility', () => {
       expect(matrix.inspection.date1904).toBe(date1904);
       expect(matrix.records[1].values).toEqual(['2026-09-30', '900']);
       expect(matrix.records[1].physicalRow).toBe(2);
-      expect(matrix.source.parserVersion).toBe('xlsx-local-1.2/sheetjs-0.20.3');
+      expect(matrix.source.parserVersion).toBe('xlsx-local-1.3/sheetjs-0.20.3');
     },
   );
 

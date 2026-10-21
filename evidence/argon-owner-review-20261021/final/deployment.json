@@ -1,0 +1,13 @@
+{
+  "project_id": "appgprj_6ad899470bac81919b5cd538ff547314",
+  "site_source_sha": "29a2aa8413ca452793829006139c743071e2bcf4",
+  "deployment_id": "appgdep_6ad8bd7195c881919c712e5333125219",
+  "url": "https://reconciliation-desk-private-qa.blueboot64.chatgpt.site",
+  "status": "succeeded",
+  "access": "owner-private",
+  "updated_at_utc": "2026-10-21T13:26:19.081867Z",
+  "main_asset": "index-JQp6rQcO.js",
+  "tests": 639,
+  "test_files": 22,
+  "browser_scope": "See separate browser report; no full production-readiness claim."
+}

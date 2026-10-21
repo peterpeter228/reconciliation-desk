@@ -1,0 +1,33 @@
+Observed before-fix console excerpts. These are faithful summarized excerpts,
+not preserved complete raw stdout, and the old code was not rerun to manufacture logs.
+
+Command: npm test -- tests/import-export/source-byte-binding.test.ts
+Outcome: exit 1
+Test Files 1 failed (1)
+Tests 9 failed | 2 passed (11)
+Eight stale-byte cases (manual/synthetic-v1 × ST/QBO/QBD/BANK):
+  AssertionError: expected true to be false // Object.is equality
+  at expect(mismatched.ok).toBe(false)
+Invalid UTF-8 originalBytes case:
+  AssertionError: expected true to be false // Object.is equality
+  at expect(result.ok).toBe(false)
+The two legitimate BOM tests passed before the fix.
+
+Command: npm test -- tests/ui/qbo-journal-profile.test.ts
+Outcome: exit 1
+Test Files 1 failed (1)
+Tests 4 failed | 10 passed (14)
+Failures:
+- discards an old upload result when the selected profile changes mid-parse:
+  cancellation notice was absent (stale result itself remained correctly rejected)
+- explains cancellation before arrayBuffer resolves and never parses the stale file:
+  cancellation notice was absent
+- explains XLSX inspection cancellation without accepting or parsing stale bytes:
+  cancellation notice was absent
+- passes other source bytes to preview and validation without double-counting replacements:
+  received [undefined, undefined, undefined], expected [0, 60, 165]
+
+An intermediate combined edit/npm-test invocation was denied after npm attempted
+registry.npmjs.org. The source edits had already executed; this was verified
+before running tests. The denied network operation was not retried. Subsequent
+checks used installed local node_modules binaries with npm offline mode, per parent.

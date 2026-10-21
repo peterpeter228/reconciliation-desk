@@ -1,0 +1,7 @@
+{
+  "purpose": "One bounded real-browser attempt to observe settings-change cancellation without instrumentation or artificial worker delays. Not a reconciliation input or production fixture.",
+  "filename": "ARGON_SYNTHETIC_CANCEL_PROBE.csv",
+  "bytes": 8160949,
+  "rows": 12000,
+  "sha256": "3377206862c5307f8a090d7f8a09a7e1e306137727c498adb5a3389bd0614c77"
+}

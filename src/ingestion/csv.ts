@@ -98,18 +98,26 @@ export async function parseSource<K extends SourceKind>(
   const result = empty<K>();
   try {
     const bytes = options.originalBytes ?? new TextEncoder().encode(text);
-    if (options.profile === 'qbo-transaction-journal-v1' && options.originalBytes) {
-      // This observed native CSV profile is UTF-8, optionally with a BOM. Bind
-      // parsed content to the actual hashed source bytes, not a stale preview.
-      const decoded = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes);
-      if (decoded.replace(/^\uFEFF/, '') !== text.replace(/^\uFEFF/, ''))
-        throw new Error('Native QBO CSV text does not match its original UTF-8 source bytes.');
-    }
     if (
       bytes.byteLength > IMPORT_LIMITS.fileBytes ||
       bytes.byteLength + (options.existingTotalBytes ?? 0) > IMPORT_LIMITS.totalBytes
     )
       throw new Error('File exceeds 10 MB per-file or 30 MB workspace limit.');
+    const encoding = options.encoding ?? 'utf-8';
+    if (!['utf-8', 'utf-16le', 'utf-16be'].includes(encoding))
+      throw new Error('Unsupported CSV encoding. Choose UTF-8, UTF-16LE, or UTF-16BE explicitly.');
+    if (options.profile === 'qbo-transaction-journal-v1' && encoding !== 'utf-8')
+      throw new Error('The native QBO Transaction Journal CSV profile requires UTF-8.');
+    if (encoding !== 'utf-8' && !options.originalBytes)
+      throw new Error('Explicit UTF-16 parsing requires the original source bytes.');
+    if (options.originalBytes) {
+      // Bind every profile to its hashed source bytes. Only a leading BOM is
+      // normalization: hashes identify exact files, not semantically equal CSVs.
+      // UTF-16 callers must explicitly select the same encoding used to decode.
+      const decoded = new TextDecoder(encoding, { fatal: true, ignoreBOM: true }).decode(bytes);
+      if (decoded.replace(/^\uFEFF/, '') !== text.replace(/^\uFEFF/, ''))
+        throw new Error('CSV text does not match its original source bytes and selected encoding.');
+    }
     if (options.fileName && !/\.(csv|tsv|txt)$/i.test(options.fileName))
       throw new Error(
         'This parser accepts CSV/TSV only. Use the separately validated XLSX importer for workbooks.',

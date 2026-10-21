@@ -1,0 +1,11 @@
+Command: npm_config_offline=true node node_modules/vitest/vitest.mjs run tests/import-export/source-byte-binding.test.ts tests/ui/qbo-journal-profile.test.ts tests/import-export/ingestion.test.ts tests/qbo-roundtrip-adversarial/parser.test.ts
+Outcome: exit 0
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+
+ Test Files  4 passed (4)
+      Tests  114 passed (114)
+   Start at  22:16:47
+   Duration  4.70s (transform 845ms, setup 0ms, import 1.37s, tests 3.99s, environment 640ms)
+

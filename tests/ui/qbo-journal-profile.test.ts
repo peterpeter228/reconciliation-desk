@@ -12,7 +12,8 @@ import { DeskPage } from '../../src/pages/desk';
 import type { Workspace } from '../../src/components/workspace';
 import { reconcile } from '../../src/engine';
 import { runImport } from '../../src/workers/import-client';
-import { runXlsxImport } from '../../src/workers/xlsx-client';
+import { runXlsxImport, runXlsxInspect } from '../../src/workers/xlsx-client';
+import { inspectXlsx } from '../../src/ingestion/xlsx';
 import { parseSource } from '../../src/ingestion/csv';
 import type { ParseResult } from '../../src/ingestion/types';
 vi.mock('../../src/workers/import-client', async () => {
@@ -47,6 +48,9 @@ beforeEach(() => {
   vi.stubGlobal('crypto', webcrypto);
   vi.mocked(runImport).mockReset().mockImplementation(parseSource);
   vi.mocked(runXlsxImport).mockClear();
+  vi.mocked(runXlsxInspect)
+    .mockReset()
+    .mockImplementation(async (bytes, name) => inspectXlsx(bytes, name));
 });
 afterEach(() => {
   cleanup();
@@ -281,11 +285,111 @@ describe('Explicit native QBO Transaction Journal selection', () => {
     startUpload('Choose QuickBooks CSV', 'stale.csv', new TextEncoder().encode(qb));
     await waitFor(() => expect(runImport).toHaveBeenCalledTimes(1));
     selectNative();
+    expect(screen.getByText(/Settings changed while stale.csv was being read/)).toBeTruthy();
     const call = vi.mocked(runImport).mock.calls[0];
     const stale = await parseSource(call[0], 'QBO', call[2]);
     await act(async () => gate.resolve(stale));
     expect(screen.queryByRole('button', { name: /stale.csv/ })).toBeNull();
     expect(enabled()).toBe(false);
+  });
+
+  it('explains cancellation before arrayBuffer resolves and never parses the stale file', async () => {
+    setup();
+    const bytes = new TextEncoder().encode(qb);
+    const gate = deferred<ArrayBuffer>();
+    const file = new File([bytes], 'slow.csv');
+    Object.defineProperty(file, 'arrayBuffer', { value: () => gate.promise });
+    fireEvent.change(screen.getByLabelText('Choose QuickBooks CSV'), { target: { files: [file] } });
+    fireEvent.change(screen.getByLabelText('Period begins'), { target: { value: '2026-09-02' } });
+    expect(screen.getByText(/Settings changed while slow.csv was being read/)).toBeTruthy();
+    await act(async () => gate.resolve(bytes.buffer));
+    expect(runImport).not.toHaveBeenCalled();
+    expect(screen.queryByRole('button', { name: /slow.csv/ })).toBeNull();
+    expect(enabled()).toBe(false);
+  });
+  it('explains XLSX inspection cancellation without accepting or parsing stale bytes', async () => {
+    setup();
+    const book = utils.book_new();
+    utils.book_append_sheet(book, utils.aoa_to_sheet(Papa.parse<string[]>(qb).data), 'GL');
+    const bytes = new Uint8Array(write(book, { bookType: 'xlsx', type: 'array' }));
+    const gate = deferred<Awaited<ReturnType<typeof runXlsxInspect>>>();
+    vi.mocked(runXlsxInspect).mockReturnValueOnce(gate.promise);
+    startUpload('Choose QuickBooks CSV', 'slow.xlsx', bytes);
+    await waitFor(() => expect(runXlsxInspect).toHaveBeenCalledTimes(1));
+    fireEvent.change(screen.getByLabelText('Date format'), { target: { value: 'ISO' } });
+    expect(screen.getByText(/Settings changed while slow.xlsx was being read/)).toBeTruthy();
+    await act(async () => gate.resolve(inspectXlsx(bytes, 'slow.xlsx')));
+    expect(runXlsxImport).not.toHaveBeenCalled();
+    expect(screen.queryByRole('button', { name: /slow.xlsx/ })).toBeNull();
+    expect(enabled()).toBe(false);
+  });
+  it('passes other source bytes to preview and validation without double-counting replacements', async () => {
+    setup();
+    scope();
+    await files(qb);
+    const size = (text: string) => new TextEncoder().encode(text).byteLength;
+    expect(vi.mocked(runImport).mock.calls.map((call) => call[2].existingTotalBytes)).toEqual([
+      0,
+      size(st),
+      size(st) + size(qb),
+    ]);
+    await upload('Choose QuickBooks CSV', 'replacement.csv', qb);
+    expect(vi.mocked(runImport).mock.calls.at(-1)![2].existingTotalBytes).toBe(
+      size(st) + size(bank),
+    );
+    await validate();
+    expect(
+      vi
+        .mocked(runImport)
+        .mock.calls.slice(-3)
+        .map((call) => call[2].existingTotalBytes),
+    ).toEqual([size(qb) + size(bank), size(st) + size(bank), size(st) + size(qb)]);
+  });
+  it('keeps a newer upload when a cancelled parse finishes later', async () => {
+    setup();
+    const gate = deferred<ParseResult>();
+    vi.mocked(runImport).mockReturnValueOnce(gate.promise as never);
+    startUpload('Choose QuickBooks CSV', 'old.csv', new TextEncoder().encode(qb));
+    await waitFor(() => expect(runImport).toHaveBeenCalledTimes(1));
+    selectNative();
+    fireEvent.change(screen.getByLabelText('Expected report company name'), {
+      target: { value: company },
+    });
+    await upload('Choose QuickBooks CSV', 'new.csv', native);
+    const call = vi.mocked(runImport).mock.calls[0];
+    await act(async () => gate.resolve(await parseSource(call[0], 'QBO', call[2])));
+    expect(screen.getByRole('button', { name: /new.csv/ })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /old.csv/ })).toBeNull();
+    expect(screen.queryByText(/Settings changed while/)).toBeNull();
+    expect(enabled()).toBe(false);
+  });
+  it('passes the other files budget through XLSX sheet changes and header reloads', async () => {
+    setup();
+    await upload('Choose ServiceTitan CSV', 'st.csv', st);
+    await upload('Choose Bank CSV', 'bank.csv', bank);
+    const book = utils.book_new();
+    utils.book_append_sheet(book, utils.aoa_to_sheet(Papa.parse<string[]>(qb).data), 'GL');
+    utils.book_append_sheet(book, utils.aoa_to_sheet([['Synthetic note']]), 'Read me');
+    startUpload(
+      'Choose QuickBooks CSV',
+      'budget.xlsx',
+      new Uint8Array(write(book, { bookType: 'xlsx', type: 'array' })),
+    );
+    await screen.findByText('CHOOSE_WORKSHEET');
+    fireEvent.change(screen.getByLabelText('Worksheet'), { target: { value: 'GL' } });
+    await waitFor(() => expect(screen.queryByText('CHOOSE_WORKSHEET')).toBeNull());
+    const expected = new TextEncoder().encode(st + bank).byteLength;
+    expect(vi.mocked(runXlsxImport).mock.calls.at(-1)![2].existingTotalBytes).toBe(expected);
+    const card = document.querySelectorAll('.mapping-card')[1] as HTMLElement;
+    fireEvent.click(within(card).getByRole('button', { name: 'Reload selected header' }));
+    await waitFor(() => expect(runXlsxImport).toHaveBeenCalledTimes(2));
+    await waitFor(() =>
+      expect(
+        (within(card).getByRole('button', { name: 'Reload selected header' }) as HTMLButtonElement)
+          .disabled,
+      ).toBe(false),
+    );
+    expect(vi.mocked(runXlsxImport).mock.calls.at(-1)![2].existingTotalBytes).toBe(expected);
   });
   it('discards an old header preview and retains explicit header selection after profile change', async () => {
     setup();

@@ -1,0 +1,118 @@
+--- before-44b996e/src/ingestion/xlsx.ts
++++ after/src/ingestion/xlsx.ts
+@@ -284,6 +284,18 @@
+   'http://schemas.openxmlformats.org/spreadsheetml/2006/main',
+   'http://purl.oclc.org/ooxml/spreadsheetml/main',
+ ]);
++const packageRelationshipsNamespace =
++  'http://schemas.openxmlformats.org/package/2006/relationships';
++const packageContentTypesNamespace = 'http://schemas.openxmlformats.org/package/2006/content-types';
++// Only classify spreadsheet data in its document context. In particular, DrawingML
++// a:t and chart c:v are not worksheet/shared-string values and keep their own schemas.
++const spreadsheetDataElements = new Map([
++  ['workbook', new Set(['sheets', 'sheet'])],
++  ['sheets', new Set(['sheets', 'sheet'])],
++  ['worksheet', new Set(['worksheet', 'sheetData', 'row', 'c', 'is'])],
++  ['sheetData', new Set(['sheetData', 'row', 'c', 'is'])],
++  ['sst', new Set(['sst', 'si'])],
++]);
+ const x15Namespace = 'http://schemas.microsoft.com/office/spreadsheetml/2010/11/main';
+ const x15WorkbookExtension = '{140A7094-0E35-4892-8432-C4D2E57EDEB5}';
+ const xmlNamespace = 'http://www.w3.org/XML/1998/namespace';
+@@ -475,7 +487,10 @@
+     );
+   return { r: row, c: column };
+ }
+-function validateXml(bytes: Uint8Array): {
++function validateXml(
++  bytes: Uint8Array,
++  partName: string,
++): {
+   sheetCount: number;
+   cells: number;
+   sanitized: Uint8Array;
+@@ -505,6 +520,10 @@
+     styles = 0,
+     sharedStrings = 0;
+   let inExtensionProperties = false;
++  const relationshipsPart = /^(?:_rels\/\.rels|(?:[^/]+\/)*_rels\/[^/]+\.rels)$/.test(partName);
++  const contentTypesPart = partName === '[Content_Types].xml';
++  if (partName.endsWith('.rels') && !relationshipsPart)
++    fail('XLSX_XML_UNSUPPORTED', 'Relationship metadata requires a standard OPC part location.');
+   walkXml(
+     xml,
+     ({ name: tag, namespace, ancestors, attrs, closing }) => {
+@@ -558,6 +577,44 @@
+               'Macro-enabled or binary workbook content is not accepted.',
+             );
+         }
++        // Package metadata has a distinct namespace and location, even in strict
++        // OOXML. Keep the local-name active-content checks above as defense in depth.
++        if (
++          (!ancestors.length &&
++            ((relationshipsPart &&
++              (tag !== 'Relationships' || namespace !== packageRelationshipsNamespace)) ||
++              (contentTypesPart &&
++                (tag !== 'Types' || namespace !== packageContentTypesNamespace)))) ||
++          (tag === 'Relationships' &&
++            (!relationshipsPart ||
++              ancestors.length ||
++              namespace !== packageRelationshipsNamespace)) ||
++          (tag === 'Types' &&
++            (!contentTypesPart ||
++              ancestors.length ||
++              namespace !== packageContentTypesNamespace)) ||
++          (tag === 'Relationship' &&
++            (!relationshipsPart ||
++              namespace !== packageRelationshipsNamespace ||
++              ancestors.length !== 1 ||
++              ancestors[0].name !== 'Relationships' ||
++              ancestors[0].namespace !== packageRelationshipsNamespace)) ||
++          ((tag === 'Override' || tag === 'Default') &&
++            (!contentTypesPart ||
++              namespace !== packageContentTypesNamespace ||
++              ancestors.length !== 1 ||
++              ancestors[0].name !== 'Types' ||
++              ancestors[0].namespace !== packageContentTypesNamespace))
++        )
++          fail('XLSX_XML_UNSUPPORTED', 'Unsupported package metadata namespace or location.');
++        // SheetJS can consume sheetData even beneath an unrecognized document
++        // wrapper. Identify that data context by its container, not only its root.
++        const dataNamespaceRequired =
++          ((tag === 'v' || tag === 't') && aggregateDepth > 0) ||
++          spreadsheetDataElements.get(tag)?.has(tag) ||
++          ancestors.some((parent) => spreadsheetDataElements.get(parent.name)?.has(tag));
++        if (dataNamespaceRequired && !spreadsheetNamespaces.has(namespace ?? ''))
++          fail('XLSX_XML_UNSUPPORTED', 'Unsupported spreadsheet data namespace.');
+         if (inExtensionProperties)
+           fail('XLSX_XML_UNSUPPORTED', 'Workbook extension properties must be empty metadata.');
+         if (tag.toLowerCase() === 'workbookpr') {
+@@ -660,6 +717,10 @@
+           cellBytes = 0;
+         }
+       } else {
++        // Check the workbook root after its properties so invalid epoch context keeps
++        // the existing, more specific XLSX_DATE diagnostic.
++        if (tag === 'workbook' && !ancestors.length && !spreadsheetNamespaces.has(namespace ?? ''))
++          fail('XLSX_XML_UNSUPPORTED', 'Unsupported workbook namespace.');
+         if (tag === 'workbookPr' && namespace === x15Namespace) inExtensionProperties = false;
+         if (inCell && tag === 'v') {
+           const value = valueText.trim();
+@@ -704,7 +765,7 @@
+       if (data.length) fail('XLSX_ZIP_INVALID', 'ZIP directory contains data.');
+       continue;
+     }
+-    files[part.name] = validateXml(data).sanitized;
++    files[part.name] = validateXml(data, part.name).sanitized;
+     if (/^xl\/worksheets\/[^/]+\.xml$/.test(part.name) && ++worksheets > XLSX_LIMITS.sheets)
+       fail('XLSX_SHEET_LIMIT', 'Workbook exceeds five worksheets.');
+   }
+@@ -868,7 +929,7 @@
+       fileHash: await sha256(bytes),
+       sheet: name,
+       byteLength: bytes.length,
+-      parserVersion: 'xlsx-local-1.2/sheetjs-0.20.3',
++      parserVersion: 'xlsx-local-1.3/sheetjs-0.20.3',
+     },
+   };
+ }

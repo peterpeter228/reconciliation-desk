@@ -1,0 +1,13 @@
+{
+  "filename": "SYNTHETIC_DERIVED_VALUES_ONLY_NOT_NATIVE.xlsx",
+  "sha256": "a48e41300a042cca1bf92d77952486c9d93a32bb1254af1164bb3e2a17c4c242",
+  "source": "Separate values-only synthetic workbook generated from companion public-demo CSV; original native workbook untouched.",
+  "workbook_root": "<workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">",
+  "standard_properties": [
+    "<workbookPr codeName=\"ThisWorkbook\"/>"
+  ],
+  "inert_extension_properties": [
+    "<x15:workbookPr xmlns:x15=\"http://schemas.microsoft.com/office/spreadsheetml/2010/11/main\" chartTrackingRefBase=\"1\"/>"
+  ],
+  "formula_tags": []
+}

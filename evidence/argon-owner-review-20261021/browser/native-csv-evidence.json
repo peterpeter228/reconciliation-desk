@@ -1,0 +1,558 @@
+{
+  "scope": "Read-only review workpaper; not an accounting import or proof of posting.",
+  "synthetic": false,
+  "run_id": "a6fa6c3a-eaa5-4629-a031-1e8a11f2834f",
+  "source_files": [
+    {
+      "kind": "ST",
+      "name": "st.csv",
+      "hash": "29a910567d798730f5fa785b71a452a4a08a6577231c808f0f3d2c926335195d",
+      "sizeBytes": 75
+    },
+    {
+      "kind": "QBO",
+      "name": "target-transaction-journal-145.csv",
+      "hash": "d8e334975acbc74cc7a0b7b9f157f8f3f39f67f18bd85769deefceec5d690234",
+      "sizeBytes": 644
+    },
+    {
+      "kind": "BANK",
+      "name": "bank.csv",
+      "hash": "65b5f849724742d46574a18d2d2753e7daca843910ccfe74411bb43a260f41fe",
+      "sizeBytes": 99
+    }
+  ],
+  "manifests": [
+    {
+      "company_id": "SYNTHETIC_BROWSER_QA",
+      "source_system": "ST",
+      "source_file_sha256": "29a910567d798730f5fa785b71a452a4a08a6577231c808f0f3d2c926335195d",
+      "report_name": "st.csv",
+      "report_grain": "PAYMENT",
+      "period_start": "2026-09-01",
+      "period_end": "2026-09-30",
+      "as_of_date": "2026-09-30",
+      "company_timezone": "America/New_York",
+      "basis": "ACCRUAL",
+      "accounts": [],
+      "account_balances": [],
+      "header_row": 1,
+      "raw_row_count": 1,
+      "normalized_row_count": 1,
+      "excluded_summary_rows": [],
+      "opening_debit_balance_cents": null,
+      "closing_debit_balance_cents": null,
+      "coverage_confirmed": true,
+      "missing_required_fields": []
+    },
+    {
+      "company_id": "SYNTHETIC_BROWSER_QA",
+      "source_system": "QBO",
+      "source_file_sha256": "d8e334975acbc74cc7a0b7b9f157f8f3f39f67f18bd85769deefceec5d690234",
+      "report_name": "target-transaction-journal-145.csv",
+      "report_grain": "POSTING_LINE",
+      "period_start": "2026-09-01",
+      "period_end": "2026-09-30",
+      "as_of_date": "2026-09-30",
+      "company_timezone": "America/New_York",
+      "basis": "ACCRUAL",
+      "accounts": [
+        "Bank Charges",
+        "Uncategorized Asset"
+      ],
+      "account_balances": [
+        {
+          "account_id": null,
+          "account_full_name": "Bank Charges",
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": false
+        },
+        {
+          "account_id": null,
+          "account_full_name": "Uncategorized Asset",
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": false
+        }
+      ],
+      "header_row": 5,
+      "raw_row_count": 6,
+      "normalized_row_count": 2,
+      "excluded_summary_rows": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "opening_debit_balance_cents": null,
+      "closing_debit_balance_cents": null,
+      "coverage_confirmed": false,
+      "missing_required_fields": [],
+      "qbo_transaction_journal": {
+        "profile_version": "qbo-transaction-journal-v1",
+        "scope": "TRANSACTION_GROUPS",
+        "report_title": "Transaction Journal",
+        "report_company_name": "Craig's Design and Landscaping Services",
+        "date_label": "All Dates",
+        "groups": [
+          {
+            "transaction_id": "145",
+            "journal_num": "RDCE641C900E",
+            "posting_date": "2026-09-30",
+            "group_physical_row": 6,
+            "group_raw_row_sha256": "d662dfe6c68d3c78ed11a473037b00b3d0455f8fe638aaffc5e760e63440fb6f",
+            "posting_physical_rows": [
+              7,
+              8
+            ],
+            "total_physical_row": 9,
+            "total_raw_row_sha256": "94b7745b08335250af196bafce48eb47d26b573028c2fa4f9827b11c45d2ee67",
+            "debit_cents": 90000,
+            "credit_cents": 90000
+          }
+        ],
+        "total_physical_row": 10,
+        "total_raw_row_sha256": "e139cddc223e115180962d024f5191ef74f90a35bfc1ce835edb662df84c65e2",
+        "debit_cents": 90000,
+        "credit_cents": 90000,
+        "footer_physical_row": 14,
+        "footer_raw_row_sha256": "a5022eabc42f1a22ceb64460531f72ac9f9d1ceeca7f2b1d7d028dcaacdc2088",
+        "generated_at": "2026-10-21T11:52:00.000Z",
+        "normalized_rows_sha256": "8b53e40cd1c34695566315c6669fa3901784f075df499af31c28edb1cbb64895",
+        "manifest_payload_sha256": "6dbcff87a67bf61644d157a9530f28f115af074ecc723cbc28aa80f49d82da8b"
+      }
+    },
+    {
+      "company_id": "SYNTHETIC_BROWSER_QA",
+      "source_system": "BANK",
+      "source_file_sha256": "65b5f849724742d46574a18d2d2753e7daca843910ccfe74411bb43a260f41fe",
+      "report_name": "bank.csv",
+      "report_grain": "BANK_TRANSACTION",
+      "period_start": "2026-09-01",
+      "period_end": "2026-09-30",
+      "as_of_date": "2026-09-30",
+      "company_timezone": "America/New_York",
+      "basis": "ACCRUAL",
+      "accounts": [],
+      "account_balances": [],
+      "header_row": 1,
+      "raw_row_count": 1,
+      "normalized_row_count": 1,
+      "excluded_summary_rows": [],
+      "opening_debit_balance_cents": null,
+      "closing_debit_balance_cents": null,
+      "coverage_confirmed": true,
+      "missing_required_fields": []
+    }
+  ],
+  "result": {
+    "groups": [
+      {
+        "id": "627375ea981d26e0fcb10025c6155f2dfaacc58cfb187394c8d9647d064053fc",
+        "company_id": "SYNTHETIC_BROWSER_QA",
+        "bank_account_id": "Synthetic checking",
+        "clearing_account_ids": [],
+        "clearing_residuals": [],
+        "currency": "USD",
+        "st_ids": [],
+        "qb_ids": [],
+        "bank_ids": [
+          "2da4817433fc199289cefb3a71bc43bc6a354d04cf00973b5258f1b2e58e7287"
+        ],
+        "gross_cents": 0,
+        "refunds_cents": 0,
+        "fees_cents": 0,
+        "holds_cents": 0,
+        "releases_cents": 0,
+        "external_receipts_cents": 0,
+        "other_adjustments_cents": 0,
+        "bank_cents": 90000,
+        "unexplained_cents": -90000,
+        "ledger_residual_cents": 0,
+        "matching_state": "UNMATCHED",
+        "matching_scope": "ACTIVITY_BRIDGE",
+        "search_status": "COMPLETE",
+        "diagnoses": [
+          {
+            "cause": "UNEXPLAINED",
+            "evidence_level": "UNKNOWN",
+            "score": 20,
+            "evidence_refs": [],
+            "missing_evidence": [
+              "UNRESOLVED_COMPONENT_OR_IDENTITY"
+            ]
+          }
+        ],
+        "aje_state": "INELIGIBLE",
+        "source_version_hash": "edcfd6d473a594494a32782552e190af59832d7a9a828f0a4885bd7eec56d824",
+        "approved_proposal_hash": null,
+        "edges": [
+          {
+            "kind": "ST_QB_RECEIPT",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 0,
+            "difference_cents": 0,
+            "source_ids": [],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "ST_RECEIPT_NOT_FOUND"
+            ],
+            "rule_id": "st_qb_receipt_v1",
+            "rule_version": "g1-2026.10.21.2"
+          },
+          {
+            "kind": "QB_BANK_SETTLEMENT",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 90000,
+            "difference_cents": -90000,
+            "source_ids": [
+              "2da4817433fc199289cefb3a71bc43bc6a354d04cf00973b5258f1b2e58e7287"
+            ],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "QB_SETTLEMENT_IDENTITY_AND_BANK_LEG"
+            ],
+            "rule_id": "qb_bank_settlement_v1",
+            "rule_version": "g1-2026.10.21.2"
+          },
+          {
+            "kind": "ST_BANK_CASH",
+            "state": "CANDIDATE",
+            "expected_cents": 0,
+            "observed_cents": 90000,
+            "difference_cents": -90000,
+            "source_ids": [
+              "2da4817433fc199289cefb3a71bc43bc6a354d04cf00973b5258f1b2e58e7287"
+            ],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "DOCUMENTED_SETTLEMENT_COMPONENTS_AND_PAYOUT_IDENTITY"
+            ],
+            "rule_id": "st_bank_cash_v1",
+            "rule_version": "g1-2026.10.21.2"
+          }
+        ],
+        "accepted": false,
+        "warnings": [
+          "UNATTRIBUTED_BANK_CREDIT",
+          "VERIFY_TRANSFER_LOAN_OR_CUSTOMER_RECEIPT"
+        ],
+        "evidence_refs": [],
+        "fee_proposal_math_ready": false,
+        "fee_aje_draft_eligible": false,
+        "impact_cents": 90000,
+        "period_status": "UNATTRIBUTED"
+      },
+      {
+        "id": "1ed0c4dfeb46116a4fb317423628de355e019b6034c968ed8c417636b3766da2",
+        "company_id": "SYNTHETIC_BROWSER_QA",
+        "bank_account_id": "Synthetic checking",
+        "clearing_account_ids": [
+          "Uncategorized Asset"
+        ],
+        "clearing_residuals": [
+          {
+            "account_id": "Uncategorized Asset",
+            "residual_debit_cents": -90000
+          }
+        ],
+        "currency": "USD",
+        "st_ids": [],
+        "qb_ids": [
+          "7da6df8e17efe769994c1ab75f0b5c464ed1570f59df95a5432ee9a7e82a82d5"
+        ],
+        "bank_ids": [],
+        "gross_cents": 0,
+        "refunds_cents": 0,
+        "fees_cents": 0,
+        "holds_cents": 0,
+        "releases_cents": 0,
+        "external_receipts_cents": 0,
+        "other_adjustments_cents": 0,
+        "bank_cents": 0,
+        "unexplained_cents": 0,
+        "ledger_residual_cents": -90000,
+        "matching_state": "UNMATCHED",
+        "matching_scope": "ACTIVITY_BRIDGE",
+        "search_status": "COMPLETE",
+        "diagnoses": [
+          {
+            "cause": "UNEXPLAINED",
+            "evidence_level": "UNKNOWN",
+            "score": 20,
+            "evidence_refs": [],
+            "missing_evidence": [
+              "UNRESOLVED_COMPONENT_OR_IDENTITY"
+            ]
+          }
+        ],
+        "aje_state": "INELIGIBLE",
+        "source_version_hash": "3051cdbba6165dda87a6f2b4a675c03e51584c64a3a472d0e20f141f545523aa",
+        "approved_proposal_hash": null,
+        "edges": [
+          {
+            "kind": "ST_QB_RECEIPT",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 0,
+            "difference_cents": 0,
+            "source_ids": [],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "ST_RECEIPT_NOT_FOUND"
+            ],
+            "rule_id": "st_qb_receipt_v1",
+            "rule_version": "g1-2026.10.21.2"
+          },
+          {
+            "kind": "QB_BANK_SETTLEMENT",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 0,
+            "difference_cents": 0,
+            "source_ids": [],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+            ],
+            "rule_id": "qb_bank_settlement_v1",
+            "rule_version": "g1-2026.10.21.2"
+          },
+          {
+            "kind": "ST_BANK_CASH",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 0,
+            "difference_cents": 0,
+            "source_ids": [],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+            ],
+            "rule_id": "st_bank_cash_v1",
+            "rule_version": "g1-2026.10.21.2"
+          }
+        ],
+        "accepted": false,
+        "warnings": [
+          "UNATTRIBUTED_QB_ACTIVITY"
+        ],
+        "evidence_refs": [],
+        "fee_proposal_math_ready": false,
+        "fee_aje_draft_eligible": false,
+        "impact_cents": 0,
+        "period_status": "UNATTRIBUTED"
+      },
+      {
+        "id": "f828d10c0fba3f60c48caeeaf692a302b2998f6d5f8365c62e5912d8c8549798",
+        "company_id": "SYNTHETIC_BROWSER_QA",
+        "bank_account_id": "Synthetic checking",
+        "clearing_account_ids": [],
+        "clearing_residuals": [],
+        "currency": "USD",
+        "st_ids": [],
+        "qb_ids": [
+          "8a1f2f702e7cc7aa38cbcdb8f666280499541dd0fcb0cefa49ce0ca7aaf39ec6"
+        ],
+        "bank_ids": [],
+        "gross_cents": 0,
+        "refunds_cents": 0,
+        "fees_cents": 0,
+        "holds_cents": 0,
+        "releases_cents": 0,
+        "external_receipts_cents": 0,
+        "other_adjustments_cents": 0,
+        "bank_cents": 0,
+        "unexplained_cents": 0,
+        "ledger_residual_cents": 0,
+        "matching_state": "UNMATCHED",
+        "matching_scope": "ACTIVITY_BRIDGE",
+        "search_status": "COMPLETE",
+        "diagnoses": [
+          {
+            "cause": "UNEXPLAINED",
+            "evidence_level": "UNKNOWN",
+            "score": 20,
+            "evidence_refs": [],
+            "missing_evidence": [
+              "UNRESOLVED_COMPONENT_OR_IDENTITY"
+            ]
+          }
+        ],
+        "aje_state": "INELIGIBLE",
+        "source_version_hash": "28281f7a93e834dd5afcd0782334c3904902f6dfa32994811fa297147e474b9b",
+        "approved_proposal_hash": null,
+        "edges": [
+          {
+            "kind": "ST_QB_RECEIPT",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 0,
+            "difference_cents": 0,
+            "source_ids": [],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "ST_RECEIPT_NOT_FOUND"
+            ],
+            "rule_id": "st_qb_receipt_v1",
+            "rule_version": "g1-2026.10.21.2"
+          },
+          {
+            "kind": "QB_BANK_SETTLEMENT",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 0,
+            "difference_cents": 0,
+            "source_ids": [],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+            ],
+            "rule_id": "qb_bank_settlement_v1",
+            "rule_version": "g1-2026.10.21.2"
+          },
+          {
+            "kind": "ST_BANK_CASH",
+            "state": "ABSENT",
+            "expected_cents": 0,
+            "observed_cents": 0,
+            "difference_cents": 0,
+            "source_ids": [],
+            "identity_refs": [],
+            "evidence_refs": [],
+            "missing_evidence": [
+              "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+            ],
+            "rule_id": "st_bank_cash_v1",
+            "rule_version": "g1-2026.10.21.2"
+          }
+        ],
+        "accepted": false,
+        "warnings": [
+          "UNATTRIBUTED_QB_ACTIVITY"
+        ],
+        "evidence_refs": [],
+        "fee_proposal_math_ready": false,
+        "fee_aje_draft_eligible": false,
+        "impact_cents": 0,
+        "period_status": "UNATTRIBUTED"
+      }
+    ],
+    "controls": {
+      "st_gross_cents": 0,
+      "st_refunds_cents": 0,
+      "st_corrections_cents": 0,
+      "qb_debits_cents": 90000,
+      "qb_credits_cents": 90000,
+      "bank_signed_cents": 90000,
+      "accounts": [
+        {
+          "account_id": "Bank Charges",
+          "account_full_name": "Bank Charges",
+          "debit_cents": 90000,
+          "credit_cents": 0,
+          "activity_cents": 90000,
+          "opening_cents": null,
+          "closing_cents": null,
+          "calculated_closing_cents": null,
+          "coverage_confirmed": false,
+          "status": "ACTIVITY_ONLY"
+        },
+        {
+          "account_id": "Uncategorized Asset",
+          "account_full_name": "Uncategorized Asset",
+          "debit_cents": 0,
+          "credit_cents": 90000,
+          "activity_cents": -90000,
+          "opening_cents": null,
+          "closing_cents": null,
+          "calculated_closing_cents": null,
+          "coverage_confirmed": false,
+          "status": "ACTIVITY_ONLY"
+        }
+      ],
+      "atoms": [
+        {
+          "atom_id": "2da4817433fc199289cefb3a71bc43bc6a354d04cf00973b5258f1b2e58e7287",
+          "source": "BANK",
+          "source_cents": 90000,
+          "allocated_cents": 0,
+          "residual_cents": 90000,
+          "excluded_reason": null
+        },
+        {
+          "atom_id": "7da6df8e17efe769994c1ab75f0b5c464ed1570f59df95a5432ee9a7e82a82d5",
+          "source": "QB",
+          "source_cents": -90000,
+          "allocated_cents": 0,
+          "residual_cents": -90000,
+          "excluded_reason": null
+        },
+        {
+          "atom_id": "8a1f2f702e7cc7aa38cbcdb8f666280499541dd0fcb0cefa49ce0ca7aaf39ec6",
+          "source": "QB",
+          "source_cents": 90000,
+          "allocated_cents": 0,
+          "residual_cents": 90000,
+          "excluded_reason": null
+        },
+        {
+          "atom_id": "99820a85fd3747af6f1a91c51e0b7ace80cf0348e8b9e5ec16374e44b78aa966",
+          "source": "ST",
+          "source_cents": 90000,
+          "allocated_cents": 0,
+          "residual_cents": 90000,
+          "excluded_reason": "UNSUCCESSFUL_PAYMENT_EXCLUDED"
+        }
+      ],
+      "conservation_ok": true,
+      "coverage_confirmed": false
+    },
+    "warnings": [
+      {
+        "code": "UNSUCCESSFUL_PAYMENT_EXCLUDED",
+        "message": "Record retained for review but excluded from eligible cash/posting atoms.",
+        "source_ids": [
+          "99820a85fd3747af6f1a91c51e0b7ace80cf0348e8b9e5ec16374e44b78aa966"
+        ],
+        "severity": "WARNING"
+      },
+      {
+        "code": "INCOMPLETE_COVERAGE",
+        "message": "Activity association only: complete source coverage has not been confirmed.",
+        "source_ids": [],
+        "severity": "WARNING"
+      }
+    ],
+    "allocations": [],
+    "searches": [],
+    "rejected_candidates": [],
+    "versions": {
+      "engine": "1.0.0-g1",
+      "rules": "g1-2026.10.21.2",
+      "calendar": "fed-settlement-v1",
+      "mapping": [
+        "local-alias-1.0:3d11180456967d281ec9a9bc602367a71b968cc396f66d2c0b78e65b70b9c562",
+        "qbo-transaction-journal-v1:6dd9fb90cf3cdf5cb9cc20dff91ea1f8a4094abd05841d3cf9bda9738450fa1b"
+      ]
+    }
+  }
+}

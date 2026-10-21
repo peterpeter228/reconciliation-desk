@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "file": "native-csv-evidence.json",
+      "run_id": "a6fa6c3a-eaa5-4629-a031-1e8a11f2834f",
+      "checks": "PASS",
+      "qb_rows": 2,
+      "transaction_id": "145",
+      "debits_cents": 90000,
+      "credits_cents": 90000,
+      "coverage_confirmed": false
+    },
+    {
+      "file": "values-only-xlsx-evidence.json",
+      "run_id": "76a8b8a9-d3a7-457b-9788-a3c2011ffba1",
+      "checks": "PASS",
+      "qb_rows": 2,
+      "transaction_id": "145",
+      "debits_cents": 90000,
+      "credits_cents": 90000,
+      "coverage_confirmed": false
+    },
+    {
+      "file": "manual-evidence.json",
+      "run_id": "aab25877-d4ab-45d6-a3b7-f463a8f1d113",
+      "checks": "PASS",
+      "source_rows": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "original_native_xlsx_unchanged": true,
+  "cancellation_notice": "INCONCLUSIVE in browser; no pending-read observation before settings change"
+}

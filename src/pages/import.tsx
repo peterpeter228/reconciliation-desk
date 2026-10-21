@@ -89,6 +89,7 @@ export function ImportPage({
   const [uf, setUf] = useState(false);
   const [dateFormat, setDateFormat] = useState<'MDY' | 'ISO'>('MDY');
   const parseToken = useRef(0);
+  const pendingUpload = useRef<{ token: number; fileName: string } | null>(null);
   const nativeJournal = qbProduct === 'QBO' && qbReportProfile === 'qbo-transaction-journal-v1';
   useEffect(
     () => () => {
@@ -125,14 +126,20 @@ export function ImportPage({
       : {},
   });
   const invalidate = () => {
+    if (pendingUpload.current?.token === parseToken.current) {
+      setError(
+        `Settings changed while ${pendingUpload.current.fileName} was being read. Choose that file again to use the new settings.`,
+      );
+      pendingUpload.current = null;
+    }
     ++parseToken.current;
     setReading(false);
     setValidated(false);
     setConfirmed(false);
   };
   function invalidateQbPreview() {
-    invalidate();
     setError('');
+    invalidate();
     setFiles((previous) => {
       const source = previous.QBO;
       if (!source) return previous;
@@ -163,10 +170,11 @@ export function ImportPage({
     });
   }
   async function readFile(kind: MainKind, file: File) {
-    setError('');
     invalidate();
+    setError('');
     setReading(true);
     const token = ++parseToken.current;
+    pendingUpload.current = { token, fileName: file.name };
     try {
       if (!/\.(csv|tsv|xlsx)$/i.test(file.name))
         throw new Error(
@@ -182,9 +190,11 @@ export function ImportPage({
       if (total > 30 * 1024 * 1024)
         throw new Error('The total import exceeds 30 MB. Narrow the report period.');
       const bytes = new Uint8Array(await file.arrayBuffer());
+      if (token !== parseToken.current) return;
       const isXlsx = /\.xlsx$/i.test(file.name);
       const text = isXlsx ? '' : new TextDecoder('utf-8', { fatal: true }).decode(bytes);
       const inspection = isXlsx ? await runXlsxInspect(bytes, file.name) : null;
+      if (token !== parseToken.current) return;
       const sheetName =
         inspection && !inspection.requiresSheetSelection ? inspection.sheets[0].name : undefined;
       const source: FileState = {
@@ -230,6 +240,7 @@ export function ImportPage({
       if (token === parseToken.current)
         setError(e instanceof Error ? e.message : 'File reading failed.');
     } finally {
+      if (pendingUpload.current?.token === token) pendingUpload.current = null;
       if (token === parseToken.current) setReading(false);
     }
   }
@@ -246,6 +257,13 @@ export function ImportPage({
         : {}),
       fileName: source.file.name,
       originalBytes: source.bytes,
+      // Count the other two source slots only, including during replacement or
+      // revalidation. Three 10 MiB slots already bound this UI to 30 MiB, but
+      // pass the budget to both parser paths as defense in depth.
+      existingTotalBytes: Object.entries(files).reduce(
+        (sum, [key, value]) => sum + (key === kind ? 0 : (value?.bytes.byteLength ?? 0)),
+        0,
+      ),
     };
     return source.isXlsx
       ? runXlsxImport(source.bytes, resolvedKind, { ...opts, sheetName: source.sheetName })
