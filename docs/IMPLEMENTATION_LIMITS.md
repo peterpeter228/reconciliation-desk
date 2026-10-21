@@ -16,6 +16,10 @@ This is a private implementation, not a production accounting service or audit.
 
 ## Reconciliation
 
+File hashes prove local byte identity, not authenticity of a bank, processor or
+accounting-system export. Conclusions are conditional on the supplied documents
+and declared scope; no live institution independently attests those records.
+
 Three evidence edges are independent. Supplied clearing-only samples remain
 ACTIVITY_BRIDGE/PARTIAL; amount equality or a fee range is not an identity proof.
 Missing money does not prove a processor hold. Statement evidence without known

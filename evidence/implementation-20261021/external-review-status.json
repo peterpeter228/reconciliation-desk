@@ -1,16 +1,49 @@
 {
+  "schema_version": 2,
+  "updated_at_utc": "2026-10-21T10:19:05.058966+00:00",
   "provider": "api.xiaoyiapi.xyz",
   "requested_model": "gemini-4-argon-high",
-  "request_started_at_utc": "2026-10-21T09:43:43.971638+00:00",
-  "scope": "45 core source, test and accounting-specification files; no customer files or unrelated credentials",
-  "request_bytes": 303682,
-  "request_sha256": "5ee1b2097c6408cc0a9ad4bb99eeff387c9159028e9ec8d2b8e45ad241c59bf2",
-  "duration_seconds": 6.379,
-  "error_class": "URLError",
-  "outcome": "transport_uncertain_no_retry",
-  "review_received": false,
-  "remote_receipt_or_billing": "unknown",
-  "additional_private_source_disclosure_and_retry_authorization": "pending",
+  "review_received": true,
+  "outcome": "HTTP_200_STATIC_REVIEW_RECEIVED",
+  "latest_receipt": "../argon-review-20261021/receipt.json",
+  "current_usage_tokens": {
+    "promptTokenCount": 100866,
+    "candidatesTokenCount": 6433,
+    "totalTokenCount": 107299
+  },
+  "upstream_model_version_reported": "gemini-4-argon",
   "automatic_retry": false,
-  "independent_external_approval_claim": false
+  "attempts": [
+    {
+      "requested_model": "gemini-4-argon-high",
+      "provider": "api.xiaoyiapi.xyz",
+      "started_at_utc": "2026-10-21T09:43:43.971638+00:00",
+      "request_bytes": 303682,
+      "automatic_retry": false,
+      "error_class": "URLError",
+      "outcome": "transport_uncertain_no_retry",
+      "duration_seconds": 6.379,
+      "response_format": "not_json"
+    },
+    {
+      "requested_model": "gemini-4-argon-high",
+      "provider": "api.xiaoyiapi.xyz",
+      "started_at_utc": "2026-10-21T10:10:00.194122+00:00",
+      "request_bytes": 303682,
+      "automatic_retry": false,
+      "http_status": 200,
+      "request_id": "26760b6d-3219-4982-91be-57043625105e",
+      "duration_seconds": 103.228,
+      "model_version": "gemini-4-argon",
+      "usage": {
+        "promptTokenCount": 100866,
+        "candidatesTokenCount": 6433,
+        "totalTokenCount": 107299
+      },
+      "review_characters": 14029
+    }
+  ],
+  "independent_external_approval_claim": false,
+  "scope": "Static core snapshot only; fixes, UI and browser acceptance require independent verification.",
+  "charges_currency": "unknown"
 }

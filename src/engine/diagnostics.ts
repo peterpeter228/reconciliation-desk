@@ -9,6 +9,7 @@ import type { Normalized } from './normalize';
 import type { CashUnit } from './units';
 import { businessAdd } from './calendar';
 import { feeInBand, sumCents } from './money';
+import { isFinalSettlement } from './evidence';
 export interface GroupContext {
   st: ST_Payment_Record[];
   qb: QB_Ledger_Entry[];
@@ -148,7 +149,9 @@ export function diagnose(
   // A documented reserve/hold is not a fee, even when its percentage resembles a fee band.
   const documentedFee =
     (group.fees_cents > 0 &&
-      settlements.some((s) => (s.fee_cents ?? 0) > 0 && s.fee_mode === 'NETTED')) ||
+      settlements.some(
+        (s) => isFinalSettlement(s) && (s.fee_cents ?? 0) > 0 && s.fee_mode === 'NETTED',
+      )) ||
     ev.deposit_components.some(
       (c) => paymentIds.has(c.payment_id) && c.fee_cents > 0 && c.fee_mode === 'NETTED',
     );
@@ -226,30 +229,49 @@ export function diagnose(
         false,
       );
   }
-  for (const refund of st.filter(
+  const refunds = st.filter(
     (s) =>
       s.record_type === 'REFUND' &&
       s.payment_status === 'SUCCESS' &&
       (!s.accounting_batch_id || s.export_status === 'PENDING'),
-  )) {
-    const confirmation = confirmations.find(
-      (c) =>
-        c.refund_coverage_confirmed &&
-        c.refund_not_recorded &&
-        c.batching_due_date &&
-        through > c.batching_due_date,
-    );
-    const settlement = settlements.find(
-      (s) => s.payment_id === refund.source_payment_id && s.status === 'REFUNDED',
-    );
-    const full = !!confirmation && !!settlement && cashEdge.state === 'CONFIRMED';
+  );
+  if (refunds.length) {
+    const refundEvidence = refunds.map((refund) => ({
+      settlement: settlements.find(
+        (s) => s.payment_id === refund.source_payment_id && s.status === 'REFUNDED',
+      ),
+      confirmation: confirmations.find(
+        (c) =>
+          !!refund.source_payment_id &&
+          c.refund_payment_id === refund.source_payment_id &&
+          c.refund_coverage_confirmed &&
+          c.refund_not_recorded &&
+          c.batching_due_date &&
+          through > c.batching_due_date,
+      ),
+    }));
+    const allSettled = refundEvidence.every((e) => !!e.settlement);
+    const allReviewed = refundEvidence.every((e) => !!e.confirmation);
+    const full = allSettled && allReviewed && cashEdge.state === 'CONFIRMED';
     add(
       'UNBATCHED_REFUND',
-      full ? 'CONFIRMED' : settlement ? 'SUPPORTED' : 'SUSPECTED',
-      settlement ? [settlement.evidence_ref] : [],
-      full ? [] : ['QB_REFUND_OBJECT_AND_ACCOUNT_COVERAGE', 'BATCHING_EXPORT_DUE_PASSED'],
-      !!settlement,
-      !!settlement,
+      full ? 'CONFIRMED' : refundEvidence.some((e) => !!e.settlement) ? 'SUPPORTED' : 'SUSPECTED',
+      refundEvidence.flatMap((e) =>
+        [e.settlement?.evidence_ref, e.confirmation?.evidence_ref].filter(
+          (ref): ref is string => !!ref,
+        ),
+      ),
+      full
+        ? []
+        : [
+            ...(!allSettled ? ['SUCCESSFUL_ITEMIZED_REFUND_SETTLEMENT'] : []),
+            ...(!allReviewed
+              ? ['QB_REFUND_OBJECT_AND_ACCOUNT_COVERAGE', 'BATCHING_EXPORT_DUE_PASSED']
+              : []),
+            ...(cashEdge.state !== 'CONFIRMED' ? ['CONFIRMED_REFUND_CASH_MOVEMENT'] : []),
+          ],
+      allSettled,
+      allSettled,
     );
     group.warnings.push('UNEXPORTED_REFUND_RECORD');
   }

@@ -1,0 +1,42 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 benchmark:3000
+> node --import tsx scripts/benchmark-3000.ts
+
+{
+  "output": "evidence/implementation-20261021/benchmark-3000.json",
+  "source_snapshot_sha256": "f0a6a1f1d4fba7362c677a1c72914c525528cf1d367f25ea72e0792f32cac11f",
+  "safety_assertions_passed": true,
+  "scenarios": [
+    {
+      "name": "identity-rich-complete-three-way",
+      "rows": 3000,
+      "p50_ms": 325.2103109999998,
+      "p95_ms": 350.8778190000003,
+      "target_pass": true,
+      "unfinished_searches": [
+        0
+      ],
+      "search_statuses": {}
+    },
+    {
+      "name": "identity-rich-with-ambiguous-and-capped-mixture",
+      "rows": 3000,
+      "p50_ms": 395.76583200000096,
+      "p95_ms": 441.28632500000094,
+      "target_pass": true,
+      "unfinished_searches": [
+        90
+      ],
+      "search_statuses": {
+        "AMBIGUOUS": 10,
+        "CANDIDATE_CAP": 80
+      }
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

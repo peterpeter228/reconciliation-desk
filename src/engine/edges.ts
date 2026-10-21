@@ -3,7 +3,7 @@ import type { EdgeAssessment, EvidenceBundle, ReconcileInput } from '../contract
 import type { Normalized } from './normalize';
 import { inWindow } from './calendar';
 import { sumCents } from './money';
-export const RULE_VERSION = 'g1-2026.10.21.1';
+export const RULE_VERSION = 'g1-2026.10.21.2';
 export function edge(
   kind: EdgeAssessment['kind'],
   state: EdgeAssessment['state'],
@@ -81,7 +81,10 @@ export function receiptOptions(
     // A whole documented batch includes all eligible members, never an arbitrary subset.
     const incomplete = [...batches].some((b) =>
       ctx.st.some(
-        (r) => r.record_type === 'PAYMENT' && r.accounting_batch_id === b && !cash.includes(r),
+        (r) =>
+          r.record_type !== 'PAYMENT_CORRECTION' &&
+          r.accounting_batch_id === b &&
+          !cash.includes(r),
       ),
     );
     const make = (rows: QB_Ledger_Entry[]): ReceiptOption => {

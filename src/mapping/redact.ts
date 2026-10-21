@@ -1,4 +1,5 @@
 import { mapHeaders, type SourceKind } from './aliases';
+import { parseMoney } from '../ingestion/primitives';
 /** Optional mapping preview only. No network caller exists in this local MVP. */
 export interface SafeMappingPreview {
   schema_version: '1.0';
@@ -28,8 +29,16 @@ export function syntheticMappingPreview(
       if (!value) return '';
       if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return '2026-01-15';
       if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value)) return '01/15/2026';
-      if (/^\(?-?\$?[\d,]+(?:\.\d{1,2})?\)?$/.test(value))
-        return value.startsWith('(') ? '(123.45)' : value.startsWith('-') ? '-123.45' : '123.45';
+      // Bare integers can be IDs, ZIP codes or short tokens. They are never
+      // echoed, and without a monetary cue they should not imply MONEY either.
+      if (/[.$]/.test(value)) {
+        try {
+          parseMoney(value);
+          return value.startsWith('(') ? '(123.45)' : value.startsWith('-') ? '-123.45' : '123.45';
+        } catch {
+          // Ambiguous/non-US numeric strings remain opaque synthetic text.
+        }
+      }
       return 'TEXT';
     }),
   );

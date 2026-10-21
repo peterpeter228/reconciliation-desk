@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "synthetic_only": true,
-  "measured_at_utc": "2026-10-21T09:53:42.093Z",
+  "measured_at_utc": "2026-10-21T10:28:23.115Z",
   "execution": "node --import tsx scripts/benchmark-3000.ts",
   "scope": "Production TypeScript reconciliation engine in Node on exactly 3,000 canonical core rows per scenario. Excludes parser, Web Worker, browser, UI, disk output and test assertions. Not a real-customer, QBO/QBD-import or browser-performance claim.",
   "fixture_generation": "Explicit deterministic synthetic canonical JSONL content; each source has an actual content SHA-256, each physical source row has a matching raw-row SHA-256, canonical row IDs and within-source stable row keys are unique; cross-source linkage identifiers are deliberately shared. Independent seeds are not supplied-demo answer keys.",
-  "source_snapshot_sha256": "0927f4a5cfef48674cf36418e90639a061334fe97cc1b934790baa14f204e177",
+  "source_snapshot_sha256": "f0a6a1f1d4fba7362c677a1c72914c525528cf1d367f25ea72e0792f32cac11f",
   "runtime": {
     "node": "v24.19.0",
     "v8": "13.6.233.17-node.51",
@@ -14,7 +14,7 @@
     "cpu_model": "AMD EPYC 9V74 80-Core Processor",
     "logical_cpus": 9,
     "total_memory_bytes": 10451439616,
-    "max_rss_kib": 443860,
+    "max_rss_kib": 449720,
     "note": "Shared execution host; no browser, CPU affinity or exclusive-host guarantee. Sequential scenarios; no forced GC or discarded outlier timings."
   },
   "results": [
@@ -56,7 +56,7 @@
       ],
       "production_versions": {
         "engine": "1.0.0-g1",
-        "rules": "g1-2026.10.21.1",
+        "rules": "g1-2026.10.21.2",
         "calendar": "synthetic-september-2026",
         "mapping": [
           "canonical-explicit-1.0"
@@ -72,23 +72,23 @@
       },
       "warmup_runs": 3,
       "warmup_durations_ms": [
-        286.48122500000005,
-        289.030434,
-        282.340682
+        378.37452400000006,
+        339.55625599999985,
+        326.169991
       ],
       "measured_runs": 20,
       "percentile_method": "nearest-rank over all 20 measured warm runs, no trimming",
-      "p50_ms": 282.990315,
-      "p95_ms": 304.7034450000001,
-      "min_ms": 238.1449080000002,
-      "max_ms": 322.6720650000002,
+      "p50_ms": 325.2103109999998,
+      "p95_ms": 350.8778190000003,
+      "min_ms": 273.3365110000004,
+      "max_ms": 363.26883099999986,
       "performance_target_ms": 500,
       "performance_target": "warm p95 strictly below 500 ms for this disclosed Node scenario",
       "performance_target_pass": true,
       "safety_assertions_passed_every_run": true,
       "runs": [
         {
-          "duration_ms": 279.93250799999987,
+          "duration_ms": 348.10182399999985,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -106,7 +106,7 @@
           }
         },
         {
-          "duration_ms": 282.990315,
+          "duration_ms": 349.46958100000006,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -124,7 +124,7 @@
           }
         },
         {
-          "duration_ms": 298.58363399999985,
+          "duration_ms": 363.26883099999986,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -142,7 +142,7 @@
           }
         },
         {
-          "duration_ms": 284.27629400000023,
+          "duration_ms": 323.0222039999999,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -160,7 +160,7 @@
           }
         },
         {
-          "duration_ms": 264.7594119999999,
+          "duration_ms": 307.957848,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -178,7 +178,7 @@
           }
         },
         {
-          "duration_ms": 301.15343900000016,
+          "duration_ms": 348.201274,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -196,7 +196,7 @@
           }
         },
         {
-          "duration_ms": 264.7885570000003,
+          "duration_ms": 309.85523399999965,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -214,7 +214,7 @@
           }
         },
         {
-          "duration_ms": 266.38496399999985,
+          "duration_ms": 295.5977029999999,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -232,7 +232,7 @@
           }
         },
         {
-          "duration_ms": 322.6720650000002,
+          "duration_ms": 332.31187899999986,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -250,7 +250,7 @@
           }
         },
         {
-          "duration_ms": 270.4752089999997,
+          "duration_ms": 317.7653049999999,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -268,7 +268,7 @@
           }
         },
         {
-          "duration_ms": 238.1449080000002,
+          "duration_ms": 325.2103109999998,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -286,7 +286,7 @@
           }
         },
         {
-          "duration_ms": 272.2437740000005,
+          "duration_ms": 331.50622700000076,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -304,7 +304,7 @@
           }
         },
         {
-          "duration_ms": 247.5933959999993,
+          "duration_ms": 333.4352830000007,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -322,7 +322,7 @@
           }
         },
         {
-          "duration_ms": 239.81416900000022,
+          "duration_ms": 273.3365110000004,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -340,7 +340,7 @@
           }
         },
         {
-          "duration_ms": 288.1699770000005,
+          "duration_ms": 333.91415700000016,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -358,7 +358,7 @@
           }
         },
         {
-          "duration_ms": 297.6455839999999,
+          "duration_ms": 350.8778190000003,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -376,7 +376,7 @@
           }
         },
         {
-          "duration_ms": 286.0713489999998,
+          "duration_ms": 316.9976609999994,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -394,7 +394,7 @@
           }
         },
         {
-          "duration_ms": 289.24480199999925,
+          "duration_ms": 304.3350329999994,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -412,7 +412,7 @@
           }
         },
         {
-          "duration_ms": 291.70311199999924,
+          "duration_ms": 322.61607600000025,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -430,7 +430,7 @@
           }
         },
         {
-          "duration_ms": 304.7034450000001,
+          "duration_ms": 344.19747800000005,
           "counts": {
             "groups": 600,
             "accepted_groups": 600,
@@ -487,7 +487,7 @@
       ],
       "production_versions": {
         "engine": "1.0.0-g1",
-        "rules": "g1-2026.10.21.1",
+        "rules": "g1-2026.10.21.2",
         "calendar": "synthetic-september-2026",
         "mapping": [
           "canonical-explicit-1.0"
@@ -503,23 +503,23 @@
       },
       "warmup_runs": 3,
       "warmup_durations_ms": [
-        409.1475730000002,
-        445.1994650000006,
-        429.5898419999994
+        423.0832449999998,
+        385.8467490000003,
+        446.53555400000005
       ],
       "measured_runs": 20,
       "percentile_method": "nearest-rank over all 20 measured warm runs, no trimming",
-      "p50_ms": 377.44264399999884,
-      "p95_ms": 415.3336309999995,
-      "min_ms": 347.58639700000094,
-      "max_ms": 434.55994100000134,
+      "p50_ms": 395.76583200000096,
+      "p95_ms": 441.28632500000094,
+      "min_ms": 347.6258510000025,
+      "max_ms": 467.3476719999999,
       "performance_target_ms": 500,
       "performance_target": "warm p95 strictly below 500 ms for this disclosed Node scenario",
       "performance_target_pass": true,
       "safety_assertions_passed_every_run": true,
       "runs": [
         {
-          "duration_ms": 381.64341799999966,
+          "duration_ms": 395.76583200000096,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -542,7 +542,7 @@
           }
         },
         {
-          "duration_ms": 434.55994100000134,
+          "duration_ms": 419.61776199999986,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -565,7 +565,7 @@
           }
         },
         {
-          "duration_ms": 381.4539440000008,
+          "duration_ms": 399.85735899999963,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -588,7 +588,7 @@
           }
         },
         {
-          "duration_ms": 388.6704719999998,
+          "duration_ms": 386.749554,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -611,7 +611,7 @@
           }
         },
         {
-          "duration_ms": 415.3336309999995,
+          "duration_ms": 402.550428999999,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -634,7 +634,7 @@
           }
         },
         {
-          "duration_ms": 379.67857399999957,
+          "duration_ms": 418.36828100000093,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -657,7 +657,7 @@
           }
         },
         {
-          "duration_ms": 412.1057870000004,
+          "duration_ms": 467.3476719999999,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -680,7 +680,7 @@
           }
         },
         {
-          "duration_ms": 386.10257699999966,
+          "duration_ms": 408.9711009999992,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -703,7 +703,7 @@
           }
         },
         {
-          "duration_ms": 358.58695799999987,
+          "duration_ms": 375.99146500000097,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -726,7 +726,7 @@
           }
         },
         {
-          "duration_ms": 347.58639700000094,
+          "duration_ms": 359.70061299999907,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -749,7 +749,7 @@
           }
         },
         {
-          "duration_ms": 370.20977800000037,
+          "duration_ms": 406.6289479999996,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -772,7 +772,7 @@
           }
         },
         {
-          "duration_ms": 397.04323699999986,
+          "duration_ms": 424.4835610000009,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -795,7 +795,7 @@
           }
         },
         {
-          "duration_ms": 382.6481219999987,
+          "duration_ms": 441.28632500000094,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -818,7 +818,7 @@
           }
         },
         {
-          "duration_ms": 377.44264399999884,
+          "duration_ms": 406.5495609999998,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -841,7 +841,7 @@
           }
         },
         {
-          "duration_ms": 361.9997600000006,
+          "duration_ms": 395.3108890000003,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -864,7 +864,7 @@
           }
         },
         {
-          "duration_ms": 348.1196059999984,
+          "duration_ms": 352.4356889999999,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -887,7 +887,7 @@
           }
         },
         {
-          "duration_ms": 356.386751,
+          "duration_ms": 347.6258510000025,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -910,7 +910,7 @@
           }
         },
         {
-          "duration_ms": 367.54769999999917,
+          "duration_ms": 355.78125,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -933,7 +933,7 @@
           }
         },
         {
-          "duration_ms": 362.8874390000001,
+          "duration_ms": 371.5329579999998,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,
@@ -956,7 +956,7 @@
           }
         },
         {
-          "duration_ms": 359.8597929999996,
+          "duration_ms": 359.74444700000095,
           "counts": {
             "groups": 810,
             "accepted_groups": 540,

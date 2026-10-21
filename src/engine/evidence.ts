@@ -1,8 +1,17 @@
-import type { EvidenceBase, EvidenceBundle, ReconcileInput } from '../contracts/engine';
+import type {
+  EvidenceBase,
+  EvidenceBundle,
+  ReconcileInput,
+  SettlementEvidence,
+} from '../contracts/engine';
 import type { Normalized } from './normalize';
 import { assertCents } from './money';
 import { validISODate } from './calendar';
 import { stableJSON } from './identities';
+/** Only terminal processor states can prove realized net cash and fees. */
+export function isFinalSettlement(e: SettlementEvidence): boolean {
+  return e.status === 'SETTLED' || e.status === 'REFUNDED';
+}
 export function validatedEvidence(
   input: ReconcileInput,
   ctx: Normalized,
@@ -83,12 +92,24 @@ export function validatedEvidence(
             throw new Error('Evidence date invalid');
         }
         if (key === 'settlements') {
+          if (!['SETTLED', 'REFUNDED', 'HELD', 'PENDING', 'UNKNOWN'].includes(String(e.status)))
+            throw new Error('Unknown settlement status');
+          if (['PENDING', 'UNKNOWN'].includes(String(e.status)) && e.actual_settlement_date)
+            throw new Error('Nonfinal settlement cannot claim an actual settlement date');
+          if (e.actual_settlement_date && String(e.actual_settlement_date) > String(e.as_of_date))
+            throw new Error('Actual settlement is later than its observation date');
           assertCents(e.gross_cents, 'Settlement gross');
           assertCents(e.held_cents, 'Settlement held');
           if (e.fee_cents !== null) assertCents(e.fee_cents, 'Settlement fee');
           if (e.net_cents !== null) assertCents(e.net_cents, 'Settlement net');
           const p = ctx.st.find((r) => r.source_payment_id === e.payment_id);
           if (!p) throw new Error('Settlement payment not present in this run');
+          if (
+            (e.status === 'REFUNDED' && p.record_type !== 'REFUND') ||
+            (e.status === 'SETTLED' && p.record_type !== 'PAYMENT')
+          )
+            throw new Error('Final settlement status conflicts with its payment/refund type');
+
           if (
             p.deposit_id &&
             e.settlement_reference &&
@@ -140,7 +161,7 @@ export function validatedEvidence(
           )
             throw new Error('Settlement equation does not conserve cents');
           if (
-            e.status !== 'HELD' &&
+            ['SETTLED', 'REFUNDED'].includes(String(e.status)) &&
             (!e.settlement_reference || e.fee_cents === null || e.net_cents === null)
           )
             throw new Error('Settled cash requires reference and explicit component amounts');
@@ -161,8 +182,17 @@ export function validatedEvidence(
               throw new Error('Deposit member does not match receipt');
           }
         }
-        if (key === 'confirmations' && (!e.reviewer || !e.qb_transaction_id))
-          throw new Error('Itemized confirmation requires reviewer and transaction');
+        if (key === 'confirmations') {
+          if (!e.reviewer || !e.qb_transaction_id)
+            throw new Error('Itemized confirmation requires reviewer and transaction');
+          if (
+            e.refund_payment_id !== undefined &&
+            !ctx.st.some(
+              (r) => r.record_type === 'REFUND' && r.source_payment_id === e.refund_payment_id,
+            )
+          )
+            throw new Error('Refund confirmation must identify an imported refund payment');
+        }
         const fingerprint = stableJSON(e);
         if (seen.has(e.id)) {
           if (seen.get(e.id) !== fingerprint)
@@ -224,6 +254,22 @@ export function validatedEvidence(
       });
     }
     confirmations.set(key, c);
+  }
+  const refundConfirmations = new Map<string, (typeof out.confirmations)[number]>();
+  for (const c of out.confirmations) {
+    if (!c.refund_payment_id || !c.refund_coverage_confirmed) continue;
+    const key = JSON.stringify([c.deposit_reference, c.qb_transaction_id, c.refund_payment_id]);
+    const prior = refundConfirmations.get(key);
+    if (prior && prior.refund_not_recorded !== c.refund_not_recorded) {
+      ctx.blocked = true;
+      ctx.warnings.push({
+        code: 'CONTRADICTORY_ACCOUNTING_CONFIRMATIONS',
+        message: 'Itemized refund accounting confirmations conflict.',
+        source_ids: [prior.id, c.id],
+        severity: 'BLOCKING',
+      });
+    }
+    refundConfirmations.set(key, c);
   }
   return out;
 }

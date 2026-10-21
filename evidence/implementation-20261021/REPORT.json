@@ -20,5 +20,7 @@
   "publication": "NOT_DONE",
   "financial_account_writes": false,
   "customer_data_used": false,
-  "mainnet_or_wallet_actions": false
+  "mainnet_or_wallet_actions": false,
+  "historical_checkpoint": true,
+  "latest_validation_report": "../argon-review-20261021/final/REPORT.json"
 }

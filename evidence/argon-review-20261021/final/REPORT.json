@@ -1,0 +1,32 @@
+{
+  "timestamp_utc": "2026-10-21T10:29:26.142192+00:00",
+  "baseline_commit": "e1376bfcdb2b672f8df7dd98f41671e728139d44",
+  "tests_passed": 329,
+  "tests_failed": 0,
+  "test_files": 12,
+  "python_reference_passed_separately": 33,
+  "typecheck": "passed",
+  "format_check": "passed",
+  "build": "passed",
+  "artifact_check": "passed",
+  "benchmark_node_3000": [
+    {
+      "name": "identity-rich-complete-three-way",
+      "p95_ms": 350.88,
+      "p50_ms": 325.21,
+      "canonical_rows": 3000
+    },
+    {
+      "name": "identity-rich-with-ambiguous-and-capped-mixture",
+      "p95_ms": 441.29,
+      "p50_ms": 395.77,
+      "canonical_rows": 3000
+    }
+  ],
+  "browser": "BLOCKED_NOT_RUN",
+  "real_QBO_QBD_import": "NOT_RUN",
+  "argon_review_received": true,
+  "argon_post_fix_rereview": false,
+  "public_deployment": false,
+  "financial_account_writes": false
+}

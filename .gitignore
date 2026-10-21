@@ -8,3 +8,5 @@ __pycache__/
 .playwright/
 test-results/
 evidence/implementation-20261021/minimal-run.json
+
+/reconciliation-result.json

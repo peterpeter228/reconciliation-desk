@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { canonicalJson, checkedSum, MAX_CENTS, parseDate, sha256 } from '../ingestion/primitives';
+export const FEE_ONLY_RULE_VERSION = 'fee-only-1.1' as const;
 export interface VerifiedAccount {
   id: string;
   name: string;
@@ -43,6 +44,7 @@ export interface FeeCase {
   netFeeConfirmed: boolean;
   receiptTransactionId: string;
   settlementTransactionId: string;
+  /** Full reviewed GL evidence; the case residual uses only the two bound transactions. */
   postedGL: PostedLeg[];
   ledgerCoverage: {
     periodStart: string;
@@ -92,6 +94,61 @@ export interface ExportArtifact {
   };
 }
 const money = z.number().int().min(0).max(MAX_CENTS).refine(Number.isSafeInteger);
+// Verification is a public boundary too: compile-time canonical types do not
+// prove that a caller supplied normalized USD posting rows or valid provenance.
+const verificationRowSchema = z
+  .object({
+    id: z.string().min(1),
+    currency: z.literal('USD'),
+    qb_product: z.enum(['QBO', 'QBD']),
+    transaction_id: z.string().nullable(),
+    is_posted_ledger: z.literal(true),
+    line_grain: z.literal('POSTING_LINE'),
+    debit_cents: money,
+    credit_cents: money,
+    signed_cents: z.number().int().min(-MAX_CENTS).max(MAX_CENTS).refine(Number.isSafeInteger),
+    validation_errors: z.array(z.string()).length(0),
+    source_refs: z
+      .array(
+        z.object({
+          file_sha256: z.string().regex(/^[0-9a-f]{64}$/),
+          raw_row_sha256: z.string().regex(/^[0-9a-f]{64}$/),
+          physical_row: z.number().int().positive().refine(Number.isSafeInteger),
+          sheet: z.string().nullable(),
+          column_indices: z.record(
+            z.array(z.number().int().nonnegative().refine(Number.isSafeInteger)).min(1),
+          ),
+          parser_version: z.string().trim().min(1),
+          mapping_version: z.string().trim().min(1),
+        }),
+      )
+      .min(1),
+  })
+  .refine(
+    (r) =>
+      r.signed_cents === r.debit_cents - r.credit_cents && r.debit_cents > 0 !== r.credit_cents > 0,
+  );
+const verificationDate = z.string().refine((value) => {
+  try {
+    return parseDate(value, 'ISO') === value;
+  } catch {
+    return false;
+  }
+});
+const verificationManifestSchema = z
+  .object({
+    company_id: z.string().trim().min(1),
+    source_system: z.enum(['QBO', 'QBD']),
+    source_file_sha256: z.string().regex(/^[0-9a-f]{64}$/),
+    report_grain: z.literal('POSTING_LINE'),
+    coverage_confirmed: z.literal(true),
+    period_start: verificationDate,
+    period_end: verificationDate,
+    as_of_date: verificationDate,
+    missing_required_fields: z.array(z.string()).length(0),
+    accounts: z.array(z.string().trim().min(1)).min(1),
+  })
+  .refine((m) => m.period_start <= m.period_end && m.as_of_date >= m.period_end);
 const safeText = z
   .string()
   .min(1)
@@ -178,6 +235,10 @@ export function assertSafeImportText(value: string): void {
 }
 export function validateFeeCase(value: FeeCase): FeeCase {
   const c = caseSchema.parse(value);
+  if (c.ruleVersion !== FEE_ONLY_RULE_VERSION)
+    throw new Error(
+      `Unsupported fee-only rule version. Rebuild and review the proposal under ${FEE_ONLY_RULE_VERSION}; prior approvals cannot be reused.`,
+    );
   for (const d of [
     c.journalDate,
     c.ledgerCoverage.periodStart,
@@ -260,6 +321,22 @@ export function validateFeeCase(value: FeeCase): FeeCase {
     throw new Error(
       'Existing posted GL does not prove gross receipt and net bank settlement against this clearing account.',
     );
+  // The default fee-only template supports only the existing Dr Bank / Cr Clearing
+  // settlement. A balanced compound journal is not necessarily wrong, but needs a
+  // separately reviewed adapter rather than silently entering this narrow template.
+  const settlementLegs = c.postedGL.filter((l) => l.transactionId === c.settlementTransactionId);
+  if (
+    settlementLegs.some(
+      (l) =>
+        !(
+          (l.accountId === bank.id && l.debitCents > 0 && l.creditCents === 0) ||
+          (l.accountId === clearing.id && l.creditCents > 0 && l.debitCents === 0)
+        ),
+    )
+  )
+    throw new Error(
+      'Compound settlement posting is outside the supported Dr Bank / Cr Clearing fee-only template. Review a separate workpaper.',
+    );
   if (c.postedGL.some((l) => l.accountId === fee.id && (l.debitCents || l.creditCents)))
     throw new Error(
       'A fee entry is already present. Review it instead of creating a duplicate fee.',
@@ -267,7 +344,12 @@ export function validateFeeCase(value: FeeCase): FeeCase {
   if (
     checkedSum(
       c.postedGL
-        .filter((l) => l.accountId === clearing.id)
+        .filter(
+          (l) =>
+            l.accountId === clearing.id &&
+            (l.transactionId === c.receiptTransactionId ||
+              l.transactionId === c.settlementTransactionId),
+        )
         .map((l) => l.debitCents - l.creditCents),
     ) !== c.clearingResidualCents
   )
@@ -444,7 +526,7 @@ export function createTeachingFeeCase(): FeeCase {
     bankEvidenceRefs: [ev],
     sourceFileHashes: ['b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d'],
     mappingVersion: 'synthetic-teaching-1',
-    ruleVersion: 'fee-only-1.0',
+    ruleVersion: FEE_ONLY_RULE_VERSION,
     journalDate: '2026-09-30',
     periodOpenConfirmed: true,
     netFeeConfirmed: true,
@@ -527,6 +609,40 @@ export async function verifyProposalInLedger(
       reason: 'Exact posted journal lines/date not found in the re-imported ledger.',
       matchingRowIds: matches.map((r) => r.id),
     };
+  if (matches.some((r) => !verificationRowSchema.safeParse(r).success))
+    return {
+      verified: false,
+      reason:
+        'Imported journal evidence is invalid. Verified USD posting rows, exact safe-integer debit/credit amounts, no validation errors and valid source provenance are required.',
+      matchingRowIds: matches.map((r) => r.id),
+    };
+  // DocNum is not unique. Unknown identity is not proof that two matching legs
+  // belong to one journal, even when dates and amounts happen to match exactly.
+  const transactionId = matches[0].transaction_id;
+  const product = matches[0].qb_product;
+  if (
+    !transactionId?.trim() ||
+    matches.some((r) => r.transaction_id !== transactionId || r.qb_product !== product)
+  )
+    return {
+      verified: false,
+      reason:
+        'A single reliable transaction identity is required. Re-export the complete journal with a shared Transaction ID; matching journal numbers alone cannot verify posting.',
+      matchingRowIds: matches.map((r) => r.id),
+    };
+  const transactionRows = rows.filter(
+    (r) =>
+      r.company_id === p.feeCase.companyId &&
+      r.qb_product === product &&
+      r.transaction_id === transactionId,
+  );
+  if (transactionRows.length !== matches.length)
+    return {
+      verified: false,
+      reason:
+        'The identified transaction contains additional ledger lines, including lines with other or missing journal numbers. It is not the exact approved two-line journal.',
+      matchingRowIds: transactionRows.map((r) => r.id),
+    };
   for (const line of p.lines) {
     if (
       matches.filter(
@@ -545,9 +661,10 @@ export async function verifyProposalInLedger(
     if (
       !manifests.some(
         (m) =>
+          verificationManifestSchema.safeParse(m).success &&
           m.company_id === p.feeCase.companyId &&
-          (m.source_system === 'QBO' || m.source_system === 'QBD') &&
-          m.coverage_confirmed &&
+          m.source_system === row.qb_product &&
+          m.coverage_confirmed === true &&
           m.period_start <= p.date &&
           m.period_end >= p.date &&
           m.accounts.includes(line.account) &&

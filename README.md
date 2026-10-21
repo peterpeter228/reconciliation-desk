@@ -53,7 +53,7 @@ Browser environment blockers and an unexecuted normal-browser QA script are in
 ### CLI (same production engine)
 
 ```bash
-npm run reconcile -- --st samples/st_export.csv --qb samples/qbo_clearing_gl.csv --bank samples/chase_bank.csv --profile examples/demo-profile.json --out /tmp/reconciliation-result.json
+npm run reconcile -- --st samples/st_export.csv --qb samples/qbo_clearing_gl.csv --bank samples/chase_bank.csv --profile examples/demo-profile.json --out reconciliation-result.json
 ```
 
 Optional `--processor`, `--components`, `--receipts`, and `--audit` flags add

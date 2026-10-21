@@ -22,9 +22,9 @@ completion, market demand or permitted external financial actions.
   source semantics, QBO/QBD choice, sorted cases, three-source evidence display,
   supplemental evidence and scope, JSON/CSV/print workpapers. Separate synthetic
   $900 fee-only approval/export demonstration with content-bound invalidation.
-- **G3 executed:** 187 TypeScript tests in 9 suites, including 74 independent
-  integration tests (default + held-out seed), 40 XLSX cases, 29 ingestion/export,
-  35 engine tests and 9 jsdom UI regressions. Typecheck/build/artifact checks pass.
+- **G3 executed:** 329 TypeScript tests in 12 suites, including the original 187 and 142
+  additional post-review regressions. The original coverage includes independent
+  held-out-seed integration, input/export, XLSX and jsdom UI checks. Typecheck/build/artifact checks pass.
   Original Python reference suite separately passes 33 tests. Counts are not a
   security certification or independent coverage percentage.
 - **G4:** not accepted. No public launch, payment-link configuration, real customer
@@ -44,6 +44,11 @@ completion, market demand or permitted external financial actions.
 - Teaching exports were insufficiently distinguished from real-book imports.
 - UI approval/rebuild/export async results could race changed visible inputs.
 
+Post-review fixes also gate nonfinal settlement statements, itemize refunds, keep
+whole-batch refund membership, prevent cross-transaction/invalid-data posting
+verification, preserve legitimate Total-prefixed business rows, and reject aliased
+active workbook metadata. Fee-only rules are version1.1; stale approvals fail.
+
 Regression assertions were preserved; intermediate failures remain in dated logs.
 
 ## Measured performance, not a universal guarantee
@@ -51,7 +56,7 @@ Regression assertions were preserved; intermediate failures remain in dated logs
 - Supplied 837-row Node engine: warm p95 approximately 126.7 ms, with 22 explicitly
   unfinished search scopes; parsing and browser rendering excluded.
 - Exactly 3,000 canonical rows, 3 warmups and 20 measured runs per scenario:
-  identity-rich p95 304.70 ms; ambiguous/capped mixture p95 415.33 ms. The latter
+  identity-rich p95 350.88 ms; ambiguous/capped mixture p95 441.29 ms. The latter
   retains 90 unfinished scopes (10 ambiguous, 80 candidate-capped).
 - Correctness/conservation assertions pass for every measured run. This establishes
   these Node synthetic workloads only, not browser <500ms, complete subset search,
@@ -64,10 +69,13 @@ restricted runtime; a sanctioned execution request failed during runtime startup
 Zero real browser click checks/screenshots were completed. Static contrast and
 jsdom tests do not replace this acceptance. A normal-browser QA script is prepared.
 
-A single requested Argon review attempt returned no review: local transport error,
-remote receipt/billing unknown. No automatic retry. Explicit private-source batch
-sharing/retry consent and a separate owner-only Sites preview consent were requested;
-neither is assumed granted by this document. No external-model approval claim.
+The first Argon attempt returned a transport error with unknown receipt/billing.
+After explicit owner approval of the private-code batch and one retry, Argon
+returned HTTP200 in103.228s. Its static claims were independently reproduced,
+triaged and fixed; see ARGON_REVIEW_TRIAGE_20261021.md and the final dated tests.
+The fixed code was not sent for a second external review. No model certification
+or browser acceptance is claimed. Owner-private Sites preview permission remains
+pending; no Site was created and no public deployment occurred.
 
 ## Remaining completion gates
 

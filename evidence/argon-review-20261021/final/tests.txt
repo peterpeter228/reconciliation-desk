@@ -1,0 +1,35 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=evidence/argon-review-20261021/final/tests.json
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+ ✓ tests/argon-xlsx/package-metadata.test.ts (65 tests) 366ms
+ ✓ tests/argon-accounting/accounting-regressions.test.ts (57 tests) 362ms
+ ✓ tests/import-export/ingestion.test.ts (20 tests) 682ms
+     ✓ reads supplied core files without relying on answer keys  457ms
+ ✓ tests/argon-engine/findings.test.ts (20 tests) 93ms
+ ✓ tests/engine/engine.test.ts (35 tests) 145ms
+ ✓ tests/import-export/privacy.test.ts (2 tests) 17ms
+ ✓ tests/import-export/exports.test.ts (7 tests) 118ms
+ ✓ tests/ui/app-run.test.ts (2 tests) 399ms
+ ✓ tests/ui/teaching-case.test.ts (7 tests) 745ms
+     ✓ exports only after explicit approval and exact displayed snapshot  304ms
+ ✓ tests/integration/synthetic-evidence.test.ts (26 tests) 2584ms
+ ✓ tests/xlsx/xlsx.test.ts (40 tests) 3810ms
+     ✓ enforces the actual per-sheet cell budget, not just dimensions  3303ms
+ ✓ tests/integration/adversarial-boundaries.test.ts (48 tests) 4502ms
+
+ Test Files  12 passed (12)
+      Tests  329 passed (329)
+   Start at  19:27:52
+   Duration  5.18s (transform 1.95s, setup 0ms, import 3.80s, tests 13.82s, environment 1.47s)
+
+JSON report written to /workspace/scratch/c01bd6fe117d/reconciliation-desk/evidence/argon-review-20261021/final/tests.json
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

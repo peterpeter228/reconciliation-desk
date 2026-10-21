@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/argon-accounting/accounting-regressions.test.ts tests/import-export/exports.test.ts tests/import-export/ingestion.test.ts tests/import-export/privacy.test.ts
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+
+ Test Files  4 passed (4)
+      Tests  86 passed (86)
+   Start at  19:26:13
+   Duration  1.35s (transform 615ms, setup 0ms, import 1.15s, tests 1.37s, environment 1ms)
+

@@ -272,6 +272,11 @@ interface XmlTag {
   attrs: Record<string, string>;
   closing: boolean;
 }
+const packageMetadata: Record<string, { name: string; attrs: readonly string[] }> = {
+  relationship: { name: 'Relationship', attrs: ['Id', 'Type', 'Target', 'TargetMode'] },
+  override: { name: 'Override', attrs: ['PartName', 'ContentType'] },
+  default: { name: 'Default', attrs: ['Extension', 'ContentType'] },
+};
 function decodeEntities(value: string): string {
   return value.replace(/&([^;\s<&]{1,32});|&/g, (full, entity: string | undefined) => {
     const predefined: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" };
@@ -351,6 +356,14 @@ function walkXml(xml: string, visit: (tag: XmlTag) => void, text: (value: string
       name = fullName.split(':').pop()!,
       attrs: Record<string, string> = Object.create(null),
       aliases = new Set<string>();
+    const metadata = Object.hasOwn(packageMetadata, name.toLowerCase())
+      ? packageMetadata[name.toLowerCase()]
+      : undefined;
+    // XML names are case-sensitive. Do not let SheetJS's prefix/underscore aliases
+    // turn unsupported package metadata into attributes our guard never examined.
+    // This is deliberately local: sheet r:id and namespace declarations remain valid.
+    if (metadata && name !== metadata.name)
+      fail('XLSX_XML_UNSUPPORTED', 'Nonstandard package metadata element names are not accepted.');
     let rest = match[2];
     while (rest.length) {
       if (!rest.trim()) break;
@@ -373,6 +386,11 @@ function walkXml(xml: string, visit: (tag: XmlTag) => void, text: (value: string
       if (aliases.has(alias))
         fail('XLSX_XML_INVALID', 'Ambiguous XML attribute aliases are not accepted.');
       aliases.add(alias);
+      if (metadata && key !== 'xmlns' && !key.startsWith('xmlns:') && !metadata.attrs.includes(key))
+        fail(
+          'XLSX_XML_UNSUPPORTED',
+          'Package metadata requires standard unprefixed, case-sensitive attribute names.',
+        );
       if (encoder.encode(raw).length > XLSX_LIMITS.cellBytes)
         fail('XLSX_XML_LIMIT', 'XML attribute exceeds the 4 KB safety limit.');
       if (raw.includes('>'))
@@ -772,7 +790,7 @@ export async function readXlsxMatrix(
       fileHash: await sha256(bytes),
       sheet: name,
       byteLength: bytes.length,
-      parserVersion: 'xlsx-local-1.0/sheetjs-0.20.3',
+      parserVersion: 'xlsx-local-1.1/sheetjs-0.20.3',
     },
   };
 }

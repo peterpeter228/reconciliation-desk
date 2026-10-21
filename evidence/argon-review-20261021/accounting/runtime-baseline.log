@@ -1,0 +1,116 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/argon-accounting/accounting-regressions.test.ts
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts (47 tests | 13 failed) 139ms
+     × rejects non-USD currency even if the TypeScript contract is bypassed 8ms
+     × rejects prior validation errors even if the TypeScript contract is bypassed 3ms
+     × rejects missing validation status even if the TypeScript contract is bypassed 3ms
+     × rejects inconsistent signed amount even if the TypeScript contract is bypassed 5ms
+     × rejects nonfinite signed amount even if the TypeScript contract is bypassed 3ms
+     × rejects truthy nonboolean posted flag even if the TypeScript contract is bypassed 3ms
+     × does not accept an unsupported product even with a matching manifest label 3ms
+     × rejects provenance with invalid physical row 3ms
+     × rejects provenance with invalid raw row hash 4ms
+     × rejects provenance with missing parser version 3ms
+     × rejects provenance with missing mapping version 2ms
+     × rejects provenance with invalid column locator 3ms
+     × requires valid source-file hashes even if an invalid value matches the manifest 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects non-USD currency even if the TypeScript contract is bypassed
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects prior validation errors even if the TypeScript contract is bypassed
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects missing validation status even if the TypeScript contract is bypassed
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects inconsistent signed amount even if the TypeScript contract is bypassed
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects nonfinite signed amount even if the TypeScript contract is bypassed
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects truthy nonboolean posted flag even if the TypeScript contract is bypassed
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:150:8
+    148|     Object.assign(imported.rows[0], invalid);
+    149|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+    150|       .toBe(false);
+       |        ^
+    151|   });
+    152|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > does not accept an unsupported product even with a matching manifest label
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:158:8
+    156|     Object.assign(imported.manifest!, { source_system: 'OTHER' });
+    157|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+    158|       .toBe(false);
+       |        ^
+    159|   });
+    160|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects provenance with invalid physical row
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects provenance with invalid raw row hash
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects provenance with missing parser version
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects provenance with missing mapping version
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > rejects provenance with invalid column locator
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:171:8
+    169|     Object.assign(imported.rows[0].source_refs[0], invalid);
+    170|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+    171|       .toBe(false);
+       |        ^
+    172|   });
+    173|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: direct verification boundary validates runtime input > requires valid source-file hashes even if an invalid value matches the manifest
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:179:8
+    177|     imported.manifest!.source_file_sha256 = 'not-a-hash';
+    178|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+    179|       .toBe(false);
+       |        ^
+    180|   });
+    181| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  13 failed | 34 passed (47)
+   Start at  19:21:34
+   Duration  522ms (transform 159ms, setup 0ms, import 231ms, tests 139ms, environment 0ms)
+

@@ -1,0 +1,50 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/argon-accounting/accounting-regressions.test.ts
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts (57 tests | 7 failed) 169ms
+     × rejects truthy false coverage as verification coverage 8ms
+     × rejects malformed period start as verification coverage 5ms
+     × rejects malformed period end as verification coverage 2ms
+     × rejects malformed as-of date as verification coverage 2ms
+     × rejects as-of date before reviewed period end as verification coverage 2ms
+     × rejects unresolved required fields as verification coverage 2ms
+     × rejects account names supplied as a string as verification coverage 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: manifest coverage must also be runtime-valid > rejects truthy false coverage as verification coverage
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: manifest coverage must also be runtime-valid > rejects malformed period start as verification coverage
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: manifest coverage must also be runtime-valid > rejects malformed period end as verification coverage
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: manifest coverage must also be runtime-valid > rejects malformed as-of date as verification coverage
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: manifest coverage must also be runtime-valid > rejects as-of date before reviewed period end as verification coverage
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: manifest coverage must also be runtime-valid > rejects unresolved required fields as verification coverage
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent follow-on: manifest coverage must also be runtime-valid > rejects account names supplied as a string as verification coverage
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:223:8
+    221|     Object.assign(imported.manifest!, invalid);
+    222|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+    223|       .toBe(false);
+       |        ^
+    224|   });
+    225| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 50 passed (57)
+   Start at  19:25:53
+   Duration  589ms (transform 180ms, setup 0ms, import 259ms, tests 169ms, environment 0ms)
+

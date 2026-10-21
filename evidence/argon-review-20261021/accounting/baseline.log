@@ -1,0 +1,622 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/argon-accounting/accounting-regressions.test.ts
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts (29 tests | 16 failed) 87ms
+     × does not combine two transactions that reused the same journal number 9ms
+     × does not silently combine an identified and an unidentified transaction 4ms
+     × keeps identifier-free GL importable but cannot verify journal identity from DocNum alone 5ms
+     × rejects additional same-transaction legs whose journal numbers are blank 4ms
+     × does not merge QBO and QBD transaction identities 3ms
+     × rejects an unrelated balanced compound posting embedded in the settlement 4ms
+     × rejects offsetting extra clearing movements within the settlement 2ms
+     × does not confuse unrelated full-ledger clearing activity with this case residual 1ms
+     × preserves a real customer named Total Comfort Heating & Air with valid payment identity and date 2ms
+     × preserves a real customer named Total Plumbing LLC with valid payment identity and date 1ms
+     × preserves a real customer named Subtotal Services with valid payment identity and date 1ms
+     × preserves a real customer named Opening Balance Repairs with valid payment identity and date 3ms
+     × preserves description-first bank rows without requiring transaction IDs 1ms
+     × does not hide an invalid date on a transaction whose customer starts with Total 1ms
+     × does not hide a missing date on an identified transaction named exactly TOTAL 1ms
+     × does not label ambiguous pure integers or malformed grouping as money 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-2: re-import must verify one complete journal > does not combine two transactions that reused the same journal number
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:54:8
+     52|     const { proposal, imported } = await importedJournal(['TX-1', 'TX-…
+     53|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+     54|       .toBe(false);
+       |        ^
+     55|   });
+     56|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-2: re-import must verify one complete journal > does not silently combine an identified and an unidentified transaction
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:60:8
+     58|     const { proposal, imported } = await importedJournal(['TX-1', '']);
+     59|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+     60|       .toBe(false);
+       |        ^
+     61|   });
+     62|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-2: re-import must verify one complete journal > keeps identifier-free GL importable but cannot verify journal identity from DocNum alone
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:66:29
+     64|     const { proposal, imported } = await importedJournal(['', '']);
+     65|     const result = await verifyProposalInLedger(proposal, imported.row…
+     66|     expect(result.verified).toBe(false);
+       |                             ^
+     67|     expect(result.reason).toMatch(/transaction identity|Transaction ID…
+     68|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-2: re-import must verify one complete journal > rejects additional same-transaction legs whose journal numbers are blank
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:76:8
+     74|     );
+     75|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+     76|       .toBe(false);
+       |        ^
+     77|   });
+     78|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-2: re-import must verify one complete journal > does not merge QBO and QBD transaction identities
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:83:8
+     81|     imported.rows[1].qb_product = 'QBD';
+     82|     expect((await verifyProposalInLedger(proposal, imported.rows, [imp…
+     83|       .toBe(false);
+       |        ^
+     84|   });
+     85|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-3: case footprint is distinct from full-ledger coverage > rejects an unrelated balanced compound posting embedded in the settlement
+AssertionError: promise resolved "{ …(7) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "approval": null,
++   "date": "2026-09-30",
++   "feeCase": {
++     "accounts": [
++       {
++         "exists": true,
++         "id": "BANK",
++         "isUndepositedFunds": false,
++         "name": "Collections Checking",
++         "type": "BANK",
++       },
++       {
++         "exists": true,
++         "id": "CLEARING",
++         "isUndepositedFunds": false,
++         "name": "ServiceTitan Clearing",
++         "type": "OTHER_CURRENT_ASSET",
++       },
++       {
++         "exists": true,
++         "id": "FEES",
++         "isUndepositedFunds": false,
++         "name": "Merchant Financing Fees",
++         "type": "EXPENSE",
++       },
++       {
++         "exists": true,
++         "id": "AR",
++         "isUndepositedFunds": false,
++         "name": "Accounts Receivable",
++         "type": "OTHER",
++       },
++       {
++         "exists": true,
++         "id": "OTHER_EXPENSE",
++         "isUndepositedFunds": false,
++         "name": "Other Expense",
++         "type": "EXPENSE",
++       },
++     ],
++     "adjustmentVersion": "1",
++     "bankAccountId": "BANK",
++     "bankEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "bankNetCents": 910000,
++     "caseId": "TEN_THOUSAND_NINE_THOUSAND_ONE_HUNDRED",
++     "clearingAccountId": "CLEARING",
++     "clearingResidualCents": 90000,
++     "companyId": "SYNTHETIC_TEACHING_ONLY",
++     "confirmedFeeCents": 90000,
++     "existingImportStatus": "NEVER_IMPORTED",
++     "existingJournalIds": [],
++     "expenseNotRecordedConfirmed": true,
++     "feeAccountId": "FEES",
++     "feeMode": "NETTED",
++     "grossCents": 1000000,
++     "journalDate": "2026-09-30",
++     "ledgerCoverage": {
++       "accountIds": [
++         "BANK",
++         "CLEARING",
++         "FEES",
++         "AR",
++       ],
++       "asOfDate": "2026-09-30",
++       "confirmed": true,
++       "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++       "periodEnd": "2026-09-30",
++       "periodStart": "2026-09-01",
++       "reviewer": "Fictional Demo Reviewer",
++     },
++     "mappingVersion": "synthetic-teaching-1",
++     "netFeeConfirmed": true,
++     "periodOpenConfirmed": true,
++     "postedGL": [
++       {
++         "accountId": "CLEARING",
++         "creditCents": 0,
++         "date": "2026-09-01",
++         "debitCents": 1000000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "AR",
++         "creditCents": 1000000,
++         "date": "2026-09-01",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "BANK",
++         "creditCents": 0,
++         "date": "2026-09-03",
++         "debitCents": 910000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "CLEARING",
++         "creditCents": 910000,
++         "date": "2026-09-03",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "OTHER_EXPENSE",
++         "creditCents": 0,
++         "date": "2026-09-03",
++         "debitCents": 50000,
++         "evidenceRef": "synthetic-adversarial-evidence",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "AR",
++         "creditCents": 50000,
++         "date": "2026-09-03",
++         "debitCents": 0,
++         "evidenceRef": "synthetic-adversarial-evidence",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++     ],
++     "receiptTransactionId": "DEMO-RECEIPT",
++     "ruleVersion": "fee-only-1.0",
++     "settlementEvidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++     "settlementReference": "DEMO-PAYOUT-900",
++     "settlementTransactionId": "DEMO-DEPOSIT",
++     "sourceFileHashes": [
++       "b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d",
++     ],
++     "stEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "syntheticOnly": true,
++   },
++   "journalId": "RD1E1BAA9EFD",
++   "lines": [
++     {
++       "account": "Merchant Financing Fees",
++       "accountId": "FEES",
++       "creditCents": 0,
++       "debitCents": 90000,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++     {
++       "account": "ServiceTitan Clearing",
++       "accountId": "CLEARING",
++       "creditCents": 90000,
++       "debitCents": 0,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++   ],
++   "proposalId": "1e1baa9efd1c36b0304af323a969e056743d16ab218b5a3f725fb51074ea803a",
++   "state": "DRAFT",
+  }
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:135:37
+    133|     addLeg(c, c.settlementTransactionId, 'OTHER_EXPENSE', 50_000, 0);
+    134|     addLeg(c, c.settlementTransactionId, 'AR', 0, 50_000);
+    135|     await expect(buildFeeProposal(c)).rejects.toThrow();
+       |                                     ^
+    136|   });
+    137|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-3: case footprint is distinct from full-ledger coverage > rejects offsetting extra clearing movements within the settlement
+AssertionError: promise resolved "{ …(7) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "approval": null,
++   "date": "2026-09-30",
++   "feeCase": {
++     "accounts": [
++       {
++         "exists": true,
++         "id": "BANK",
++         "isUndepositedFunds": false,
++         "name": "Collections Checking",
++         "type": "BANK",
++       },
++       {
++         "exists": true,
++         "id": "CLEARING",
++         "isUndepositedFunds": false,
++         "name": "ServiceTitan Clearing",
++         "type": "OTHER_CURRENT_ASSET",
++       },
++       {
++         "exists": true,
++         "id": "FEES",
++         "isUndepositedFunds": false,
++         "name": "Merchant Financing Fees",
++         "type": "EXPENSE",
++       },
++       {
++         "exists": true,
++         "id": "AR",
++         "isUndepositedFunds": false,
++         "name": "Accounts Receivable",
++         "type": "OTHER",
++       },
++     ],
++     "adjustmentVersion": "1",
++     "bankAccountId": "BANK",
++     "bankEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "bankNetCents": 910000,
++     "caseId": "TEN_THOUSAND_NINE_THOUSAND_ONE_HUNDRED",
++     "clearingAccountId": "CLEARING",
++     "clearingResidualCents": 90000,
++     "companyId": "SYNTHETIC_TEACHING_ONLY",
++     "confirmedFeeCents": 90000,
++     "existingImportStatus": "NEVER_IMPORTED",
++     "existingJournalIds": [],
++     "expenseNotRecordedConfirmed": true,
++     "feeAccountId": "FEES",
++     "feeMode": "NETTED",
++     "grossCents": 1000000,
++     "journalDate": "2026-09-30",
++     "ledgerCoverage": {
++       "accountIds": [
++         "BANK",
++         "CLEARING",
++         "FEES",
++         "AR",
++       ],
++       "asOfDate": "2026-09-30",
++       "confirmed": true,
++       "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++       "periodEnd": "2026-09-30",
++       "periodStart": "2026-09-01",
++       "reviewer": "Fictional Demo Reviewer",
++     },
++     "mappingVersion": "synthetic-teaching-1",
++     "netFeeConfirmed": true,
++     "periodOpenConfirmed": true,
++     "postedGL": [
++       {
++         "accountId": "CLEARING",
++         "creditCents": 0,
++         "date": "2026-09-01",
++         "debitCents": 1000000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "AR",
++         "creditCents": 1000000,
++         "date": "2026-09-01",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "BANK",
++         "creditCents": 0,
++         "date": "2026-09-03",
++         "debitCents": 910000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "CLEARING",
++         "creditCents": 910000,
++         "date": "2026-09-03",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "CLEARING",
++         "creditCents": 0,
++         "date": "2026-09-03",
++         "debitCents": 50000,
++         "evidenceRef": "synthetic-adversarial-evidence",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "CLEARING",
++         "creditCents": 50000,
++         "date": "2026-09-03",
++         "debitCents": 0,
++         "evidenceRef": "synthetic-adversarial-evidence",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++     ],
++     "receiptTransactionId": "DEMO-RECEIPT",
++     "ruleVersion": "fee-only-1.0",
++     "settlementEvidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++     "settlementReference": "DEMO-PAYOUT-900",
++     "settlementTransactionId": "DEMO-DEPOSIT",
++     "sourceFileHashes": [
++       "b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d",
++     ],
++     "stEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "syntheticOnly": true,
++   },
++   "journalId": "RD1E1BAA9EFD",
++   "lines": [
++     {
++       "account": "Merchant Financing Fees",
++       "accountId": "FEES",
++       "creditCents": 0,
++       "debitCents": 90000,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++     {
++       "account": "ServiceTitan Clearing",
++       "accountId": "CLEARING",
++       "creditCents": 90000,
++       "debitCents": 0,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++   ],
++   "proposalId": "1e1baa9efd1c36b0304af323a969e056743d16ab218b5a3f725fb51074ea803a",
++   "state": "DRAFT",
+  }
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:142:37
+    140|     addLeg(c, c.settlementTransactionId, 'CLEARING', 50_000, 0);
+    141|     addLeg(c, c.settlementTransactionId, 'CLEARING', 0, 50_000);
+    142|     await expect(buildFeeProposal(c)).rejects.toThrow();
+       |                                     ^
+    143|   });
+    144|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P1-3: case footprint is distinct from full-ledger coverage > does not confuse unrelated full-ledger clearing activity with this case residual
+Error: Supplied component ledger does not support the claimed clearing residual.
+ ❯ validateFeeCase src/export/aje.ts:274:11
+    272|     ) !== c.clearingResidualCents
+    273|   )
+    274|     throw new Error('Supplied component ledger does not support the cl…
+       |           ^
+    275|   return c;
+    276| }
+ ❯ buildFeeProposal src/export/aje.ts:293:13
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:149:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon plausible CSV summary false positive > preserves a real customer named Total Comfort Heating & Air with valid payment identity and date
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon plausible CSV summary false positive > preserves a real customer named Total Plumbing LLC with valid payment identity and date
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon plausible CSV summary false positive > preserves a real customer named Subtotal Services with valid payment identity and date
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon plausible CSV summary false positive > preserves a real customer named Opening Balance Repairs with valid payment identity and date
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:178:29
+    176|       const imported = await parseSource(text, 'ST', options);
+    177|       expect(imported.ok).toBe(true);
+    178|       expect(imported.rows).toHaveLength(1);
+       |                             ^
+    179|       expect(imported.controls.signedCents).toBe(12_345);
+    180|       expect(imported.manifest?.excluded_summary_rows).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon plausible CSV summary false positive > preserves description-first bank rows without requiring transaction IDs
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:189:27
+    187|     const imported = await parseSource('Description,Posting Date,Amoun…
+    188|     expect(imported.ok).toBe(true);
+    189|     expect(imported.rows).toHaveLength(1);
+       |                           ^
+    190|   });
+    191|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon plausible CSV summary false positive > does not hide an invalid date on a transaction whose customer starts with Total
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:202:25
+    200|   it('does not hide an invalid date on a transaction whose customer st…
+    201|     const imported = await parseSource('Customer Name,Payment ID,Payme…
+    202|     expect(imported.ok).toBe(false);
+       |                         ^
+    203|     expect(imported.issues).toEqual(expect.arrayContaining([expect.obj…
+    204|     expect(imported.controls.excludedRows).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon plausible CSV summary false positive > does not hide a missing date on an identified transaction named exactly TOTAL
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:209:25
+    207|   it('does not hide a missing date on an identified transaction named …
+    208|     const imported = await parseSource('Customer Name,Payment ID,Payme…
+    209|     expect(imported.ok).toBe(false);
+       |                         ^
+    210|     expect(imported.controls.excludedRows).toEqual([]);
+    211|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/16]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Argon P2-3 is type-hint accuracy, not raw-value disclosure > does not label ambiguous pure integers or malformed grouping as money
+AssertionError: expected [ [ '123.45', '123.45', '123.45' ] ] to deeply equal [ [ 'TEXT', 'TEXT', 'TEXT' ] ]
+
+- Expected
++ Received
+
+  [
+    [
+-     "TEXT",
+-     "TEXT",
+-     "TEXT",
++     "123.45",
++     "123.45",
++     "123.45",
+    ],
+  ]
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:223:33
+    221|   it('does not label ambiguous pure integers or malformed grouping as …
+    222|     const preview = syntheticMappingPreview(['Unknown', 'Unknown', 'Un…
+    223|     expect(preview.sample_rows).toEqual([['TEXT', 'TEXT', 'TEXT']]);
+       |                                 ^
+    224|   });
+    225|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/16]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed | 13 passed (29)
+   Start at  19:16:29
+   Duration  478ms (transform 174ms, setup 0ms, import 244ms, tests 87ms, environment 0ms)
+

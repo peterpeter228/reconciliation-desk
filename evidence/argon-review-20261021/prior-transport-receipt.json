@@ -1,0 +1,11 @@
+{
+  "requested_model": "gemini-4-argon-high",
+  "provider": "api.xiaoyiapi.xyz",
+  "started_at_utc": "2026-10-21T09:43:43.971638+00:00",
+  "request_bytes": 303682,
+  "automatic_retry": false,
+  "error_class": "URLError",
+  "outcome": "transport_uncertain_no_retry",
+  "duration_seconds": 6.379,
+  "response_format": "not_json"
+}

@@ -1,0 +1,394 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/argon-accounting/accounting-regressions.test.ts
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-desk
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts (50 tests | 3 failed) 138ms
+     × rejects unsupported fee rule version fee-only-1.0 9ms
+     × rejects unsupported fee rule version fee-only-unknown 2ms
+     × invalidates a self-consistent old-version approval, not merely a changed hash 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent release hardening: approval must use the active fee rule > rejects unsupported fee rule version fee-only-1.0
+AssertionError: promise resolved "{ …(7) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "approval": null,
++   "date": "2026-09-30",
++   "feeCase": {
++     "accounts": [
++       {
++         "exists": true,
++         "id": "BANK",
++         "isUndepositedFunds": false,
++         "name": "Collections Checking",
++         "type": "BANK",
++       },
++       {
++         "exists": true,
++         "id": "CLEARING",
++         "isUndepositedFunds": false,
++         "name": "ServiceTitan Clearing",
++         "type": "OTHER_CURRENT_ASSET",
++       },
++       {
++         "exists": true,
++         "id": "FEES",
++         "isUndepositedFunds": false,
++         "name": "Merchant Financing Fees",
++         "type": "EXPENSE",
++       },
++       {
++         "exists": true,
++         "id": "AR",
++         "isUndepositedFunds": false,
++         "name": "Accounts Receivable",
++         "type": "OTHER",
++       },
++     ],
++     "adjustmentVersion": "1",
++     "bankAccountId": "BANK",
++     "bankEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "bankNetCents": 910000,
++     "caseId": "TEN_THOUSAND_NINE_THOUSAND_ONE_HUNDRED",
++     "clearingAccountId": "CLEARING",
++     "clearingResidualCents": 90000,
++     "companyId": "SYNTHETIC_TEACHING_ONLY",
++     "confirmedFeeCents": 90000,
++     "existingImportStatus": "NEVER_IMPORTED",
++     "existingJournalIds": [],
++     "expenseNotRecordedConfirmed": true,
++     "feeAccountId": "FEES",
++     "feeMode": "NETTED",
++     "grossCents": 1000000,
++     "journalDate": "2026-09-30",
++     "ledgerCoverage": {
++       "accountIds": [
++         "BANK",
++         "CLEARING",
++         "FEES",
++         "AR",
++       ],
++       "asOfDate": "2026-09-30",
++       "confirmed": true,
++       "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++       "periodEnd": "2026-09-30",
++       "periodStart": "2026-09-01",
++       "reviewer": "Fictional Demo Reviewer",
++     },
++     "mappingVersion": "synthetic-teaching-1",
++     "netFeeConfirmed": true,
++     "periodOpenConfirmed": true,
++     "postedGL": [
++       {
++         "accountId": "CLEARING",
++         "creditCents": 0,
++         "date": "2026-09-01",
++         "debitCents": 1000000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "AR",
++         "creditCents": 1000000,
++         "date": "2026-09-01",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "BANK",
++         "creditCents": 0,
++         "date": "2026-09-03",
++         "debitCents": 910000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "CLEARING",
++         "creditCents": 910000,
++         "date": "2026-09-03",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++     ],
++     "receiptTransactionId": "DEMO-RECEIPT",
++     "ruleVersion": "fee-only-1.0",
++     "settlementEvidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++     "settlementReference": "DEMO-PAYOUT-900",
++     "settlementTransactionId": "DEMO-DEPOSIT",
++     "sourceFileHashes": [
++       "b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d",
++     ],
++     "stEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "syntheticOnly": true,
++   },
++   "journalId": "RD1E1BAA9EFD",
++   "lines": [
++     {
++       "account": "Merchant Financing Fees",
++       "accountId": "FEES",
++       "creditCents": 0,
++       "debitCents": 90000,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++     {
++       "account": "ServiceTitan Clearing",
++       "accountId": "CLEARING",
++       "creditCents": 90000,
++       "debitCents": 0,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++   ],
++   "proposalId": "1e1baa9efd1c36b0304af323a969e056743d16ab218b5a3f725fb51074ea803a",
++   "state": "DRAFT",
+  }
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:193:45
+    191|       const feeCase = createTeachingFeeCase();
+    192|       feeCase.ruleVersion = ruleVersion;
+    193|       await expect(buildFeeProposal(feeCase)).rejects.toThrow(/rule ve…
+       |                                             ^
+    194|     },
+    195|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent release hardening: approval must use the active fee rule > rejects unsupported fee rule version fee-only-unknown
+AssertionError: promise resolved "{ …(7) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "approval": null,
++   "date": "2026-09-30",
++   "feeCase": {
++     "accounts": [
++       {
++         "exists": true,
++         "id": "BANK",
++         "isUndepositedFunds": false,
++         "name": "Collections Checking",
++         "type": "BANK",
++       },
++       {
++         "exists": true,
++         "id": "CLEARING",
++         "isUndepositedFunds": false,
++         "name": "ServiceTitan Clearing",
++         "type": "OTHER_CURRENT_ASSET",
++       },
++       {
++         "exists": true,
++         "id": "FEES",
++         "isUndepositedFunds": false,
++         "name": "Merchant Financing Fees",
++         "type": "EXPENSE",
++       },
++       {
++         "exists": true,
++         "id": "AR",
++         "isUndepositedFunds": false,
++         "name": "Accounts Receivable",
++         "type": "OTHER",
++       },
++     ],
++     "adjustmentVersion": "1",
++     "bankAccountId": "BANK",
++     "bankEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "bankNetCents": 910000,
++     "caseId": "TEN_THOUSAND_NINE_THOUSAND_ONE_HUNDRED",
++     "clearingAccountId": "CLEARING",
++     "clearingResidualCents": 90000,
++     "companyId": "SYNTHETIC_TEACHING_ONLY",
++     "confirmedFeeCents": 90000,
++     "existingImportStatus": "NEVER_IMPORTED",
++     "existingJournalIds": [],
++     "expenseNotRecordedConfirmed": true,
++     "feeAccountId": "FEES",
++     "feeMode": "NETTED",
++     "grossCents": 1000000,
++     "journalDate": "2026-09-30",
++     "ledgerCoverage": {
++       "accountIds": [
++         "BANK",
++         "CLEARING",
++         "FEES",
++         "AR",
++       ],
++       "asOfDate": "2026-09-30",
++       "confirmed": true,
++       "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++       "periodEnd": "2026-09-30",
++       "periodStart": "2026-09-01",
++       "reviewer": "Fictional Demo Reviewer",
++     },
++     "mappingVersion": "synthetic-teaching-1",
++     "netFeeConfirmed": true,
++     "periodOpenConfirmed": true,
++     "postedGL": [
++       {
++         "accountId": "CLEARING",
++         "creditCents": 0,
++         "date": "2026-09-01",
++         "debitCents": 1000000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "AR",
++         "creditCents": 1000000,
++         "date": "2026-09-01",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "BANK",
++         "creditCents": 0,
++         "date": "2026-09-03",
++         "debitCents": 910000,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "CLEARING",
++         "creditCents": 910000,
++         "date": "2026-09-03",
++         "debitCents": 0,
++         "evidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++     ],
++     "receiptTransactionId": "DEMO-RECEIPT",
++     "ruleVersion": "fee-only-unknown",
++     "settlementEvidenceRef": "fee_case_evidence.json:separate-synthetic-teaching-example",
++     "settlementReference": "DEMO-PAYOUT-900",
++     "settlementTransactionId": "DEMO-DEPOSIT",
++     "sourceFileHashes": [
++       "b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d",
++     ],
++     "stEvidenceRefs": [
++       "fee_case_evidence.json:separate-synthetic-teaching-example",
++     ],
++     "syntheticOnly": true,
++   },
++   "journalId": "RD1E1BAA9EFD",
++   "lines": [
++     {
++       "account": "Merchant Financing Fees",
++       "accountId": "FEES",
++       "creditCents": 0,
++       "debitCents": 90000,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++     {
++       "account": "ServiceTitan Clearing",
++       "accountId": "CLEARING",
++       "creditCents": 90000,
++       "debitCents": 0,
++       "memo": "SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD",
++     },
++   ],
++   "proposalId": "1e1baa9efd1c36b0304af323a969e056743d16ab218b5a3f725fb51074ea803a",
++   "state": "DRAFT",
+  }
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:193:45
+    191|       const feeCase = createTeachingFeeCase();
+    192|       feeCase.ruleVersion = ruleVersion;
+    193|       await expect(buildFeeProposal(feeCase)).rejects.toThrow(/rule ve…
+       |                                             ^
+    194|     },
+    195|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/argon-accounting/accounting-regressions.test.ts > Parent release hardening: approval must use the active fee rule > invalidates a self-consistent old-version approval, not merely a changed hash
+AssertionError: promise resolved "{ …(4) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "content": "Journal No.,Journal Date,Account Name,Journal/Description,Debits,Credits
++ RD1E1BAA9EFD,09/30/2026,Merchant Financing Fees,SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD,900.00,
++ RD1E1BAA9EFD,09/30/2026,ServiceTitan Clearing,SYNTHETIC TEACHING ONLY - DO NOT IMPORT TO REAL BOOKS. Approved documented net fee RD1E1BAA9EFD,,900.00
++ ",
++   "fileName": "SYNTHETIC_DO_NOT_IMPORT_RD1E1BAA9EFD_BETA_NOT_POSTED.csv",
++   "manifest": {
++     "approvedAt": "2026-10-21T10:24:28.406Z",
++     "approvedBy": "Synthetic Reviewer",
++     "compatibility": "BETA_NOT_TARGET_TESTED",
++     "journalId": "RD1E1BAA9EFD",
++     "proposalHash": "661a1ec18d49a6d5aaa927ae4a73a03a3b36edaa6732f1622c99b9b97ac25109",
++     "proposalId": "1e1baa9efd1c36b0304af323a969e056743d16ab218b5a3f725fb51074ea803a",
++     "sourceFileHashes": [
++       "b96a5cfa3d38c5e8b1afef1170793f93b4d3a99e6e502e4574325b8020ba160d",
++     ],
++     "status": "EXPORTED_NOT_POSTED",
++     "synthetic_only": true,
++     "warnings": [
++       "SYNTHETIC TEACHING ONLY. Never import this example into real company books.",
++       "Export is not posting. Review in a backup/sample company, then re-import GL to verify.",
++       "Target QuickBooks product, region and version import has not been tested.",
++       "Hash detects changes; it does not authenticate an accounting reviewer.",
++       "Do not re-import a partially successful or uncertain package.",
++     ],
++   },
++   "mimeType": "text/csv;charset=utf-8",
+  }
+
+ ❯ tests/argon-accounting/accounting-regressions.test.ts:206:40
+    204|       }),
+    205|     );
+    206|     await expect(exportQboCsv(proposal)).rejects.toThrow(/rule version…
+       |                                        ^
+    207|   });
+    208| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 47 passed (50)
+   Start at  19:24:27
+   Duration  534ms (transform 164ms, setup 0ms, import 255ms, tests 138ms, environment 0ms)
+

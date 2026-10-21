@@ -83,6 +83,8 @@ export interface AccountingConfirmation extends EvidenceBase {
   bank_effect_cents: Cents;
   expense_coverage_confirmed: boolean;
   fee_not_recorded: boolean;
+  /** Exact ST refund payment covered by the attestation; a deposit ID alone is insufficient. */
+  refund_payment_id?: string;
   refund_coverage_confirmed?: boolean;
   refund_not_recorded?: boolean;
   batching_due_date?: ISODate;

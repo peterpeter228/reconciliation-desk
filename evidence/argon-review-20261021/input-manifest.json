@@ -1,0 +1,232 @@
+{
+  "snapshot_at_utc": "2026-10-21T09:43:28.553983+00:00",
+  "files": [
+    {
+      "path": "src/contracts/canonical.ts",
+      "sha256": "237bc4b43d54ef28f30f230670ab24e4dbb07ad20c9b725b73266b9c9c32e3b0",
+      "bytes": 7150
+    },
+    {
+      "path": "src/contracts/engine.ts",
+      "sha256": "1c0d4f748baaf89f7b812f6e1301763cc4b6fb273b3fc43a29e7386e6106eb95",
+      "bytes": 6454
+    },
+    {
+      "path": "src/engine/calendar.ts",
+      "sha256": "fa5d3ca205e1330ee3ad66b2b10d95a7f38acfe747bdb7ea5e2b626fa74b34b8",
+      "bytes": 2231
+    },
+    {
+      "path": "src/engine/conservation.ts",
+      "sha256": "d8bde32aed208031c5935009fa0443c4db476b71d3eb99034a12e15e873de0b2",
+      "bytes": 3151
+    },
+    {
+      "path": "src/engine/diagnostics.ts",
+      "sha256": "c8f2069e9465cd53e03fa75d0800b060118417699f4e854625731f9b76797f5d",
+      "bytes": 9493
+    },
+    {
+      "path": "src/engine/edges.ts",
+      "sha256": "ea2a35ffa33ea18525bed02bcd3a0365fa230f853a696235d6858b6708bd9ef1",
+      "bytes": 6223
+    },
+    {
+      "path": "src/engine/evidence.ts",
+      "sha256": "ca7c3f2569fb484aca6cfd03ff32bbfd1bb19b00374a942d74075b7a47724eb1",
+      "bytes": 7577
+    },
+    {
+      "path": "src/engine/identities.ts",
+      "sha256": "68eaa4e349cce7840e90a295d6bb44b9c48ce734b60dd8c96e1293b8dc0831c2",
+      "bytes": 1093
+    },
+    {
+      "path": "src/engine/index.ts",
+      "sha256": "8c721fce7c950d75924c4b7a5e67c63c845653fa3eec316c82c52a008adf5d03",
+      "bytes": 329
+    },
+    {
+      "path": "src/engine/money.ts",
+      "sha256": "4ac37436dfcfd24defe7ad9143b0b2902ef94a54ba1ecfe709aea1226e6d5101",
+      "bytes": 1029
+    },
+    {
+      "path": "src/engine/normalize.ts",
+      "sha256": "dd8b472e50066ecf6ecfb638ad68db9a73bc9515fbc731ded60bb5f8b8d52f72",
+      "bytes": 9130
+    },
+    {
+      "path": "src/engine/subset.ts",
+      "sha256": "06ffb44ddb56ee080485fa5542651a274ed0f7db9765d01b8ea00fdaed06bb0d",
+      "bytes": 3601
+    },
+    {
+      "path": "src/engine/units.ts",
+      "sha256": "3c5d229be85299123f8e44cc821a36885d946cbc5d35cd91cc7e7a461c1ee974",
+      "bytes": 3400
+    },
+    {
+      "path": "src/engine/waterfall.ts",
+      "sha256": "3c64564dd1d76f77525494aaca89502b3deba35237c6b2d6247121141c9a83e0",
+      "bytes": 14543
+    },
+    {
+      "path": "src/ingestion/csv.ts",
+      "sha256": "4a54362f52b3c59ae06ece486a9636eaf6014f1dd9b995cbd1541670204f1a95",
+      "bytes": 13368
+    },
+    {
+      "path": "src/ingestion/index.ts",
+      "sha256": "7190dafa223aa0897aba65d6c042d88ce28ff644f7a21106fdd018f7ad4c36b7",
+      "bytes": 480
+    },
+    {
+      "path": "src/ingestion/normalize.ts",
+      "sha256": "220fca1fb24c71a79b81a911bce0d909f97ee7c0d320e42c825e5b1561a5dfed",
+      "bytes": 19176
+    },
+    {
+      "path": "src/ingestion/primitives.ts",
+      "sha256": "e4f772b47efad1d66a8179652658fd80e79e0c487f55087723a755f31bd48a2c",
+      "bytes": 3786
+    },
+    {
+      "path": "src/ingestion/types.ts",
+      "sha256": "fb5416d208b21aac36bfbf60ff68324f74c4a72fad74d1d63d038540b3018a03",
+      "bytes": 1791
+    },
+    {
+      "path": "src/ingestion/xlsx.ts",
+      "sha256": "3e4357cb6d5a77dbd8459ae67a3c816eeed11ee71c901bc0fe1f251eb93d888d",
+      "bytes": 27374
+    },
+    {
+      "path": "src/mapping/aliases.ts",
+      "sha256": "6f280f49a269dea65c781ded6629e5f73d64205105c089249366721d6f7337f2",
+      "bytes": 7947
+    },
+    {
+      "path": "src/mapping/cache.ts",
+      "sha256": "3b72e74a8f3096bc07b53da8c99ab9dbf247a55ce1b0a40859bf18348e68b8a0",
+      "bytes": 825
+    },
+    {
+      "path": "src/mapping/redact.ts",
+      "sha256": "16d411710d1ab2130aed52fcfd1e1ef98a67562504998635169804391b6d0caf",
+      "bytes": 1312
+    },
+    {
+      "path": "src/export/aje.ts",
+      "sha256": "a0e5e50c5203d25d970c8234e96d48ad0e2ac17fdece0cee33d1d10da9cf794e",
+      "bytes": 17058
+    },
+    {
+      "path": "src/export/evidence.ts",
+      "sha256": "f4db666342b1ed28a4bdf53a2c054f802dd44092c10ecc34a8f8e4078186d1eb",
+      "bytes": 4458
+    },
+    {
+      "path": "src/export/index.ts",
+      "sha256": "d974e41ffd00477460bf0fc1d4aa365d3b1e8ca5a290fa9c1e2db1747ae9df0f",
+      "bytes": 97
+    },
+    {
+      "path": "src/export/qbd.ts",
+      "sha256": "64272cf20d16b1c74a8e2f6b70fa10cd11a0594b10a4b9ed75e99620a67bc742",
+      "bytes": 921
+    },
+    {
+      "path": "src/export/qbo.ts",
+      "sha256": "6f8153848053412d4cc58c193c37e3ded59848316c479d0a2c9df334175a9dad",
+      "bytes": 713
+    },
+    {
+      "path": "src/workers/client.ts",
+      "sha256": "092e6ba3330d9e33d053d2640035011e9fbc5d58f14b009a62c6da06b1c9f9ee",
+      "bytes": 1672
+    },
+    {
+      "path": "src/workers/import-client.ts",
+      "sha256": "728cb007a6dc19e67f2dc1e0ecea5a67bce618388037ad3f8ad25710d9ff96b7",
+      "bytes": 1432
+    },
+    {
+      "path": "src/workers/import.worker.ts",
+      "sha256": "21335068c84980eb037cec9aca0cf5b6471523aa4d09e79972b147f0e49243d5",
+      "bytes": 510
+    },
+    {
+      "path": "src/workers/reconcile.worker.ts",
+      "sha256": "d5cd27c521317613bc8c586c9221805dff0947f096ed2421972f68425b54d3a2",
+      "bytes": 642
+    },
+    {
+      "path": "src/workers/xlsx-client.ts",
+      "sha256": "f58857a272db1f112a38fa934a1bab7b05b32a6616e5048cfd27371a79874287",
+      "bytes": 1732
+    },
+    {
+      "path": "src/workers/xlsx.worker.ts",
+      "sha256": "b7f2cca9364e90c849d9ae42243552239ccb7103d0e52792dac2ae32d532d603",
+      "bytes": 633
+    },
+    {
+      "path": "tests/engine/engine.test.ts",
+      "sha256": "1697725f7b16c2d3f9f16a8cdd34ffc8dddd5e32e1d486f6f6f1cec29e5aff16",
+      "bytes": 13557
+    },
+    {
+      "path": "tests/engine/helpers.ts",
+      "sha256": "a0cfadee845f6f12ece011bb3aca796240c0fd17f1a94ade7acd7daecef8b7f6",
+      "bytes": 4798
+    },
+    {
+      "path": "tests/integration/adversarial-boundaries.test.ts",
+      "sha256": "452f1d657d82e8af86c9174a991afe154c6d823c0783e61efd3a1fe25141dfbf",
+      "bytes": 13689
+    },
+    {
+      "path": "tests/integration/fixtures.ts",
+      "sha256": "b685c8641fd00d50aa14ce8daa0751b877326d5e2e2f9346b799b10f5b7f1a76",
+      "bytes": 3208
+    },
+    {
+      "path": "tests/integration/synthetic-evidence.test.ts",
+      "sha256": "b97bbd07aa0158bab00ef7fd4ce86db4f9e3131f7c42919203545a727e7e5c02",
+      "bytes": 12587
+    },
+    {
+      "path": "tests/import-export/exports.test.ts",
+      "sha256": "744839ae29a3e7b20b940237f7a8823e1e4ae0762dbf45e936d93a05b0b50e6f",
+      "bytes": 5519
+    },
+    {
+      "path": "tests/import-export/ingestion.test.ts",
+      "sha256": "99d6c7329aad11fe0a0d58c32e496c7cf5dbc12a3e2eedb49679c7f63eb93722",
+      "bytes": 8938
+    },
+    {
+      "path": "tests/import-export/privacy.test.ts",
+      "sha256": "ddf78955968ddd97d2cdc62ab9c0092bbb1549bc7ae66d49ae61b1dff956f98c",
+      "bytes": 1378
+    },
+    {
+      "path": "tests/xlsx/xlsx.test.ts",
+      "sha256": "67c5b88933d3d6dca4fd8b6eec7db4e90ee0c751e31cc841eb788d7f31b7fd4f",
+      "bytes": 15204
+    },
+    {
+      "path": "package.json",
+      "sha256": "8af247bb2e8806eeb8b1c2d7025076f4363c245d4cd1210c874ba6742954f255",
+      "bytes": 1120
+    },
+    {
+      "path": "docs/ACCOUNTING_EXPORT_SPEC.zh-CN.md",
+      "sha256": "5ca0bc5f522e1fa3e3a26638e105426039db92c88c4e8b32fb1eda14010a740f",
+      "bytes": 20900
+    }
+  ],
+  "scope": "Core/import/export/worker source and actual tests. UI/CSS excluded; no customer input.",
+  "request_sha256": "5ee1b2097c6408cc0a9ad4bb99eeff387c9159028e9ec8d2b8e45ad241c59bf2"
+}

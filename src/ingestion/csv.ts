@@ -16,6 +16,43 @@ export const IMPORT_LIMITS = {
   columns: 80,
   cellBytes: 4096,
 } as const;
+const detailIdentityOrDateFields = new Set([
+  'source_payment_id',
+  'transaction_id',
+  'line_id',
+  'source_transaction_id',
+  'id',
+  'payment_id',
+  'original_payment_id',
+  'correction_payment_id',
+  'st_payment_id',
+  'component_reference',
+  'accounting_batch_id',
+  'payment_date',
+  'posting_date',
+  'posted_date',
+  'received_date',
+  'bank_posting_date',
+  'as_of_date',
+  'event_at',
+]);
+function isReportSummary(values: string[], bindings: Record<string, number>): boolean {
+  const labelIndex = values.findIndex((v) => v.trim());
+  if (
+    labelIndex < 0 ||
+    !/^(?:(?:TOTAL|SUBTOTAL)(?:\s+FOR\b.*)?|(?:BEGINNING|OPENING|ENDING)\s+BALANCE)\s*:?$/i.test(
+      values[labelIndex].trim(),
+    )
+  )
+    return false;
+  // A name or memo beginning with "Total" is not a report control. Preserve
+  // rows with independent detail identity/date cells for normal validation,
+  // including invalid dates, so malformed transactions are not silently lost.
+  return !Object.entries(bindings).some(
+    ([field, index]) =>
+      index !== labelIndex && detailIdentityOrDateFields.has(field) && values[index]?.trim(),
+  );
+}
 function empty<K extends SourceKind>(): ParseResult<RowByKind[K]> {
   return {
     ok: false,
@@ -195,17 +232,14 @@ export async function parseMatrix<K extends SourceKind>(
       .slice(0, headerIndex)
       .forEach((r) => excluded.push({ physicalRow: r.physicalRow, reason: 'Report preamble' }));
     const data = records.slice(headerIndex + 1).filter((r) => {
-      const fields = r.values.filter((v) => v.trim()),
-        first = fields[0]?.trim() ?? '';
+      const fields = r.values.filter((v) => v.trim());
       let reason =
         fields.length === 0
           ? 'Blank row'
           : r.values.length === headers.length &&
               r.values.every((v, i) => normalizeHeader(v) === normalizeHeader(headers[i]))
             ? 'Repeated header'
-            : /^(?:TOTAL\b|SUBTOTAL\b|TOTAL FOR\b|BEGINNING BALANCE\b|OPENING BALANCE\b|ENDING BALANCE\b)/i.test(
-                  first,
-                )
+            : isReportSummary(r.values, mapping.bindings)
               ? 'Report summary/control row, not a posting atom'
               : '';
       if (reason) {

@@ -148,7 +148,7 @@ describe('fee-only accounting export', () => {
 describe('posting verification requires re-imported GL', () => {
   it('requires exact posted journal and reviewed imported account coverage', async () => {
     const p = await approved();
-    const text = `Date,Num,Account,Debit,Credit\n09/30/2026,${p.journalId},Merchant Financing Fees,900.00,\n09/30/2026,${p.journalId},ServiceTitan Clearing,,900.00`;
+    const text = `Transaction ID,Line ID,Date,Num,Account,Debit,Credit\nPOSTED-JE,1,09/30/2026,${p.journalId},Merchant Financing Fees,900.00,\nPOSTED-JE,2,09/30/2026,${p.journalId},ServiceTitan Clearing,,900.00`;
     const r = await parseSource(text, 'QBO', {
       companyId: p.feeCase.companyId,
       bankAccountId: 'BANK',

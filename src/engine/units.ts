@@ -3,6 +3,7 @@ import type { EvidenceBundle } from '../contracts/engine';
 import type { Normalized } from './normalize';
 import { contentHash } from './identities';
 import { sumCents } from './money';
+import { isFinalSettlement } from './evidence';
 export interface CashUnit {
   id: string;
   st: ST_Payment_Record[];
@@ -24,10 +25,7 @@ export function buildUnits(ctx: Normalized, evidence: Required<EvidenceBundle>):
   const grouped = new Map<string, ST_Payment_Record[]>();
   for (const r of ctx.st.filter((r) => r.record_type !== 'PAYMENT_CORRECTION')) {
     // An explicit accounting batch is a membership anchor, not a processor identity.
-    const key =
-      r.record_type === 'PAYMENT' && r.accounting_batch_id
-        ? `batch:${r.accounting_batch_id}`
-        : `payment:${r.id}`;
+    const key = r.accounting_batch_id ? `batch:${r.accounting_batch_id}` : `payment:${r.id}`;
     const rows = grouped.get(key) ?? [];
     rows.push(r);
     grouped.set(key, rows);
@@ -50,7 +48,7 @@ export function buildUnits(ctx: Normalized, evidence: Required<EvidenceBundle>):
     for (const r of rows) {
       const s = settlements.find((e) => e.payment_id === r.source_payment_id);
       const cs = components.filter((e) => e.payment_id === r.source_payment_id);
-      if (s) {
+      if (s && isFinalSettlement(s)) {
         fees = sumCents([fees, s.fee_cents ?? 0]);
         holds = sumCents([holds, s.held_cents]);
         releases = sumCents([releases, s.released_cents ?? 0]);
@@ -62,6 +60,12 @@ export function buildUnits(ctx: Normalized, evidence: Required<EvidenceBundle>):
         fees = sumCents([fees, c.fee_cents]);
         refs.add(c.evidence_ref);
         payouts.add(c.deposit_reference);
+      } else if (s) {
+        // Forecast amounts and holds are not proof of completed cash movement.
+        if (s.status === 'HELD') holds = sumCents([holds, s.held_cents]);
+        refs.add(s.evidence_ref);
+        if (s.settlement_reference) payouts.add(s.settlement_reference);
+        all = false;
       } else if (r.deposit_id) {
         payouts.add(r.deposit_id);
         if (!['CHECK', 'CASH', 'ACH'].includes(r.payment_method) || r.fee_mode === 'NETTED')
@@ -74,6 +78,7 @@ export function buildUnits(ctx: Normalized, evidence: Required<EvidenceBundle>):
         }
         if (
           s &&
+          isFinalSettlement(s) &&
           cs.length === 1 &&
           (s.net_cents !== cs[0]!.net_cents || s.fee_cents !== cs[0]!.fee_cents)
         ) {
