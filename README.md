@@ -4,7 +4,10 @@ A local-file workbench for ServiceTitan → QuickBooks → bank activity.
 The goal is evidence you can review, not a green checkmark from coincident amounts.
 
 **Current stage: private pilot with scoped real-browser checks passed; complete
-browser acceptance and complete QuickBooks round-trip are not established.** No real financial account is connected,
+browser acceptance and complete QuickBooks round-trip are not established.** The 2026-10-22 independent
+review ([report](docs/CLAUDE_CODE_INDEPENDENT_REVIEW_20261022.zh-CN.md), [handoff](docs/HANDOFF_TO_DOT.md))
+fixed a defect that blocked every real three-file fee-only draft and added original-source re-verification
+after reopening; its real-browser run used parser-derived synthetic files only. No real financial account is connected,
 no entries are posted to real books, no real payment service is configured, and no public launch
 is implied. Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
 

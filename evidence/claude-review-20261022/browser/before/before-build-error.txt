@@ -1,0 +1,1 @@
+[ { "code": "too_big", "maximum": 240, "type": "string", "inclusive": true, "exact": false, "message": "String must contain at most 240 character(s)", "path": [ "mappingVersion" ] } ]

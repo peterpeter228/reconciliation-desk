@@ -1,0 +1,14 @@
+
+> reconciliation-desk@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /root/reconciliation-desk
+
+
+ Test Files  29 passed (29)
+      Tests  690 passed (690)
+   Start at  16:10:10
+   Duration  13.37s (transform 3.50s, setup 0ms, import 10.23s, tests 60.43s, environment 5.81s)
+
+exit=0

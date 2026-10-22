@@ -43,6 +43,12 @@ state source size, runtime and unfinished search count; no universal <500ms clai
 - Download does not mean posted. Exact re-imported posted GL verification exists
   as a tested helper; target QBO/QBD account/version validation remains absent.
 
+## Independent review boundaries (2026-10-22)
+
+- Accounting drafts from a reopened project need original-file re-verification; saved rows alone are not trusted.
+- Fee-only drafts need a CONFIRMED QuickBooks → bank settlement link (bank GL account named on import, explicit deposit linkage).
+- The same-browser export register reduces, but does not remove, duplicate-export risk (other browsers/devices, cleared storage, no Web Locks).
+
 ## Acceptance not yet established
 
 Rendered browser interaction/visual/accessibility acceptance, actual spreadsheet

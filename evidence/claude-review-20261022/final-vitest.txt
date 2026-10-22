@@ -1,0 +1,10 @@
+
+ RUN  v4.1.12 /root/reconciliation-desk
+
+
+ Test Files  32 passed (32)
+      Tests  720 passed (720)
+   Start at  16:52:05
+   Duration  12.36s (transform 3.37s, setup 0ms, import 10.06s, tests 60.89s, environment 6.13s)
+
+exit=0

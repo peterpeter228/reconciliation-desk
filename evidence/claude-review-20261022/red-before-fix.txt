@@ -1,0 +1,968 @@
+
+ RUN  v4.1.12 /root/reconciliation-desk
+
+ ❯ tests/claude-review/findings.test.ts (3 tests | 3 failed) 108ms
+     × parses actual CSV bytes into one accepted case and exports only Dr fee / Cr clearing 65ms
+     × blocks an accounting draft from a reopened project until originals are re-verified 30ms
+     × does not let a hand-edited project (isDemo=false, recomputed integrity) yield an importable journal 11ms
+ ❯ tests/claude-review/ui-safety.test.tsx (5 tests | 5 failed) 1953ms
+     × asks before the demo replaces a real workspace with unsaved review edits 510ms
+     × never carries real review facts into a synthetic demo project 347ms
+     × stays a candidate when the GL already shows the posted bank deposit for this case 28ms
+     × stays a candidate when the same QB Payment is listed for another case 28ms
+     × blocks a second journal from a stale copy of the same case after one export 1038ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/claude-review/findings.test.ts > F-00 real parser + engine fee case (positive control) > parses actual CSV bytes into one accepted case and exports only Dr fee / Cr clearing
+ZodError: [
+  {
+    "code": "too_big",
+    "maximum": 240,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at most 240 character(s)",
+    "path": [
+      "mappingVersion"
+    ]
+  }
+]
+ ❯ Object.get error [as error] node_modules/zod/v3/types.js:39:31
+ ❯ ZodObject.parse node_modules/zod/v3/types.js:114:22
+ ❯ validateFeeCase src/export/aje.ts:259:24
+    257| }
+    258| export function validateFeeCase(value: FeeCase): FeeCase {
+    259|   const c = caseSchema.parse(value);
+       |                        ^
+    260|   if (c.ruleVersion !== FEE_ONLY_RULE_VERSION)
+    261|     throw new Error(
+ ❯ buildFeeProposal src/export/aje.ts:436:13
+ ❯ proposalFromCase src/review/case-adapter.ts:306:10
+ ❯ tests/claude-review/findings.test.ts:27:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/claude-review/findings.test.ts > F-01 reopened normalized rows are not re-bound to original source bytes > blocks an accounting draft from a reopened project until originals are re-verified
+AssertionError: expected [Function] to throw error matching /original source/i but got '[\n  {\n    "code": "too_big",\n    "…'
+
+- Expected:
+/original source/i
+
++ Received:
+"[
+  {
+    \"code\": \"too_big\",
+    \"maximum\": 240,
+    \"type\": \"string\",
+    \"inclusive\": true,
+    \"exact\": false,
+    \"message\": \"String must contain at most 240 character(s)\",
+    \"path\": [
+      \"mappingVersion\"
+    ]
+  }
+]"
+
+ ❯ tests/claude-review/findings.test.ts:49:5
+     47|     await expect(
+     48|       proposalFromCase(reopened, g, r, r.reviewedFacts as unknown as C…
+     49|     ).rejects.toThrow(/original source/i);
+       |     ^
+     50|   });
+     51|   it('does not let a hand-edited project (isDemo=false, recomputed int…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/claude-review/findings.test.ts > F-01 reopened normalized rows are not re-bound to original source bytes > does not let a hand-edited project (isDemo=false, recomputed integrity) yield an importable journal
+AssertionError: promise resolved "{ …(7) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "approval": null,
++   "date": "2026-09-30",
++   "feeCase": {
++     "accounts": [
++       {
++         "exists": true,
++         "id": "Collections Checking",
++         "isUndepositedFunds": false,
++         "name": "Collections Checking",
++         "type": "BANK",
++       },
++       {
++         "exists": true,
++         "id": "ServiceTitan Clearing",
++         "isUndepositedFunds": false,
++         "name": "ServiceTitan Clearing",
++         "type": "OTHER_CURRENT_ASSET",
++       },
++       {
++         "exists": true,
++         "id": "Merchant Financing Fees",
++         "isUndepositedFunds": false,
++         "name": "Merchant Financing Fees",
++         "type": "EXPENSE",
++       },
++       {
++         "exists": true,
++         "id": "Accounts Receivable",
++         "isUndepositedFunds": false,
++         "name": "Accounts Receivable",
++         "type": "OTHER",
++       },
++     ],
++     "adjustmentVersion": "fee-only-v1",
++     "bankAccountId": "Collections Checking",
++     "bankEvidenceRefs": [
++       "a64e8df79b8ef7ef5bc8ab26de8c22900ea12489dc1144ccf3443f3195ad0293:row2",
++     ],
++     "bankNetCents": 910000,
++     "caseId": "case-23476b271213de4e32f764fb",
++     "clearingAccountId": "ServiceTitan Clearing",
++     "clearingResidualCents": 90000,
++     "companyId": "company",
++     "confirmedFeeCents": 90000,
++     "existingImportStatus": "NEVER_IMPORTED",
++     "existingJournalIds": [
++       "DEMO-RECEIPT",
++       "DEMO-RECEIPT",
++       "DEMO-DEPOSIT",
++       "DEMO-DEPOSIT",
++     ],
++     "expenseNotRecordedConfirmed": true,
++     "feeAccountId": "Merchant Financing Fees",
++     "feeMode": "NETTED",
++     "grossCents": 1000000,
++     "journalDate": "2026-09-30",
++     "ledgerCoverage": {
++       "accountIds": [
++         "Collections Checking",
++         "ServiceTitan Clearing",
++         "Merchant Financing Fees",
++         "Accounts Receivable",
++       ],
++       "asOfDate": "2026-09-30",
++       "confirmed": true,
++       "evidenceRef": "LEDGER:9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36;COA:b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
++       "periodEnd": "2026-09-30",
++       "periodStart": "2026-09-01",
++       "reviewer": "Synthetic QA reviewer",
++     },
++     "mappingVersion": "synthetic-normalized-fixture-1",
++     "netFeeConfirmed": true,
++     "periodOpenConfirmed": true,
++     "postedGL": [
++       {
++         "accountId": "ServiceTitan Clearing",
++         "creditCents": 0,
++         "date": "2026-09-01",
++         "debitCents": 1000000,
++         "evidenceRef": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14:row2",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "Accounts Receivable",
++         "creditCents": 1000000,
++         "date": "2026-09-01",
++         "debitCents": 0,
++         "evidenceRef": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14:row3",
++         "journalId": "DEMO-RECEIPT",
++         "posted": true,
++         "transactionId": "DEMO-RECEIPT",
++       },
++       {
++         "accountId": "Collections Checking",
++         "creditCents": 0,
++         "date": "2026-09-03",
++         "debitCents": 910000,
++         "evidenceRef": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14:row4",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++       {
++         "accountId": "ServiceTitan Clearing",
++         "creditCents": 910000,
++         "date": "2026-09-03",
++         "debitCents": 0,
++         "evidenceRef": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14:row5",
++         "journalId": "DEMO-DEPOSIT",
++         "posted": true,
++         "transactionId": "DEMO-DEPOSIT",
++       },
++     ],
++     "postedGLRelations": [],
++     "receiptTransactionId": "DEMO-RECEIPT",
++     "ruleVersion": "fee-only-1.2",
++     "settlementEvidenceRef": "SETTLEMENT:671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
++     "settlementReference": "fee-c296d91b9dd2ebf496bad9f4",
++     "settlementTransactionId": "DEMO-DEPOSIT",
++     "sourceFileHashes": [
++       "ab8692639c9b7184d7d78a05fd3d7c1ea4c7fb66fd619fad6b1f8069249c9419",
++       "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
++       "a64e8df79b8ef7ef5bc8ab26de8c22900ea12489dc1144ccf3443f3195ad0293",
++       "7840ede0bb7c410a38fc108b43d67dcf4a63a7414818685ecd00375f3ee0b8af",
++       "b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
++       "671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
++       "9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36",
++     ],
++     "stEvidenceRefs": [
++       "ab8692639c9b7184d7d78a05fd3d7c1ea4c7fb66fd619fad6b1f8069249c9419:row2",
++     ],
++     "syntheticOnly": false,
++   },
++   "journalId": "RD30D093C12E",
++   "lines": [
++     {
++       "account": "Merchant Financing Fees",
++       "accountId": "Merchant Financing Fees",
++       "creditCents": 0,
++       "debitCents": 90000,
++       "memo": "Approved documented net fee RD30D093C12E",
++     },
++     {
++       "account": "ServiceTitan Clearing",
++       "accountId": "ServiceTitan Clearing",
++       "creditCents": 90000,
++       "debitCents": 0,
++       "memo": "Approved documented net fee RD30D093C12E",
++     },
++   ],
++   "proposalId": "30d093c12ee73a900d51880e847e18a2b77f177b9c6446a7885f7bca987d947e",
++   "state": "DRAFT",
+  }
+
+ ❯ tests/claude-review/findings.test.ts:66:5
+     64|     await expect(
+     65|       proposalFromCase(w, g, r, r.reviewedFacts as unknown as CaseFact…
+     66|     ).rejects.toThrow(/original source/i);
+       |     ^
+     67|   });
+     68| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-02 replacing a workspace with unsaved review work > asks before the demo replaces a real workspace with unsaved review edits
+TestingLibraryElementError: Unable to find an element with the text: /Replace this workspace\?/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"skip-link"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mSkip to workspace[0m
+    [36m</a>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"app-header"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+        [33mclass[39m=[32m"brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"brand-mark"[39m
+        [36m>[39m
+          [36m<i />[39m
+          [36m<i />[39m
+          [36m<i />[39m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mReconciliation Desk[0m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Main navigation"[39m
+        [33mclass[39m=[32m"main-nav"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"active"[39m
+        [36m>[39m
+          [0mDesk[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mImport[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mExports[0m
+        [36m</button>[39m
+      [36m</nav>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"header-end"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"privacy-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mStays in this browser[0m
+          [36m</span>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Clear workspace"[39m
+          [33mclass[39m=[32m"icon-button clear-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-trash2"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 6h18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"10"[39m
+              [33mx2[39m=[32m"10"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"14"[39m
+              [33mx2[39m=[32m"14"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Toggle navigation"[39m
+          [33mclass[39m=[32m"icon-button mobile-menu"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-menu"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"21"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"21"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"12"[39m
+              [33my2[39m=[32m"12"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"6"[39m
+              [33my2[39m=[32m"6"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"18"[39m
+              [33my2[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-main"[39m
+      [33mid[39m=[32m"main"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFollow the money.[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0mSep 1, 2026 – Sep 30, 2026 · Synthetic HVAC Co[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"heading-actions"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mOpen review project[0m
+            [36m<input[39m
+              [33maccept[39m=[32m".json"[39m
+              [33maria-label[39m=[32m"Open review project"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mhidden[39m=[32m""[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+    ...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/claude-review/ui-safety.test.tsx:121:19
+    119|     });
+    120|     fireEvent.click(screen.getByRole('button', { name: 'Reset sample m…
+    121|     expect(screen.getByText(/Replace this workspace\?/)).toBeTruthy();
+       |                   ^
+    122|     expect(fetch).not.toHaveBeenCalled();
+    123|     expect(screen.getAllByText(/Synthetic HVAC Co/).length).toBeGreate…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-02 replacing a workspace with unsaved review work > never carries real review facts into a synthetic demo project
+AssertionError: expected '{\n  "format": "reconciliation-review…' not to contain 'Synthetic reviewer (edited)'
+
+- Expected
++ Received
+
+- Synthetic reviewer (edited)
++ {
++   "format": "reconciliation-review-project",
++   "schemaVersion": 1,
++   "savedAt": "2026-10-22T08:20:47.335Z",
++   "workspace": {
++     "input": {
++       "st": [],
++       "qb": [],
++       "bank": [],
++       "manifests": [
++         {
++           "company_id": "SYNTHETIC_DEMO",
++           "source_system": "ST",
++           "source_file_sha256": "ST00000000000000000000000000000000000000000000000000000000000000",
++           "report_name": "st_export.csv",
++           "report_grain": "TEST",
++           "period_start": "2026-09-01",
++           "period_end": "2026-09-30",
++           "as_of_date": "2026-09-30",
++           "company_timezone": "America/New_York",
++           "basis": "ACCRUAL",
++           "accounts": [],
++           "account_balances": [],
++           "header_row": 1,
++           "raw_row_count": 0,
++           "normalized_row_count": 0,
++           "excluded_summary_rows": [],
++           "opening_debit_balance_cents": null,
++           "closing_debit_balance_cents": null,
++           "coverage_confirmed": false,
++           "missing_required_fields": []
++         },
++         {
++           "company_id": "SYNTHETIC_DEMO",
++           "source_system": "QBO",
++           "source_file_sha256": "QBO0000000000000000000000000000000000000000000000000000000000000",
++           "report_name": "qbo_clearing_gl.csv",
++           "report_grain": "TEST",
++           "period_start": "2026-09-01",
++           "period_end": "2026-09-30",
++           "as_of_date": "2026-09-30",
++           "company_timezone": "America/New_York",
++           "basis": "ACCRUAL",
++           "accounts": [],
++           "account_balances": [],
++           "header_row": 1,
++           "raw_row_count": 0,
++           "normalized_row_count": 0,
++           "excluded_summary_rows": [],
++           "opening_debit_balance_cents": null,
++           "closing_debit_balance_cents": null,
++           "coverage_confirmed": false,
++           "missing_required_fields": []
++         },
++         {
++           "company_id": "SYNTHETIC_DEMO",
++           "source_system": "BANK",
++           "source_file_sha256": "BANK000000000000000000000000000000000000000000000000000000000000",
++           "report_name": "chase_bank.csv",
++           "report_grain": "TEST",
++           "period_start": "2026-09-01",
++           "period_end": "2026-09-30",
++           "as_of_date": "2026-09-30",
++           "company_timezone": "America/New_York",
++           "basis": "ACCRUAL",
++           "accounts": [],
++           "account_balances": [],
++           "header_row": 1,
++           "raw_row_count": 0,
++           "normalized_row_count": 0,
++           "excluded_summary_rows": [],
++           "opening_debit_balance_cents": null,
++           "closing_debit_balance_cents": null,
++           "coverage_confirmed": false,
++           "missing_required_fields": []
++         }
++       ],
++       "config": {
++         "company_id": "SYNTHETIC_DEMO",
++         "bank_account_id": "DEMO_BANK",
++         "period_cutoff": "2026-09-30",
++         "qb_bank_account_names": [
++           "Collections Checking"
++         ],
++         "clearing_split_semantics_confirmed": true
++       }
++     },
++     "result": {
++       "groups": [],
++       "controls": {
++         "st_gross_cents": 0,
++         "st_refunds_cents": 0,
++         "st_corrections_cents": 0,
++         "qb_debits_cents": 0,
++         "qb_credits_cents": 0,
++         "bank_signed_cents": 0,
++         "accounts": [],
++         "atoms": [],
++         "conservation_ok": true,
++         "coverage_confirmed": false
++       },
++       "warnings": [],
++       "allocations": [],
++       "searches": [],
++       "rejected_candidates": [],
++       "versions": {
++         "engine": "TEST",
++         "rules": "TEST",
++         "calendar": "TEST",
++         "mapping": []
++       }
++     },
++     "duration": 1,
++     "isDemo": true,
++     "files": [
++       {
++         "name": "st_export.csv",
++         "kind": "ST",
++         "hash": "ST00000000000000000000000000000000000000000000000000000000000000"
++       },
++       {
++         "name": "qbo_clearing_gl.csv",
++         "kind": "QBO",
++         "hash": "QBO0000000000000000000000000000000000000000000000000000000000000"
++       },
++       {
++         "name": "chase_bank.csv",
++         "kind": "BANK",
++         "hash": "BANK000000000000000000000000000000000000000000000000000000000000"
++       }
++     ],
++     "options": {
++       "companyId": "SYNTHETIC_DEMO",
++       "bankAccountId": "DEMO_BANK",
++       "companyTimezone": "America/New_York",
++       "periodStart": "2026-09-01",
++       "periodEnd": "2026-09-30",
++       "asOfDate": "2026-09-30",
++       "currency": "USD",
++       "profile": "synthetic-v1",
++       "rowGrain": "PAYMENT",
++       "exportMode": "JE_TO_CLEARING",
++       "postedLedgerConfirmed": true,
++       "bankPostedConfirmed": true,
++       "coverageConfirmed": true,
++       "basis": "ACCRUAL"
++     },
++     "runId": "f060846c-2656-457b-8731-cc1785d04083",
++     "review": {
++       "schemaVersion": 1,
++       "inputDigest": "30095c057869eea2c38de5d4460abe1d808541f5049c99c3144d486f7efeb0e6",
++       "cases": [],
++       "orphanedCases": [
++         {
++           "economicCaseId": "case-6c217a84f3f1a1de1e58f7d3",
++           "accountingActionId": "fee-3bdc076eaa7e316df268a768",
++           "engineGroupId": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
++           "anchors": [
++             "[\"Synthetic HVAC Co\",\"BANK\",\"deposit\",\"[\\\"Collections Checking\\\",\\\"SYN-SET-900\\\"]\"]",
++             "[\"Synthetic HVAC Co\",\"ST\",\"payment\",\"[\\\"Collections Checking\\\",\\\"SYN-PMT-900\\\"]\"]"
++           ],
++           "inputDigest": "5e67b64269b2a566e112fb20035489503d63ef1de2131eedcaff0a23b6003a4a",
++           "identityStatus": "BOUND",
++           "reviewedFacts": {
++             "reviewer": "Synthetic reviewer (edited)",
++             "notes": "Synthetic netted processor fee; posted gross receipt and net bank deposit.",
++             "journalDate": "2026-09-30",
++             "bankAccountName": "Collections Checking",
++             "clearingAccountName": "ServiceTitan Clearing",
++             "feeAccountName": "Merchant Processing Fees",
++             "receiptTransactionId": "SYN-QB-R900",
++             "settlementTransactionId": "SYN-QB-D900",
++             "documentedFee": "900.00",
++             "feeMode": "NETTED",
++             "netFeeConfirmed": true,
++             "periodOpenConfirmed": true,
++             "expenseNotRecordedConfirmed": true,
++             "completeLedgerConfirmed": true,
++             "ledgerCoveredAccountNames": "ServiceTitan Clearing\nAccounts Receivable\nCollections Checking\nMerchant Processing Fees",
++             "ledgerPeriodStart": "2026-09-01",
++             "ledgerPeriodEnd": "2026-09-30",
++             "accountsReviewed": true,
++             "clearingIsOrdinaryAsset": true,
++             "documents": [
++               {
++                 "name": "synthetic-coa.txt",
++                 "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
++                 "purpose": "COA",
++                 "sizeBytes": 10
++               },
++               {
++                 "name": "synthetic-settlement.txt",
++                 "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
++                 "purpose": "SETTLEMENT",
++                 "sizeBytes": 10
++               },
++               {
++                 "name": "synthetic-ledger.txt",
++                 "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
++                 "purpose": "LEDGER",
++                 "sizeBytes": 10
++               }
++             ],
++             "reviewedAccounts": [
++               {
++                 "id": "Collections Checking",
++                 "name": "Collections Checking",
++                 "type": "BANK",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               },
++               {
++                 "id": "ServiceTitan Clearing",
++                 "name": "ServiceTitan Clearing",
++                 "type": "OTHER_CURRENT_ASSET",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               },
++               {
++                 "id": "Merchant Processing Fees",
++                 "name": "Merchant Processing Fees",
++                 "type": "EXPENSE",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               },
++               {
++                 "id": "Accounts Receivable",
++                 "name": "Accounts Receivable",
++                 "type": "OTHER",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               }
++             ],
++             "relations": []
++           },
++           "exportHistory": [],
++           "existingImportStatus": "NEVER_IMPORTED"
++         },
++         {
++           "economicCaseId": "case-26430aeeb027454dbb3c3a8c",
++           "accountingActionId": "fee-e18d3a4a95ca5a88ecaa3195",
++           "engineGroupId": "06d875fcce0863c4a11601619e8cfc1f47155364486ac2a15515c03ed8024fb3",
++           "anchors": [
++             "[\"Synthetic HVAC Co\",\"QBO\",\"transaction\",\"[\\\"Collections Checking\\\",\\\"SYN-QB-R900\\\"]\"]"
++           ],
++           "inputDigest": "5e67b64269b2a566e112fb20035489503d63ef1de2131eedcaff0a23b6003a4a",
++           "identityStatus": "BOUND",
++           "reviewedFacts": {},
++           "exportHistory": [],
++           "existingImportStatus": "NEVER_IMPORTED"
++         }
++       ]
++     }
++   },
++   "integrity": "5ac3721fc26fed28033dc3f3f2469013b4eb94f4dbf928086707a5f5f367b1fa"
++ }
+
+ ❯ tests/claude-review/ui-safety.test.tsx:136:31
+    134|     fireEvent.click(screen.getByRole('button', { name: 'Save review pr…
+    135|     const saved = downloads.find((d) => d.name.startsWith('review-proj…
+    136|     expect(saved.content).not.toContain('Synthetic reviewer (edited)');
+       |                               ^
+    137|     expect(saved.content).not.toContain('Synthetic HVAC Co');
+    138|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-04 UF reviewed instructions ignore contradicting GL and other cases > stays a candidate when the GL already shows the posted bank deposit for this case
+AssertionError: expected 'REVIEWED_INSTRUCTIONS' to be 'CANDIDATE' // Object.is equality
+
+Expected: "CANDIDATE"
+Received: "REVIEWED_INSTRUCTIONS"
+
+ ❯ tests/claude-review/ui-safety.test.tsx:166:26
+    164|     renderCase(w);
+    165|     const sheet = ufWorksheet();
+    166|     expect(sheet.status).toBe('CANDIDATE');
+       |                          ^
+    167|     expect(sheet.missingEvidence.join(' ')).toMatch(/posted bank depos…
+    168|     expect(sheet.steps.join(' ')).not.toMatch(/select these existing Q…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-04 UF reviewed instructions ignore contradicting GL and other cases > stays a candidate when the same QB Payment is listed for another case
+AssertionError: expected '' to match /also listed/i
+
+- Expected:
+/also listed/i
+
++ Received:
+""
+
+ ❯ tests/claude-review/ui-safety.test.tsx:177:53
+    175|     other.reviewedFacts = { ufPayments: [ufPayment] };
+    176|     renderCase(w);
+    177|     expect(ufWorksheet().missingEvidence.join(' ')).toMatch(/also list…
+       |                                                     ^
+    178|   });
+    179| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-09 an export from this browser is remembered beyond the in-memory project > blocks a second journal from a stale copy of the same case after one export
+AssertionError: expected "vi.fn()" to be called at least once
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"Current case accounting review"[39m
+        [33mclass[39m=[32m"case-review panel"[39m
+      [36m>[39m
+        [36m<h3>[39m
+          [0mReview this economic case[0m
+        [36m</h3>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"body-muted"[39m
+        [36m>[39m
+          [0mInvestigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<strong>[39m
+            [0mStable case:[0m
+          [36m</strong>[39m
+          [0m [0m
+          [0mcase-6c217a84f3f1a1de1e58f7d3[0m
+          [0m · [0m
+          [0mBOUND[0m
+          [0m · Prior import:[0m
+          [0m [0m
+          [0mNEVER_IMPORTED[0m
+        [36m</p>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button button-secondary"[39m
+        [36m>[39m
+          [0mDownload human-judgment workpaper[0m
+        [36m</button>[39m
+        [36m<details>[39m
+          [36m<summary>[39m
+            [0mReview facts & documented fee-only proposal[0m
+          [36m</summary>[39m
+          [36m<fieldset[39m
+            [33mclass[39m=[32m"form-stack"[39m
+          [36m>[39m
+            [36m<label>[39m
+              [0mReviewer[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"Synthetic reviewer"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mAccounting basis / unresolved questions[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"Synthetic netted processor fee; posted gross receipt and net bank deposit."[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mJournal date[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-30"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mDocument purpose[0m
+              [36m<select>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SETTLEMENT"[39m
+                [36m>[39m
+                  [0mSettlement fee evidence[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"COA"[39m
+                [36m>[39m
+                  [0mActual chart of accounts[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LEDGER"[39m
+                [36m>[39m
+                  [0mFull GL coverage evidence[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mAttach a locally reviewed supporting document[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"file"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<small>[39m
+              [0mOnly its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.[0m
+            [36m</small>[39m
+            [36m<ul>[39m
+              [36m<li>[39m
+                [0mCOA[0m
+                [0m: [0m
+                [0msynthetic-coa.txt[0m
+                [0m · [0m
+                [0m111111111111[0m
+              [36m</li>[39m
+              [36m<li>[39m
+                [0mSETTLEMENT[0m
+                [0m: [0m
+                [0msynthetic-settlement.txt[0m
+                [0m · [0m
+                [0m222222222222[0m
+              [36m</li>[39m
+              [36m<li>[39m
+                [0mLEDGER[0m
+                [0m: [0m
+                [0msynthetic-ledger.txt[0m
+                [0m · [0m
+                [0m333333333333[0m
+              [36m</li>[39m
+            [36m</ul>[39m
+            [36m<label>[39m
+              [0mExact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)[0m
+              [36m<textarea>[39m
+                [0mServiceTitan Clearing
+Accounts Receivable
+Collections Checking
+Merchant Processing Fees[0m
+              [36m</textarea>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mReviewed GL coverage starts[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-01"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mReviewed GL coverage ends[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-30"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<datalist[39m
+              [33mid[39m=[32m"review-account-names"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+              [36m/>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"Accounts Receivable"[39m
+              [36m/>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"Collections Checking"[39m
+              [36m/>[39m
+            [36m</datalist>[39m
+            [36m<label>[39m
+              [0mExisting bank account full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"Collections Checking"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mExisting ordinary asset clearing full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mExisting fee expense account full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"Merchant Processing Fees"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<fieldset>[39m
+              [36m<legend>[39m
+                [0mActual chart of accounts review[0m
+              [36m</legend>[39m
+              [36m<small>[39m
+                [0mExplicitly confirm each account against the attached COA. A chosen label never creates or changes an account.[0m
+              [36m</small>[39m
+              [36m<...
+ ❯ tests/claude-review/ui-safety.test.tsx:194:42
+    192|     );
+    193|     fireEvent.click(screen.getByRole('button', { name: 'Build supporte…
+    194|     await waitFor(() => expect(onChange).toHaveBeenCalled());
+       |                                          ^
+    195|     rerender();
+    196|     fireEvent.click(screen.getByLabelText(/I reviewed these exact acco…
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  8 failed (8)
+   Start at  16:20:45
+   Duration  3.24s (transform 657ms, setup 0ms, import 1.03s, tests 2.06s, environment 548ms)
+

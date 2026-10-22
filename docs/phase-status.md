@@ -1,3 +1,15 @@
+# Independent review milestone — 2026-10-22 (supersedes the section below where they differ)
+
+Claude Code independently reviewed dot's 2026-10-22 workflow on branch `review/claude-code-independent-20261022`.
+Verified: the actual-case fee-only path could not complete for any real three-file import (raw validation error);
+it now completes from parser-derived synthetic CSVs in a sandboxed real Chrome and produces a verified two-line CSV,
+manifest and reviewer summary. Reopened projects require original-file re-verification before accounting drafts;
+review state no longer crosses workspaces; stale copies/second tabs in the same browser cannot export twice.
+720 TS tests + 33 Python reference tests and 29/29 real-browser checks pass. Not established: real customer files,
+QBO/QBD import of current output, print/PDF, assistive technology, demand or revenue. See
+[review report](CLAUDE_CODE_INDEPENDENT_REVIEW_20261022.zh-CN.md), [evidence](../evidence/claude-review-20261022/README.md)
+and [handoff](HANDOFF_TO_DOT.md).
+
 # Current local milestone — 2026-10-22
 
 The new case-review workflow supersedes historical “teaching-only UI” and blanket native-control-formula rejection statements below. See [REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md). Local implementation includes intact native XLSX controls, partial whole-transaction quarantine, actual-case fact/COA/coverage binding, strict fee-only approval/export, UF candidate instructions, and versioned Save/Open with stable action and export history.

@@ -1,0 +1,21 @@
+{
+  "base": "http://127.0.0.1:4174/",
+  "commit": "42d677e",
+  "results": [
+    {
+      "id": "BEFORE-qb-bank-leg",
+      "status": "OBSERVED",
+      "detail": "desk lists QB bank posting as still needed (no bank GL field at baseline)"
+    },
+    {
+      "id": "BEFORE-build-from-parsed-files",
+      "status": "OBSERVED",
+      "detail": "[ { \"code\": \"too_big\", \"maximum\": 240, \"type\": \"string\", \"inclusive\": true, \"exact\": false, \"message\": \"String must contain at most 240 character(s)\", \"path\": [ \"mappingVersion\" ] } ]"
+    },
+    {
+      "id": "BEFORE-demo-replaces-unsaved-work",
+      "status": "OBSERVED",
+      "detail": "Follow the money. Sep 1, 2026 – Sep 30, 2026 · Synthetic sample · No customer data Open review project Save review project Import files Reset sample month"
+    }
+  ]
+}

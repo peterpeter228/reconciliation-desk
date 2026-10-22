@@ -1,0 +1,25 @@
+{
+  "status": "EXPORTED_NOT_POSTED",
+  "compatibility": "BETA_NOT_TARGET_TESTED",
+  "synthetic_only": false,
+  "proposalId": "8c9256ac3913ad34cf8efb1b006d11be78d9a1b9518c8689485b70f88e649060",
+  "proposalHash": "dc16489448e7b54d41141d2b71a3e462861d7a74717c83fcc804f0bacdb3635d",
+  "journalId": "RD8C9256AC39",
+  "sourceFileHashes": [
+    "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153",
+    "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+    "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9",
+    "3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282",
+    "671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
+    "b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
+    "9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36"
+  ],
+  "approvedBy": "Synthetic QA reviewer",
+  "approvedAt": "2026-10-22T08:52:58.242Z",
+  "warnings": [
+    "Export is not posting. Review in a backup/sample company, then re-import GL to verify.",
+    "Target QuickBooks product, region and version import has not been tested.",
+    "Hash detects changes; it does not authenticate an accounting reviewer.",
+    "Do not re-import a partially successful or uncertain package."
+  ]
+}

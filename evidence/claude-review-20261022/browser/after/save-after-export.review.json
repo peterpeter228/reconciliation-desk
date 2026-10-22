@@ -1,0 +1,1867 @@
+{
+  "format": "reconciliation-review-project",
+  "schemaVersion": 1,
+  "savedAt": "2026-10-22T08:53:00.189Z",
+  "workspace": {
+    "input": {
+      "st": [
+        {
+          "id": "33ed5bb131503319892f705a86c0a000476a2224e8921e25dee84fe6e2db3d4f",
+          "company_id": "Synthetic HVAC Co",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153",
+              "sheet": null,
+              "physical_row": 2,
+              "column_indices": {
+                "currency": [
+                  18
+                ],
+                "source_payment_id": [
+                  0
+                ],
+                "original_payment_id": [
+                  1
+                ],
+                "record_type": [
+                  2
+                ],
+                "payment_date": [
+                  3
+                ],
+                "accounting_batch_id": [
+                  4
+                ],
+                "deposit_id": [
+                  19
+                ],
+                "batch_close_date": [
+                  5
+                ],
+                "batch_post_date": [
+                  6
+                ],
+                "invoice_id": [
+                  7
+                ],
+                "customer": [
+                  8
+                ],
+                "business_unit": [
+                  9
+                ],
+                "payment_method": [
+                  10
+                ],
+                "processor": [
+                  11
+                ],
+                "gross_cents": [
+                  12
+                ],
+                "reported_net_cents": [
+                  13
+                ],
+                "gl_account_code": [
+                  14
+                ],
+                "export_status": [
+                  15
+                ],
+                "payment_status": [
+                  16
+                ],
+                "reference": [
+                  17
+                ]
+              },
+              "raw_row_sha256": "e42874c54424c03a4a229ba837a7bbe9e8eddbf94f2e06c29254138f1c5ffe43",
+              "parser_version": "csv-local-1.0",
+              "mapping_version": "local-alias-1.0:7476da58b8d51124f451838692c80f601b0050eb279756280fc650f05fa5d38c"
+            }
+          ],
+          "validation_errors": [],
+          "source_payment_id": "SYN-PMT-900",
+          "record_type": "PAYMENT",
+          "row_grain": "PAYMENT",
+          "original_payment_id": null,
+          "invoice_allocations": [
+            {
+              "invoice_id": "SYN-INV-900",
+              "applied_cents": null
+            }
+          ],
+          "accounting_batch_id": "SYN-B-900",
+          "processor_batch_id": null,
+          "deposit_id": "SYN-SET-900",
+          "payment_date": "2026-09-10",
+          "batch_close_date": "2026-09-10",
+          "batch_post_date": "2026-09-10",
+          "export_at": null,
+          "expected_settlement_date": null,
+          "export_status": "EXPORTED",
+          "export_status_basis": "UNKNOWN",
+          "export_mode": "JE_TO_CLEARING",
+          "customer_token": "LOCAL_22fdea19572de95d0274",
+          "business_unit": "Synthetic HVAC",
+          "payment_method": "CARD",
+          "card_brand": null,
+          "processor": "ServiceTitan Payments",
+          "merchant_id": null,
+          "bank_account_id": "Collections Checking",
+          "gross_cents": 1000000,
+          "reported_net_cents": 910000,
+          "reported_fee_cents": null,
+          "fee_mode": "UNKNOWN",
+          "reference": "SYN-AUTH-900",
+          "gl_account_code": "1055",
+          "payment_status": "SUCCESS"
+        }
+      ],
+      "qb": [
+        {
+          "id": "694f4214622829f74b9377d9553e9b0de285bf7d898907912cd380aabda76a42",
+          "company_id": "Synthetic HVAC Co",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+              "sheet": null,
+              "physical_row": 2,
+              "column_indices": {
+                "transaction_id": [
+                  0
+                ],
+                "line_id": [
+                  1
+                ],
+                "posting_date": [
+                  2
+                ],
+                "transaction_type": [
+                  3
+                ],
+                "num": [
+                  4
+                ],
+                "name": [
+                  5
+                ],
+                "memo_local": [
+                  6
+                ],
+                "account_full_name": [
+                  7
+                ],
+                "account_type": [
+                  8
+                ],
+                "split_account": [
+                  9
+                ],
+                "debit_cents": [
+                  10
+                ],
+                "credit_cents": [
+                  11
+                ],
+                "signed_cents": [
+                  12
+                ],
+                "cleared_status": [
+                  13
+                ],
+                "role": [
+                  14
+                ],
+                "linked_payment_id": [
+                  16
+                ],
+                "linked_deposit_id": [
+                  17
+                ],
+                "accounting_batch_id": [
+                  15
+                ]
+              },
+              "raw_row_sha256": "b82e7a6bea9fddeac39c2c1e3742840b8c8be455f50fd7d0f9a53dfea759034a",
+              "parser_version": "csv-local-1.0",
+              "mapping_version": "local-alias-1.0:841c97246f2a75c6f5243e47cedf81852cd93d81b07286b7fa3f995f66ebbe25"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "SYN-QB-R900",
+          "line_id": "SYN-QL-1",
+          "transaction_type": "Journal Entry",
+          "posting_date": "2026-09-10",
+          "num": "SYN-B-900",
+          "name_token": null,
+          "memo_local": "ServiceTitan accounting batch SYN-B-900 export",
+          "account_id": null,
+          "account_full_name": "ServiceTitan Clearing",
+          "account_type": "OTHER_CURRENT_ASSET",
+          "split_account": "Accounts Receivable",
+          "debit_cents": 1000000,
+          "credit_cents": 0,
+          "signed_cents": 1000000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "CLEARING_RECEIPT",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": "SYN-PMT-900",
+          "linked_deposit_id": null,
+          "accounting_batch_id": "SYN-B-900",
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        },
+        {
+          "id": "b60c497df8ad0490d28b8d0b7b3e11ced713f163c19dfdb43413185330755dfa",
+          "company_id": "Synthetic HVAC Co",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+              "sheet": null,
+              "physical_row": 3,
+              "column_indices": {
+                "transaction_id": [
+                  0
+                ],
+                "line_id": [
+                  1
+                ],
+                "posting_date": [
+                  2
+                ],
+                "transaction_type": [
+                  3
+                ],
+                "num": [
+                  4
+                ],
+                "name": [
+                  5
+                ],
+                "memo_local": [
+                  6
+                ],
+                "account_full_name": [
+                  7
+                ],
+                "account_type": [
+                  8
+                ],
+                "split_account": [
+                  9
+                ],
+                "debit_cents": [
+                  10
+                ],
+                "credit_cents": [
+                  11
+                ],
+                "signed_cents": [
+                  12
+                ],
+                "cleared_status": [
+                  13
+                ],
+                "role": [
+                  14
+                ],
+                "linked_payment_id": [
+                  16
+                ],
+                "linked_deposit_id": [
+                  17
+                ],
+                "accounting_batch_id": [
+                  15
+                ]
+              },
+              "raw_row_sha256": "58b39f3c842acbbb03df3f3a44325f13b92da119b223276bd4c1ed1d58c3838a",
+              "parser_version": "csv-local-1.0",
+              "mapping_version": "local-alias-1.0:841c97246f2a75c6f5243e47cedf81852cd93d81b07286b7fa3f995f66ebbe25"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "SYN-QB-R900",
+          "line_id": "SYN-QL-2",
+          "transaction_type": "Journal Entry",
+          "posting_date": "2026-09-10",
+          "num": "SYN-B-900",
+          "name_token": null,
+          "memo_local": "ServiceTitan accounting batch SYN-B-900 export",
+          "account_id": null,
+          "account_full_name": "Accounts Receivable",
+          "account_type": "OTHER",
+          "split_account": "ServiceTitan Clearing",
+          "debit_cents": 0,
+          "credit_cents": 1000000,
+          "signed_cents": -1000000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "OTHER",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": "SYN-PMT-900",
+          "linked_deposit_id": null,
+          "accounting_batch_id": "SYN-B-900",
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        },
+        {
+          "id": "e7d90d2da50f69e05850d944d8ff7232c9872484ca48c3ceff1db55cd032fe5e",
+          "company_id": "Synthetic HVAC Co",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+              "sheet": null,
+              "physical_row": 4,
+              "column_indices": {
+                "transaction_id": [
+                  0
+                ],
+                "line_id": [
+                  1
+                ],
+                "posting_date": [
+                  2
+                ],
+                "transaction_type": [
+                  3
+                ],
+                "num": [
+                  4
+                ],
+                "name": [
+                  5
+                ],
+                "memo_local": [
+                  6
+                ],
+                "account_full_name": [
+                  7
+                ],
+                "account_type": [
+                  8
+                ],
+                "split_account": [
+                  9
+                ],
+                "debit_cents": [
+                  10
+                ],
+                "credit_cents": [
+                  11
+                ],
+                "signed_cents": [
+                  12
+                ],
+                "cleared_status": [
+                  13
+                ],
+                "role": [
+                  14
+                ],
+                "linked_payment_id": [
+                  16
+                ],
+                "linked_deposit_id": [
+                  17
+                ],
+                "accounting_batch_id": [
+                  15
+                ]
+              },
+              "raw_row_sha256": "f9dd2bd1c28830fcd2268669de7f7c451cbd3553dfb228c6318dfb7b9fe8e0cb",
+              "parser_version": "csv-local-1.0",
+              "mapping_version": "local-alias-1.0:841c97246f2a75c6f5243e47cedf81852cd93d81b07286b7fa3f995f66ebbe25"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "SYN-QB-D900",
+          "line_id": "SYN-QL-3",
+          "transaction_type": "Deposit",
+          "posting_date": "2026-09-12",
+          "num": "SYN-SET-900",
+          "name_token": null,
+          "memo_local": "Processor payout SYN-SET-900",
+          "account_id": null,
+          "account_full_name": "Collections Checking",
+          "account_type": "BANK",
+          "split_account": "ServiceTitan Clearing",
+          "debit_cents": 910000,
+          "credit_cents": 0,
+          "signed_cents": 910000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "BANK",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": null,
+          "linked_deposit_id": "SYN-SET-900",
+          "accounting_batch_id": null,
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        },
+        {
+          "id": "652fbd56d85dba94dc38f9f02ecebb7d8ef2099a6d6bb1af75e60184c898e8c4",
+          "company_id": "Synthetic HVAC Co",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+              "sheet": null,
+              "physical_row": 5,
+              "column_indices": {
+                "transaction_id": [
+                  0
+                ],
+                "line_id": [
+                  1
+                ],
+                "posting_date": [
+                  2
+                ],
+                "transaction_type": [
+                  3
+                ],
+                "num": [
+                  4
+                ],
+                "name": [
+                  5
+                ],
+                "memo_local": [
+                  6
+                ],
+                "account_full_name": [
+                  7
+                ],
+                "account_type": [
+                  8
+                ],
+                "split_account": [
+                  9
+                ],
+                "debit_cents": [
+                  10
+                ],
+                "credit_cents": [
+                  11
+                ],
+                "signed_cents": [
+                  12
+                ],
+                "cleared_status": [
+                  13
+                ],
+                "role": [
+                  14
+                ],
+                "linked_payment_id": [
+                  16
+                ],
+                "linked_deposit_id": [
+                  17
+                ],
+                "accounting_batch_id": [
+                  15
+                ]
+              },
+              "raw_row_sha256": "417bc9659e36bd83d9d0c76214ad417cde8190bb59b0d87b21e5f0b189a3eda9",
+              "parser_version": "csv-local-1.0",
+              "mapping_version": "local-alias-1.0:841c97246f2a75c6f5243e47cedf81852cd93d81b07286b7fa3f995f66ebbe25"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "SYN-QB-D900",
+          "line_id": "SYN-QL-4",
+          "transaction_type": "Deposit",
+          "posting_date": "2026-09-12",
+          "num": "SYN-SET-900",
+          "name_token": null,
+          "memo_local": "Processor payout SYN-SET-900",
+          "account_id": null,
+          "account_full_name": "ServiceTitan Clearing",
+          "account_type": "OTHER_CURRENT_ASSET",
+          "split_account": "Collections Checking",
+          "debit_cents": 0,
+          "credit_cents": 910000,
+          "signed_cents": -910000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "CLEARING_SETTLEMENT",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": null,
+          "linked_deposit_id": "SYN-SET-900",
+          "accounting_batch_id": null,
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        }
+      ],
+      "bank": [
+        {
+          "id": "37d59b433717f722b7caf758132d5b70a59a23736b40202ca4e877e95d60da06",
+          "company_id": "Synthetic HVAC Co",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9",
+              "sheet": null,
+              "physical_row": 2,
+              "column_indices": {
+                "posted_date": [
+                  1
+                ],
+                "description_local": [
+                  2
+                ],
+                "signed_cents": [
+                  3
+                ],
+                "balance_cents": [
+                  5
+                ],
+                "bank_type": [
+                  4
+                ],
+                "check_number": [
+                  6
+                ],
+                "deposit_id": [
+                  7
+                ],
+                "details": [
+                  0
+                ]
+              },
+              "raw_row_sha256": "63ee268e5fd4958ac16bde0939bbdb0ff4f531feceb3e2e5a0be440f2263b582",
+              "parser_version": "csv-local-1.0",
+              "mapping_version": "local-alias-1.0:8f91382eb00ba0578b3dad243d6f7ba53de7a667ce7b778acc690b44877d9659"
+            }
+          ],
+          "validation_errors": [],
+          "bank_name": "",
+          "bank_account_id": "Collections Checking",
+          "source_transaction_id": null,
+          "posted_date": "2026-09-12",
+          "value_date": null,
+          "pending": false,
+          "signed_cents": 910000,
+          "description_local": "DEPOSIT SYN-SET-900",
+          "descriptor_tokens": [],
+          "bank_type": "MERCHANT_DEPOSIT",
+          "check_number": null,
+          "trace_id": null,
+          "deposit_id": "SYN-SET-900",
+          "balance_cents": 5910000,
+          "granularity": "TRANSACTION"
+        }
+      ],
+      "manifests": [
+        {
+          "company_id": "Synthetic HVAC Co",
+          "source_system": "ST",
+          "source_file_sha256": "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153",
+          "report_name": "st_payments.csv",
+          "report_grain": "PAYMENT",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "ACCRUAL",
+          "accounts": [],
+          "account_balances": [],
+          "header_row": 1,
+          "raw_row_count": 1,
+          "normalized_row_count": 1,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        },
+        {
+          "company_id": "Synthetic HVAC Co",
+          "source_system": "QBO",
+          "source_file_sha256": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+          "report_name": "qbo_general_ledger.csv",
+          "report_grain": "POSTING_LINE",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "ACCRUAL",
+          "accounts": [
+            "ServiceTitan Clearing",
+            "Accounts Receivable",
+            "Collections Checking"
+          ],
+          "account_balances": [
+            {
+              "account_id": null,
+              "account_full_name": "ServiceTitan Clearing",
+              "opening_debit_balance_cents": null,
+              "closing_debit_balance_cents": null,
+              "coverage_confirmed": false
+            },
+            {
+              "account_id": null,
+              "account_full_name": "Accounts Receivable",
+              "opening_debit_balance_cents": null,
+              "closing_debit_balance_cents": null,
+              "coverage_confirmed": false
+            },
+            {
+              "account_id": null,
+              "account_full_name": "Collections Checking",
+              "opening_debit_balance_cents": null,
+              "closing_debit_balance_cents": null,
+              "coverage_confirmed": false
+            }
+          ],
+          "header_row": 1,
+          "raw_row_count": 4,
+          "normalized_row_count": 4,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        },
+        {
+          "company_id": "Synthetic HVAC Co",
+          "source_system": "BANK",
+          "source_file_sha256": "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9",
+          "report_name": "bank_activity.csv",
+          "report_grain": "BANK_TRANSACTION",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "ACCRUAL",
+          "accounts": [],
+          "account_balances": [],
+          "header_row": 1,
+          "raw_row_count": 1,
+          "normalized_row_count": 1,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        },
+        {
+          "company_id": "Synthetic HVAC Co",
+          "source_system": "PROCESSOR",
+          "source_file_sha256": "3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282",
+          "report_name": "processor_settlement.csv",
+          "report_grain": "EVIDENCE",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "ACCRUAL",
+          "accounts": [],
+          "account_balances": [],
+          "header_row": 1,
+          "raw_row_count": 1,
+          "normalized_row_count": 1,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        }
+      ],
+      "config": {
+        "company_id": "Synthetic HVAC Co",
+        "bank_account_id": "Collections Checking",
+        "period_cutoff": "2026-09-30",
+        "clearing_split_semantics_confirmed": false,
+        "qb_bank_account_names": [
+          "Collections Checking"
+        ]
+      },
+      "evidence": {
+        "settlements": [
+          {
+            "id": "c1398511e27aa258ada4d1037ac01b6afbf1d1e3de5259bc72d7d0e2809a30ab",
+            "company_id": "Synthetic HVAC Co",
+            "currency": "USD",
+            "source_refs": [
+              {
+                "file_sha256": "3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282",
+                "sheet": null,
+                "physical_row": 2,
+                "column_indices": {
+                  "fee_mode": [
+                    12
+                  ],
+                  "id": [
+                    0
+                  ],
+                  "as_of_date": [
+                    1
+                  ],
+                  "payment_id": [
+                    2
+                  ],
+                  "accounting_batch_id": [
+                    3
+                  ],
+                  "processor_batch_id": [
+                    4
+                  ],
+                  "settlement_reference": [
+                    5
+                  ],
+                  "processor": [
+                    6
+                  ],
+                  "status": [
+                    7
+                  ],
+                  "gross_cents": [
+                    8
+                  ],
+                  "fee_cents": [
+                    9
+                  ],
+                  "net_cents": [
+                    10
+                  ],
+                  "held_cents": [
+                    11
+                  ],
+                  "scheduled_settlement_date": [
+                    13
+                  ],
+                  "actual_settlement_date": [
+                    14
+                  ],
+                  "contract_reference": [
+                    15
+                  ],
+                  "evidence_document": [
+                    16
+                  ]
+                },
+                "raw_row_sha256": "f8d158eba2892a70bdc323b43d06658cb7923fbe9ed3c7beaf951c317d7f5253",
+                "parser_version": "csv-local-1.0",
+                "mapping_version": "local-alias-1.0:198a239e0599dd279adf866d7a3b55f3cf65d96f6118a747f40fe6fa8b2b8630"
+              }
+            ],
+            "validation_errors": [],
+            "bank_account_id": "Collections Checking",
+            "evidence_ref": "synthetic/processor_statement.pdf#SYN-PS-900",
+            "payment_id": "SYN-PMT-900",
+            "accounting_batch_id": "SYN-B-900",
+            "processor_batch_id": "SYN-PB-900",
+            "settlement_reference": "SYN-SET-900",
+            "processor": "ServiceTitan Payments",
+            "merchant_id": null,
+            "status": "SETTLED",
+            "gross_cents": 1000000,
+            "fee_cents": 90000,
+            "net_cents": 910000,
+            "held_cents": 0,
+            "fee_mode": "NETTED",
+            "as_of_date": "2026-09-30",
+            "scheduled_settlement_date": null,
+            "actual_settlement_date": "2026-09-12",
+            "contract_reference": "SYNTHETIC-CONTRACT",
+            "release_coverage_confirmed": false
+          }
+        ]
+      }
+    },
+    "result": {
+      "groups": [
+        {
+          "id": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+          "company_id": "Synthetic HVAC Co",
+          "bank_account_id": "Collections Checking",
+          "clearing_account_ids": [
+            "ServiceTitan Clearing"
+          ],
+          "clearing_residuals": [
+            {
+              "account_id": "ServiceTitan Clearing",
+              "residual_debit_cents": 90000
+            }
+          ],
+          "currency": "USD",
+          "st_ids": [
+            "33ed5bb131503319892f705a86c0a000476a2224e8921e25dee84fe6e2db3d4f"
+          ],
+          "qb_ids": [
+            "652fbd56d85dba94dc38f9f02ecebb7d8ef2099a6d6bb1af75e60184c898e8c4",
+            "694f4214622829f74b9377d9553e9b0de285bf7d898907912cd380aabda76a42",
+            "e7d90d2da50f69e05850d944d8ff7232c9872484ca48c3ceff1db55cd032fe5e"
+          ],
+          "bank_ids": [
+            "37d59b433717f722b7caf758132d5b70a59a23736b40202ca4e877e95d60da06"
+          ],
+          "gross_cents": 1000000,
+          "refunds_cents": 0,
+          "fees_cents": 90000,
+          "holds_cents": 0,
+          "releases_cents": 0,
+          "external_receipts_cents": 0,
+          "other_adjustments_cents": 0,
+          "bank_cents": 910000,
+          "unexplained_cents": 0,
+          "ledger_residual_cents": 90000,
+          "matching_state": "MATCHED",
+          "matching_scope": "VERIFIED_THREE_WAY",
+          "search_status": "COMPLETE",
+          "diagnoses": [
+            {
+              "cause": "NET_FEE_DRIFT",
+              "evidence_level": "SUPPORTED",
+              "score": 100,
+              "evidence_refs": [
+                "synthetic/processor_statement.pdf#SYN-PS-900"
+              ],
+              "missing_evidence": [
+                "COMPLETE_EXPENSE_AND_DUPLICATE_FEE_REVIEW"
+              ]
+            }
+          ],
+          "aje_state": "INELIGIBLE",
+          "source_version_hash": "895f398d04ae55807de8152c03c270cf833c7e1f1022c7c41479976403c1b6b2",
+          "approved_proposal_hash": null,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "CONFIRMED",
+              "expected_cents": 1000000,
+              "observed_cents": 1000000,
+              "difference_cents": 0,
+              "source_ids": [
+                "33ed5bb131503319892f705a86c0a000476a2224e8921e25dee84fe6e2db3d4f",
+                "694f4214622829f74b9377d9553e9b0de285bf7d898907912cd380aabda76a42"
+              ],
+              "identity_refs": [
+                "accounting_batch:SYN-B-900",
+                "payment:SYN-PMT-900"
+              ],
+              "evidence_refs": [],
+              "missing_evidence": [],
+              "rule_id": "st_qb_receipt_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "CONFIRMED",
+              "expected_cents": 910000,
+              "observed_cents": 910000,
+              "difference_cents": 0,
+              "source_ids": [
+                "37d59b433717f722b7caf758132d5b70a59a23736b40202ca4e877e95d60da06",
+                "652fbd56d85dba94dc38f9f02ecebb7d8ef2099a6d6bb1af75e60184c898e8c4",
+                "e7d90d2da50f69e05850d944d8ff7232c9872484ca48c3ceff1db55cd032fe5e"
+              ],
+              "identity_refs": [
+                "SYN-SET-900"
+              ],
+              "evidence_refs": [],
+              "missing_evidence": [],
+              "rule_id": "qb_bank_settlement_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "CONFIRMED",
+              "expected_cents": 910000,
+              "observed_cents": 910000,
+              "difference_cents": 0,
+              "source_ids": [
+                "33ed5bb131503319892f705a86c0a000476a2224e8921e25dee84fe6e2db3d4f",
+                "37d59b433717f722b7caf758132d5b70a59a23736b40202ca4e877e95d60da06"
+              ],
+              "identity_refs": [
+                "SYN-SET-900"
+              ],
+              "evidence_refs": [
+                "synthetic/processor_statement.pdf#SYN-PS-900"
+              ],
+              "missing_evidence": [],
+              "rule_id": "st_bank_cash_v1",
+              "rule_version": "g1-2026.10.21.2"
+            }
+          ],
+          "accepted": true,
+          "warnings": [],
+          "evidence_refs": [
+            "synthetic/processor_statement.pdf#SYN-PS-900"
+          ],
+          "fee_proposal_math_ready": true,
+          "fee_aje_draft_eligible": false,
+          "impact_cents": 1000000,
+          "period_status": "IN_PERIOD"
+        },
+        {
+          "id": "06d875fcce0863c4a11601619e8cfc1f47155364486ac2a15515c03ed8024fb3",
+          "company_id": "Synthetic HVAC Co",
+          "bank_account_id": "Collections Checking",
+          "clearing_account_ids": [],
+          "clearing_residuals": [],
+          "currency": "USD",
+          "st_ids": [],
+          "qb_ids": [
+            "b60c497df8ad0490d28b8d0b7b3e11ced713f163c19dfdb43413185330755dfa"
+          ],
+          "bank_ids": [],
+          "gross_cents": 0,
+          "refunds_cents": 0,
+          "fees_cents": 0,
+          "holds_cents": 0,
+          "releases_cents": 0,
+          "external_receipts_cents": 0,
+          "other_adjustments_cents": 0,
+          "bank_cents": 0,
+          "unexplained_cents": 0,
+          "ledger_residual_cents": 0,
+          "matching_state": "UNMATCHED",
+          "matching_scope": "ACTIVITY_BRIDGE",
+          "search_status": "COMPLETE",
+          "diagnoses": [
+            {
+              "cause": "UNEXPLAINED",
+              "evidence_level": "UNKNOWN",
+              "score": 20,
+              "evidence_refs": [],
+              "missing_evidence": [
+                "UNRESOLVED_COMPONENT_OR_IDENTITY"
+              ]
+            }
+          ],
+          "aje_state": "INELIGIBLE",
+          "source_version_hash": "b5be27e79362ab37499384a73df1c5caba0c44aa0c6520a25af9a42600765d83",
+          "approved_proposal_hash": null,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "ABSENT",
+              "expected_cents": 0,
+              "observed_cents": 0,
+              "difference_cents": 0,
+              "source_ids": [],
+              "identity_refs": [],
+              "evidence_refs": [],
+              "missing_evidence": [
+                "ST_RECEIPT_NOT_FOUND"
+              ],
+              "rule_id": "st_qb_receipt_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "ABSENT",
+              "expected_cents": 0,
+              "observed_cents": 0,
+              "difference_cents": 0,
+              "source_ids": [],
+              "identity_refs": [],
+              "evidence_refs": [],
+              "missing_evidence": [
+                "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+              ],
+              "rule_id": "qb_bank_settlement_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "ABSENT",
+              "expected_cents": 0,
+              "observed_cents": 0,
+              "difference_cents": 0,
+              "source_ids": [],
+              "identity_refs": [],
+              "evidence_refs": [],
+              "missing_evidence": [
+                "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+              ],
+              "rule_id": "st_bank_cash_v1",
+              "rule_version": "g1-2026.10.21.2"
+            }
+          ],
+          "accepted": false,
+          "warnings": [
+            "UNATTRIBUTED_QB_ACTIVITY"
+          ],
+          "evidence_refs": [],
+          "fee_proposal_math_ready": false,
+          "fee_aje_draft_eligible": false,
+          "impact_cents": 0,
+          "period_status": "UNATTRIBUTED"
+        }
+      ],
+      "controls": {
+        "st_gross_cents": 1000000,
+        "st_refunds_cents": 0,
+        "st_corrections_cents": 0,
+        "qb_debits_cents": 1910000,
+        "qb_credits_cents": 1910000,
+        "bank_signed_cents": 910000,
+        "accounts": [
+          {
+            "account_id": "Accounts Receivable",
+            "account_full_name": "Accounts Receivable",
+            "debit_cents": 0,
+            "credit_cents": 1000000,
+            "activity_cents": -1000000,
+            "opening_cents": null,
+            "closing_cents": null,
+            "calculated_closing_cents": null,
+            "coverage_confirmed": false,
+            "status": "ACTIVITY_ONLY"
+          },
+          {
+            "account_id": "Collections Checking",
+            "account_full_name": "Collections Checking",
+            "debit_cents": 910000,
+            "credit_cents": 0,
+            "activity_cents": 910000,
+            "opening_cents": null,
+            "closing_cents": null,
+            "calculated_closing_cents": null,
+            "coverage_confirmed": false,
+            "status": "ACTIVITY_ONLY"
+          },
+          {
+            "account_id": "ServiceTitan Clearing",
+            "account_full_name": "ServiceTitan Clearing",
+            "debit_cents": 1000000,
+            "credit_cents": 910000,
+            "activity_cents": 90000,
+            "opening_cents": null,
+            "closing_cents": null,
+            "calculated_closing_cents": null,
+            "coverage_confirmed": false,
+            "status": "ACTIVITY_ONLY"
+          }
+        ],
+        "atoms": [
+          {
+            "atom_id": "33ed5bb131503319892f705a86c0a000476a2224e8921e25dee84fe6e2db3d4f",
+            "source": "ST",
+            "source_cents": 1000000,
+            "allocated_cents": 1000000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "37d59b433717f722b7caf758132d5b70a59a23736b40202ca4e877e95d60da06",
+            "source": "BANK",
+            "source_cents": 910000,
+            "allocated_cents": 910000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "652fbd56d85dba94dc38f9f02ecebb7d8ef2099a6d6bb1af75e60184c898e8c4",
+            "source": "QB",
+            "source_cents": -910000,
+            "allocated_cents": -910000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "694f4214622829f74b9377d9553e9b0de285bf7d898907912cd380aabda76a42",
+            "source": "QB",
+            "source_cents": 1000000,
+            "allocated_cents": 1000000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "b60c497df8ad0490d28b8d0b7b3e11ced713f163c19dfdb43413185330755dfa",
+            "source": "QB",
+            "source_cents": -1000000,
+            "allocated_cents": 0,
+            "residual_cents": -1000000,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "e7d90d2da50f69e05850d944d8ff7232c9872484ca48c3ceff1db55cd032fe5e",
+            "source": "QB",
+            "source_cents": 910000,
+            "allocated_cents": 910000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          }
+        ],
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "warnings": [],
+      "allocations": [
+        {
+          "atom_id": "33ed5bb131503319892f705a86c0a000476a2224e8921e25dee84fe6e2db3d4f",
+          "group_id": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+          "signed_allocated_cents": 1000000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "37d59b433717f722b7caf758132d5b70a59a23736b40202ca4e877e95d60da06",
+          "group_id": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+          "signed_allocated_cents": 910000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "652fbd56d85dba94dc38f9f02ecebb7d8ef2099a6d6bb1af75e60184c898e8c4",
+          "group_id": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+          "signed_allocated_cents": -910000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "694f4214622829f74b9377d9553e9b0de285bf7d898907912cd380aabda76a42",
+          "group_id": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+          "signed_allocated_cents": 1000000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "e7d90d2da50f69e05850d944d8ff7232c9872484ca48c3ceff1db55cd032fe5e",
+          "group_id": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+          "signed_allocated_cents": 910000,
+          "component_id": null,
+          "split_authorization_ref": null
+        }
+      ],
+      "searches": [],
+      "rejected_candidates": [],
+      "versions": {
+        "engine": "1.0.0-g1",
+        "rules": "g1-2026.10.21.2",
+        "calendar": "fed-settlement-v1",
+        "mapping": [
+          "local-alias-1.0:7476da58b8d51124f451838692c80f601b0050eb279756280fc650f05fa5d38c",
+          "local-alias-1.0:841c97246f2a75c6f5243e47cedf81852cd93d81b07286b7fa3f995f66ebbe25",
+          "local-alias-1.0:8f91382eb00ba0578b3dad243d6f7ba53de7a667ce7b778acc690b44877d9659"
+        ]
+      }
+    },
+    "duration": 8.599999904632568,
+    "isDemo": false,
+    "files": [
+      {
+        "kind": "ST",
+        "name": "st_payments.csv",
+        "hash": "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153",
+        "sizeBytes": 475,
+        "mapping": {
+          "headers": [
+            "Payment ID",
+            "Related Payment ID",
+            "Record Type",
+            "Payment Date",
+            "Batch Number",
+            "Batch Close Date",
+            "Batch Post Date",
+            "Invoice #",
+            "Customer Name",
+            "Business Unit",
+            "Payment Type",
+            "Processor",
+            "Gross Amount",
+            "Net Amount",
+            "GL Account Code",
+            "Export Status",
+            "Payment Status",
+            "Reference",
+            "Currency",
+            "Deposit ID"
+          ],
+          "bindings": {
+            "currency": 18,
+            "source_payment_id": 0,
+            "original_payment_id": 1,
+            "record_type": 2,
+            "payment_date": 3,
+            "accounting_batch_id": 4,
+            "deposit_id": 19,
+            "batch_close_date": 5,
+            "batch_post_date": 6,
+            "invoice_id": 7,
+            "customer": 8,
+            "business_unit": 9,
+            "payment_method": 10,
+            "processor": 11,
+            "gross_cents": 12,
+            "reported_net_cents": 13,
+            "gl_account_code": 14,
+            "export_status": 15,
+            "payment_status": 16,
+            "reference": 17
+          },
+          "headerRow": 1
+        },
+        "controls": {
+          "signedCents": 1000000,
+          "debitCents": null,
+          "creditCents": null,
+          "excludedRows": []
+        },
+        "importStatus": "READY",
+        "parseOptions": {
+          "allowPartialTransactions": false,
+          "ledgerReportScope": "COMPLETE_JOURNAL",
+          "companyId": "Synthetic HVAC Co",
+          "bankAccountId": "Collections Checking",
+          "companyTimezone": "America/New_York",
+          "periodStart": "2026-09-01",
+          "periodEnd": "2026-09-30",
+          "asOfDate": "2026-09-30",
+          "currency": "USD",
+          "profile": "manual",
+          "dateFormat": "MDY",
+          "rowGrain": "PAYMENT",
+          "exportMode": "JE_TO_CLEARING",
+          "postedLedgerConfirmed": true,
+          "bankPostedConfirmed": true,
+          "bankSignConvention": "INFLOW_POSITIVE",
+          "coverageConfirmed": true,
+          "basis": "ACCRUAL",
+          "bankName": "",
+          "accountMap": {
+            "Collections Checking": {
+              "accountType": "BANK",
+              "role": "BANK",
+              "isUndepositedFunds": false
+            },
+            "ServiceTitan Clearing": {
+              "accountType": "OTHER_CURRENT_ASSET",
+              "role": "CLEARING",
+              "isUndepositedFunds": false
+            }
+          },
+          "bindings": {
+            "currency": 18,
+            "source_payment_id": 0,
+            "original_payment_id": 1,
+            "record_type": 2,
+            "payment_date": 3,
+            "accounting_batch_id": 4,
+            "deposit_id": 19,
+            "batch_close_date": 5,
+            "batch_post_date": 6,
+            "invoice_id": 7,
+            "customer": 8,
+            "business_unit": 9,
+            "payment_method": 10,
+            "processor": 11,
+            "gross_cents": 12,
+            "reported_net_cents": 13,
+            "gl_account_code": 14,
+            "export_status": 15,
+            "payment_status": 16,
+            "reference": 17
+          },
+          "headerRow": 1
+        }
+      },
+      {
+        "kind": "QBO",
+        "name": "qbo_general_ledger.csv",
+        "hash": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+        "sizeBytes": 980,
+        "mapping": {
+          "headers": [
+            "Transaction ID",
+            "Line ID",
+            "Date",
+            "Transaction Type",
+            "Num",
+            "Name",
+            "Memo/Description",
+            "Account",
+            "Account Type",
+            "Split",
+            "Debit",
+            "Credit",
+            "Amount",
+            "Clr",
+            "Role",
+            "Accounting Batch Number",
+            "Linked Payment ID",
+            "Linked Deposit ID"
+          ],
+          "bindings": {
+            "transaction_id": 0,
+            "line_id": 1,
+            "posting_date": 2,
+            "transaction_type": 3,
+            "num": 4,
+            "name": 5,
+            "memo_local": 6,
+            "account_full_name": 7,
+            "account_type": 8,
+            "split_account": 9,
+            "debit_cents": 10,
+            "credit_cents": 11,
+            "signed_cents": 12,
+            "cleared_status": 13,
+            "role": 14,
+            "linked_payment_id": 16,
+            "linked_deposit_id": 17,
+            "accounting_batch_id": 15
+          },
+          "headerRow": 1
+        },
+        "controls": {
+          "signedCents": 0,
+          "debitCents": 1910000,
+          "creditCents": 1910000,
+          "excludedRows": [],
+          "quarantinedGroups": [],
+          "accountingBlockedTransactionIds": []
+        },
+        "importStatus": "READY",
+        "parseOptions": {
+          "allowPartialTransactions": false,
+          "ledgerReportScope": "COMPLETE_JOURNAL",
+          "companyId": "Synthetic HVAC Co",
+          "bankAccountId": "Collections Checking",
+          "companyTimezone": "America/New_York",
+          "periodStart": "2026-09-01",
+          "periodEnd": "2026-09-30",
+          "asOfDate": "2026-09-30",
+          "currency": "USD",
+          "profile": "manual",
+          "dateFormat": "MDY",
+          "rowGrain": "PAYMENT",
+          "exportMode": "JE_TO_CLEARING",
+          "postedLedgerConfirmed": true,
+          "bankPostedConfirmed": true,
+          "bankSignConvention": "INFLOW_POSITIVE",
+          "coverageConfirmed": true,
+          "basis": "ACCRUAL",
+          "bankName": "",
+          "accountMap": {
+            "Collections Checking": {
+              "accountType": "BANK",
+              "role": "BANK",
+              "isUndepositedFunds": false
+            },
+            "ServiceTitan Clearing": {
+              "accountType": "OTHER_CURRENT_ASSET",
+              "role": "CLEARING",
+              "isUndepositedFunds": false
+            }
+          },
+          "bindings": {
+            "transaction_id": 0,
+            "line_id": 1,
+            "posting_date": 2,
+            "transaction_type": 3,
+            "num": 4,
+            "name": 5,
+            "memo_local": 6,
+            "account_full_name": 7,
+            "account_type": 8,
+            "split_account": 9,
+            "debit_cents": 10,
+            "credit_cents": 11,
+            "signed_cents": 12,
+            "cleared_status": 13,
+            "role": 14,
+            "linked_payment_id": 16,
+            "linked_deposit_id": 17,
+            "accounting_batch_id": 15
+          },
+          "headerRow": 1
+        }
+      },
+      {
+        "kind": "BANK",
+        "name": "bank_activity.csv",
+        "hash": "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9",
+        "sizeBytes": 156,
+        "mapping": {
+          "headers": [
+            "Details",
+            "Posting Date",
+            "Description",
+            "Amount",
+            "Type",
+            "Balance",
+            "Check or Slip #",
+            "Deposit ID"
+          ],
+          "bindings": {
+            "posted_date": 1,
+            "description_local": 2,
+            "signed_cents": 3,
+            "balance_cents": 5,
+            "bank_type": 4,
+            "check_number": 6,
+            "deposit_id": 7,
+            "details": 0
+          },
+          "headerRow": 1
+        },
+        "controls": {
+          "signedCents": 910000,
+          "debitCents": null,
+          "creditCents": null,
+          "excludedRows": []
+        },
+        "importStatus": "READY",
+        "parseOptions": {
+          "allowPartialTransactions": false,
+          "ledgerReportScope": "COMPLETE_JOURNAL",
+          "companyId": "Synthetic HVAC Co",
+          "bankAccountId": "Collections Checking",
+          "companyTimezone": "America/New_York",
+          "periodStart": "2026-09-01",
+          "periodEnd": "2026-09-30",
+          "asOfDate": "2026-09-30",
+          "currency": "USD",
+          "profile": "manual",
+          "dateFormat": "MDY",
+          "rowGrain": "PAYMENT",
+          "exportMode": "JE_TO_CLEARING",
+          "postedLedgerConfirmed": true,
+          "bankPostedConfirmed": true,
+          "bankSignConvention": "INFLOW_POSITIVE",
+          "coverageConfirmed": true,
+          "basis": "ACCRUAL",
+          "bankName": "",
+          "accountMap": {
+            "Collections Checking": {
+              "accountType": "BANK",
+              "role": "BANK",
+              "isUndepositedFunds": false
+            },
+            "ServiceTitan Clearing": {
+              "accountType": "OTHER_CURRENT_ASSET",
+              "role": "CLEARING",
+              "isUndepositedFunds": false
+            }
+          },
+          "bindings": {
+            "posted_date": 1,
+            "description_local": 2,
+            "signed_cents": 3,
+            "balance_cents": 5,
+            "bank_type": 4,
+            "check_number": 6,
+            "deposit_id": 7,
+            "details": 0
+          },
+          "headerRow": 1
+        }
+      },
+      {
+        "name": "processor_settlement.csv",
+        "kind": "PROCESSOR",
+        "hash": "3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282",
+        "sizeBytes": 476,
+        "mapping": {
+          "headers": [
+            "Statement Line ID",
+            "As Of Date",
+            "Payment ID",
+            "Accounting Batch Number",
+            "Processor Batch Number",
+            "Settlement Reference",
+            "Processor",
+            "Status",
+            "Gross Amount",
+            "Fee Amount",
+            "Net Amount",
+            "Amount Held",
+            "Fee Mode",
+            "Scheduled Settlement Date",
+            "Actual Settlement Date",
+            "Contract Reference",
+            "Evidence Document"
+          ],
+          "bindings": {
+            "fee_mode": 12,
+            "id": 0,
+            "as_of_date": 1,
+            "payment_id": 2,
+            "accounting_batch_id": 3,
+            "processor_batch_id": 4,
+            "settlement_reference": 5,
+            "processor": 6,
+            "status": 7,
+            "gross_cents": 8,
+            "fee_cents": 9,
+            "net_cents": 10,
+            "held_cents": 11,
+            "scheduled_settlement_date": 13,
+            "actual_settlement_date": 14,
+            "contract_reference": 15,
+            "evidence_document": 16
+          },
+          "headerRow": 1
+        },
+        "controls": {
+          "signedCents": 1000000,
+          "debitCents": null,
+          "creditCents": null,
+          "excludedRows": []
+        },
+        "importStatus": "READY",
+        "parseOptions": {
+          "allowPartialTransactions": false,
+          "ledgerReportScope": "COMPLETE_JOURNAL",
+          "companyId": "Synthetic HVAC Co",
+          "bankAccountId": "Collections Checking",
+          "companyTimezone": "America/New_York",
+          "periodStart": "2026-09-01",
+          "periodEnd": "2026-09-30",
+          "asOfDate": "2026-09-30",
+          "currency": "USD",
+          "profile": "manual",
+          "dateFormat": "MDY",
+          "rowGrain": "PAYMENT",
+          "exportMode": "JE_TO_CLEARING",
+          "postedLedgerConfirmed": true,
+          "bankPostedConfirmed": true,
+          "bankSignConvention": "INFLOW_POSITIVE",
+          "coverageConfirmed": true,
+          "basis": "ACCRUAL",
+          "bankName": "",
+          "accountMap": {
+            "Collections Checking": {
+              "accountType": "BANK",
+              "role": "BANK",
+              "isUndepositedFunds": false
+            },
+            "ServiceTitan Clearing": {
+              "accountType": "OTHER_CURRENT_ASSET",
+              "role": "CLEARING",
+              "isUndepositedFunds": false
+            }
+          },
+          "existingTotalBytes": 1611
+        }
+      }
+    ],
+    "options": {
+      "allowPartialTransactions": false,
+      "ledgerReportScope": "COMPLETE_JOURNAL",
+      "companyId": "Synthetic HVAC Co",
+      "bankAccountId": "Collections Checking",
+      "companyTimezone": "America/New_York",
+      "periodStart": "2026-09-01",
+      "periodEnd": "2026-09-30",
+      "asOfDate": "2026-09-30",
+      "currency": "USD",
+      "profile": "manual",
+      "dateFormat": "MDY",
+      "rowGrain": "PAYMENT",
+      "exportMode": "JE_TO_CLEARING",
+      "postedLedgerConfirmed": true,
+      "bankPostedConfirmed": true,
+      "bankSignConvention": "INFLOW_POSITIVE",
+      "coverageConfirmed": true,
+      "basis": "ACCRUAL",
+      "bankName": "",
+      "accountMap": {
+        "Collections Checking": {
+          "accountType": "BANK",
+          "role": "BANK",
+          "isUndepositedFunds": false
+        },
+        "ServiceTitan Clearing": {
+          "accountType": "OTHER_CURRENT_ASSET",
+          "role": "CLEARING",
+          "isUndepositedFunds": false
+        }
+      }
+    },
+    "runId": "6e8d6785-2c8c-4492-a81f-5195d5a07c2b",
+    "review": {
+      "schemaVersion": 1,
+      "inputDigest": "138455c07c6a430a024908d8e388af90623ad9c7ed7998dd39aa3bb343c3c182",
+      "cases": [
+        {
+          "economicCaseId": "case-6c217a84f3f1a1de1e58f7d3",
+          "accountingActionId": "fee-3bdc076eaa7e316df268a768",
+          "engineGroupId": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+          "anchors": [
+            "[\"Synthetic HVAC Co\",\"BANK\",\"deposit\",\"[\\\"Collections Checking\\\",\\\"SYN-SET-900\\\"]\"]",
+            "[\"Synthetic HVAC Co\",\"ST\",\"payment\",\"[\\\"Collections Checking\\\",\\\"SYN-PMT-900\\\"]\"]"
+          ],
+          "inputDigest": "138455c07c6a430a024908d8e388af90623ad9c7ed7998dd39aa3bb343c3c182",
+          "identityStatus": "BOUND",
+          "reviewedFacts": {
+            "reviewer": "Synthetic QA reviewer",
+            "notes": "Synthetic netted processor fee per settlement SYN-PS-900; not customer data.",
+            "journalDate": "2026-09-30",
+            "bankAccountName": "Collections Checking",
+            "clearingAccountName": "ServiceTitan Clearing",
+            "feeAccountName": "Merchant Processing Fees",
+            "receiptTransactionId": "SYN-QB-R900",
+            "settlementTransactionId": "SYN-QB-D900",
+            "documentedFee": "900.00",
+            "feeMode": "NETTED",
+            "netFeeConfirmed": true,
+            "periodOpenConfirmed": true,
+            "expenseNotRecordedConfirmed": true,
+            "completeLedgerConfirmed": true,
+            "ledgerCoveredAccountNames": "ServiceTitan Clearing\nAccounts Receivable\nCollections Checking\nMerchant Processing Fees",
+            "ledgerPeriodStart": "2026-09-01",
+            "ledgerPeriodEnd": "2026-09-30",
+            "accountsReviewed": true,
+            "clearingIsOrdinaryAsset": true,
+            "documents": [
+              {
+                "name": "synthetic-settlement-review.txt",
+                "sha256": "671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
+                "purpose": "SETTLEMENT",
+                "sizeBytes": 135
+              },
+              {
+                "name": "synthetic-coa-review.txt",
+                "sha256": "b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
+                "purpose": "COA",
+                "sizeBytes": 566
+              },
+              {
+                "name": "synthetic-ledger-review.txt",
+                "sha256": "9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36",
+                "purpose": "LEDGER",
+                "sizeBytes": 162
+              }
+            ],
+            "reviewedAccounts": [
+              {
+                "id": "ServiceTitan Clearing",
+                "name": "ServiceTitan Clearing",
+                "type": "OTHER_CURRENT_ASSET",
+                "exists": true,
+                "isUndepositedFunds": false
+              },
+              {
+                "id": "Accounts Receivable",
+                "name": "Accounts Receivable",
+                "type": "OTHER",
+                "exists": true,
+                "isUndepositedFunds": false
+              },
+              {
+                "id": "Collections Checking",
+                "name": "Collections Checking",
+                "type": "BANK",
+                "exists": true,
+                "isUndepositedFunds": false
+              },
+              {
+                "id": "Merchant Processing Fees",
+                "name": "Merchant Processing Fees",
+                "type": "EXPENSE",
+                "exists": true,
+                "isUndepositedFunds": false
+              }
+            ],
+            "relations": []
+          },
+          "exportHistory": [
+            {
+              "journalId": "RD8C9256AC39",
+              "proposalId": "8c9256ac3913ad34cf8efb1b006d11be78d9a1b9518c8689485b70f88e649060",
+              "proposalHash": "dc16489448e7b54d41141d2b71a3e462861d7a74717c83fcc804f0bacdb3635d",
+              "exportedAt": "2026-10-22T08:52:58.293Z",
+              "status": "EXPORTED_NOT_POSTED",
+              "format": "csv"
+            }
+          ],
+          "existingImportStatus": "UNKNOWN",
+          "proposal": {
+            "proposalId": "8c9256ac3913ad34cf8efb1b006d11be78d9a1b9518c8689485b70f88e649060",
+            "journalId": "RD8C9256AC39",
+            "date": "2026-09-30",
+            "feeCase": {
+              "companyId": "Synthetic HVAC Co",
+              "caseId": "case-6c217a84f3f1a1de1e58f7d3",
+              "adjustmentVersion": "fee-only-v1",
+              "bankAccountId": "Collections Checking",
+              "clearingAccountId": "ServiceTitan Clearing",
+              "feeAccountId": "Merchant Processing Fees",
+              "accounts": [
+                {
+                  "id": "ServiceTitan Clearing",
+                  "name": "ServiceTitan Clearing",
+                  "type": "OTHER_CURRENT_ASSET",
+                  "exists": true,
+                  "isUndepositedFunds": false
+                },
+                {
+                  "id": "Accounts Receivable",
+                  "name": "Accounts Receivable",
+                  "type": "OTHER",
+                  "exists": true,
+                  "isUndepositedFunds": false
+                },
+                {
+                  "id": "Collections Checking",
+                  "name": "Collections Checking",
+                  "type": "BANK",
+                  "exists": true,
+                  "isUndepositedFunds": false
+                },
+                {
+                  "id": "Merchant Processing Fees",
+                  "name": "Merchant Processing Fees",
+                  "type": "EXPENSE",
+                  "exists": true,
+                  "isUndepositedFunds": false
+                }
+              ],
+              "grossCents": 1000000,
+              "bankNetCents": 910000,
+              "confirmedFeeCents": 90000,
+              "clearingResidualCents": 90000,
+              "feeMode": "NETTED",
+              "settlementReference": "fee-3bdc076eaa7e316df268a768",
+              "settlementEvidenceRef": "SETTLEMENT:671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
+              "stEvidenceRefs": [
+                "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153:row2"
+              ],
+              "bankEvidenceRefs": [
+                "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9:row2"
+              ],
+              "sourceFileHashes": [
+                "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153",
+                "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+                "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9",
+                "3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282",
+                "671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
+                "b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
+                "9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36"
+              ],
+              "mappingVersion": "mapping-set-v1:10926cbb61b815414745ae755b028b22a6e89604bba9123b85ee48cd1dc7beda",
+              "ruleVersion": "fee-only-1.2",
+              "journalDate": "2026-09-30",
+              "periodOpenConfirmed": true,
+              "netFeeConfirmed": true,
+              "receiptTransactionId": "SYN-QB-R900",
+              "settlementTransactionId": "SYN-QB-D900",
+              "postedGL": [
+                {
+                  "transactionId": "SYN-QB-R900",
+                  "journalId": "SYN-B-900",
+                  "date": "2026-09-10",
+                  "accountId": "ServiceTitan Clearing",
+                  "debitCents": 1000000,
+                  "creditCents": 0,
+                  "posted": true,
+                  "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row2"
+                },
+                {
+                  "transactionId": "SYN-QB-R900",
+                  "journalId": "SYN-B-900",
+                  "date": "2026-09-10",
+                  "accountId": "Accounts Receivable",
+                  "debitCents": 0,
+                  "creditCents": 1000000,
+                  "posted": true,
+                  "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row3"
+                },
+                {
+                  "transactionId": "SYN-QB-D900",
+                  "journalId": "SYN-SET-900",
+                  "date": "2026-09-12",
+                  "accountId": "Collections Checking",
+                  "debitCents": 910000,
+                  "creditCents": 0,
+                  "posted": true,
+                  "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row4"
+                },
+                {
+                  "transactionId": "SYN-QB-D900",
+                  "journalId": "SYN-SET-900",
+                  "date": "2026-09-12",
+                  "accountId": "ServiceTitan Clearing",
+                  "debitCents": 0,
+                  "creditCents": 910000,
+                  "posted": true,
+                  "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row5"
+                }
+              ],
+              "postedGLRelations": [],
+              "ledgerCoverage": {
+                "periodStart": "2026-09-01",
+                "periodEnd": "2026-09-30",
+                "asOfDate": "2026-09-30",
+                "accountIds": [
+                  "ServiceTitan Clearing",
+                  "Accounts Receivable",
+                  "Collections Checking",
+                  "Merchant Processing Fees"
+                ],
+                "confirmed": true,
+                "evidenceRef": "LEDGER:9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36;COA:b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
+                "reviewer": "Synthetic QA reviewer"
+              },
+              "expenseNotRecordedConfirmed": true,
+              "existingJournalIds": [
+                "SYN-B-900",
+                "SYN-B-900",
+                "SYN-SET-900",
+                "SYN-SET-900"
+              ],
+              "existingImportStatus": "UNKNOWN",
+              "syntheticOnly": false
+            },
+            "lines": [
+              {
+                "accountId": "Merchant Processing Fees",
+                "account": "Merchant Processing Fees",
+                "debitCents": 90000,
+                "creditCents": 0,
+                "memo": "Approved documented net fee RD8C9256AC39"
+              },
+              {
+                "accountId": "ServiceTitan Clearing",
+                "account": "ServiceTitan Clearing",
+                "debitCents": 0,
+                "creditCents": 90000,
+                "memo": "Approved documented net fee RD8C9256AC39"
+              }
+            ],
+            "state": "DRAFT",
+            "approval": null
+          }
+        },
+        {
+          "economicCaseId": "case-26430aeeb027454dbb3c3a8c",
+          "accountingActionId": "fee-e18d3a4a95ca5a88ecaa3195",
+          "engineGroupId": "06d875fcce0863c4a11601619e8cfc1f47155364486ac2a15515c03ed8024fb3",
+          "anchors": [
+            "[\"Synthetic HVAC Co\",\"QBO\",\"transaction\",\"[\\\"Collections Checking\\\",\\\"SYN-QB-R900\\\"]\"]"
+          ],
+          "inputDigest": "138455c07c6a430a024908d8e388af90623ad9c7ed7998dd39aa3bb343c3c182",
+          "identityStatus": "BOUND",
+          "reviewedFacts": {},
+          "exportHistory": [],
+          "existingImportStatus": "NEVER_IMPORTED"
+        }
+      ],
+      "orphanedCases": []
+    }
+  },
+  "integrity": "af4ea76f2721cc991385a47e96fd677c024fb27f1b5d375e9ad069350461e72a"
+}

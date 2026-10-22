@@ -1,0 +1,190 @@
+{
+  "chrome": "144.0.7559.132",
+  "sandbox": "chromiumSandbox=true (no --no-sandbox); unprivileged user",
+  "base": "http://127.0.0.1:4173/",
+  "desktopFlowMs": 7192,
+  "desktopInteractionCounts": {
+    "clicks": 24,
+    "fills": 18,
+    "selects": 19,
+    "checks": 14,
+    "uploads": 17
+  },
+  "results": [
+    {
+      "id": "ENV-sandbox",
+      "status": "PASS",
+      "detail": "Sandbox Status | Layer 1 Sandbox\tNamespace | PID namespaces\tYes | Network namespaces\tYes | Seccomp-BPF sandbox\tYes | Seccomp-BPF sandbox supports TSYNC\tYes"
+    },
+    {
+      "id": "UI-landing-states-scope",
+      "status": "PASS",
+      "detail": "Demo and own-files entry points are separate"
+    },
+    {
+      "id": "FLOW-import-validate",
+      "status": "PASS",
+      "detail": "three CSVs validated with explicit scope"
+    },
+    {
+      "id": "FLOW-processor-evidence",
+      "status": "PASS",
+      "detail": "processor settlement added and recalculated"
+    },
+    {
+      "id": "FLOW-engine-case",
+      "status": "PASS",
+      "detail": "settlement fee difference on $10,000.00 gross; QB bank leg recognized (not listed as missing)"
+    },
+    {
+      "id": "FLOW-build-draft-from-parsed-files",
+      "status": "PASS",
+      "detail": "exactly Dr fee 900 / Cr clearing 900 from parsed CSV files"
+    },
+    {
+      "id": "FLOW-export-bytes",
+      "status": "PASS",
+      "detail": "RD8C9256AC39_BETA_NOT_POSTED.csv + RD8C9256AC39_BETA_NOT_POSTED.csv.manifest.json; 2 balanced lines, no bank leg; manifest EXPORTED_NOT_POSTED"
+    },
+    {
+      "id": "FLOW-repeat-export-blocked",
+      "status": "PASS",
+      "detail": "button disabled; guidance names the journal number and what to check"
+    },
+    {
+      "id": "DELIVERABLE-reviewer-summary",
+      "status": "PASS",
+      "detail": "case-summary-case-6c217a84f3f1a1de1e58f7d3.html"
+    },
+    {
+      "id": "PRIVACY-save-notice",
+      "status": "PASS",
+      "detail": "save notice warns that the project contains financial rows"
+    },
+    {
+      "id": "DUP-stale-project-blocked",
+      "status": "PASS",
+      "detail": "pre-export project copy shows the browser-recorded export"
+    },
+    {
+      "id": "SRC-reopened-unverified",
+      "status": "PASS",
+      "detail": "reopened project marks all 4 sources unverified"
+    },
+    {
+      "id": "SRC-reverified-originals",
+      "status": "PASS",
+      "detail": "all 4 originals re-parsed to identical saved rows"
+    },
+    {
+      "id": "SRC-wrong-file-rejected",
+      "status": "PASS",
+      "detail": "non-matching file rejected with explanation"
+    },
+    {
+      "id": "SAVE-state-visible",
+      "status": "PASS",
+      "detail": "unsaved status visible after an edit"
+    },
+    {
+      "id": "SAFE-replace-confirmation",
+      "status": "PASS",
+      "detail": "demo did not replace unsaved real workspace; Keep workspace retained it"
+    },
+    {
+      "id": "ERR-malformed-project",
+      "status": "PASS",
+      "detail": "concise error; workspace and unsaved protection retained"
+    },
+    {
+      "id": "SAFE-beforeunload",
+      "status": "PASS",
+      "detail": "browser beforeunload prompt shown and dismissing it kept the page"
+    },
+    {
+      "id": "XLSX-native-controls-preserved",
+      "status": "PASS",
+      "detail": " |  |  |  |  |  |  |  |  |  |  | Sheet1!H9: H7+H8 · CONSISTENT · stored 900 · independent cents 90000 | Sheet1!I9: I7+I8 · CONSISTENT · stored 900 · independent cents 90000 | Sheet1!H10: H9 · CONSISTENT · stored 900 · independent cents 90000 | Sheet1!I10: I9 · CONSISTENT · stored 900 · independent cents 90000 | TRANSACTION_SCOPE_ONLY Validated complete journal groups only. This report does not prove company/account-period coverage, a cleared balance, or a month-end close."
+    },
+    {
+      "id": "XLSX-native-provenance",
+      "status": "PASS",
+      "detail": "txn 145 from group row; posting physical rows 7/8; original XLSX SHA-256 unchanged"
+    },
+    {
+      "id": "XLSX-native-reverify",
+      "status": "PASS",
+      "detail": "native XLSX + CSV originals re-parsed (worker) to identical saved rows"
+    },
+    {
+      "id": "A11Y-keyboard-order",
+      "status": "PASS",
+      "detail": "Skip to workspace → Reconciliation Desk home → Desk → Import → Exports → Stays in this browser → Import files → Load demo → Try a sample month"
+    },
+    {
+      "id": "A11Y-zoom-200",
+      "status": "PASS",
+      "detail": "720px CSS viewport (1440px at 200%): {\"scrollWidth\":720,\"innerWidth\":720}"
+    },
+    {
+      "id": "MOBILE-landing",
+      "status": "PASS",
+      "detail": "{\"scrollWidth\":390,\"innerWidth\":390}"
+    },
+    {
+      "id": "MOBILE-desk-status-and-evidence",
+      "status": "PASS",
+      "detail": "{\"scrollWidth\":390,\"innerWidth\":390}"
+    },
+    {
+      "id": "MOBILE-case-review-next-step",
+      "status": "PASS",
+      "detail": "{\"scrollWidth\":390,\"innerWidth\":390}"
+    },
+    {
+      "id": "MOBILE-exports-page",
+      "status": "PASS",
+      "detail": "{\"scrollWidth\":390,\"innerWidth\":390}"
+    },
+    {
+      "id": "NET-runtime-egress",
+      "status": "PASS",
+      "detail": "hosts=127.0.0.1:4173; 27 distinct requests"
+    },
+    {
+      "id": "CONSOLE-errors",
+      "status": "PASS",
+      "detail": "none"
+    }
+  ],
+  "network": [
+    "desktop GET http://127.0.0.1:4173/",
+    "desktop GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "desktop GET http://127.0.0.1:4173/assets/index-LLg-5Yk2.js",
+    "desktop GET http://127.0.0.1:4173/assets/index-UP0E9UCZ.css",
+    "desktop GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js",
+    "keyboard GET http://127.0.0.1:4173/",
+    "keyboard GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "keyboard GET http://127.0.0.1:4173/assets/index-LLg-5Yk2.js",
+    "keyboard GET http://127.0.0.1:4173/assets/index-UP0E9UCZ.css",
+    "keyboard GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js",
+    "keyboard GET http://127.0.0.1:4173/demo/chase_bank.csv",
+    "keyboard GET http://127.0.0.1:4173/demo/qbo_clearing_gl.csv",
+    "keyboard GET http://127.0.0.1:4173/demo/st_export.csv",
+    "mobile GET http://127.0.0.1:4173/",
+    "mobile GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "mobile GET http://127.0.0.1:4173/assets/index-LLg-5Yk2.js",
+    "mobile GET http://127.0.0.1:4173/assets/index-UP0E9UCZ.css",
+    "mobile GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js",
+    "mobile GET http://127.0.0.1:4173/demo/chase_bank.csv",
+    "mobile GET http://127.0.0.1:4173/demo/qbo_clearing_gl.csv",
+    "mobile GET http://127.0.0.1:4173/demo/st_export.csv",
+    "native GET http://127.0.0.1:4173/",
+    "native GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "native GET http://127.0.0.1:4173/assets/index-LLg-5Yk2.js",
+    "native GET http://127.0.0.1:4173/assets/index-UP0E9UCZ.css",
+    "native GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js",
+    "native GET http://127.0.0.1:4173/assets/xlsx.worker-37bWVQ1B.js"
+  ],
+  "consoleErrors": []
+}
