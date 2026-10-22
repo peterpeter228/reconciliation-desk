@@ -101,19 +101,23 @@ only from original group row 6. It matches the saved approved proposal exactly.
 Full-ledger verification remains false. No additional posting or account access
 was performed for this engineering check.
 
-The untouched native XLSX remains **rejected**: it contains formulas in its
-control-total cells. The namespace compatibility fix resolves the earlier date
-epoch false positive but does not evaluate formulas or trust their cached
-values. Cross-format positive tests use independently generated values-only
-synthetic workbooks, not silently transformed copies of the original workbook.
+The untouched native XLSX is now accepted for investigative posting extraction with
+its four recognized report controls preserved. H9, I9, H10 and I10 retain their
+formula text, addresses and cached values; independent integer-cent sums are
+checked without formula evaluation or original-file mutation. Missing/conflicting
+controls restrict accounting use. Arbitrary/posting formulas, macros and external
+links remain blocked. A complete native journal still does not establish full-month
+expense coverage. See the dated 2026-10-22 ingestion and local-browser records.
+
 
 Reproduce with:
 
 ```
-node --import tsx evidence/quickbooks-acceptance-20261021/check-native-profile-roundtrip.mjs
+npx vitest run tests/handoff-ingestion/native-controls.test.ts tests/ui/qbo-journal-profile.test.ts
 ```
 
-The new result is `native-profile-roundtrip-result.json`. The earlier failed
-`native-roundtrip-result.json` and its original script remain untouched as
-historical evidence. Full clearing rollforward, month-end completeness, real
+The earlier `native-profile-roundtrip-result.json`, failed
+`native-roundtrip-result.json` and their original scripts remain historical
+evidence. Current results are in `evidence/handoff-ingestion-20261022/` and
+`evidence/handoff-workflow-20261022/`. Full clearing rollforward, month-end completeness, real
 customer books, other QBO layouts and QBD import acceptance remain unestablished.

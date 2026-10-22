@@ -37,6 +37,10 @@ function mutateEnvelope(text: string, fn: (x: any) => void) {
   return JSON.stringify(x);
 }
 describe('durable local review projects', () => {
+  it('returns concise invalid JSON and schema errors without exposing raw Zod output', () => {
+    expect(() => openProject('{')).toThrow('Invalid review project JSON');
+    expect(() => openProject('{"schemaVersion":999}')).toThrow('supported schema version 1');
+  });
   it('roundtrips complete input and mapping with newly computed result', () => {
     const saved = serializeProject(base);
     const got = openProject(saved);

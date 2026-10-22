@@ -403,9 +403,14 @@ export function serializeProject(workspace: Workspace): string {
 export function openProject(serialized: string): Workspace {
   if (new TextEncoder().encode(serialized).length > MAX_PROJECT_BYTES)
     throw new Error('Review project exceeds 40 MB.');
-  const raw: unknown = JSON.parse(serialized);
+  let raw: unknown;
+  try {
+    raw = JSON.parse(serialized);
+  } catch {
+    throw new Error('Invalid review project JSON. Choose an unmodified saved review project.');
+  }
   safeTree(raw);
-  const envelope = z
+  const checkedEnvelope = z
     .object({
       format: z.literal('reconciliation-review-project'),
       schemaVersion: z.literal(1),
@@ -414,7 +419,17 @@ export function openProject(serialized: string): Workspace {
       integrity: hash,
     })
     .strict()
-    .parse(raw);
+    .safeParse(raw);
+  if (!checkedEnvelope.success) {
+    const paths = checkedEnvelope.error.issues
+      .slice(0, 3)
+      .map((issue) => issue.path.join('.') || 'project')
+      .join(', ');
+    throw new Error(
+      `Review project validation failed (${paths}). Use a supported schema version 1 project. The current workspace was not replaced.`,
+    );
+  }
+  const envelope = checkedEnvelope.data;
   const { integrity, ...payload } = envelope;
   if (contentHash(payload) !== integrity)
     throw new Error('Project integrity mismatch; use an unmodified saved project.');

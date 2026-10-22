@@ -661,9 +661,10 @@ export function ImportPage({
             <strong>Transaction-only evidence, not full-period coverage.</strong> Choose this
             profile explicitly for the native QBO Transaction Journal and independently verify its
             printed company name. It supports only the reported journals, not the entire clearing
-            account or month. Native CSV is the primary route. XLSX formulas, macros and external
-            links remain blocked; nothing is silently stripped. This profile uses fixed report
-            columns and physical header row 5, never Num as a transaction ID.
+            account or month. Native CSV and guarded XLSX are supported. Recognized report-control
+            formulas are preserved and independently checked, never evaluated. Posting formulas,
+            macros and external links remain blocked; nothing is silently stripped. This profile
+            uses fixed report columns and physical header row 5, never Num as a transaction ID.
           </Notice>
         )}
       </section>

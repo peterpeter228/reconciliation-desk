@@ -1,0 +1,43 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test:reference
+> python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+test_50000_mixed_net_known_components (test_core.CoreTests.test_50000_mixed_net_known_components) ... ok
+test_aje_balanced_no_bank_duplicate (test_core.CoreTests.test_aje_balanced_no_bank_duplicate) ... ok
+test_aje_gates (test_core.CoreTests.test_aje_gates) ... ok
+test_ambiguity_not_first_solution (test_core.CoreTests.test_ambiguity_not_first_solution) ... ok
+test_approval_binds_account_date_and_output_content (test_core.CoreTests.test_approval_binds_account_date_and_output_content) ... ok
+test_bounds_never_claim_no_match (test_core.CoreTests.test_bounds_never_claim_no_match) ... ok
+test_rate_is_only_hypothesis (test_core.CoreTests.test_rate_is_only_hypothesis) ... ok
+test_strict_money (test_core.CoreTests.test_strict_money) ... ok
+test_subset_against_bruteforce (test_core.CoreTests.test_subset_against_bruteforce) ... ok
+test_us_settlement_holiday (test_core.CoreTests.test_us_settlement_holiday) ... ok
+test_both_debit_and_credit_on_same_line_are_blocked (test_core_review.ExportBoundaryReviewTests.test_both_debit_and_credit_on_same_line_are_blocked) ... ok
+test_draft_payload_cannot_reach_import_file (test_core_review.ExportBoundaryReviewTests.test_draft_payload_cannot_reach_import_file) ... ok
+test_empty_journal_cannot_reach_import_file (test_core_review.ExportBoundaryReviewTests.test_empty_journal_cannot_reach_import_file) ... ok
+test_formula_text_and_control_characters_are_blocked (test_core_review.ExportBoundaryReviewTests.test_formula_text_and_control_characters_are_blocked) ... ok
+test_negative_debit_is_not_mapped_as_valid_positive_credit (test_core_review.ExportBoundaryReviewTests.test_negative_debit_is_not_mapped_as_valid_positive_credit) ... ok
+test_unbalanced_payload_cannot_reach_quickbooks (test_core_review.ExportBoundaryReviewTests.test_unbalanced_payload_cannot_reach_quickbooks) ... ok
+test_cardinality_limit_can_be_proven_irrelevant (test_core_review.SubsetReviewTests.test_cardinality_limit_can_be_proven_irrelevant) ... ok
+test_cardinality_limit_must_not_claim_exhaustive_no_match (test_core_review.SubsetReviewTests.test_cardinality_limit_must_not_claim_exhaustive_no_match) ... ok
+test_cardinality_limit_must_not_prove_false_uniqueness (test_core_review.SubsetReviewTests.test_cardinality_limit_must_not_prove_false_uniqueness) ... ok
+test_zero_cent_tolerance_is_not_silently_rounded (test_core_review.SubsetReviewTests.test_zero_cent_tolerance_is_not_silently_rounded) ... ok
+test_activity_bridge_is_not_verified_bank_posting_or_accounting_drift (test_synthetic.SyntheticAccountingContract.test_activity_bridge_is_not_verified_bank_posting_or_accounting_drift) ... ok
+test_bank_balance_and_period_scoping (test_synthetic.SyntheticAccountingContract.test_bank_balance_and_period_scoping) ... ok
+test_business_calendar_labor_day_and_weekend (test_synthetic.SyntheticAccountingContract.test_business_calendar_labor_day_and_weekend) ... ok
+test_clearing_rollforward_and_residual_equation (test_synthetic.SyntheticAccountingContract.test_clearing_rollforward_and_residual_equation) ... ok
+test_event_unit_counts_and_exact_250k_receipts (test_synthetic.SyntheticAccountingContract.test_event_unit_counts_and_exact_250k_receipts) ... ok
+test_fifty_thousand_heterogeneous_components_need_manifest (test_synthetic.SyntheticAccountingContract.test_fifty_thousand_heterogeneous_components_need_manifest) ... ok
+test_no_unsupported_aje_from_minimum_three_files (test_synthetic.SyntheticAccountingContract.test_no_unsupported_aje_from_minimum_three_files) ... ok
+test_real_batch_summary_grain_and_unique_line_identity (test_synthetic.SyntheticAccountingContract.test_real_batch_summary_grain_and_unique_line_identity) ... ok
+test_refunds_and_corrections_keep_original_locked_payment (test_synthetic.SyntheticAccountingContract.test_refunds_and_corrections_keep_original_locked_payment) ... ok
+test_seed_reproducibility_and_invariants_across_seeds (test_synthetic.SyntheticAccountingContract.test_seed_reproducibility_and_invariants_across_seeds) ... ok
+test_signed_source_totals_do_not_masquerade_as_revenue (test_synthetic.SyntheticAccountingContract.test_signed_source_totals_do_not_masquerade_as_revenue) ... ok
+test_twenty_thousand_absence_is_not_hold_proof (test_synthetic.SyntheticAccountingContract.test_twenty_thousand_absence_is_not_hold_proof) ... ok
+test_write_provenance_hashes_and_no_answer_leakage (test_synthetic.SyntheticAccountingContract.test_write_provenance_hashes_and_no_answer_leakage) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 0.225s
+
+OK

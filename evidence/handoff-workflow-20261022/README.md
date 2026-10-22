@@ -24,3 +24,7 @@ The `fixtures/` project contains only synthetic normalized rows and synthetic re
 Original source bytes remain outside the saved review project. Preserve them independently. Local integrity is not document authenticity, reviewer authentication or a shared cross-device duplicate registry.
 
 Native untouched workbook controls are separately documented in `../handoff-ingestion-20261022/`. Current real-browser checks are recorded separately when completed. The prior owner-private deployed site is not automatically updated. No real accounting write, account connection, external paid-model call or public deployment was performed in this milestone.
+
+## Final browser and polish checkpoint
+
+690 tests across 29 files, typecheck/build, 33 Python reference tests, formatting and artifact checks passed again after concise saved-project errors and corrected native-XLSX guidance. See `final-*.txt`. Real browser results and actual synthetic downloads are in `browser/qa-status.md`. One unexplained, nonreproduced transient reset and untested paths remain explicitly recorded; this is not a production or real-QBO-write certification.

@@ -1,0 +1,31 @@
+{
+  "paymentIds": [
+    "p1"
+  ],
+  "payments": [],
+  "bankAccount": "Collections Checking",
+  "bankAccountVerified": true,
+  "depositDate": "2026-09-30",
+  "grossCents": 1000000,
+  "feeCents": 90000,
+  "bankNetCents": 910000,
+  "bankEvidenceRef": "a64e8df79b8ef7ef5bc8ab26de8c22900ea12489dc1144ccf3443f3195ad0293:row2",
+  "feeAccount": "Merchant Financing Fees",
+  "feeAccountVerified": true,
+  "feeEvidenceRef": "671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
+  "feeNotRecordedConfirmed": true,
+  "kind": "UF_BANK_DEPOSIT_WORKSHEET",
+  "importEligible": false,
+  "status": "CANDIDATE",
+  "explanation": "Human review workpaper only. A journal entry does not link existing Undeposited Funds payments to a deposit.",
+  "expectedNetCents": 910000,
+  "negativeFeeCents": -90000,
+  "missingEvidence": [
+    "Locate actual QuickBooks Payment IDs; ST IDs alone are candidate references."
+  ],
+  "steps": [
+    "Candidate investigation only: do not select payments or create a deposit from these unverified references.",
+    "Locate actual QuickBooks Payment IDs; ST IDs alone are candidate references.",
+    "Check existing deposits and fee postings before preparing reviewed instructions; never categorize a duplicate bank receipt."
+  ]
+}

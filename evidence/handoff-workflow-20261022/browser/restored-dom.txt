@@ -1,0 +1,285 @@
+- link "Skip to workspace":
+  - /url: "#main"
+- banner:
+  - button "Reconciliation Desk home":
+    - generic: Reconciliation Desk
+  - navigation "Main navigation":
+    - button "Desk"
+    - button "Import"
+    - button "Exports"
+  - button "Stays in this browser":
+    - generic: Stays in this browser
+  - button "Clear workspace":
+- main:
+  - heading "Follow the money." [level=1]
+  - paragraph: Sep 1, 2026 – Sep 30, 2026 · Synthetic sample · No customer data
+  - generic: Open review project
+  - button "Save review project"
+  - button "Import files":
+    - text: Import files
+  - button "Reset sample month":
+    - text: Reset sample month
+  - status:
+    - generic: Review project restored and recalculated. Prior export history retained; saved approvals require fresh review. Keep original source documents separately.
+    - button "Dismiss update":
+  - generic: ST gross receipts
+  - strong: $10,000.00
+  - generic: Positive source payments
+  - generic: Review queue
+  - strong: 2 cases
+  - generic: Not an economic-event count
+  - generic: Supported fee workpapers
+  - strong: $900.00
+  - generic: Not approved accounting entries
+  - generic: Activity reconciliation
+  - strong: Balance verification incomplete
+  - generic: Opening / closing evidence may be missing
+  - complementary "Reconciliation review queue":
+    - heading "Review queue 2" [level=2]:
+      - text: Review queue
+      - generic: "2"
+    - text: Amount
+    - textbox "Search local records":
+      - /placeholder: Search a payment or reference
+    - generic "Filter cases":
+      - button "Needs review" [pressed]
+      - button "All activity"
+      - button "Ambiguous"
+    - button "$10,000.00 Settlement fee difference 1 ST · 3 QB · 1 bank rows Verified" [pressed]:
+      - strong: $10,000.00
+      - generic: Settlement fee difference
+      - generic: 1 ST · 3 QB · 1 bank rows
+      - generic: Verified
+    - button "$0.00 Activity bridge 0 ST · 1 QB · 0 bank rows To review":
+      - strong: $0.00
+      - generic: Activity bridge
+      - generic: 0 ST · 1 QB · 0 bank rows
+      - generic: To review
+    - text: Largest impact first
+    - generic: J / K to move
+  - region "Selected case evidence":
+    - heading "Settlement fee difference" [level=2]
+    - paragraph:
+      - text: ServiceTitan
+      - text: QuickBooks
+      - text: Bank
+    - strong: $10,000.00
+    - generic: Verified three-way
+    - generic: Equal amounts are not proof of the same transaction. Each source link needs its own evidence.
+    - generic: ST
+    - heading "ServiceTitan" [level=3]
+    - generic: "1"
+    - generic: Sep 1, 2026
+    - generic: Payment
+    - strong: $10,000.00
+    - generic: p1
+    - paragraph: CHECK · Batch b1
+    - button "synthetic-st.jsonl Row 2":
+      - text: synthetic-st.jsonl
+      - generic: Row 2
+    - generic: QB
+    - heading "QuickBooks" [level=3]
+    - generic: "3"
+    - generic: Sep 1, 2026
+    - generic: Debit
+    - strong: $10,000.00
+    - generic: DEMO-RECEIPT
+    - paragraph: ServiceTitan Clearing
+    - button "synthetic-qbo.jsonl Row 2":
+      - text: synthetic-qbo.jsonl
+      - generic: Row 2
+    - generic: Sep 3, 2026
+    - generic: Debit
+    - strong: $9,100.00
+    - generic: DEMO-DEPOSIT
+    - paragraph: Collections Checking
+    - button "synthetic-qbo.jsonl Row 4":
+      - text: synthetic-qbo.jsonl
+      - generic: Row 4
+    - generic: Sep 3, 2026
+    - generic: Credit
+    - strong: "-$9,100.00"
+    - generic: DEMO-DEPOSIT
+    - paragraph: ServiceTitan Clearing
+    - button "synthetic-qbo.jsonl Row 5":
+      - text: synthetic-qbo.jsonl
+      - generic: Row 5
+    - generic: BK
+    - heading "Bank" [level=3]
+    - generic: "1"
+    - generic: Sep 2, 2026
+    - generic: Posted
+    - strong: $9,100.00
+    - generic: d1
+    - paragraph: Deposit d1
+    - button "synthetic-bank.jsonl Row 2":
+      - text: synthetic-bank.jsonl
+      - generic: Row 2
+    - strong: ST → QuickBooks
+    - generic: Confirmed
+    - generic: Identity and amount evidence.
+    - strong: QuickBooks → Bank
+    - generic: Confirmed
+    - generic: Identity and amount evidence.
+    - strong: ST / processor → Bank
+    - generic: Confirmed
+    - generic: Identity and amount evidence.
+    - heading "What the evidence tells us" [level=3]
+    - button "Add evidence":
+      - text: Add evidence
+    - strong: Settlement fee difference
+    - generic: Supported
+    - generic: Evidence score 100/100, not a probability
+    - strong: Still needed
+    - list:
+      - listitem: Complete expense and duplicate fee review
+    - generic "Amount bridge & accounting eligibility $0.00 unexplained +":
+      - generic: Amount bridge & accounting eligibility
+      - generic: $0.00 unexplained
+      - text: +
+    - region "Current case accounting review":
+      - heading "Review this economic case" [level=3]
+      - paragraph: Investigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.
+      - paragraph:
+        - strong: "Stable case:"
+        - text: "case-23476b271213de4e32f764fb · BOUND · Prior import: UNKNOWN"
+      - generic: Previous accounting export recorded. Preserve its journal number and verify the ledger before any retry. Save this review project now.
+      - button "Download human-judgment workpaper"
+      - generic "Review facts & documented fee-only proposal" [active]
+      - text: Reviewer
+      - textbox "Reviewer": Synthetic QA reviewer
+      - text: Accounting basis / unresolved questions
+      - textbox "Accounting basis / unresolved questions": Synthetic current-case end-to-end acceptance, not real customer evidence or market validation.
+      - text: Journal date
+      - textbox "Journal date": 2026-09-30
+      - text: Document purpose
+      - combobox "Document purpose":
+        - option "Settlement fee evidence" [selected]
+        - option "Actual chart of accounts"
+        - option "Full GL coverage evidence"
+      - text: Attach a locally reviewed supporting document
+      - button "Attach a locally reviewed supporting document"
+      - generic: Only its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.
+      - list:
+        - listitem: "COA: synthetic-coa-review.txt · b8529669be12"
+        - listitem: "SETTLEMENT: synthetic-settlement-review.txt · 671588c73a7a"
+        - listitem: "LEDGER: synthetic-ledger-review.txt · 9af926f7afc4"
+      - text: Exact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)
+      - textbox "Exact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)": Collections Checking ServiceTitan Clearing Merchant Financing Fees Accounts Receivable
+      - text: Reviewed GL coverage starts
+      - textbox "Reviewed GL coverage starts": 2026-09-01
+      - text: Reviewed GL coverage ends
+      - textbox "Reviewed GL coverage ends": 2026-09-30
+      - text: Existing bank account full name
+      - combobox "Existing bank account full name": Collections Checking
+      - text: Existing ordinary asset clearing full name
+      - combobox "Existing ordinary asset clearing full name": ServiceTitan Clearing
+      - text: Existing fee expense account full name
+      - combobox "Existing fee expense account full name": Merchant Financing Fees
+      - group "Actual chart of accounts review":
+        - generic: Actual chart of accounts review
+        - generic: Explicitly confirm each account against the attached COA. A chosen label never creates or changes an account.
+        - strong: ServiceTitan Clearing
+        - combobox "COA type ServiceTitan Clearing":
+          - option "UNKNOWN"
+          - option "BANK"
+          - option "OTHER_CURRENT_ASSET" [selected]
+          - option "EXPENSE"
+          - option "OTHER_CURRENT_LIABILITY"
+          - option "OTHER"
+        - checkbox "Exists in reviewed COA" [checked]
+        - text: Exists in reviewed COA
+        - combobox "UF status ServiceTitan Clearing":
+          - option "UNKNOWN"
+          - option "UF"
+          - option "NOT_UF" [selected]
+        - strong: Accounts Receivable
+        - combobox "COA type Accounts Receivable":
+          - option "UNKNOWN"
+          - option "BANK"
+          - option "OTHER_CURRENT_ASSET"
+          - option "EXPENSE"
+          - option "OTHER_CURRENT_LIABILITY"
+          - option "OTHER" [selected]
+        - checkbox "Exists in reviewed COA" [checked]
+        - text: Exists in reviewed COA
+        - combobox "UF status Accounts Receivable":
+          - option "UNKNOWN"
+          - option "UF"
+          - option "NOT_UF" [selected]
+        - strong: Collections Checking
+        - combobox "COA type Collections Checking":
+          - option "UNKNOWN"
+          - option "BANK" [selected]
+          - option "OTHER_CURRENT_ASSET"
+          - option "EXPENSE"
+          - option "OTHER_CURRENT_LIABILITY"
+          - option "OTHER"
+        - checkbox "Exists in reviewed COA" [checked]
+        - text: Exists in reviewed COA
+        - combobox "UF status Collections Checking":
+          - option "UNKNOWN"
+          - option "UF"
+          - option "NOT_UF" [selected]
+        - strong: Merchant Financing Fees
+        - combobox "COA type Merchant Financing Fees":
+          - option "UNKNOWN"
+          - option "BANK"
+          - option "OTHER_CURRENT_ASSET"
+          - option "EXPENSE" [selected]
+          - option "OTHER_CURRENT_LIABILITY"
+          - option "OTHER"
+        - checkbox "Exists in reviewed COA" [checked]
+        - text: Exists in reviewed COA
+        - combobox "UF status Merchant Financing Fees":
+          - option "UNKNOWN"
+          - option "UF"
+          - option "NOT_UF" [selected]
+      - text: Posted gross-receipt transaction
+      - combobox "Posted gross-receipt transaction":
+        - option "Choose a current-case QB transaction"
+        - option "DEMO-RECEIPT" [selected]
+        - option "DEMO-DEPOSIT"
+      - text: Posted net-bank settlement transaction
+      - combobox "Posted net-bank settlement transaction":
+        - option "Choose a current-case QB transaction"
+        - option "DEMO-RECEIPT"
+        - option "DEMO-DEPOSIT" [selected]
+      - text: Documented net fee in USD (not an inferred difference)
+      - textbox "Documented net fee in USD (not an inferred difference)": "900.00"
+      - text: Fee mode
+      - combobox "Fee mode":
+        - option "UNKNOWN"
+        - option "NETTED" [selected]
+        - option "SEPARATE_INVOICE"
+        - option "GROSS_SETTLED"
+      - checkbox "I reviewed the actual COA; all named GL accounts exist and their imported types are correct." [checked]
+      - generic: I reviewed the actual COA; all named GL accounts exist and their imported types are correct.
+      - checkbox "Selected clearing is ordinary asset clearing, not Undeposited Funds or a liability." [checked]
+      - generic: Selected clearing is ordinary asset clearing, not Undeposited Funds or a liability.
+      - checkbox "The supplied GL includes complete relevant bank, clearing and fee activity for this period." [checked]
+      - generic: The supplied GL includes complete relevant bank, clearing and fee activity for this period.
+      - checkbox "Source evidence identifies this entire amount as this case’s netted fee, not a reserve/hold." [checked]
+      - generic: Source evidence identifies this entire amount as this case’s netted fee, not a reserve/hold.
+      - checkbox "I checked all fee journals and confirmed this fee has not already been recorded." [checked]
+      - generic: I checked all fee journals and confirmed this fee has not already been recorded.
+      - checkbox "The selected accounting period is open and the journal date is appropriate." [checked]
+      - generic: The selected accounting period is open and the journal date is appropriate.
+      - button "Build supported fee-only draft"
+      - heading "DRAFT · RD30D093C12E" [level=4]
+      - paragraph: Merchant Financing Fees · Debit $900.00 · Credit $0.00
+      - paragraph: ServiceTitan Clearing · Debit $0.00 · Credit $900.00
+      - checkbox "I reviewed these exact accounts, date, amounts and evidence. Download is not posting."
+      - text: I reviewed these exact accounts, date, amounts and evidence. Download is not posting.
+      - button "Approve exact proposal" [disabled]
+      - button "Download approved QBO CSV" [disabled]
+      - generic "UF candidate / reviewed deposit worksheet"
+    - button "Download evidence JSON":
+      - text: Download evidence JSON
+    - button "Review export eligibility":
+      - text: Review export eligibility
+  - generic "Run controls & import manifest 0.0 ms engine · 4 files":
+    - generic: Run controls & import manifest
+    - generic: 0.0 ms engine · 4 files
+  - text: Read-only by design. Export is not posting.
+  - button "Privacy & limits"

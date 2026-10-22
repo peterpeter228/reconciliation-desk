@@ -1,0 +1,232 @@
+{
+  "level": "HUMAN_JUDGMENT_DRAFT_NOT_ACCOUNTING_IMPORT",
+  "caseId": "case-23476b271213de4e32f764fb",
+  "group": {
+    "id": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+    "company_id": "company",
+    "bank_account_id": "bank",
+    "clearing_account_ids": [
+      "CLEARING"
+    ],
+    "clearing_residuals": [
+      {
+        "account_id": "CLEARING",
+        "residual_debit_cents": 90000
+      }
+    ],
+    "currency": "USD",
+    "st_ids": [
+      "st-1"
+    ],
+    "qb_ids": [
+      "qb-0",
+      "qb-2",
+      "qb-3"
+    ],
+    "bank_ids": [
+      "bank-1"
+    ],
+    "gross_cents": 1000000,
+    "refunds_cents": 0,
+    "fees_cents": 90000,
+    "holds_cents": 0,
+    "releases_cents": 0,
+    "external_receipts_cents": 0,
+    "other_adjustments_cents": 0,
+    "bank_cents": 910000,
+    "unexplained_cents": 0,
+    "ledger_residual_cents": 90000,
+    "matching_state": "MATCHED",
+    "matching_scope": "VERIFIED_THREE_WAY",
+    "search_status": "COMPLETE",
+    "diagnoses": [
+      {
+        "cause": "NET_FEE_DRIFT",
+        "evidence_level": "SUPPORTED",
+        "score": 100,
+        "evidence_refs": [
+          "processor:row2"
+        ],
+        "missing_evidence": [
+          "COMPLETE_EXPENSE_AND_DUPLICATE_FEE_REVIEW"
+        ]
+      }
+    ],
+    "aje_state": "INELIGIBLE",
+    "source_version_hash": "59d9241fc7bad1d86a2df30f15aeab80b07de1105b8fdb2551062a0c7cb47e4f",
+    "approved_proposal_hash": null,
+    "edges": [
+      {
+        "kind": "ST_QB_RECEIPT",
+        "state": "CONFIRMED",
+        "expected_cents": 1000000,
+        "observed_cents": 1000000,
+        "difference_cents": 0,
+        "source_ids": [
+          "qb-0",
+          "st-1"
+        ],
+        "identity_refs": [
+          "accounting_batch:b1",
+          "payment:p1"
+        ],
+        "evidence_refs": [],
+        "missing_evidence": [],
+        "rule_id": "st_qb_receipt_v1",
+        "rule_version": "g1-2026.10.21.2"
+      },
+      {
+        "kind": "QB_BANK_SETTLEMENT",
+        "state": "CONFIRMED",
+        "expected_cents": 910000,
+        "observed_cents": 910000,
+        "difference_cents": 0,
+        "source_ids": [
+          "bank-1",
+          "qb-2",
+          "qb-3"
+        ],
+        "identity_refs": [
+          "d1"
+        ],
+        "evidence_refs": [],
+        "missing_evidence": [],
+        "rule_id": "qb_bank_settlement_v1",
+        "rule_version": "g1-2026.10.21.2"
+      },
+      {
+        "kind": "ST_BANK_CASH",
+        "state": "CONFIRMED",
+        "expected_cents": 910000,
+        "observed_cents": 910000,
+        "difference_cents": 0,
+        "source_ids": [
+          "bank-1",
+          "st-1"
+        ],
+        "identity_refs": [
+          "d1"
+        ],
+        "evidence_refs": [
+          "processor:row2"
+        ],
+        "missing_evidence": [],
+        "rule_id": "st_bank_cash_v1",
+        "rule_version": "g1-2026.10.21.2"
+      }
+    ],
+    "accepted": true,
+    "warnings": [],
+    "evidence_refs": [
+      "processor:row2"
+    ],
+    "fee_proposal_math_ready": true,
+    "fee_aje_draft_eligible": false,
+    "impact_cents": 1000000,
+    "period_status": "IN_PERIOD"
+  },
+  "facts": {
+    "reviewer": "Synthetic QA reviewer",
+    "notes": "Synthetic current-case end-to-end acceptance, not real customer evidence or market validation.",
+    "journalDate": "2026-09-30",
+    "bankAccountName": "Collections Checking",
+    "clearingAccountName": "ServiceTitan Clearing",
+    "feeAccountName": "Merchant Financing Fees",
+    "receiptTransactionId": "DEMO-RECEIPT",
+    "settlementTransactionId": "DEMO-DEPOSIT",
+    "documentedFee": "900.00",
+    "feeMode": "NETTED",
+    "netFeeConfirmed": true,
+    "periodOpenConfirmed": true,
+    "expenseNotRecordedConfirmed": true,
+    "completeLedgerConfirmed": true,
+    "ledgerCoveredAccountNames": "Collections Checking\nServiceTitan Clearing\nMerchant Financing Fees\nAccounts Receivable",
+    "ledgerPeriodStart": "2026-09-01",
+    "ledgerPeriodEnd": "2026-09-30",
+    "accountsReviewed": true,
+    "clearingIsOrdinaryAsset": true,
+    "documents": [
+      {
+        "name": "synthetic-coa-review.txt",
+        "sha256": "b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
+        "purpose": "COA",
+        "sizeBytes": 566
+      },
+      {
+        "name": "synthetic-settlement-review.txt",
+        "sha256": "671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
+        "purpose": "SETTLEMENT",
+        "sizeBytes": 135
+      },
+      {
+        "name": "synthetic-ledger-review.txt",
+        "sha256": "9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36",
+        "purpose": "LEDGER",
+        "sizeBytes": 162
+      }
+    ],
+    "reviewedAccounts": [
+      {
+        "id": "Collections Checking",
+        "name": "Collections Checking",
+        "type": "BANK",
+        "exists": true,
+        "isUndepositedFunds": false
+      },
+      {
+        "id": "ServiceTitan Clearing",
+        "name": "ServiceTitan Clearing",
+        "type": "OTHER_CURRENT_ASSET",
+        "exists": true,
+        "isUndepositedFunds": false
+      },
+      {
+        "id": "Merchant Financing Fees",
+        "name": "Merchant Financing Fees",
+        "type": "EXPENSE",
+        "exists": true,
+        "isUndepositedFunds": false
+      },
+      {
+        "id": "Accounts Receivable",
+        "name": "Accounts Receivable",
+        "type": "OTHER",
+        "exists": true,
+        "isUndepositedFunds": false
+      }
+    ],
+    "relations": []
+  },
+  "sourceFiles": [
+    {
+      "name": "synthetic-st.jsonl",
+      "kind": "ST",
+      "hash": "ab8692639c9b7184d7d78a05fd3d7c1ea4c7fb66fd619fad6b1f8069249c9419",
+      "sizeBytes": 1152
+    },
+    {
+      "name": "synthetic-qbo.jsonl",
+      "kind": "QBO",
+      "hash": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
+      "sizeBytes": 4031
+    },
+    {
+      "name": "synthetic-bank.jsonl",
+      "kind": "BANK",
+      "hash": "a64e8df79b8ef7ef5bc8ab26de8c22900ea12489dc1144ccf3443f3195ad0293",
+      "sizeBytes": 777
+    },
+    {
+      "name": "synthetic-processor.jsonl",
+      "kind": "PROCESSOR",
+      "hash": "7840ede0bb7c410a38fc108b43d67dcf4a63a7414818685ecd00375f3ee0b8af",
+      "sizeBytes": 843
+    }
+  ],
+  "missingEvidence": [
+    "COMPLETE_EXPENSE_AND_DUPLICATE_FEE_REVIEW"
+  ],
+  "proposal": null,
+  "history": [],
+  "scope": "Manual review statements and locally selected documents are not independently authenticated. No posting or recovery of funds is claimed."
+}
