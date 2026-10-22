@@ -1,0 +1,5 @@
+Transaction ID,Line ID,Date,Transaction Type,Num,Name,Memo/Description,Account,Account Type,Split,Debit,Credit,Amount,Clr,Role,Accounting Batch Number,Linked Payment ID,Linked Deposit ID
+SYN-QB-R900,SYN-QL-1,09/10/2026,Journal Entry,SYN-B-900,,ServiceTitan accounting batch SYN-B-900 export,ServiceTitan Clearing,OTHER_CURRENT_ASSET,Accounts Receivable,10000.00,,10000.00,,CLEARING_RECEIPT,SYN-B-900,SYN-PMT-900,
+SYN-QB-R900,SYN-QL-2,09/10/2026,Journal Entry,SYN-B-900,,ServiceTitan accounting batch SYN-B-900 export,Accounts Receivable,OTHER,ServiceTitan Clearing,,10000.00,-10000.00,,OTHER,SYN-B-900,SYN-PMT-900,
+SYN-QB-D900,SYN-QL-3,09/12/2026,Deposit,SYN-SET-900,,Processor payout SYN-SET-900,Collections Checking,BANK,ServiceTitan Clearing,9100.00,,9100.00,,BANK,,,SYN-SET-900
+SYN-QB-D900,SYN-QL-4,09/12/2026,Deposit,SYN-SET-900,,Processor payout SYN-SET-900,ServiceTitan Clearing,OTHER_CURRENT_ASSET,Collections Checking,,9100.00,-9100.00,,CLEARING_SETTLEMENT,,,SYN-SET-900

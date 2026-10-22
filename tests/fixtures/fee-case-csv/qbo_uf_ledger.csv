@@ -1,0 +1,3 @@
+Transaction ID,Line ID,Date,Transaction Type,Num,Name,Memo/Description,Account,Account Type,Split,Debit,Credit,Amount,Clr,Role,Accounting Batch Number,Linked Payment ID,Linked Deposit ID
+SYN-QB-P900,SYN-QL-11,09/10/2026,Payment,SYN-B-900,,ServiceTitan payment SYN-PMT-900,Undeposited Funds,OTHER_CURRENT_ASSET,Accounts Receivable,10000.00,,10000.00,,CLEARING_RECEIPT,SYN-B-900,SYN-PMT-900,
+SYN-QB-P900,SYN-QL-12,09/10/2026,Payment,SYN-B-900,,ServiceTitan payment SYN-PMT-900,Accounts Receivable,OTHER,Undeposited Funds,,10000.00,-10000.00,,OTHER,SYN-B-900,SYN-PMT-900,
