@@ -1,0 +1,1021 @@
+Follow the money.
+
+Sep 1, 2026 – Sep 30, 2026 · Synthetic sample · No customer data
+
+Open review project
+Save review project
+No review edits
+Import files
+Reset sample month
+Reconciliation complete. Review evidence before any accounting action.
+ST gross receipts
+$242,360.14
+Positive source payments
+Review queue
+221 cases
+Not an economic-event count
+Supported fee workpapers
+Evidence needed
+Not approved accounting entries
+Activity reconciliation
+Balance verification incomplete
+Opening / closing evidence may be missing
+Review queue
+221
+Amount
+Needs review
+All activity
+Ambiguous
+$50,000.00
+Unattributed bank activity
+0 ST · 4 QB · 1 bank rows
+To review
+$20,000.00
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+To review
+$20,000.00
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$15,000.00
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$12,000.00
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+To review
+$3,552.12
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$3,233.11
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$3,202.62
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,779.09
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,740.44
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$2,675.65
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$2,660.40
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,598.34
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$2,554.24
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,447.54
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$2,382.21
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$2,352.27
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,338.12
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,332.12
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,314.16
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,314.16
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,289.67
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,289.67
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,289.67
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,278.78
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,278.78
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,278.78
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,277.69
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,277.69
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,265.17
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,265.17
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,265.17
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,265.17
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,206.92
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$2,114.92
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,113.82
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,105.66
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$2,091.50
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$2,091.50
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$2,087.15
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$2,081.71
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,950.50
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,900.42
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,885.17
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,885.17
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,847.07
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,847.07
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,839.45
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,807.87
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,807.87
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,790.45
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,787.19
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,787.19
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$1,774.12
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,724.09
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+To review
+$1,704.97
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,695.78
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+To review
+$1,661.97
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,620.60
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,563.44
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,549.28
+Activity bridge
+3 ST · 6 QB · 1 bank rows
+Ambiguous
+$1,549.28
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,535.13
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,515.04
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,515.04
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,515.04
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,515.04
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,515.04
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,501.37
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,486.13
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,478.52
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,455.11
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,397.39
+Activity bridge
+3 ST · 5 QB · 1 bank rows
+Ambiguous
+$1,397.39
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,369.09
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,369.09
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,369.09
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,329.88
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,326.62
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,324.99
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,324.99
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,321.71
+Activity bridge
+4 ST · 5 QB · 1 bank rows
+Ambiguous
+$1,321.71
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,311.38
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,311.38
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,311.38
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$1,300.49
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,285.79
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,264.56
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,264.56
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,255.86
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,244.96
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,225.37
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,225.37
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,225.37
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,225.37
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,203.59
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,190.52
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,182.36
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$1,181.87
+Post-export change
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,181.82
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,134.45
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,134.45
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,126.83
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,106.15
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,091.44
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,091.44
+Activity bridge
+3 ST · 6 QB · 1 bank rows
+Ambiguous
+$1,070.81
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$1,069.12
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,069.12
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,060.96
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,060.96
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,058.24
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,037.00
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$1,013.60
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$1,011.42
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,007.05
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,007.05
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$1,007.05
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$997.81
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$997.81
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$985.88
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$985.88
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$985.88
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$974.94
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$974.94
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$974.94
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$974.94
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$971.68
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$969.49
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$962.96
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$962.96
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$962.96
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$962.96
+Settlement fee difference
+3 ST · 4 QB · 1 bank rows
+Ambiguous
+$958.06
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$941.73
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$937.37
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$935.75
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$926.49
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$909.06
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$905.79
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$896.55
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$864.97
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$864.97
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$854.14
+Post-export change
+1 ST · 2 QB · 1 bank rows
+To review
+$839.98
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$839.98
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$839.93
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$837.80
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$836.65
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$814.35
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$814.35
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+Ambiguous
+$812.71
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$811.08
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+To review
+$786.04
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$769.21
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$749.01
+Activity bridge
+3 ST · 2 QB · 1 bank rows
+Ambiguous
+$748.52
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+To review
+$729.42
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$611.82
+Settlement fee difference
+3 ST · 3 QB · 1 bank rows
+To review
+$565.57
+Activity bridge
+2 ST · 2 QB · 1 bank rows
+To review
+$542.74
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$526.95
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$526.95
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$526.95
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$525.32
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$525.32
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$525.32
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$522.05
+Post-export change
+1 ST · 2 QB · 1 bank rows
+To review
+$500.28
+Post-export change
+1 ST · 2 QB · 1 bank rows
+To review
+$494.29
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$494.29
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$494.29
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$473.06
+Post-export change
+1 ST · 2 QB · 1 bank rows
+To review
+$464.35
+Unattributed bank activity
+0 ST · 1 QB · 1 bank rows
+Partial
+$446.93
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$432.23
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$411.00
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$400.11
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+To review
+$368.53
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$351.66
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$347.84
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$347.84
+Settlement fee difference
+1 ST · 4 QB · 1 bank rows
+Ambiguous
+$341.31
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$330.97
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$319.54
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+To review
+$298.30
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$298.30
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$289.05
+Unattributed bank activity
+0 ST · 1 QB · 1 bank rows
+Partial
+$266.73
+Post-export change
+1 ST · 2 QB · 1 bank rows
+To review
+$264.55
+Settlement fee difference
+1 ST · 2 QB · 1 bank rows
+To review
+$263.46
+Post-export change
+1 ST · 2 QB · 1 bank rows
+Ambiguous
+$262.92
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+To review
+$260.74
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+To review
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$250.00
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+Ambiguous
+$236.79
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$233.52
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+To review
+$223.72
+Unattributed bank activity
+0 ST · 1 QB · 1 bank rows
+Partial
+$215.56
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$199.22
+Unattributed bank activity
+0 ST · 1 QB · 1 bank rows
+Partial
+$175.83
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+To review
+$173.92
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+To review
+$171.46
+Settlement fee difference
+1 ST · 3 QB · 1 bank rows
+Ambiguous
+$164.38
+Unattributed bank activity
+0 ST · 1 QB · 1 bank rows
+Partial
+$163.29
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+Partial
+$158.39
+Post-export change
+1 ST · 2 QB · 1 bank rows
+To review
+$149.14
+Unattributed bank activity
+0 ST · 1 QB · 1 bank rows
+Partial
+$119.20
+Missing settlement
+1 ST · 1 QB · 0 bank rows
+To review
+$107.78
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+To review
+$85.73
+Unexported refund record
+1 ST · 0 QB · 1 bank rows
+To review
+Largest impact first
+J / K to move
+Unattributed bank activity
+
+ServiceTitan
+QuickBooks
+Bank
+
+$50,000.00
+Activity bridge
+Equal amounts are not proof of the same transaction. Each source link needs its own evidence.
+ST
+ServiceTitan
+0
+Not found in scope
+
+No linked receipt in the supplied ST activity.
+
+Absence is not proof of the cause.
+QB
+QuickBooks
+4
+Sep 18, 2026
+Credit
+-$18,200.00
+QB899901
+
+ServiceTitan Clearing
+
+qbo_clearing_gl.csv
+Row 308
+Sep 18, 2026
+Credit
+-$13,650.00
+QB899901
+
+ServiceTitan Clearing
+
+qbo_clearing_gl.csv
+Row 309
+Sep 18, 2026
+Credit
+-$12,000.00
+QB899901
+
+ServiceTitan Clearing
+
+qbo_clearing_gl.csv
+Row 310
+Sep 18, 2026
+Credit
+-$6,150.00
+QB899901
+
+ServiceTitan Clearing
+
+qbo_clearing_gl.csv
+Row 311
+BK
+Bank
+1
+Sep 18, 2026
+Posted
+$50,000.00
+CONSOL260918
+
+CONSOLIDATED DEPOSIT CONSOL260918
+
+chase_bank.csv
+Row 129
+ST → QuickBooks
+Absent
+More evidence is needed.
+QuickBooks → Bank
+Supported
+Association, not full posting proof.
+ST / processor → Bank
+Candidate
+More evidence is needed.
+What the evidence tells us
+Add evidence
+Unexplained activity
+Unknown
+Evidence score 20/100, not a probability
+Still needed
+St receipt not found
+Qb bank leg or itemized accountant confirmation
+Documented settlement components and payout identity
+Unresolved component or identity
+Scope and rule notes (3)
+Amount bridge & accounting eligibility
+-$50,000.00 unexplained
+Review this economic case
+
+Investigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.
+
+Stable case: case-8f0774852db879d5f3c20440 · BOUND · Prior import: NEVER_IMPORTED
+
+Download reviewer summary (HTML)
+Download human-judgment workpaper (JSON)
+Contains financial information, company labels and reviewer statements. Store securely and share only with authorized recipients.
+Review facts & documented fee-only proposal
+UF candidate / reviewed deposit worksheet
+Download evidence JSON
+Review export eligibility
+Run controls & import manifest
+311.4 ms engine · 3 files
+Read-only by design. Export is not posting.
+Privacy & limits

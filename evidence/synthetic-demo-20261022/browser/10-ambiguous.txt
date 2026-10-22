@@ -1,0 +1,120 @@
+Settlement fee difference
+
+ServiceTitan
+QuickBooks
+Bank
+
+$2,338.12
+Activity bridge
+Equal amounts are not proof of the same transaction. Each source link needs its own evidence.
+ST
+ServiceTitan
+3
+Sep 15, 2026
+Payment
+$514.98
+PMT740137
+
+CARD · Batch 430146
+
+st_export.csv
+Row 248
+Sep 15, 2026
+Payment
+$443.11
+PMT740138
+
+CARD · Batch 430146
+
+st_export.csv
+Row 249
+Sep 15, 2026
+Payment
+$1,380.03
+PMT740139
+
+CARD · Batch 430146
+
+st_export.csv
+Row 250
+QB
+QuickBooks
+3
+Sep 15, 2026
+Debit
+$2,338.12
+QB810113
+
+ServiceTitan Clearing
+
+qbo_clearing_gl.csv
+Row 217
+Sep 17, 2026
+Credit
+-$2,269.42
+QB810114
+
+ServiceTitan Clearing
+
+qbo_clearing_gl.csv
+Row 276
+Sep 17, 2026
+Credit
+-$68.70
+QB810115
+
+ServiceTitan Clearing
+
+qbo_clearing_gl.csv
+Row 277
+BK
+Bank
+1
+Sep 17, 2026
+Posted
+$2,269.42
+SET870046
+
+MERCHANT SETTLEMENT SET870046
+
+chase_bank.csv
+Row 112
+ST → QuickBooks
+Confirmed
+Identity and amount evidence.
+QuickBooks → Bank
+Supported
+Association, not full posting proof.
+ST / processor → Bank
+Candidate
+More evidence is needed.
+What the evidence tells us
+Add evidence
+Settlement fee difference
+Suspected
+Evidence score 20/100, not a probability
+Unexplained activity
+Unknown
+Evidence score 20/100, not a probability
+Still needed
+Qb bank leg or itemized accountant confirmation
+Documented settlement components and payout identity
+Exact netted settlement fee
+Qb bank posting and expense review
+Unresolved component or identity
+Scope and rule notes (2)
+Amount bridge & accounting eligibility
+$68.70 unexplained
+Review this economic case
+
+Investigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.
+
+Stable case: case-df110a4e47c85c071fd72be0 · BOUND · Prior import: NEVER_IMPORTED
+
+Download reviewer summary (HTML)
+Download human-judgment workpaper (JSON)
+Contains financial information, company labels and reviewer statements. Store securely and share only with authorized recipients.
+Review facts & documented fee-only proposal
+UF candidate / reviewed deposit worksheet
+Download evidence JSON
+Review export eligibility

@@ -3,13 +3,13 @@
 A local-file workbench for ServiceTitan → QuickBooks → bank activity.
 The goal is evidence you can review, not a green checkmark from coincident amounts.
 
-**Current stage: private pilot with scoped real-browser checks passed; complete
-browser acceptance and complete QuickBooks round-trip are not established.** The 2026-10-22 independent
-review ([report](docs/CLAUDE_CODE_INDEPENDENT_REVIEW_20261022.zh-CN.md), [handoff](docs/HANDOFF_TO_DOT.md))
-fixed a defect that blocked every real three-file fee-only draft and added original-source re-verification
-after reopening; its real-browser run used parser-derived synthetic files only. No real financial account is connected,
-no entries are posted to real books, no real payment service is configured, and no public launch
-is implied. Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
+**Current stage: synthetic demonstration and supervised-pilot preparation, not validated customer production use.**
+The reviewed fixes were merged on 2026-10-22. See the [independent follow-up report](docs/DOT_REVIEW_RESULTS_20261022.zh-CN.md)
+and the [ready-to-run synthetic demo guide](docs/SYNTHETIC_DEMO.zh-CN.md).
+The final reviewed tree passed 784 Vitest and 33 Python reference tests; the demo increment passes 785 Vitest tests. Scoped real-browser evidence is recorded separately.
+Mixed-case performance, Enter-only file selection, downloaded HTML visual acceptance, and screen-reader verification remain open.
+No real financial account is connected, no entries are posted to real books, and no public launch or profitability is implied.
+Read [implementation limits](docs/IMPLEMENTATION_LIMITS.md) first.
 
 ## Owner-private QA deployment
 

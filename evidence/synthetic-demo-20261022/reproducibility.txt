@@ -1,0 +1,3 @@
+PASS: repeated CLI summary byte-identical.
+PASS: existing summary output refused with EEXIST; original bytes preserved.
+PASS: focused formatter check.

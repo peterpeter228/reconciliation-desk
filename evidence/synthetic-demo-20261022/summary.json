@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "classification": "SYNTHETIC / DO NOT IMPORT",
+  "purpose": "Local technical demonstration only; no customer, market, or accounting-system acceptance claim",
+  "externalCalls": 0,
+  "accountingWrites": 0,
+  "scenarios": [
+    {
+      "id": "clean-arithmetic",
+      "explanation": "金额平衡不等于三条身份边全部确认；保留缺证据状态。",
+      "groupId": "098d5f503f444f87028f7371fa6042f3f4595add7e82d9fd36bc15573a98e921",
+      "grossCents": 323311,
+      "bankCents": 323311,
+      "feeCents": 0,
+      "unexplainedCents": 0,
+      "matchingState": "PARTIAL",
+      "edges": [
+        {
+          "kind": "ST_QB_RECEIPT",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        },
+        {
+          "kind": "QB_BANK_SETTLEMENT",
+          "state": "CANDIDATE",
+          "missing_evidence": [
+            "QB_BANK_LEG_OR_ITEMIZED_ACCOUNTANT_CONFIRMATION"
+          ]
+        },
+        {
+          "kind": "ST_BANK_CASH",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        }
+      ],
+      "feeDraftEligible": false,
+      "searchStatus": "COMPLETE"
+    },
+    {
+      "id": "documented-fee",
+      "explanation": "合成收款10000、银行9100、手续费900。三边确认仍需独立人工复核，未自动批准。",
+      "groupId": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
+      "grossCents": 1000000,
+      "bankCents": 910000,
+      "feeCents": 90000,
+      "unexplainedCents": 0,
+      "matchingState": "MATCHED",
+      "edges": [
+        {
+          "kind": "ST_QB_RECEIPT",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        },
+        {
+          "kind": "QB_BANK_SETTLEMENT",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        },
+        {
+          "kind": "ST_BANK_CASH",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        }
+      ],
+      "feeDraftEligible": false,
+      "searchStatus": "COMPLETE"
+    },
+    {
+      "id": "undeposited-funds",
+      "explanation": "UF 尚缺账簿银行腿，应走存款工作底稿，不冒充手续费入账许可。",
+      "groupId": "5201c14b8b3b2bba66a41e6f2f917039a1bf055e4b4433e6a02114b9b0bbc75d",
+      "grossCents": 1000000,
+      "bankCents": 910000,
+      "feeCents": 90000,
+      "unexplainedCents": 0,
+      "matchingState": "PARTIAL",
+      "edges": [
+        {
+          "kind": "ST_QB_RECEIPT",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        },
+        {
+          "kind": "QB_BANK_SETTLEMENT",
+          "state": "ABSENT",
+          "missing_evidence": [
+            "QB_SETTLEMENT_IDENTITY_AND_BANK_LEG"
+          ]
+        },
+        {
+          "kind": "ST_BANK_CASH",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        }
+      ],
+      "feeDraftEligible": false,
+      "searchStatus": "COMPLETE"
+    },
+    {
+      "id": "ambiguous",
+      "explanation": "存在多种候选，不按金额相同强行认定；不产生会计写入。",
+      "groupId": "6b0ca65110f99bf60c7ef2cbc9ff65af69b075248165b84e5876f5dd26422e19",
+      "grossCents": 233812,
+      "bankCents": 226942,
+      "feeCents": 0,
+      "unexplainedCents": 6870,
+      "matchingState": "AMBIGUOUS",
+      "edges": [
+        {
+          "kind": "ST_QB_RECEIPT",
+          "state": "CONFIRMED",
+          "missing_evidence": []
+        },
+        {
+          "kind": "QB_BANK_SETTLEMENT",
+          "state": "CANDIDATE",
+          "missing_evidence": [
+            "QB_BANK_LEG_OR_ITEMIZED_ACCOUNTANT_CONFIRMATION"
+          ]
+        },
+        {
+          "kind": "ST_BANK_CASH",
+          "state": "CANDIDATE",
+          "missing_evidence": [
+            "DOCUMENTED_SETTLEMENT_COMPONENTS_AND_PAYOUT_IDENTITY"
+          ]
+        }
+      ],
+      "feeDraftEligible": false,
+      "searchStatus": "AMBIGUOUS"
+    },
+    {
+      "id": "invalid-input-blocked",
+      "explanation": "将合成金额改成非法文本，真实解析器拒绝。原文件未修改。",
+      "importAllowed": false,
+      "issues": [
+        {
+          "code": "ROW_INVALID",
+          "severity": "error"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "CLI assertions are not browser acceptance",
+    "Synthetic helper modules are reused from tests; no customer data",
+    "No automatic approval, real QBO import, deployment, or demonstrated willingness to pay"
+  ]
+}

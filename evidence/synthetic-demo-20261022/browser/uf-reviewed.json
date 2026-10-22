@@ -1,0 +1,41 @@
+{
+  "paymentIds": [
+    "SYN-PMT-900"
+  ],
+  "payments": [
+    {
+      "qbPaymentId": "SYN-QB-P900",
+      "amountCents": 1000000,
+      "inUndepositedFunds": true,
+      "existingDepositId": null,
+      "depositStatusReviewed": true,
+      "statusEvidenceRef": "Synthetic reviewed UF payment source row 2"
+    }
+  ],
+  "bankAccount": "Collections Checking",
+  "bankAccountVerified": true,
+  "depositDate": "2026-09-30",
+  "grossCents": 1000000,
+  "feeCents": 90000,
+  "bankNetCents": 910000,
+  "bankEvidenceRef": "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9:row2",
+  "feeAccount": "Merchant Processing Fees",
+  "feeAccountVerified": true,
+  "feeEvidenceRef": "93cdd46c6e15e3f7ea1ed50c9f583ffc9497bd782f734f1b39b3f55d1c79fb41",
+  "feeNotRecordedConfirmed": true,
+  "conflicts": [],
+  "kind": "UF_BANK_DEPOSIT_WORKSHEET",
+  "importEligible": false,
+  "status": "REVIEWED_INSTRUCTIONS",
+  "explanation": "Human review workpaper only. A journal entry does not link existing Undeposited Funds payments to a deposit.",
+  "expectedNetCents": 910000,
+  "negativeFeeCents": -90000,
+  "missingEvidence": [],
+  "steps": [
+    "In QuickBooks Bank Deposit, select these existing QB Payments: SYN-QB-P900.",
+    "Use the reviewed bank account Collections Checking and deposit date 2026-09-30.",
+    "Add a negative -900.00 USD fee line to Merchant Processing Fees, supported by 93cdd46c6e15e3f7ea1ed50c9f583ffc9497bd782f734f1b39b3f55d1c79fb41. Do not add a second already-recorded expense.",
+    "Match any existing Bank Feed item to the saved deposit instead of categorizing another receipt.",
+    "Re-export Deposit Detail and GL to verify payment links, accounts, date and net amount."
+  ]
+}

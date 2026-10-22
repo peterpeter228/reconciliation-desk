@@ -1,0 +1,36 @@
+{
+  "paymentIds": [
+    "SYN-PMT-900"
+  ],
+  "payments": [],
+  "bankAccount": "",
+  "bankAccountVerified": false,
+  "depositDate": "2026-09-30",
+  "grossCents": 1000000,
+  "feeCents": 0,
+  "bankNetCents": 910000,
+  "bankEvidenceRef": "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9:row2",
+  "feeAccount": "",
+  "feeAccountVerified": false,
+  "feeEvidenceRef": "",
+  "feeNotRecordedConfirmed": false,
+  "conflicts": [],
+  "kind": "UF_BANK_DEPOSIT_WORKSHEET",
+  "importEligible": false,
+  "status": "CANDIDATE",
+  "explanation": "Human review workpaper only. A journal entry does not link existing Undeposited Funds payments to a deposit.",
+  "expectedNetCents": 1000000,
+  "negativeFeeCents": 0,
+  "missingEvidence": [
+    "Locate actual QuickBooks Payment IDs; ST IDs alone are candidate references.",
+    "Verify the target existing bank account.",
+    "Verify the bank net amount and its source against the proposed deposit."
+  ],
+  "steps": [
+    "Candidate investigation only: do not select payments or create a deposit from these unverified references.",
+    "Locate actual QuickBooks Payment IDs; ST IDs alone are candidate references.",
+    "Verify the target existing bank account.",
+    "Verify the bank net amount and its source against the proposed deposit.",
+    "Check existing deposits and fee postings before preparing reviewed instructions; never categorize a duplicate bank receipt."
+  ]
+}

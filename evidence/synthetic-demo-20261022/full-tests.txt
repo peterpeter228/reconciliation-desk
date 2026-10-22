@@ -1,0 +1,19 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022
+
+
+ Test Files  45 passed (45)
+      Tests  785 passed (785)
+   Start at  19:57:31
+   Duration  23.82s (transform 7.28s, setup 0ms, import 20.66s, tests 95.53s, environment 17.84s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

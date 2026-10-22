@@ -1,0 +1,48 @@
+{
+  "kind": "actual screenshot slideshow, not continuous recording",
+  "durationSeconds": 49,
+  "frames": [
+    {
+      "file": "01-landing.png",
+      "title": "01  本地对账工作台",
+      "caption": "实际操作截图演示，不是连续录屏",
+      "sha256": "ab641f46f3bd8c1a11f1914981bf50207251485c5952c91e0b86fbbbb9414fd2"
+    },
+    {
+      "file": "08-sample-overview.png",
+      "title": "02  合成月度案例队列",
+      "caption": "221 条调查案例，不是 221 次错误或已核实收入",
+      "sha256": "5892ab6a982427dea5aa8147542004cb9f83510a662bf95663432d1e57faa02b"
+    },
+    {
+      "file": "02-import-validated.png",
+      "title": "03  显式导入范围与校验",
+      "caption": "只使用合成 CSV；没有连接 ServiceTitan、QuickBooks 或银行账户",
+      "sha256": "ca87f9d8be291dc92a5f432f3f8b5a7e658eada8f2375fc50dbf05a02bca3745"
+    },
+    {
+      "file": "03-fee-case.png",
+      "title": "04  费用差异与来源证据",
+      "caption": "核实身份关系，而不是仅凭金额相等自动入账",
+      "sha256": "620388198ac5f5f19e0e5b7f322a540427b537b488495cf1e3e605784c6e3383"
+    },
+    {
+      "file": "04-draft.png",
+      "title": "05  经过人工复核的费用草案",
+      "caption": "借：手续费 900；贷：清算账户 900；不重复借记银行",
+      "sha256": "52fd50c15d0ebfa2ff234896c73d2342b4d761037cd8fe9b9a0d80aa2ee3b2ca"
+    },
+    {
+      "file": "05-after-export.png",
+      "title": "06  文件导出与重复保护",
+      "caption": "下载不是入账；未进行 QuickBooks 导入；重复保护有本地存储边界",
+      "sha256": "c5f85c73c7c61280d7b38bfa7ce791fdfd6aee16b4f3b2c1a2d2184550cb6cb6"
+    },
+    {
+      "file": "10-ambiguous.png",
+      "title": "07  歧义必须保留",
+      "caption": "证据不足时不自动确认；不能据此宣称客户可用或盈利",
+      "sha256": "01973549d14663e3a30ccdcad6c80d57551c29318f4fbe0d4457bbf116fb4c6c"
+    }
+  ]
+}

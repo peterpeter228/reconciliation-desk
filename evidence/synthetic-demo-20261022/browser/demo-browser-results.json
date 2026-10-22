@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-22T10:54:45.042Z",
+  "version": "155.0.8059.79",
+  "results": [
+    {
+      "id": "ENV-sandbox",
+      "status": "PASS",
+      "detail": "Sandbox Status | Layer 1 Sandbox\tNamespace | PID namespaces\tYes | Network namespaces\tYes | Seccomp-BPF sandbox\tYes | Seccomp-BPF sandbox supports TSYNC\tYes"
+    },
+    {
+      "id": "UI-landing-states-scope",
+      "status": "PASS",
+      "detail": "Demo and own-files entry points are separate"
+    },
+    {
+      "id": "FLOW-import-validate",
+      "status": "PASS",
+      "detail": "three CSVs validated with explicit scope"
+    },
+    {
+      "id": "FLOW-processor-evidence",
+      "status": "PASS",
+      "detail": "processor settlement added and recalculated"
+    },
+    {
+      "id": "FLOW-engine-case",
+      "status": "PASS",
+      "detail": "settlement fee difference on $10,000.00 gross; QB bank leg recognized (not listed as missing)"
+    },
+    {
+      "id": "FLOW-build-draft-from-parsed-files",
+      "status": "PASS",
+      "detail": "exactly Dr fee 900 / Cr clearing 900 from parsed CSV files"
+    },
+    {
+      "id": "FLOW-export-bytes",
+      "status": "PASS",
+      "detail": "RD8C9256AC39_BETA_NOT_POSTED.csv + RD8C9256AC39_BETA_NOT_POSTED.csv.manifest.json; 2 balanced lines, no bank leg; manifest EXPORTED_NOT_POSTED"
+    },
+    {
+      "id": "FLOW-repeat-export-blocked",
+      "status": "PASS",
+      "detail": "button disabled; guidance names the journal number and what to check"
+    },
+    {
+      "id": "EXTRA-UF-full-click-flow",
+      "status": "PASS",
+      "detail": "Complete UF import/evidence/review/payments flow: CANDIDATE → REVIEWED_INSTRUCTIONS worksheet; never accounting import and no QBO write."
+    },
+    {
+      "id": "09-clean",
+      "status": "FAIL",
+      "detail": "sample case not found"
+    },
+    {
+      "id": "10-ambiguous",
+      "status": "PASS",
+      "detail": "Actual built-in synthetic sample selected through visible queue"
+    }
+  ],
+  "network": [
+    "desktop GET http://127.0.0.1:4173/",
+    "desktop GET http://127.0.0.1:4173/assets/index-Btf4cq68.js",
+    "desktop GET http://127.0.0.1:4173/assets/index-CvsPwdl3.css",
+    "desktop GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "desktop GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js",
+    "qbo_uf_ledger.csv GET http://127.0.0.1:4173/",
+    "qbo_uf_ledger.csv GET http://127.0.0.1:4173/assets/index-Btf4cq68.js",
+    "qbo_uf_ledger.csv GET http://127.0.0.1:4173/assets/index-CvsPwdl3.css",
+    "qbo_uf_ledger.csv GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "qbo_uf_ledger.csv GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js",
+    "sample GET http://127.0.0.1:4173/",
+    "sample GET http://127.0.0.1:4173/assets/index-Btf4cq68.js",
+    "sample GET http://127.0.0.1:4173/assets/index-CvsPwdl3.css",
+    "sample GET http://127.0.0.1:4173/demo/st_export.csv",
+    "sample GET http://127.0.0.1:4173/demo/qbo_clearing_gl.csv",
+    "sample GET http://127.0.0.1:4173/demo/chase_bank.csv",
+    "sample GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "sample GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js"
+  ],
+  "consoleErrors": []
+}
