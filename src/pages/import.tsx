@@ -75,6 +75,10 @@ export function ImportPage({
   const [qbReportProfile, setQbReportProfile] = useState<'manual' | 'qbo-transaction-journal-v1'>(
     'manual',
   );
+  const [allowPartial, setAllowPartial] = useState(false);
+  const [ledgerReportScope, setLedgerReportScope] = useState<
+    'COMPLETE_JOURNAL' | 'ACCOUNT_ACTIVITY'
+  >('ACCOUNT_ACTIVITY');
   const [reportCompanyName, setReportCompanyName] = useState('');
   const [companyId, setCompanyId] = useState('');
   const [bankAccountId, setBankAccountId] = useState('');
@@ -98,6 +102,8 @@ export function ImportPage({
     [],
   );
   const options = (semantic = false): ParseOptions => ({
+    allowPartialTransactions: allowPartial,
+    ledgerReportScope,
     companyId: companyId.trim() || 'unconfirmed-local-company',
     bankAccountId: bankAccountId.trim() || 'unconfirmed-local-bank',
     companyTimezone: timezone,
@@ -403,6 +409,18 @@ export function ImportPage({
       name: f.file.name,
       hash: f.result.manifest!.source_file_sha256,
       sizeBytes: f.file.size,
+      mapping: f.result.mapping,
+      controls: f.result.controls,
+      importStatus: f.result.status,
+      sheetName: f.sheetName,
+      parseOptions: {
+        ...options(true),
+        profile:
+          kind === 'QBO' && nativeJournal ? 'qbo-transaction-journal-v1' : options(true).profile,
+        bindings: f.bindings,
+        headerRow: f.headerRow,
+        excludedTargets: f.excludedTargets,
+      },
     }));
     await onRun(
       {
@@ -435,9 +453,9 @@ export function ImportPage({
       </div>
       <Notice>
         <strong>Your files stay in this browser.</strong> This build supports UTF-8 CSV / TSV and
-        guarded XLSX (values only; no formulas, macros, or external links). No raw transactions are
-        uploaded, no model is called, and no accounting system is changed. Clear workspace removes
-        the in-memory data.
+        guarded XLSX (recognized QBO report control formulas are preserved, never evaluated; macros
+        and external links remain blocked). No raw transactions are uploaded, no model is called,
+        and no accounting system is changed. Clear workspace removes the in-memory data.
       </Notice>
       <div className="import-steps">
         <span className={present < 3 ? 'current' : 'complete'}>
@@ -487,6 +505,29 @@ export function ImportPage({
               placeholder="e.g. Operating checking"
               required
             />
+          </label>
+          <label>
+            QuickBooks report scope
+            <select
+              value={ledgerReportScope}
+              onChange={(e) => setLedgerReportScope(e.target.value as typeof ledgerReportScope)}
+            >
+              <option value="ACCOUNT_ACTIVITY">
+                Selected-account GL activity (one-sided is valid)
+              </option>
+              <option value="COMPLETE_JOURNAL">
+                Complete journal transactions (all legs required)
+              </option>
+            </select>
+          </label>
+          <label className="checkbox-line">
+            <input
+              type="checkbox"
+              checked={allowPartial}
+              onChange={(e) => setAllowPartial(e.target.checked)}
+            />
+            Allow valid transaction groups to continue when independently identified bad groups are
+            quarantined
           </label>
           <label>
             QuickBooks product
@@ -829,7 +870,8 @@ function MappingCard({
           <span>{state.file.name}</span>
         </span>
         <Status tone={state.result.ok ? 'green' : 'amber'}>
-          {state.result.ok ? `${state.result.rows.length} valid rows` : 'Review needed'}
+          {state.result.status ?? (state.result.ok ? 'READY' : 'BLOCKED')} ·{' '}
+          {state.result.rows.length} usable rows
         </Status>
       </summary>
       <div className="mapping-body">
@@ -934,6 +976,29 @@ function MappingCard({
               ))}
             </ul>
           </details>
+        )}
+        {!!state.result.controls.formulaCells?.length && (
+          <details>
+            <summary>Preserved source control formulas (never evaluated)</summary>
+            <ul>
+              {state.result.controls.formulaCells.map((c) => (
+                <li key={`${c.sheet}:${c.address}`}>
+                  {c.sheet}!{c.address}: {c.formula} · {c.status} · stored{' '}
+                  {String(c.cachedValue ?? 'missing')} · independent cents{' '}
+                  {String(c.independentCents ?? 'unverified')}
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+        {!!state.result.controls.quarantinedGroups?.length && (
+          <Notice>
+            Quarantined economic transactions:{' '}
+            {state.result.controls.quarantinedGroups
+              .map((q) => `${q.transactionId}: rows ${q.physicalRows.join(', ')} (${q.reason})`)
+              .join('; ')}
+            . These are not ignored summary rows.
+          </Notice>
         )}
         {state.result.issues.length > 0 && (
           <ul className="validation-list">

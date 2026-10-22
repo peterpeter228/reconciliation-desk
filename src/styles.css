@@ -2881,3 +2881,72 @@ td:not(:first-child) {
     font-size: 12px;
   }
 }
+
+/* Local review workflow: readable long provenance, explicit decisions, no dashboard rewrite. */
+.case-review {
+  margin: 20px 0;
+  padding: 20px;
+  overflow-wrap: anywhere;
+}
+.case-review > p {
+  line-height: 1.55;
+}
+.case-review details {
+  border-top: 1px solid var(--border, #dbe2e8);
+  margin-top: 16px;
+  padding-top: 14px;
+}
+.case-review summary {
+  cursor: pointer;
+  font-weight: 650;
+  padding: 6px 0;
+}
+.case-review fieldset {
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  padding: 14px;
+  min-width: 0;
+}
+.case-review fieldset fieldset > div {
+  padding: 10px 0;
+  border-bottom: 1px solid #edf0f3;
+}
+.case-review label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+.case-review .checkbox-line {
+  flex-direction: row;
+  align-items: flex-start;
+}
+.case-review input:not([type='checkbox']),
+.case-review select {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #cbd5df;
+  border-radius: 6px;
+  background: white;
+  font: inherit;
+  color: #182a38;
+}
+.case-review button {
+  margin: 5px 8px 5px 0;
+}
+.case-review small {
+  display: block;
+  color: #526373;
+  line-height: 1.5;
+}
+.case-review [disabled] {
+  opacity: 0.65;
+}
+@media (max-width: 700px) {
+  .heading-actions {
+    flex-wrap: wrap;
+  }
+  .case-review {
+    padding: 12px;
+  }
+}

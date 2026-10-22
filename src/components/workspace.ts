@@ -1,13 +1,20 @@
+import type { ReviewProjectState } from '../review/types';
 import type { ReconcileInput, ReconcileResult, EngineGroup } from '../contracts/engine';
 import type { Provenance } from '../contracts/canonical';
-import type { ParseOptions, SourceKind } from '../ingestion/types';
+import type { ParseOptions, ParseResult, SourceKind } from '../ingestion/types';
 export interface SourceFile {
   name: string;
   kind: SourceKind;
   hash: string;
   sizeBytes?: number;
+  mapping?: ParseResult['mapping'];
+  controls?: ParseResult['controls'];
+  importStatus?: ParseResult['status'];
+  sheetName?: string;
+  parseOptions?: ParseOptions;
 }
 export interface Workspace {
+  review?: ReviewProjectState;
   input: ReconcileInput;
   result: ReconcileResult;
   duration: number;

@@ -12,6 +12,9 @@ export interface AccountMapping {
   isUndepositedFunds?: boolean;
 }
 export interface ParseOptions {
+  /** Explicit recovery needs trustworthy transaction IDs; unknown identities remain atomic. */
+  allowPartialTransactions?: boolean;
+  ledgerReportScope?: 'ACCOUNT_ACTIVITY' | 'COMPLETE_JOURNAL';
   companyId: string;
   bankAccountId: string;
   companyTimezone: string;
@@ -51,7 +54,17 @@ export interface ImportIssue {
   physicalRow?: number;
 }
 export type CoreRow = ST_Payment_Record | QB_Ledger_Entry | Bank_Deposit_Row;
+export interface FormulaControl {
+  sheet: string | null;
+  address: string;
+  formula: string;
+  cachedValue: string | number | boolean | null;
+  independentCents: number | null;
+  status: 'CONSISTENT' | 'UNVERIFIED' | 'CONFLICT' | 'TRANSACTION_FORMULA';
+}
 export interface ParseResult<T = CoreRow> {
+  /** Readiness for investigation, never permission to import accounting entries. */
+  status?: 'READY' | 'PARTIAL' | 'BLOCKED';
   ok: boolean;
   rows: T[];
   manifest: ImportManifest | null;
@@ -59,6 +72,9 @@ export interface ParseResult<T = CoreRow> {
   mapping: { headers: string[]; bindings: ColumnBindings; headerRow: number } | null;
   duplicate: boolean;
   controls: {
+    formulaCells?: FormulaControl[];
+    quarantinedGroups?: { transactionId: string; physicalRows: number[]; reason: string }[];
+    accountingBlockedTransactionIds?: string[];
     signedCents: number;
     debitCents: number | null;
     creditCents: number | null;

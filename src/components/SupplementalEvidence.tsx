@@ -85,6 +85,7 @@ export function SupplementalEvidence({
             <option value="COMPONENT">Deposit component manifest</option>
             <option value="RECEIPT">External receipt / deposit evidence</option>
             <option value="AUDIT">ServiceTitan audit events</option>
+            <option value="QBO">Additional posted QuickBooks GL</option>
             <option value="BANK">Next-period bank activity</option>
           </select>
         </label>

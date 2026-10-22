@@ -6,7 +6,12 @@
 import { readFileSync } from 'node:fs';
 import Papa from 'papaparse';
 import { utils, write } from 'xlsx';
-import type { FeeProposal } from '../../src/export';
+import {
+  type FeeProposal,
+  buildFeeProposal,
+  approveProposal,
+  FEE_ONLY_RULE_VERSION,
+} from '../../src/export';
 import type { ParseOptions } from '../../src/ingestion';
 
 const evidence = new URL('../../evidence/quickbooks-acceptance-20261021/', import.meta.url);
@@ -17,9 +22,21 @@ export const nativeCsv = new TextDecoder().decode(nativeCsvBytes);
 export const nativeXlsxBytes = new Uint8Array(
   readFileSync(new URL('target-transaction-journal-145.xlsx', evidence)),
 );
-export const nativeProposal: FeeProposal = JSON.parse(
+const historicalProposal: FeeProposal = JSON.parse(
   readFileSync(new URL('target-synthetic-proposal.json', evidence), 'utf8'),
 );
+// Synthetic current-rule reapproval only. Preserve the original QBO observation
+// and historical approval bytes; never silently permit obsolete export approvals.
+export const nativeProposal = await approveProposal(
+  await buildFeeProposal({
+    ...historicalProposal.feeCase,
+    ruleVersion: FEE_ONLY_RULE_VERSION,
+  }),
+  'Synthetic current-rule test reviewer',
+  '2026-10-22T06:00:00Z',
+);
+if (nativeProposal.journalId !== historicalProposal.journalId)
+  throw new Error('Current-rule test reapproval changed the historical economic journal identity.');
 export const options: ParseOptions = {
   companyId: nativeProposal.feeCase.companyId,
   bankAccountId: 'BANK',

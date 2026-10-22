@@ -9,6 +9,12 @@ export interface MatrixRecord {
   values: string[];
   physicalRow: number;
   raw: string;
+  formulaCells?: {
+    address: string;
+    column: number;
+    formula: string;
+    cachedValue: string | number | boolean | null;
+  }[];
 }
 export const IMPORT_LIMITS = {
   fileBytes: 10 * 1024 * 1024,
@@ -56,6 +62,7 @@ function isReportSummary(values: string[], bindings: Record<string, number>): bo
 }
 function empty<K extends SourceKind>(): ParseResult<RowByKind[K]> {
   return {
+    status: 'BLOCKED',
     ok: false,
     rows: [],
     manifest: null,
@@ -191,6 +198,7 @@ export async function parseMatrix<K extends SourceKind>(
       throw new Error('Cell exceeds 4 KB.');
     if (options.seenFileHashes?.includes(source.fileHash)) {
       result.ok = true;
+      result.status = 'READY';
       result.duplicate = true;
       result.issues.push({
         code: 'DUPLICATE_IMPORT',
@@ -271,7 +279,7 @@ export async function parseMatrix<K extends SourceKind>(
       return true;
     });
     if (data.length > IMPORT_LIMITS.rows) throw new Error('More than 20,000 data rows.');
-    const mappingVersion = `local-alias-1.0:${await sha256(canonicalJson({ kind, bindings: mapping.bindings, excludedTargets: [...(options.excludedTargets ?? [])].sort(), profile: options.profile ?? 'manual', dateFormat: options.dateFormat ?? 'MDY', rowGrain: options.rowGrain ?? null, exportMode: options.exportMode ?? null, postedLedgerConfirmed: options.postedLedgerConfirmed ?? null, bankPostedConfirmed: options.bankPostedConfirmed ?? null, bankSignConvention: options.bankSignConvention ?? null, accountMap: options.accountMap ?? null }))}`;
+    const mappingVersion = `local-alias-1.0:${await sha256(canonicalJson({ kind, ledgerReportScope: options.ledgerReportScope ?? 'ACCOUNT_ACTIVITY', allowPartialTransactions: options.allowPartialTransactions ?? false, bindings: mapping.bindings, excludedTargets: [...(options.excludedTargets ?? [])].sort(), profile: options.profile ?? 'manual', dateFormat: options.dateFormat ?? 'MDY', rowGrain: options.rowGrain ?? null, exportMode: options.exportMode ?? null, postedLedgerConfirmed: options.postedLedgerConfirmed ?? null, bankPostedConfirmed: options.bankPostedConfirmed ?? null, bankSignConvention: options.bankSignConvention ?? null, accountMap: options.accountMap ?? null }))}`;
     const normalized: AnyRow[] = [];
     for (let i = 0; i < data.length; i += 100) {
       await Promise.all(
@@ -306,14 +314,75 @@ export async function parseMatrix<K extends SourceKind>(
       );
     }
     normalized.sort((a, b) => a.source_refs[0].physical_row - b.source_refs[0].physical_row);
+    let accepted = normalized;
+    const recovery =
+      (options.allowPartialTransactions === true ||
+        options.ledgerReportScope === 'COMPLETE_JOURNAL') &&
+      (kind === 'QBO' || kind === 'QBD');
+    if (recovery) {
+      const idColumn = mapping.bindings.transaction_id;
+      const invalidRows = new Set(
+        result.issues
+          .filter((issue) => issue.severity === 'error')
+          .map((issue) => issue.physicalRow),
+      );
+      const invalidIds = new Set<string>();
+      for (const r of data.filter((r) => invalidRows.has(r.physicalRow))) {
+        const id = idColumn === undefined ? '' : (r.values[idColumn] ?? '').trim();
+        if (!id)
+          throw new Error(
+            'Invalid ledger row has no trustworthy transaction ID; cannot isolate its complete economic transaction.',
+          );
+        invalidIds.add(id);
+      }
+      if (options.ledgerReportScope === 'COMPLETE_JOURNAL') {
+        const byId = new Map<string, RowByKind['QBO'][]>();
+        for (const row of normalized as RowByKind['QBO'][]) {
+          if (!row.transaction_id)
+            throw new Error(
+              'Complete-journal recovery requires transaction IDs on all posting legs.',
+            );
+          const legs = byId.get(row.transaction_id) ?? [];
+          legs.push(row);
+          byId.set(row.transaction_id, legs);
+        }
+        for (const [id, legs] of byId)
+          if (legs.length < 2 || checkedSum(legs.map((r) => r.signed_cents)) !== 0)
+            invalidIds.add(id);
+      }
+      if (invalidIds.size && options.allowPartialTransactions !== true)
+        throw new Error(
+          'Complete journal contains invalid or incomplete transactions; enable explicit partial recovery to investigate unaffected groups.',
+        );
+      result.controls.quarantinedGroups = [...invalidIds].map((transactionId) => ({
+        transactionId,
+        physicalRows: data
+          .filter(
+            (r) => idColumn !== undefined && (r.values[idColumn] ?? '').trim() === transactionId,
+          )
+          .map((r) => r.physicalRow),
+        reason: 'Invalid or incomplete economic transaction; all known posting legs isolated.',
+      }));
+      result.controls.accountingBlockedTransactionIds = [...invalidIds];
+      accepted = normalized.filter(
+        (r) => !invalidIds.has((r as RowByKind['QBO']).transaction_id ?? ''),
+      );
+      for (const issue of result.issues) if (issue.severity === 'error') issue.severity = 'warning';
+      for (const id of invalidIds)
+        result.issues.push({
+          code: 'TRANSACTION_QUARANTINED',
+          severity: 'warning',
+          message: `Transaction ${id}: all known posting legs quarantined. Repair the source before accounting use.`,
+        });
+    }
     const rows = result.issues.some((i) => i.severity === 'error')
       ? []
-      : await normalizeGrain(normalized, kind);
+      : await normalizeGrain(accepted, kind);
     const accounts =
       kind === 'QBO' || kind === 'QBD'
         ? [...new Set(rows.map((r) => (r as RowByKind['QBO']).account_full_name))]
         : [];
-    const balances =
+    const suppliedBalances =
       options.accountBalances ??
       accounts.map((account_full_name) => ({
         account_id: null,
@@ -322,6 +391,9 @@ export async function parseMatrix<K extends SourceKind>(
         closing_debit_balance_cents: null,
         coverage_confirmed: false,
       }));
+    const balances = result.controls.quarantinedGroups?.length
+      ? suppliedBalances.map((b) => ({ ...b, coverage_confirmed: false }))
+      : suppliedBalances;
     for (const balance of balances) {
       if (!balance.account_full_name || typeof balance.coverage_confirmed !== 'boolean')
         throw new Error('Invalid account control metadata.');
@@ -361,8 +433,11 @@ export async function parseMatrix<K extends SourceKind>(
         balances.length === 1 ? balances[0].opening_debit_balance_cents : null,
       closing_debit_balance_cents:
         balances.length === 1 ? balances[0].closing_debit_balance_cents : null,
-      coverage_confirmed: options.coverageConfirmed === true,
-      missing_required_fields: missing,
+      coverage_confirmed:
+        options.coverageConfirmed === true && !result.controls.quarantinedGroups?.length,
+      missing_required_fields: result.controls.quarantinedGroups?.length
+        ? [...missing, 'QUARANTINED_TRANSACTIONS']
+        : missing,
     };
     result.manifest = manifest;
     result.controls.signedCents = checkedSum(
@@ -390,6 +465,7 @@ export async function parseMatrix<K extends SourceKind>(
             .map((r) => r.signed_cents),
         );
         if (
+          !result.controls.quarantinedGroups?.length &&
           balance.opening_debit_balance_cents !== null &&
           balance.closing_debit_balance_cents !== null &&
           balance.opening_debit_balance_cents + activity !== balance.closing_debit_balance_cents
@@ -397,8 +473,14 @@ export async function parseMatrix<K extends SourceKind>(
           throw new Error(`Account control mismatch: ${balance.account_full_name}.`);
       }
     }
-    result.ok = !result.issues.some((i) => i.severity === 'error');
+    result.ok =
+      !result.issues.some((i) => i.severity === 'error') && (!recovery || rows.length > 0);
     result.rows = result.ok ? (rows as RowByKind[K][]) : [];
+    result.status = result.ok
+      ? result.controls.quarantinedGroups?.length
+        ? 'PARTIAL'
+        : 'READY'
+      : 'BLOCKED';
     if (!manifest.coverage_confirmed)
       result.issues.push({
         code: 'COVERAGE_UNKNOWN',

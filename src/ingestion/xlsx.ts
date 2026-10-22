@@ -527,6 +527,27 @@ function validateXml(
   walkXml(
     xml,
     ({ name: tag, namespace, ancestors, attrs, closing }) => {
+      // calcChain c is a formula dependency locator, not a worksheet cell.
+      // It is inert metadata and never drives evaluation or transaction values.
+      if (partName === 'xl/calcChain.xml') {
+        if (
+          !spreadsheetNamespaces.has(namespace ?? '') ||
+          !(
+            (tag === 'calcChain' && ancestors.length === 0) ||
+            (tag === 'c' && ancestors.length === 1 && ancestors[0].name === 'calcChain')
+          )
+        )
+          fail('XLSX_XML_UNSUPPORTED', 'Unsupported calculation-chain metadata.');
+        if (tag === 'c' && !closing) {
+          cellAddress(attrs.r ?? '');
+          if (
+            Object.keys(attrs).some((k) => !['r', 'i', 's', 'l'].includes(k)) ||
+            Object.entries(attrs).some(([k, v]) => k !== 'r' && !/^\d+$/.test(v))
+          )
+            fail('XLSX_XML_UNSUPPORTED', 'Unsupported calculation-chain attributes.');
+        }
+        return;
+      }
       if (!closing) {
         if (
           ++elements > XLSX_LIMITS.xmlElements ||
@@ -535,7 +556,20 @@ function validateXml(
           (tag === 'si' && ++sharedStrings > XLSX_LIMITS.cellsPerSheet)
         )
           fail('XLSX_XML_LIMIT', 'Workbook XML metadata exceeds the bounded import profile.');
-        if (/^(?:f|formula|definedName|calculatedColumnFormula|totalsRowFormula)$/i.test(tag))
+        // A scalar worksheet formula is retained as inert evidence. Only the
+        // observed native Journal report is allowed through after workbook parsing.
+        if (
+          tag === 'f' &&
+          (!inCell ||
+            !spreadsheetNamespaces.has(namespace ?? '') ||
+            ancestors.at(-1)?.name !== 'c' ||
+            Object.keys(attrs).some((k) => k !== 'xmlns' && !k.startsWith('xmlns:')))
+        )
+          fail('XLSX_FORMULA', 'Shared, array or nonstandard formulas are unsupported.');
+        if (
+          /^(?:formula|definedName|calculatedColumnFormula|totalsRowFormula)$/i.test(tag) ||
+          (tag.toLowerCase() === 'f' && tag !== 'f')
+        )
           fail(
             'XLSX_FORMULA',
             'Formula cells and defined names are not accepted, even when a cached value exists. Export all formulas as values.',
@@ -696,7 +730,7 @@ function validateXml(
           if (ref.r !== currentRow || ref.c <= lastColumn)
             fail(
               'XLSX_RANGE',
-              'Worksheet cell addresses must be unique, ordered and agree with the source row.',
+              `Worksheet cell addresses must be unique, ordered and agree with the source row (${partName}:${attrs.r}, row ${currentRow}, previous column ${lastColumn}).`,
             );
           lastColumn = ref.c;
         }
@@ -784,6 +818,7 @@ function loadWorkbook(bytes: Uint8Array, fileName?: string): WorkBook {
       raw: true,
       dense: false,
       cellFormula: true,
+      sheetStubs: true,
       cellHTML: false,
       cellNF: true,
       cellText: false,
@@ -805,6 +840,53 @@ function loadWorkbook(bytes: Uint8Array, fileName?: string): WorkBook {
     new Set(workbook.SheetNames).size !== workbook.SheetNames.length
   )
     fail('XLSX_SHEET_LIMIT', 'Workbook must have one to five uniquely named sheets.');
+  // SheetJS synthesizes v=0 for a formula with no stored <v>. Restore
+  // absence from the validated XML before projecting any source values.
+  const worksheetTargets = new Map<string, string>();
+  walkXml(
+    utf8.decode(files['xl/_rels/workbook.xml.rels']),
+    (tag) => {
+      if (!tag.closing && tag.name === 'Relationship') {
+        const target = tag.attrs.Target ?? '';
+        const segments: string[] = target.startsWith('/') ? [] : ['xl'];
+        for (const segment of target.split('/')) {
+          if (segment === '..') segments.pop();
+          else if (segment && segment !== '.') segments.push(segment);
+        }
+        worksheetTargets.set(tag.attrs.Id, segments.join('/'));
+      }
+    },
+    () => {},
+  );
+  for (const name of workbook.SheetNames) {
+    const descriptor = workbook.Workbook?.Sheets?.find((s) => s.name === name) as
+      { id?: string } | undefined;
+    const path = worksheetTargets.get(descriptor?.id ?? '');
+    if (!path || !files[path]) fail('XLSX_PARSE', 'Cannot bind worksheet source XML.');
+    let address = '',
+      formula = false,
+      valueDepth = false,
+      storedValue = '';
+    walkXml(
+      utf8.decode(files[path]),
+      (tag) => {
+        if (tag.name === 'c' && !tag.closing) {
+          address = tag.attrs.r;
+          formula = false;
+          storedValue = '';
+        }
+        if (tag.name === 'f' && !tag.closing) formula = true;
+        if (tag.name === 'v') valueDepth = !tag.closing;
+        if (tag.name === 'c' && tag.closing && formula && !storedValue.trim()) {
+          const cell = workbook.Sheets[name][address];
+          if (cell) delete cell.v;
+        }
+      },
+      (text) => {
+        if (valueDepth) storedValue += text;
+      },
+    );
+  }
   for (const name of workbook.SheetNames) {
     const sheet = workbook.Sheets[name];
     if (!sheet) fail('XLSX_PARSE', 'Workbook sheet relationship cannot be resolved.');
@@ -815,8 +897,15 @@ function loadWorkbook(bytes: Uint8Array, fileName?: string): WorkBook {
       if (++count > XLSX_LIMITS.cellsPerSheet)
         fail('XLSX_CELL_LIMIT', 'Worksheet exceeds 500,000 cells.');
       const c = cell as CellObject;
-      if (c.f !== undefined || c.F !== undefined)
-        fail('XLSX_FORMULA', 'Formula cells are not accepted. Export formulas as values.');
+      const nativeJournal =
+        sheet.A2?.v === 'Transaction Journal' &&
+        sheet.A3?.v === 'All Dates' &&
+        sheet.B5?.v === 'Transaction date';
+      if (c.F !== undefined || (c.f !== undefined && !nativeJournal))
+        fail(
+          'XLSX_FORMULA',
+          'Formula cells outside the supported native Journal profile are not accepted.',
+        );
       if (c.l)
         fail(
           'XLSX_EXTERNAL_LINK',
@@ -909,18 +998,39 @@ export async function readXlsxMatrix(
   const records: MatrixRecord[] = [];
   for (let r = 0; r < info.rows; r++) {
     const values: string[] = [],
-      raw: unknown[] = [];
+      raw: unknown[] = [],
+      formulaCells: NonNullable<MatrixRecord['formulaCells']> = [];
     for (let c = 0; c < info.columns; c++) {
       const address = utils.encode_cell({ r, c }),
         cell = sheet[address] as CellObject | undefined;
-      values.push(cellText(cell, inspection.date1904));
+      if (cell?.f !== undefined)
+        formulaCells.push({
+          address,
+          column: c,
+          formula: cell.f,
+          cachedValue:
+            cell.t === 'e'
+              ? null
+              : cell.v instanceof Date
+                ? cell.v.toISOString()
+                : (cell.v ?? null),
+        });
+      values.push(
+        cell?.f !== undefined && cell.t === 'e' ? '' : cellText(cell, inspection.date1904),
+      );
       raw.push(
         cell
-          ? { address, type: cell.t, value: cell.v ?? null, numberFormat: cell.z ?? null }
+          ? {
+              address,
+              type: cell.t,
+              value: cell.v ?? null,
+              numberFormat: cell.z ?? null,
+              formula: cell.f ?? null,
+            }
           : null,
       );
     }
-    records.push({ values, physicalRow: r + 1, raw: canonicalJson(raw) });
+    records.push({ values, physicalRow: r + 1, raw: canonicalJson(raw), formulaCells });
   }
   return {
     records,
@@ -942,9 +1052,18 @@ export async function parseXlsx<K extends SourceKind>(
     if (bytes.length + (options.existingTotalBytes ?? 0) > IMPORT_LIMITS.totalBytes)
       fail('XLSX_WORKSPACE_LIMIT', 'Files exceed the 30 MB workspace limit.');
     const { records, source } = await readXlsxMatrix(bytes, options);
+    if (
+      records.some((r) => r.formulaCells?.length) &&
+      options.profile !== 'qbo-transaction-journal-v1'
+    )
+      fail(
+        'XLSX_FORMULA',
+        'Select the explicit QBO Transaction Journal profile to classify native formulas; cached values are not transaction evidence.',
+      );
     return await parseMatrix(records, kind, options, source);
   } catch (error) {
     return {
+      status: 'BLOCKED',
       ok: false,
       rows: [],
       manifest: null,

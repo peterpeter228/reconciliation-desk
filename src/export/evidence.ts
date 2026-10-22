@@ -1,6 +1,6 @@
 import Papa from 'papaparse';
 import type { ReconcileResult } from '../contracts/engine';
-import { formatCents } from '../ingestion/primitives';
+import { checkedSum, MAX_CENTS, parseDate, formatCents } from '../ingestion/primitives';
 /** Human review CSV, never an accounting-import file. Strings are always neutralized. */
 export function safeReviewText(value: unknown): string {
   const s = String(value ?? '').replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/g, '');
@@ -95,47 +95,120 @@ export function buildPrintPacket(
     })),
   };
 }
-export interface UfWorksheet {
+export interface UfPayment {
+  qbPaymentId: string;
+  amountCents: number;
+  inUndepositedFunds: boolean | null;
+  existingDepositId: string | null;
+  /** Must explicitly confirm the lookup covered existing deposit linkage. */
+  depositStatusReviewed: boolean;
+  statusEvidenceRef: string;
+}
+export interface UfWorksheetInput {
+  /** Legacy/ST identifiers remain candidate references, not verified QB IDs. */
+  paymentIds: string[];
+  bankAccount: string;
+  depositDate: string;
+  grossCents: number;
+  feeCents: number;
+  payments?: UfPayment[];
+  bankAccountVerified?: boolean;
+  bankNetCents?: number;
+  bankEvidenceRef?: string;
+  feeAccount?: string;
+  feeAccountVerified?: boolean;
+  feeEvidenceRef?: string;
+  feeNotRecordedConfirmed?: boolean;
+}
+export interface UfWorksheet extends UfWorksheetInput {
   kind: 'UF_BANK_DEPOSIT_WORKSHEET';
   importEligible: false;
+  status: 'CANDIDATE' | 'REVIEWED_INSTRUCTIONS';
   explanation: string;
-  paymentIds: string[];
-  bankAccount: string;
-  depositDate: string;
-  grossCents: number;
-  feeCents: number;
   expectedNetCents: number;
+  negativeFeeCents: number;
+  missingEvidence: string[];
   steps: string[];
 }
-export function buildUfWorksheet(input: {
-  paymentIds: string[];
-  bankAccount: string;
-  depositDate: string;
-  grossCents: number;
-  feeCents: number;
-}): UfWorksheet {
+export function buildUfWorksheet(input: UfWorksheetInput): UfWorksheet {
+  const validMoney = (n: number) => Number.isSafeInteger(n) && n >= 0 && n <= MAX_CENTS;
   if (
     !input.paymentIds.length ||
-    !input.bankAccount ||
-    !Number.isSafeInteger(input.grossCents) ||
-    !Number.isSafeInteger(input.feeCents) ||
+    !validMoney(input.grossCents) ||
+    !validMoney(input.feeCents) ||
     input.grossCents <= 0 ||
-    input.feeCents < 0 ||
     input.feeCents > input.grossCents
   )
-    throw new Error('Valid payment linkage and documented amounts are required.');
+    throw new Error('Valid candidate references and documented amounts are required.');
+  if (input.depositDate) parseDate(input.depositDate, 'ISO');
+  const payments = input.payments ?? [];
+  if (
+    payments.some(
+      (p) => !p.qbPaymentId.trim() || !validMoney(p.amountCents) || p.amountCents <= 0,
+    ) ||
+    new Set(payments.map((p) => p.qbPaymentId)).size !== payments.length
+  )
+    throw new Error('QB payment references must be distinct with positive integer amounts.');
+  const missingEvidence: string[] = [];
+  if (!input.depositDate) missingEvidence.push('Review the deposit date.');
+  if (!payments.length)
+    missingEvidence.push(
+      'Locate actual QuickBooks Payment IDs; ST IDs alone are candidate references.',
+    );
+  if (payments.length && checkedSum(payments.map((p) => p.amountCents)) !== input.grossCents)
+    missingEvidence.push('QB payment total does not equal the proposed gross deposit.');
+  for (const payment of payments) {
+    if (
+      payment.inUndepositedFunds !== true ||
+      payment.depositStatusReviewed !== true ||
+      payment.existingDepositId !== null ||
+      !payment.statusEvidenceRef.trim()
+    )
+      missingEvidence.push(
+        `Verify ${payment.qbPaymentId} is currently in UF and not already linked to a deposit, with source evidence.`,
+      );
+  }
+  if (!input.bankAccount.trim() || input.bankAccountVerified !== true)
+    missingEvidence.push('Verify the target existing bank account.');
+  if (input.bankNetCents !== input.grossCents - input.feeCents || !input.bankEvidenceRef?.trim())
+    missingEvidence.push('Verify the bank net amount and its source against the proposed deposit.');
+  if (
+    input.feeCents > 0 &&
+    (!input.feeAccount?.trim() ||
+      input.feeAccountVerified !== true ||
+      !input.feeEvidenceRef?.trim() ||
+      input.feeNotRecordedConfirmed !== true)
+  )
+    missingEvidence.push(
+      'Verify the expense account, documented net fee and that the fee is not already posted.',
+    );
+  const reviewed = missingEvidence.length === 0;
   return {
     ...input,
     kind: 'UF_BANK_DEPOSIT_WORKSHEET',
     importEligible: false,
-    explanation: 'A journal entry does not link existing Undeposited Funds payments to a deposit.',
+    status: reviewed ? 'REVIEWED_INSTRUCTIONS' : 'CANDIDATE',
+    explanation:
+      'Human review workpaper only. A journal entry does not link existing Undeposited Funds payments to a deposit.',
     expectedNetCents: input.grossCents - input.feeCents,
-    steps: [
-      'Verify the listed existing payments and any existing bank deposit before making changes.',
-      'In QuickBooks Bank Deposit / Record Deposits, select the original payments.',
-      'If supported by settlement evidence, add the negative fee line using the verified expense account.',
-      'Match any existing Bank Feed item instead of categorizing a duplicate.',
-      'Re-export Deposit Detail and GL to verify payment links, accounts, date and net amount.',
-    ],
+    negativeFeeCents: -input.feeCents,
+    missingEvidence,
+    steps: reviewed
+      ? [
+          `In QuickBooks Bank Deposit, select these existing QB Payments: ${payments.map((p) => p.qbPaymentId).join(', ')}.`,
+          `Use the reviewed bank account ${input.bankAccount} and deposit date ${input.depositDate}.`,
+          ...(input.feeCents > 0
+            ? [
+                `Add a negative ${formatCents(-input.feeCents)} USD fee line to ${input.feeAccount}, supported by ${input.feeEvidenceRef}. Do not add a second already-recorded expense.`,
+              ]
+            : []),
+          'Match any existing Bank Feed item to the saved deposit instead of categorizing another receipt.',
+          'Re-export Deposit Detail and GL to verify payment links, accounts, date and net amount.',
+        ]
+      : [
+          'Candidate investigation only: do not select payments or create a deposit from these unverified references.',
+          ...missingEvidence,
+          'Check existing deposits and fee postings before preparing reviewed instructions; never categorize a duplicate bank receipt.',
+        ],
   };
 }

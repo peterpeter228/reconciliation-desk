@@ -1,0 +1,914 @@
+{
+  "format": "reconciliation-review-project",
+  "schemaVersion": 1,
+  "savedAt": "2026-10-22T06:17:04.866Z",
+  "workspace": {
+    "input": {
+      "st": [
+        {
+          "id": "st-1",
+          "company_id": "company",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "ab8692639c9b7184d7d78a05fd3d7c1ea4c7fb66fd619fad6b1f8069249c9419",
+              "raw_row_sha256": "d7e87b42c9cc5461b16169da2a09ed4b11b41c7034cc6f12cbcc119d0aa9e70d",
+              "physical_row": 2,
+              "sheet": null,
+              "column_indices": {},
+              "parser_version": "synthetic-normalized-fixture-1",
+              "mapping_version": "synthetic-normalized-fixture-1"
+            }
+          ],
+          "validation_errors": [],
+          "source_payment_id": "p1",
+          "record_type": "PAYMENT",
+          "row_grain": "PAYMENT",
+          "original_payment_id": null,
+          "invoice_allocations": [],
+          "accounting_batch_id": "b1",
+          "processor_batch_id": null,
+          "deposit_id": "d1",
+          "payment_date": "2026-09-01",
+          "batch_close_date": "2026-09-01",
+          "batch_post_date": null,
+          "export_at": null,
+          "expected_settlement_date": null,
+          "export_status": "EXPORTED",
+          "export_status_basis": "SYSTEM",
+          "export_mode": "JE_TO_CLEARING",
+          "customer_token": null,
+          "business_unit": null,
+          "payment_method": "CHECK",
+          "card_brand": null,
+          "processor": null,
+          "merchant_id": null,
+          "bank_account_id": "bank",
+          "gross_cents": 1000000,
+          "reported_net_cents": 910000,
+          "reported_fee_cents": 90000,
+          "fee_mode": "NETTED",
+          "reference": null,
+          "gl_account_code": null,
+          "payment_status": "SUCCESS"
+        }
+      ],
+      "qb": [
+        {
+          "id": "qb-0",
+          "company_id": "company",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
+              "raw_row_sha256": "a5e361ece431f9165eb14577ff5aae77e9aa8107f2c36c118afc950952f5cf9a",
+              "physical_row": 2,
+              "sheet": null,
+              "column_indices": {},
+              "parser_version": "synthetic-normalized-fixture-1",
+              "mapping_version": "synthetic-normalized-fixture-1"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "DEMO-RECEIPT",
+          "line_id": "line-0",
+          "transaction_type": "Journal Entry",
+          "posting_date": "2026-09-01",
+          "num": "DEMO-RECEIPT",
+          "name_token": null,
+          "memo_local": null,
+          "account_id": "CLEARING",
+          "account_full_name": "ServiceTitan Clearing",
+          "account_type": "OTHER_CURRENT_ASSET",
+          "split_account": "Accounts Receivable",
+          "debit_cents": 1000000,
+          "credit_cents": 0,
+          "signed_cents": 1000000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "CLEARING_RECEIPT",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": "p1",
+          "linked_deposit_id": null,
+          "accounting_batch_id": "b1",
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        },
+        {
+          "id": "qb-1",
+          "company_id": "company",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
+              "raw_row_sha256": "326f66fb9cc53f5cba0e469a336d8f5df7947d2e0e303bae78f81c0a74c6f33c",
+              "physical_row": 3,
+              "sheet": null,
+              "column_indices": {},
+              "parser_version": "synthetic-normalized-fixture-1",
+              "mapping_version": "synthetic-normalized-fixture-1"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "DEMO-RECEIPT",
+          "line_id": "line-1",
+          "transaction_type": "Journal Entry",
+          "posting_date": "2026-09-01",
+          "num": "DEMO-RECEIPT",
+          "name_token": null,
+          "memo_local": null,
+          "account_id": "AR",
+          "account_full_name": "Accounts Receivable",
+          "account_type": "OTHER",
+          "split_account": "Accounts Receivable",
+          "debit_cents": 0,
+          "credit_cents": 1000000,
+          "signed_cents": -1000000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "OTHER",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": "p1",
+          "linked_deposit_id": null,
+          "accounting_batch_id": "b1",
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        },
+        {
+          "id": "qb-2",
+          "company_id": "company",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
+              "raw_row_sha256": "b7bb92a72180e9208cdb86623994b883a2f7a8cc78c0239a21c18cca63d7cef4",
+              "physical_row": 4,
+              "sheet": null,
+              "column_indices": {},
+              "parser_version": "synthetic-normalized-fixture-1",
+              "mapping_version": "synthetic-normalized-fixture-1"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "DEMO-DEPOSIT",
+          "line_id": "line-2",
+          "transaction_type": "Journal Entry",
+          "posting_date": "2026-09-03",
+          "num": "DEMO-DEPOSIT",
+          "name_token": null,
+          "memo_local": null,
+          "account_id": "BANK",
+          "account_full_name": "Collections Checking",
+          "account_type": "BANK",
+          "split_account": "Accounts Receivable",
+          "debit_cents": 910000,
+          "credit_cents": 0,
+          "signed_cents": 910000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "BANK",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": null,
+          "linked_deposit_id": "d1",
+          "accounting_batch_id": null,
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        },
+        {
+          "id": "qb-3",
+          "company_id": "company",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
+              "raw_row_sha256": "e93d01ca9136bd05f3341266692f59b3847f417efaf42ec929c7678ab1e2d167",
+              "physical_row": 5,
+              "sheet": null,
+              "column_indices": {},
+              "parser_version": "synthetic-normalized-fixture-1",
+              "mapping_version": "synthetic-normalized-fixture-1"
+            }
+          ],
+          "validation_errors": [],
+          "qb_product": "QBO",
+          "transaction_id": "DEMO-DEPOSIT",
+          "line_id": "line-3",
+          "transaction_type": "Journal Entry",
+          "posting_date": "2026-09-03",
+          "num": "DEMO-DEPOSIT",
+          "name_token": null,
+          "memo_local": null,
+          "account_id": "CLEARING",
+          "account_full_name": "ServiceTitan Clearing",
+          "account_type": "OTHER_CURRENT_ASSET",
+          "split_account": "Accounts Receivable",
+          "debit_cents": 0,
+          "credit_cents": 910000,
+          "signed_cents": -910000,
+          "running_balance_cents": null,
+          "cleared_status": "UNKNOWN",
+          "role": "CLEARING_SETTLEMENT",
+          "line_grain": "POSTING_LINE",
+          "linked_payment_id": null,
+          "linked_deposit_id": "d1",
+          "accounting_batch_id": null,
+          "is_posted_ledger": true,
+          "class_name": null,
+          "location_name": null
+        }
+      ],
+      "bank": [
+        {
+          "id": "bank-1",
+          "company_id": "company",
+          "currency": "USD",
+          "source_refs": [
+            {
+              "file_sha256": "a64e8df79b8ef7ef5bc8ab26de8c22900ea12489dc1144ccf3443f3195ad0293",
+              "raw_row_sha256": "65b931fa904fa75f2cacebd480913adb72deb7a86906768adb732565f28f8a64",
+              "physical_row": 2,
+              "sheet": null,
+              "column_indices": {},
+              "parser_version": "synthetic-normalized-fixture-1",
+              "mapping_version": "synthetic-normalized-fixture-1"
+            }
+          ],
+          "validation_errors": [],
+          "bank_name": "Test Bank",
+          "bank_account_id": "bank",
+          "source_transaction_id": "tx1",
+          "posted_date": "2026-09-02",
+          "value_date": null,
+          "pending": false,
+          "signed_cents": 910000,
+          "description_local": "Deposit d1",
+          "descriptor_tokens": [],
+          "bank_type": "CHECK_DEPOSIT",
+          "check_number": null,
+          "trace_id": null,
+          "deposit_id": "d1",
+          "balance_cents": null,
+          "granularity": "TRANSACTION"
+        }
+      ],
+      "manifests": [
+        {
+          "company_id": "company",
+          "source_system": "ST",
+          "source_file_sha256": "ab8692639c9b7184d7d78a05fd3d7c1ea4c7fb66fd619fad6b1f8069249c9419",
+          "report_name": "synthetic-st.jsonl",
+          "report_grain": "DETAIL",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "NOT_APPLICABLE",
+          "accounts": [],
+          "account_balances": [],
+          "header_row": 1,
+          "raw_row_count": 1,
+          "normalized_row_count": 1,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        },
+        {
+          "company_id": "company",
+          "source_system": "QBO",
+          "source_file_sha256": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
+          "report_name": "synthetic-qbo.jsonl",
+          "report_grain": "DETAIL",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "ACCRUAL",
+          "accounts": [],
+          "account_balances": [],
+          "header_row": 1,
+          "raw_row_count": 4,
+          "normalized_row_count": 4,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        },
+        {
+          "company_id": "company",
+          "source_system": "BANK",
+          "source_file_sha256": "a64e8df79b8ef7ef5bc8ab26de8c22900ea12489dc1144ccf3443f3195ad0293",
+          "report_name": "synthetic-bank.jsonl",
+          "report_grain": "DETAIL",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "NOT_APPLICABLE",
+          "accounts": [],
+          "account_balances": [],
+          "header_row": 1,
+          "raw_row_count": 1,
+          "normalized_row_count": 1,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        },
+        {
+          "company_id": "company",
+          "source_system": "PROCESSOR",
+          "source_file_sha256": "7840ede0bb7c410a38fc108b43d67dcf4a63a7414818685ecd00375f3ee0b8af",
+          "report_name": "synthetic-processor.jsonl",
+          "report_grain": "DETAIL",
+          "period_start": "2026-09-01",
+          "period_end": "2026-09-30",
+          "as_of_date": "2026-09-30",
+          "company_timezone": "America/New_York",
+          "basis": "NOT_APPLICABLE",
+          "accounts": [],
+          "account_balances": [],
+          "header_row": 1,
+          "raw_row_count": 1,
+          "normalized_row_count": 1,
+          "excluded_summary_rows": [],
+          "opening_debit_balance_cents": null,
+          "closing_debit_balance_cents": null,
+          "coverage_confirmed": true,
+          "missing_required_fields": []
+        }
+      ],
+      "config": {
+        "company_id": "company",
+        "bank_account_id": "bank",
+        "period_cutoff": "2026-09-30",
+        "clearing_split_semantics_confirmed": true,
+        "qb_bank_account_names": [
+          "Collections Checking"
+        ]
+      },
+      "evidence": {
+        "settlements": [
+          {
+            "id": "settlement",
+            "company_id": "company",
+            "currency": "USD",
+            "bank_account_id": "bank",
+            "source_refs": [
+              {
+                "file_sha256": "7840ede0bb7c410a38fc108b43d67dcf4a63a7414818685ecd00375f3ee0b8af",
+                "raw_row_sha256": "f6fffc2e2980c9701f68806c951c968727f367bfec0e60bbfc38b78c3e746568",
+                "physical_row": 2,
+                "sheet": null,
+                "column_indices": {},
+                "parser_version": "synthetic-normalized-fixture-1",
+                "mapping_version": "synthetic-normalized-fixture-1"
+              }
+            ],
+            "evidence_ref": "processor:row2",
+            "payment_id": "p1",
+            "accounting_batch_id": "b1",
+            "processor_batch_id": null,
+            "settlement_reference": "d1",
+            "processor": null,
+            "merchant_id": null,
+            "status": "SETTLED",
+            "gross_cents": 1000000,
+            "fee_cents": 90000,
+            "net_cents": 910000,
+            "held_cents": 0,
+            "fee_mode": "NETTED",
+            "as_of_date": "2026-09-30",
+            "scheduled_settlement_date": null,
+            "actual_settlement_date": "2026-09-02",
+            "contract_reference": "contract"
+          }
+        ]
+      }
+    },
+    "result": {
+      "groups": [
+        {
+          "id": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+          "company_id": "company",
+          "bank_account_id": "bank",
+          "clearing_account_ids": [
+            "CLEARING"
+          ],
+          "clearing_residuals": [
+            {
+              "account_id": "CLEARING",
+              "residual_debit_cents": 90000
+            }
+          ],
+          "currency": "USD",
+          "st_ids": [
+            "st-1"
+          ],
+          "qb_ids": [
+            "qb-0",
+            "qb-2",
+            "qb-3"
+          ],
+          "bank_ids": [
+            "bank-1"
+          ],
+          "gross_cents": 1000000,
+          "refunds_cents": 0,
+          "fees_cents": 90000,
+          "holds_cents": 0,
+          "releases_cents": 0,
+          "external_receipts_cents": 0,
+          "other_adjustments_cents": 0,
+          "bank_cents": 910000,
+          "unexplained_cents": 0,
+          "ledger_residual_cents": 90000,
+          "matching_state": "MATCHED",
+          "matching_scope": "VERIFIED_THREE_WAY",
+          "search_status": "COMPLETE",
+          "diagnoses": [
+            {
+              "cause": "NET_FEE_DRIFT",
+              "evidence_level": "SUPPORTED",
+              "score": 100,
+              "evidence_refs": [
+                "processor:row2"
+              ],
+              "missing_evidence": [
+                "COMPLETE_EXPENSE_AND_DUPLICATE_FEE_REVIEW"
+              ]
+            }
+          ],
+          "aje_state": "INELIGIBLE",
+          "source_version_hash": "59d9241fc7bad1d86a2df30f15aeab80b07de1105b8fdb2551062a0c7cb47e4f",
+          "approved_proposal_hash": null,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "CONFIRMED",
+              "expected_cents": 1000000,
+              "observed_cents": 1000000,
+              "difference_cents": 0,
+              "source_ids": [
+                "qb-0",
+                "st-1"
+              ],
+              "identity_refs": [
+                "accounting_batch:b1",
+                "payment:p1"
+              ],
+              "evidence_refs": [],
+              "missing_evidence": [],
+              "rule_id": "st_qb_receipt_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "CONFIRMED",
+              "expected_cents": 910000,
+              "observed_cents": 910000,
+              "difference_cents": 0,
+              "source_ids": [
+                "bank-1",
+                "qb-2",
+                "qb-3"
+              ],
+              "identity_refs": [
+                "d1"
+              ],
+              "evidence_refs": [],
+              "missing_evidence": [],
+              "rule_id": "qb_bank_settlement_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "CONFIRMED",
+              "expected_cents": 910000,
+              "observed_cents": 910000,
+              "difference_cents": 0,
+              "source_ids": [
+                "bank-1",
+                "st-1"
+              ],
+              "identity_refs": [
+                "d1"
+              ],
+              "evidence_refs": [
+                "processor:row2"
+              ],
+              "missing_evidence": [],
+              "rule_id": "st_bank_cash_v1",
+              "rule_version": "g1-2026.10.21.2"
+            }
+          ],
+          "accepted": true,
+          "warnings": [],
+          "evidence_refs": [
+            "processor:row2"
+          ],
+          "fee_proposal_math_ready": true,
+          "fee_aje_draft_eligible": false,
+          "impact_cents": 1000000,
+          "period_status": "IN_PERIOD"
+        },
+        {
+          "id": "ea15b57799e072e90a2fa6c2f92f62efe90aa6f31aa91d384f6778299d0bd841",
+          "company_id": "company",
+          "bank_account_id": "bank",
+          "clearing_account_ids": [],
+          "clearing_residuals": [],
+          "currency": "USD",
+          "st_ids": [],
+          "qb_ids": [
+            "qb-1"
+          ],
+          "bank_ids": [],
+          "gross_cents": 0,
+          "refunds_cents": 0,
+          "fees_cents": 0,
+          "holds_cents": 0,
+          "releases_cents": 0,
+          "external_receipts_cents": 0,
+          "other_adjustments_cents": 0,
+          "bank_cents": 0,
+          "unexplained_cents": 0,
+          "ledger_residual_cents": 0,
+          "matching_state": "UNMATCHED",
+          "matching_scope": "ACTIVITY_BRIDGE",
+          "search_status": "COMPLETE",
+          "diagnoses": [
+            {
+              "cause": "UNEXPLAINED",
+              "evidence_level": "UNKNOWN",
+              "score": 20,
+              "evidence_refs": [],
+              "missing_evidence": [
+                "UNRESOLVED_COMPONENT_OR_IDENTITY"
+              ]
+            }
+          ],
+          "aje_state": "INELIGIBLE",
+          "source_version_hash": "3809f5f9db274f2420906c7609b6a4e579b5230360f29a48a4d58984f0207850",
+          "approved_proposal_hash": null,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "ABSENT",
+              "expected_cents": 0,
+              "observed_cents": 0,
+              "difference_cents": 0,
+              "source_ids": [],
+              "identity_refs": [],
+              "evidence_refs": [],
+              "missing_evidence": [
+                "ST_RECEIPT_NOT_FOUND"
+              ],
+              "rule_id": "st_qb_receipt_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "ABSENT",
+              "expected_cents": 0,
+              "observed_cents": 0,
+              "difference_cents": 0,
+              "source_ids": [],
+              "identity_refs": [],
+              "evidence_refs": [],
+              "missing_evidence": [
+                "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+              ],
+              "rule_id": "qb_bank_settlement_v1",
+              "rule_version": "g1-2026.10.21.2"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "ABSENT",
+              "expected_cents": 0,
+              "observed_cents": 0,
+              "difference_cents": 0,
+              "source_ids": [],
+              "identity_refs": [],
+              "evidence_refs": [],
+              "missing_evidence": [
+                "POSTED_BANK_SETTLEMENT_NOT_FOUND"
+              ],
+              "rule_id": "st_bank_cash_v1",
+              "rule_version": "g1-2026.10.21.2"
+            }
+          ],
+          "accepted": false,
+          "warnings": [
+            "UNATTRIBUTED_QB_ACTIVITY"
+          ],
+          "evidence_refs": [],
+          "fee_proposal_math_ready": false,
+          "fee_aje_draft_eligible": false,
+          "impact_cents": 0,
+          "period_status": "UNATTRIBUTED"
+        }
+      ],
+      "controls": {
+        "st_gross_cents": 1000000,
+        "st_refunds_cents": 0,
+        "st_corrections_cents": 0,
+        "qb_debits_cents": 1910000,
+        "qb_credits_cents": 1910000,
+        "bank_signed_cents": 910000,
+        "accounts": [
+          {
+            "account_id": "AR",
+            "account_full_name": "Accounts Receivable",
+            "debit_cents": 0,
+            "credit_cents": 1000000,
+            "activity_cents": -1000000,
+            "opening_cents": null,
+            "closing_cents": null,
+            "calculated_closing_cents": null,
+            "coverage_confirmed": false,
+            "status": "ACTIVITY_ONLY"
+          },
+          {
+            "account_id": "BANK",
+            "account_full_name": "Collections Checking",
+            "debit_cents": 910000,
+            "credit_cents": 0,
+            "activity_cents": 910000,
+            "opening_cents": null,
+            "closing_cents": null,
+            "calculated_closing_cents": null,
+            "coverage_confirmed": false,
+            "status": "ACTIVITY_ONLY"
+          },
+          {
+            "account_id": "CLEARING",
+            "account_full_name": "ServiceTitan Clearing",
+            "debit_cents": 1000000,
+            "credit_cents": 910000,
+            "activity_cents": 90000,
+            "opening_cents": null,
+            "closing_cents": null,
+            "calculated_closing_cents": null,
+            "coverage_confirmed": false,
+            "status": "ACTIVITY_ONLY"
+          }
+        ],
+        "atoms": [
+          {
+            "atom_id": "bank-1",
+            "source": "BANK",
+            "source_cents": 910000,
+            "allocated_cents": 910000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "qb-0",
+            "source": "QB",
+            "source_cents": 1000000,
+            "allocated_cents": 1000000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "qb-1",
+            "source": "QB",
+            "source_cents": -1000000,
+            "allocated_cents": 0,
+            "residual_cents": -1000000,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "qb-2",
+            "source": "QB",
+            "source_cents": 910000,
+            "allocated_cents": 910000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "qb-3",
+            "source": "QB",
+            "source_cents": -910000,
+            "allocated_cents": -910000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          },
+          {
+            "atom_id": "st-1",
+            "source": "ST",
+            "source_cents": 1000000,
+            "allocated_cents": 1000000,
+            "residual_cents": 0,
+            "excluded_reason": null
+          }
+        ],
+        "conservation_ok": true,
+        "coverage_confirmed": true
+      },
+      "warnings": [],
+      "allocations": [
+        {
+          "atom_id": "bank-1",
+          "group_id": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+          "signed_allocated_cents": 910000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "qb-0",
+          "group_id": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+          "signed_allocated_cents": 1000000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "qb-2",
+          "group_id": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+          "signed_allocated_cents": 910000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "qb-3",
+          "group_id": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+          "signed_allocated_cents": -910000,
+          "component_id": null,
+          "split_authorization_ref": null
+        },
+        {
+          "atom_id": "st-1",
+          "group_id": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+          "signed_allocated_cents": 1000000,
+          "component_id": null,
+          "split_authorization_ref": null
+        }
+      ],
+      "searches": [],
+      "rejected_candidates": [],
+      "versions": {
+        "engine": "1.0.0-g1",
+        "rules": "g1-2026.10.21.2",
+        "calendar": "fed-settlement-v1",
+        "mapping": [
+          "synthetic-normalized-fixture-1"
+        ]
+      }
+    },
+    "duration": 0,
+    "isDemo": true,
+    "files": [
+      {
+        "kind": "ST",
+        "name": "synthetic-st.jsonl",
+        "hash": "ab8692639c9b7184d7d78a05fd3d7c1ea4c7fb66fd619fad6b1f8069249c9419",
+        "sizeBytes": 1152
+      },
+      {
+        "kind": "QBO",
+        "name": "synthetic-qbo.jsonl",
+        "hash": "d7e520dedd41e7fe0c3af13e12c6d328f13f55250c1cc90a51404e907a6f7e14",
+        "sizeBytes": 4031
+      },
+      {
+        "kind": "BANK",
+        "name": "synthetic-bank.jsonl",
+        "hash": "a64e8df79b8ef7ef5bc8ab26de8c22900ea12489dc1144ccf3443f3195ad0293",
+        "sizeBytes": 777
+      },
+      {
+        "kind": "PROCESSOR",
+        "name": "synthetic-processor.jsonl",
+        "hash": "7840ede0bb7c410a38fc108b43d67dcf4a63a7414818685ecd00375f3ee0b8af",
+        "sizeBytes": 843
+      }
+    ],
+    "options": {
+      "companyId": "company",
+      "bankAccountId": "bank",
+      "companyTimezone": "America/New_York",
+      "periodStart": "2026-09-01",
+      "periodEnd": "2026-09-30",
+      "asOfDate": "2026-09-30",
+      "currency": "USD"
+    },
+    "runId": "synthetic-current-case-20261022",
+    "review": {
+      "schemaVersion": 1,
+      "inputDigest": "ffe0caad8e0ae17cde657c00b941c4b47bb25e1c84c4875481806a9060f3a631",
+      "cases": [
+        {
+          "economicCaseId": "case-23476b271213de4e32f764fb",
+          "accountingActionId": "fee-c296d91b9dd2ebf496bad9f4",
+          "engineGroupId": "c4a1bed549fd5684b5b7402f0483fb8a8804326ce05d90fcc447cc77f0200e6f",
+          "anchors": [
+            "[\"company\",\"BANK\",\"deposit\",\"[\\\"bank\\\",\\\"d1\\\"]\"]",
+            "[\"company\",\"BANK\",\"transaction\",\"[\\\"bank\\\",\\\"tx1\\\"]\"]",
+            "[\"company\",\"ST\",\"payment\",\"[\\\"bank\\\",\\\"p1\\\"]\"]"
+          ],
+          "inputDigest": "ffe0caad8e0ae17cde657c00b941c4b47bb25e1c84c4875481806a9060f3a631",
+          "identityStatus": "BOUND",
+          "reviewedFacts": {
+            "reviewer": "Synthetic QA reviewer",
+            "notes": "Synthetic current-case end-to-end acceptance, not real customer evidence or market validation.",
+            "journalDate": "2026-09-30",
+            "bankAccountName": "Collections Checking",
+            "clearingAccountName": "ServiceTitan Clearing",
+            "feeAccountName": "Merchant Financing Fees",
+            "receiptTransactionId": "DEMO-RECEIPT",
+            "settlementTransactionId": "DEMO-DEPOSIT",
+            "documentedFee": "900.00",
+            "feeMode": "NETTED",
+            "netFeeConfirmed": true,
+            "periodOpenConfirmed": true,
+            "expenseNotRecordedConfirmed": true,
+            "completeLedgerConfirmed": true,
+            "ledgerCoveredAccountNames": "Collections Checking\nServiceTitan Clearing\nMerchant Financing Fees\nAccounts Receivable",
+            "ledgerPeriodStart": "2026-09-01",
+            "ledgerPeriodEnd": "2026-09-30",
+            "accountsReviewed": true,
+            "clearingIsOrdinaryAsset": true,
+            "documents": [
+              {
+                "purpose": "COA",
+                "name": "synthetic-coa-review.txt",
+                "sha256": "b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6",
+                "sizeBytes": 566
+              },
+              {
+                "purpose": "SETTLEMENT",
+                "name": "synthetic-settlement-review.txt",
+                "sha256": "671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a",
+                "sizeBytes": 135
+              },
+              {
+                "purpose": "LEDGER",
+                "name": "synthetic-ledger-review.txt",
+                "sha256": "9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36",
+                "sizeBytes": 162
+              }
+            ],
+            "reviewedAccounts": [
+              {
+                "id": "Collections Checking",
+                "name": "Collections Checking",
+                "type": "BANK",
+                "exists": true,
+                "isUndepositedFunds": false
+              },
+              {
+                "id": "ServiceTitan Clearing",
+                "name": "ServiceTitan Clearing",
+                "type": "OTHER_CURRENT_ASSET",
+                "exists": true,
+                "isUndepositedFunds": false
+              },
+              {
+                "id": "Merchant Financing Fees",
+                "name": "Merchant Financing Fees",
+                "type": "EXPENSE",
+                "exists": true,
+                "isUndepositedFunds": false
+              },
+              {
+                "id": "Accounts Receivable",
+                "name": "Accounts Receivable",
+                "type": "OTHER",
+                "exists": true,
+                "isUndepositedFunds": false
+              }
+            ],
+            "relations": []
+          },
+          "exportHistory": [],
+          "existingImportStatus": "NEVER_IMPORTED"
+        },
+        {
+          "economicCaseId": "case-561ff86c670b7c3f769a3ad3",
+          "accountingActionId": "fee-ce8cc03f011388a0a9b5437e",
+          "engineGroupId": "ea15b57799e072e90a2fa6c2f92f62efe90aa6f31aa91d384f6778299d0bd841",
+          "anchors": [
+            "[\"company\",\"QBO\",\"transaction\",\"[\\\"bank\\\",\\\"DEMO-RECEIPT\\\"]\"]"
+          ],
+          "inputDigest": "ffe0caad8e0ae17cde657c00b941c4b47bb25e1c84c4875481806a9060f3a631",
+          "identityStatus": "BOUND",
+          "reviewedFacts": {},
+          "exportHistory": [],
+          "existingImportStatus": "NEVER_IMPORTED"
+        }
+      ],
+      "orphanedCases": []
+    }
+  },
+  "integrity": "9d422b21674a995c4fb1d835f2422590c70d61bc3a2fac0f9d4dcc0d759ae3d0"
+}

@@ -205,7 +205,9 @@ describe('Explicit native QBO Transaction Journal selection', () => {
     expect(within(card).getByText('Credit total: $900.00')).toBeTruthy();
     expect(within(card).getByText('Row 6: Validated transaction identity group')).toBeTruthy();
     expect(
-      within(card).getByText('Row 9: Validated balanced transaction group control'),
+      within(card).getByText(
+        'Row 9: Transaction subtotal control; consistency recorded separately',
+      ),
     ).toBeTruthy();
     expect(within(card).getByText('Row 10: Validated report grand total')).toBeTruthy();
     expect(within(card).getByText('Row 14: Validated native report timestamp footer')).toBeTruthy();
@@ -441,21 +443,47 @@ describe('Explicit native QBO Transaction Journal selection', () => {
     expect(screen.getByText('REPORT_SETTINGS_CHANGED')).toBeTruthy();
     expect(enabled()).toBe(false);
   });
-  it('rejects the untouched native workbook with total formulas instead of stripping them', async () => {
-    setup();
+  it('preserves original native workbook formulas as controls and sends only complete posting legs', async () => {
+    const onRun = setup();
     selectNative();
+    scope();
     fireEvent.change(screen.getByLabelText('Expected report company name'), {
       target: { value: company },
     });
     const bytes = new Uint8Array(
       readFileSync('evidence/quickbooks-acceptance-20261021/target-transaction-journal-145.xlsx'),
     );
+    const originalBytes = new Uint8Array(bytes);
+    await upload('Choose ServiceTitan CSV', 'st.csv', st);
     startUpload('Choose QuickBooks CSV', 'native-formulas.xlsx', bytes);
+    await screen.findByRole('button', { name: /native-formulas.xlsx/ });
+    await upload('Choose Bank CSV', 'bank.csv', bank);
+    await validate();
+    expect(enabled()).toBe(true);
+    expect(screen.getByText('Preserved source control formulas (never evaluated)')).toBeTruthy();
     expect(
-      await screen.findByText(/Formula cells and defined names are not accepted/),
+      screen.getByText('Sheet1!H9: H7+H8 · CONSISTENT · stored 900 · independent cents 90000'),
     ).toBeTruthy();
-    expect(vi.mocked(runXlsxImport).mock.calls).toHaveLength(0);
-    expect(screen.queryByRole('button', { name: /native-formulas.xlsx/ })).toBeNull();
-    expect(enabled()).toBe(false);
+    expect(
+      screen.getByText('Sheet1!I10: I9 · CONSISTENT · stored 900 · independent cents 90000'),
+    ).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Reconcile these files' }));
+    expect(onRun).toHaveBeenCalledTimes(1);
+    const [input, sourceFiles] = onRun.mock.calls[0] as unknown as [
+      Workspace['input'],
+      Workspace['files'],
+    ];
+    expect(input.qb.map((r) => r.source_refs[0].physical_row)).toEqual([7, 8]);
+    expect(input.qb.map((r) => r.transaction_id)).toEqual(['145', '145']);
+    const report = input.manifests?.find((m) => m.source_system === 'QBO');
+    expect(report?.coverage_confirmed).toBe(false);
+    expect(report?.qbo_transaction_journal?.scope).toBe('TRANSACTION_GROUPS');
+    expect(report?.qbo_transaction_journal?.groups[0].posting_physical_rows).toEqual([7, 8]);
+    const source = sourceFiles.find((f) => f.kind === 'QBO');
+    expect(source?.importStatus).toBe('READY');
+    expect(source?.controls?.formulaCells).toHaveLength(4);
+    expect(source?.controls?.formulaCells?.every((f) => f.status === 'CONSISTENT')).toBe(true);
+    expect(source?.controls?.accountingBlockedTransactionIds).toEqual([]);
+    expect(bytes).toEqual(originalBytes);
   });
 });

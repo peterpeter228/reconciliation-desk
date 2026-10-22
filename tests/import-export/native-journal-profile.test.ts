@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import type { FeeProposal } from '../../src/export';
-import { matchProposalJournalPosting, verifyProposalInLedger } from '../../src/export';
+import {
+  matchProposalJournalPosting,
+  verifyProposalInLedger,
+  buildFeeProposal,
+  approveProposal,
+  FEE_ONLY_RULE_VERSION,
+} from '../../src/export';
 import { parseSource, sha256, type ParseOptions } from '../../src/ingestion';
 
 const directory = new URL('../../evidence/quickbooks-acceptance-20261021/', import.meta.url);
@@ -9,9 +15,19 @@ const bytes = new Uint8Array(
   readFileSync(new URL('target-transaction-journal-145.csv', directory)),
 );
 const csv = new TextDecoder().decode(bytes);
-const proposal = JSON.parse(
+const historicalProposal = JSON.parse(
   readFileSync(new URL('target-synthetic-proposal.json', directory), 'utf8'),
 ) as FeeProposal;
+// Test-only current-rule reapproval. The historical approval/evidence is untouched
+// and remains invalid for new exports after a rule change.
+const proposal = await approveProposal(
+  await buildFeeProposal({
+    ...historicalProposal.feeCase,
+    ruleVersion: FEE_ONLY_RULE_VERSION,
+  }),
+  'Synthetic current-rule test reviewer',
+  '2026-10-22T06:00:00Z',
+);
 const options: ParseOptions = {
   companyId: proposal.feeCase.companyId,
   bankAccountId: 'BANK',
@@ -27,7 +43,7 @@ const options: ParseOptions = {
 };
 
 describe('untouched native public-sample report integration', () => {
-  it('matches the saved approved proposal without inventing period coverage or source IDs', async () => {
+  it('matches the same journal after explicit synthetic reapproval without inventing coverage', async () => {
     const parsed = await parseSource(csv, 'QBO', { ...options, originalBytes: bytes });
     expect(parsed.ok).toBe(true);
     expect(parsed.manifest?.source_file_sha256).toBe(await sha256(bytes));

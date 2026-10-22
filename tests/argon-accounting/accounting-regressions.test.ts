@@ -263,6 +263,15 @@ describe('Argon P1-3: case footprint is distinct from full-ledger coverage', () 
     const c = createTeachingFeeCase();
     addLeg(c, 'OTHER-RECEIPT', 'CLEARING', 123_456, 0);
     addLeg(c, 'OTHER-RECEIPT', 'AR', 0, 123_456);
+    c.postedGLRelations = [
+      {
+        transactionId: 'OTHER-RECEIPT',
+        relation: 'OTHER_CASE',
+        relatedCaseId: 'OTHER-CASE',
+        evidenceRef: 'other-receipt-link',
+        reviewer: 'Synthetic Reviewer',
+      },
+    ];
     const proposal = await buildFeeProposal(c);
     expect(proposal.lines.map((line) => line.debitCents - line.creditCents)).toEqual([
       90_000, -90_000,

@@ -99,11 +99,13 @@ export function ExportsPage({ workspace }: { workspace: Workspace | null }) {
         <div className="export-blocked">
           <LockKeyhole size={18} />
           <div>
-            <strong>No approved main-run accounting import</strong>
+            <strong>Accounting imports require case-level review</strong>
             <p>
-              Sample fee math is not approval. Actual bank posting, expense coverage, account types,
-              and duplicate-entry checks must all be evidenced. Undeposited Funds requires its
-              payment-to-deposit workflow, not a generic clearing journal.
+              Open an actual case in the reconciliation desk to review its facts and build an
+              eligible fee-only proposal. Sample fee math is not approval. Actual bank posting,
+              expense coverage, account types, and duplicate-entry checks must all be evidenced.
+              Undeposited Funds requires its payment-to-deposit workflow, not a generic clearing
+              journal.
             </p>
           </div>
         </div>

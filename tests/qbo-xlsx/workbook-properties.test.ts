@@ -315,7 +315,7 @@ describe('native QBO evidence and values-only boundary', () => {
     expect(rawPosting[1]).toMatchObject({ address: 'B7', type: 's', value: '09/30/2026' });
     expect(rawPosting[7]).toMatchObject({ address: 'H7', type: 'n', value: 900 });
   });
-  it('keeps the untouched native export rejected for formulas, not a false epoch conflict', () => {
+  it('allows inert native controls for preview without a false epoch conflict', () => {
     const input = readFileSync(nativePath);
     expect(input.length).toBe(8880);
     expect(createHash('sha256').update(input).digest('hex')).toBe(nativeHash);
@@ -328,7 +328,7 @@ describe('native QBO evidence and values-only boundary', () => {
       '<f>H9</f>',
       '<f>I9</f>',
     ]);
-    blocked(input, 'XLSX_FORMULA');
+    expect(inspectXlsx(input).sheets).toHaveLength(1);
     expect(createHash('sha256').update(readFileSync(nativePath)).digest('hex')).toBe(nativeHash);
   });
 

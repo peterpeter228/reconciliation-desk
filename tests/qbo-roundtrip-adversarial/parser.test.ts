@@ -75,18 +75,24 @@ describe('untouched public-demo evidence: narrow CSV success and honest XLSX blo
     });
   });
 
-  it('continues to reject native XLSX formulas instead of trusting cached subtotal values', async () => {
+  it('accepts untouched native XLSX posting values while independently checking formula controls', async () => {
     expect(await sha256(nativeXlsxBytes)).toBe(
       'ac1b896b3377199496c67132968e8e61949f388eaa7a13c43ed52fcace95e033',
     );
     const parsed = await parseXlsx(nativeXlsxBytes, 'QBO', { ...options, sheetName: 'Sheet1' });
-    expect(parsed.ok).toBe(false);
-    expect(parsed.rows).toEqual([]);
-    expect(parsed.issues).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ code: 'XLSX_FORMULA', severity: 'error' }),
-      ]),
-    );
+    expect(parsed.ok, JSON.stringify(parsed.issues)).toBe(true);
+    expect(parsed.rows.map((r) => r.source_refs[0].physical_row)).toEqual([7, 8]);
+    expect(parsed.controls.formulaCells).toHaveLength(4);
+    expect(parsed.controls.formulaCells?.map((f) => f.formula)).toEqual([
+      'H7+H8',
+      'I7+I8',
+      'H9',
+      'I9',
+    ]);
+    expect(parsed.controls.formulaCells?.every((f) => f.status === 'CONSISTENT')).toBe(true);
+    expect(parsed.controls.debitCents).toBe(90000);
+    expect(parsed.controls.creditCents).toBe(90000);
+    expect(parsed.status).toBe('READY');
   });
 });
 

@@ -39,6 +39,14 @@ async function uploadBytes(label: string, name: string, bytes: Uint8Array<ArrayB
   Object.defineProperty(file, 'arrayBuffer', { value: async () => bytes.buffer });
   fireEvent.change(screen.getByLabelText(label), { target: { files: [file] } });
   await screen.findByRole('button', { name: new RegExp(name.replaceAll('.', '\\.')) });
+  await waitFor(
+    () =>
+      expect(
+        (screen.getByRole('button', { name: /Explore the sample instead/ }) as HTMLButtonElement)
+          .disabled,
+      ).toBe(false),
+    { timeout: 10000 },
+  );
 }
 function setup() {
   render(createElement(ImportPage, { onRun: vi.fn(async () => {}), busy: false, onDemo: vi.fn() }));
@@ -62,7 +70,7 @@ async function validate() {
   fireEvent.click(screen.getByLabelText(/I reviewed the mappings and source scope/));
   fireEvent.click(screen.getByRole('button', { name: 'Validate files' }));
   await waitFor(() => expect(screen.getByRole('button', { name: 'Validate files' })).toBeTruthy(), {
-    timeout: 5000,
+    timeout: 12000,
   });
 }
 describe('Resolved import headers survive validation (real parsers, jsdom)', () => {

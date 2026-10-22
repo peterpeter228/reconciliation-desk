@@ -1,3 +1,11 @@
+# Current local milestone — 2026-10-22
+
+The new case-review workflow supersedes historical “teaching-only UI” and blanket native-control-formula rejection statements below. See [REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md). Local implementation includes intact native XLSX controls, partial whole-transaction quarantine, actual-case fact/COA/coverage binding, strict fee-only approval/export, UF candidate instructions, and versioned Save/Open with stable action and export history.
+
+This document is not a remote persistence receipt. The existing owner-private QA deployment is not automatically updated by local edits. Full current validation and any remaining blockers are recorded in `evidence/handoff-workflow-20261022/` when completed. No live accounting operation or commercial validation is implied.
+
+## Historical status follows (not the latest acceptance claim)
+
 # Implementation status — 2026-10-21
 
 Started 09:21 UTC (17:21 UTC+8). This is a private, file-only USD pilot, not a live

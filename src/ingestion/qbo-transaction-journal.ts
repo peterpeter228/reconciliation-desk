@@ -5,7 +5,13 @@ import type {
   QboTransactionJournalReport,
 } from '../../contracts/canonical';
 import type { MatrixRecord } from './csv';
-import type { ColumnBindings, ParseOptions, ParseResult } from './types';
+import type {
+  ColumnBindings,
+  ParseOptions,
+  ParseResult,
+  FormulaControl,
+  ImportIssue,
+} from './types';
 import { normalizeRow } from './normalize';
 import { canonicalJson, checkedSum, parseDate, parseMoney, sha256 } from './primitives';
 
@@ -42,14 +48,62 @@ function shape(r: MatrixRecord, allowed: number[]): void {
   if (r.values.length !== 9 || r.values.some((v, i) => v.trim() && !allowed.includes(i)))
     fail('Unexpected cells or row width; this profile cannot skip unknown report content.', r);
 }
-function control(r: MatrixRecord, label: string, debit: number, credit: number): void {
+function control(
+  r: MatrixRecord,
+  label: string,
+  debit: number | null,
+  credit: number | null,
+  sheet: string | null,
+  formulas: FormulaControl[],
+  issues: ImportIssue[],
+): boolean {
   shape(r, [0, 7, 8]);
-  if (
-    value(r, 0) !== label ||
-    parseMoney(value(r, 7)) !== debit ||
-    parseMoney(value(r, 8)) !== credit
-  )
-    fail('Report control label or debit/credit totals do not match complete posting lines.', r);
+  if (value(r, 0) !== label) fail('Unexpected report control label.', r);
+  let valid = true;
+  for (const [column, expected] of [
+    [7, debit],
+    [8, credit],
+  ] as const) {
+    const formula = r.formulaCells?.find((f) => f.column === column);
+    // Formula text is NEVER evaluated. Independent totals use normalized detail only.
+    if (formula) {
+      let cached: number | null = null;
+      try {
+        cached = formula.cachedValue === null ? null : parseMoney(String(formula.cachedValue));
+      } catch {
+        /* invalid cache is unverified */
+      }
+      const status =
+        cached === null || expected === null
+          ? 'UNVERIFIED'
+          : cached === expected
+            ? 'CONSISTENT'
+            : 'CONFLICT';
+      formulas.push({
+        sheet,
+        address: formula.address,
+        formula: formula.formula,
+        cachedValue: formula.cachedValue,
+        independentCents: expected,
+        status,
+      });
+      if (status !== 'CONSISTENT') {
+        valid = false;
+        issues.push({
+          code: `FORMULA_CONTROL_${status}`,
+          severity: 'warning',
+          physicalRow: r.physicalRow,
+          message: `${formula.address}: stored control ${status.toLowerCase()}; detail preview only, accounting import needs source verification.`,
+        });
+      }
+    } else if (expected !== null && parseMoney(value(r, column)) !== expected) {
+      // Preserve the established strict CSV values-only control invariant.
+      fail('Report control label or debit/credit totals do not match complete posting lines.', r);
+    }
+  }
+  if (r.formulaCells?.some((f) => f.column !== 7 && f.column !== 8))
+    fail('Formula outside a debit/credit report control.', r);
+  return valid;
 }
 function footerDate(r: MatrixRecord): string {
   shape(r, [0]);
@@ -155,9 +209,15 @@ export async function parseQboTransactionJournal(
   )
     fail('The complete native nine-column schema is required.');
 
+  if (records.slice(0, 5).some((r) => r.formulaCells?.length))
+    fail('Formula-dependent preamble or header is unsupported.');
   const excludedRows = records
     .slice(0, 4)
     .map((r) => ({ physicalRow: r.physicalRow, reason: 'Validated native report preamble' }));
+  const formulaCells: FormulaControl[] = [];
+  const issues: ImportIssue[] = [];
+  const quarantinedGroups: NonNullable<ParseResult['controls']['quarantinedGroups']> = [];
+  const accountingBlocked = new Set<string>();
   const groups: QboTransactionJournalReport['groups'] = [];
   const postings: { record: MatrixRecord; group: QboTransactionJournalReport['groups'][number] }[] =
     [];
@@ -166,63 +226,123 @@ export async function parseQboTransactionJournal(
   while (i < records.length && value(records[i], 0) !== 'TOTAL') {
     const groupRow = records[i++];
     shape(groupRow, [0]);
+    if (groupRow.formulaCells?.length)
+      fail('Transaction group identity cannot derive from a formula cache.', groupRow);
     const id = value(groupRow, 0);
     if (!/^[1-9]\d{0,19}$/.test(id) || seen.has(id))
       fail('A unique positive integer transaction group ID is required.', groupRow);
     seen.add(id);
-    const detail: MatrixRecord[] = [];
-    while (i < records.length && !value(records[i], 0)) {
-      const row = records[i++];
-      if (row.values.length !== 9 || blank(row))
-        fail('Blank or malformed row interrupts a transaction group.', row);
-      if (value(row, 2) !== 'Journal Entry' || !value(row, 3) || !value(row, 6))
-        fail('Every posting needs Journal Entry type, journal Num and account.', row);
-      const date = parseDate(value(row, 1), 'MDY')!;
-      if (date < options.periodStart || date > options.periodEnd)
-        fail('Posting falls outside the selected date range.', row);
-      if (
-        detail.length &&
-        (parseDate(value(detail[0], 1), 'MDY') !== date || value(detail[0], 3) !== value(row, 3))
-      )
-        fail('Conflicting dates or journal numbers inside one transaction group.', row);
-      if (!value(row, 7) && !value(row, 8)) fail('Unknown blank posting amount is not zero.', row);
-      const debit = parseMoney(value(row, 7), true) ?? 0;
-      const credit = parseMoney(value(row, 8), true) ?? 0;
-      if (debit < 0 || credit < 0 || !(debit > 0 !== credit > 0))
-        fail('Posting must have exactly one positive debit or credit.', row);
-      detail.push(row);
+    const groupStart = i - 1;
+    // Bound the entire economic group before validation, so a bad leg cannot
+    // leave its otherwise valid counterpart in the accounting input.
+    const boundary = records.findIndex((r, index) => index >= i && value(r, 0) !== '');
+    if (boundary < 0 || value(records[boundary], 0) !== `Total for ${id}`)
+      fail('Missing unambiguous transaction closing control.', groupRow);
+    try {
+      const detail: MatrixRecord[] = [];
+      while (i < records.length && !value(records[i], 0)) {
+        const row = records[i++];
+        if (row.formulaCells?.length)
+          fail(
+            'Transaction detail formula requires a values-only source; the complete transaction is quarantined.',
+            row,
+          );
+        if (row.values.length !== 9 || blank(row))
+          fail('Blank or malformed row interrupts a transaction group.', row);
+        if (value(row, 2) !== 'Journal Entry' || !value(row, 3) || !value(row, 6))
+          fail('Every posting needs Journal Entry type, journal Num and account.', row);
+        const date = parseDate(value(row, 1), 'MDY')!;
+        if (date < options.periodStart || date > options.periodEnd)
+          fail('Posting falls outside the selected date range.', row);
+        if (
+          detail.length &&
+          (parseDate(value(detail[0], 1), 'MDY') !== date || value(detail[0], 3) !== value(row, 3))
+        )
+          fail('Conflicting dates or journal numbers inside one transaction group.', row);
+        if (!value(row, 7) && !value(row, 8))
+          fail('Unknown blank posting amount is not zero.', row);
+        const debit = parseMoney(value(row, 7), true) ?? 0;
+        const credit = parseMoney(value(row, 8), true) ?? 0;
+        if (debit < 0 || credit < 0 || !(debit > 0 !== credit > 0))
+          fail('Posting must have exactly one positive debit or credit.', row);
+        detail.push(row);
+      }
+      if (detail.length < 2 || !records[i])
+        fail('Truncated or incomplete transaction group.', groupRow);
+      const debit = checkedSum(detail.map((r) => parseMoney(value(r, 7), true) ?? 0));
+      const credit = checkedSum(detail.map((r) => parseMoney(value(r, 8), true) ?? 0));
+      if (debit !== credit) fail('Transaction group is unbalanced.', groupRow);
+      const totalRow = records[i++];
+      if (!control(totalRow, `Total for ${id}`, debit, credit, source.sheet, formulaCells, issues))
+        accountingBlocked.add(id);
+      const group = {
+        transaction_id: id,
+        journal_num: value(detail[0], 3),
+        posting_date: parseDate(value(detail[0], 1), 'MDY')!,
+        group_physical_row: groupRow.physicalRow,
+        group_raw_row_sha256: await sha256(groupRow.raw),
+        posting_physical_rows: detail.map((r) => r.physicalRow),
+        total_physical_row: totalRow.physicalRow,
+        total_raw_row_sha256: await sha256(totalRow.raw),
+        debit_cents: debit,
+        credit_cents: credit,
+      };
+      groups.push(group);
+      postings.push(...detail.map((record) => ({ record, group })));
+      excludedRows.push(
+        { physicalRow: groupRow.physicalRow, reason: 'Validated transaction identity group' },
+        {
+          physicalRow: totalRow.physicalRow,
+          reason: 'Transaction subtotal control; consistency recorded separately',
+        },
+      );
+    } catch (error) {
+      // The legacy CSV profile remains atomic. Native workbook reports support
+      // bounded recovery; malformed structure outside known groups is never skipped.
+      if (!source.sheet) throw error;
+      i = boundary + 1;
+      const reason = error instanceof Error ? error.message : 'Invalid transaction';
+      quarantinedGroups.push({
+        transactionId: id,
+        physicalRows: records.slice(groupStart, i).map((r) => r.physicalRow),
+        reason,
+      });
+      accountingBlocked.add(id);
+      issues.push({
+        code: 'TRANSACTION_QUARANTINED',
+        severity: 'warning',
+        physicalRow: groupRow.physicalRow,
+        message: reason,
+      });
+      for (const r of records.slice(groupStart, i))
+        for (const f of r.formulaCells ?? [])
+          formulaCells.push({
+            sheet: source.sheet,
+            address: f.address,
+            formula: f.formula,
+            cachedValue: f.cachedValue,
+            independentCents: null,
+            status: 'TRANSACTION_FORMULA',
+          });
     }
-    if (detail.length < 2 || !records[i])
-      fail('Truncated or incomplete transaction group.', groupRow);
-    const debit = checkedSum(detail.map((r) => parseMoney(value(r, 7), true) ?? 0));
-    const credit = checkedSum(detail.map((r) => parseMoney(value(r, 8), true) ?? 0));
-    if (debit !== credit) fail('Transaction group is unbalanced.', groupRow);
-    const totalRow = records[i++];
-    control(totalRow, `Total for ${id}`, debit, credit);
-    const group = {
-      transaction_id: id,
-      journal_num: value(detail[0], 3),
-      posting_date: parseDate(value(detail[0], 1), 'MDY')!,
-      group_physical_row: groupRow.physicalRow,
-      group_raw_row_sha256: await sha256(groupRow.raw),
-      posting_physical_rows: detail.map((r) => r.physicalRow),
-      total_physical_row: totalRow.physicalRow,
-      total_raw_row_sha256: await sha256(totalRow.raw),
-      debit_cents: debit,
-      credit_cents: credit,
-    };
-    groups.push(group);
-    postings.push(...detail.map((record) => ({ record, group })));
-    excludedRows.push(
-      { physicalRow: groupRow.physicalRow, reason: 'Validated transaction identity group' },
-      { physicalRow: totalRow.physicalRow, reason: 'Validated balanced transaction group control' },
-    );
   }
-  if (!groups.length || !records[i]) fail('Missing complete groups or grand total.');
+  if ((!groups.length && !quarantinedGroups.length) || !records[i])
+    fail('Missing complete groups or grand total.');
   const totalRow = records[i++];
   const debit = checkedSum(groups.map((g) => g.debit_cents));
   const credit = checkedSum(groups.map((g) => g.credit_cents));
-  control(totalRow, 'TOTAL', debit, credit);
+  if (
+    !control(
+      totalRow,
+      'TOTAL',
+      quarantinedGroups.length ? null : debit,
+      quarantinedGroups.length ? null : credit,
+      source.sheet,
+      formulaCells,
+      issues,
+    )
+  )
+    for (const g of groups) accountingBlocked.add(g.transaction_id);
   excludedRows.push({ physicalRow: totalRow.physicalRow, reason: 'Validated report grand total' });
   while (i < records.length && blank(records[i])) {
     excludedRows.push({
@@ -232,6 +352,8 @@ export async function parseQboTransactionJournal(
   }
   if (!records[i]) fail('Missing export timestamp footer; report may be truncated.');
   const footer = records[i++];
+  if (footer.formulaCells?.length)
+    fail('Export timestamp cannot derive from a formula cache.', footer);
   const generatedAt = footerDate(footer);
   excludedRows.push({
     physicalRow: footer.physicalRow,
@@ -316,7 +438,9 @@ export async function parseQboTransactionJournal(
     opening_debit_balance_cents: null,
     closing_debit_balance_cents: null,
     coverage_confirmed: false,
-    missing_required_fields: [],
+    missing_required_fields: accountingBlocked.size
+      ? ['SOURCE_CONTROL_OR_TRANSACTION_REVIEW_REQUIRED']
+      : [],
     qbo_transaction_journal: {
       profile_version: QBO_JOURNAL_PROFILE,
       scope: 'TRANSACTION_GROUPS',
@@ -337,7 +461,8 @@ export async function parseQboTransactionJournal(
   };
   manifest.qbo_transaction_journal!.manifest_payload_sha256 = await journalManifestDigest(manifest);
   return {
-    ok: true,
+    ok: rows.length > 0,
+    status: !rows.length ? 'BLOCKED' : accountingBlocked.size ? 'PARTIAL' : 'READY',
     rows,
     manifest,
     duplicate: false,
@@ -347,6 +472,7 @@ export async function parseQboTransactionJournal(
       headerRow: 5,
     },
     issues: [
+      ...issues,
       {
         code: 'TRANSACTION_SCOPE_ONLY',
         severity: 'warning',
@@ -354,6 +480,14 @@ export async function parseQboTransactionJournal(
           'Validated complete journal groups only. This report does not prove company/account-period coverage, a cleared balance, or a month-end close.',
       },
     ],
-    controls: { signedCents: 0, debitCents: debit, creditCents: credit, excludedRows },
+    controls: {
+      signedCents: 0,
+      debitCents: debit,
+      creditCents: credit,
+      excludedRows,
+      formulaCells,
+      quarantinedGroups,
+      accountingBlockedTransactionIds: [...accountingBlocked],
+    },
   };
 }

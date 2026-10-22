@@ -1,6 +1,6 @@
 # Reconciliation Desk
 
-A private, local-file workbench for ServiceTitan → QuickBooks → bank activity.
+A local-file workbench for ServiceTitan → QuickBooks → bank activity.
 The goal is evidence you can review, not a green checkmark from coincident amounts.
 
 **Current stage: private pilot with scoped real-browser checks passed; complete
@@ -18,8 +18,7 @@ workflow defects were fixed and retested. PDF/mobile/network-egress and target
 QuickBooks round-trip remain separate gates. One synthetic journal was imported
 and visually checked in the official public QBO Sample Company. The explicit
 native CSV profile now matches its exact approved journal with group provenance;
-this does not prove full-period coverage or a cleared balance. Formula-bearing
-native XLSX remains rejected. See [profile contract](docs/QBO_TRANSACTION_JOURNAL_PROFILE.md) and
+this does not prove full-period coverage or a cleared balance. Recognized native report-control XLSX formulas are now preserved and independently checked; arbitrary/posting formulas remain blocked. The owner-private QA deployment predates the latest local workflow changes. See [profile contract](docs/QBO_TRANSACTION_JOURNAL_PROFILE.md) and
 [evidence](evidence/browser-20261021-followup/) and
 [QuickBooks acceptance attempt](evidence/quickbooks-acceptance-20261021/README.zh-CN.md).
 
@@ -37,16 +36,15 @@ synthetic. Its $20,000 missing settlement and $50,000 consolidated deposit are
 investigation cases, not recovered money or customer revenue. Add synthetic
 supporting evidence to see which conclusions the evidence actually supports.
 
-**Import** accepts explicit CSV/TSV and guarded values-only XLSX profiles. Review
+**Import** accepts explicit CSV/TSV and guarded XLSX profiles. Review
 company/account, period, row grain, signed amounts and posted-ledger semantics.
 All financial processing stays in browser workers. Raw files are not uploaded,
-stored in a backend, sent to a model, or retained across reloads. Downloads remain
+stored in a backend or sent to a model. Save/Open review project retains normalized inputs, review facts and export history in a local download; original source files must be retained separately. Downloads remain
 on the user's device.
 
 **Exports** provides JSON evidence, formula-safe review CSV and a printable
 workpaper. The separate $900 teaching journal is prominently marked synthetic and
-must not be imported into real books. Main-run accounting imports remain disabled
-without the complete verified facts required by the typed fee-only builder.
+must not be imported into real books. Actual cases now have a separate documented review→draft→approval workflow, gated by the complete facts required by the typed fee-only builder. Missing evidence still permits investigative/human-judgment workpapers. See [local review workflow](docs/REVIEW_WORKFLOW.md).
 
 ## Validation
 

@@ -1,0 +1,1 @@
+SYNTHETIC complete ledger scope: September 2026. Receipt SYN-RECEIPT, settlement SYN-SETTLEMENT. Fee account reviewed, no fee recorded. Test-only, not real books.

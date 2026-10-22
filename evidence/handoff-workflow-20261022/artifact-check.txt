@@ -1,0 +1,12 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 check:artifacts
+> node scripts/check-artifacts.mjs
+
+{
+  "files": 16,
+  "answer_key_absent": true,
+  "credential_pattern_scan": "no_match",
+  "headers_template_present": true,
+  "scope": "Static artifact checks only; not a guarantee of safety or deployed headers."
+}

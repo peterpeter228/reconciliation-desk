@@ -1,13 +1,13 @@
 # Current pilot boundaries
 
-This is a private implementation, not a production accounting service or audit.
+This is a local-file implementation, not a production accounting service or audit.
 
 ## Input and state
 
 - One explicit company, USD, one bank account and reviewed source semantics.
-- CSV/TSV and bounded values-only XLSX. No QBB/QBW, PDF OCR, macros, formulas,
+- CSV/TSV and bounded XLSX with narrowly recognized inert QBO report-control formulas. No QBB/QBW, PDF OCR, macros, arbitrary/posting formulas,
   embedded objects, encrypted workbooks or unvalidated headerless bank profile.
-- Data remains in browser memory. No financial-system APIs, paid model mapping,
+- Data remains in browser memory unless explicitly saved/downloaded as a local review project. Original source bytes are not embedded in that project. No financial-system APIs, paid model mapping,
   analytics or raw-data storage/egress. Downloads remain on the user's device.
 - Canonical IDs, source hashes and physical rows are retained. Known company,
   account and identity contradictions block acceptance.
@@ -38,8 +38,7 @@ state source size, runtime and unfinished search count; no universal <500ms clai
   evidence and rules. They detect changes, not professional reviewer identity.
 - Main sample adjustments remain ineligible; the separate $900 teaching example
   is marked SYNTHETIC_DO_NOT_IMPORT in names, journal text and manifest.
-- The current UI exposes the teaching export workflow, not an unreviewed one-click
-  real-company adjustment path. The typed builder requires full documented facts.
+- The current UI exposes both a separate teaching example and an actual-case review workflow. Neither is an unreviewed one-click adjustment. The typed builder requires full documented facts, explicit account/period coverage and fresh approval; see REVIEW_WORKFLOW.md.
 - UF requires payment-to-deposit linkage; ordinary JE export does not replace it.
 - Download does not mean posted. Exact re-imported posted GL verification exists
   as a tested helper; target QBO/QBD account/version validation remains absent.

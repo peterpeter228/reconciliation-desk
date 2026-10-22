@@ -1,4 +1,11 @@
 import { useRef, useState } from 'react';
+import {
+  initializeReview,
+  serializeProject,
+  openProject,
+  MAX_PROJECT_BYTES,
+} from './review/project';
+import { downloadText } from './components/workspace';
 import { ShieldCheck, Upload, Database, Layers, X, Trash2, Menu } from 'lucide-react';
 import { runImport as parseSource } from './workers/import-client';
 import type { ParseOptions, SourceKind } from './ingestion/types';
@@ -35,8 +42,11 @@ const demoOptions: ParseOptions = {
   basis: 'ACCRUAL',
 };
 export default function App() {
+  const [importEpoch, setImportEpoch] = useState(0);
   const [page, setPage] = useState<'desk' | 'import' | 'exports'>('desk');
   const [workspace, setWorkspace] = useState<Workspace | null>(null);
+  const currentWorkspace = useRef(workspace);
+  currentWorkspace.current = workspace;
   const [busy, setBusy] = useState(false);
   const [busyLabel, setBusyLabel] = useState('');
   const [error, setError] = useState('');
@@ -68,7 +78,7 @@ export default function App() {
     setBusyLabel('Following each source link locally');
     const { result, duration_ms } = await runReconciliation(input, controller.signal);
     if (token !== operation.current) return;
-    setWorkspace({
+    const next: Workspace = {
       input,
       result,
       duration: duration_ms,
@@ -76,7 +86,9 @@ export default function App() {
       files,
       options,
       runId: crypto.randomUUID(),
-    });
+    };
+    next.review = initializeReview(next, currentWorkspace.current?.review);
+    setWorkspace(next);
     setPage('desk');
     setEvidenceOpen(false);
     setNotice('Reconciliation complete. Review evidence before any accounting action.');
@@ -188,9 +200,15 @@ export default function App() {
           kind: entry.kind,
           hash: parsed.manifest.source_file_sha256,
           sizeBytes: entry.bytes?.byteLength ?? new TextEncoder().encode(entry.text).byteLength,
+          mapping: parsed.mapping,
+          controls: parsed.controls,
+          importStatus: parsed.status,
+          parseOptions: entry.options,
         });
         input.manifests.push(parsed.manifest);
-        if (entry.kind === 'BANK') input.bank.push(...(parsed.rows as Bank_Deposit_Row[]));
+        if (entry.kind === 'QBO' || entry.kind === 'QBD')
+          input.qb.push(...(parsed.rows as QB_Ledger_Entry[]));
+        else if (entry.kind === 'BANK') input.bank.push(...(parsed.rows as Bank_Deposit_Row[]));
         else if (entry.kind === 'PROCESSOR')
           evidence.settlements = [
             ...(evidence.settlements ?? []),
@@ -288,11 +306,51 @@ export default function App() {
       },
     ]);
   }
+  async function restoreProject(file: File) {
+    const token = ++operation.current;
+    abortRef.current?.abort();
+    setBusy(true);
+    setBusyLabel('Validating saved review and recalculating');
+    setError('');
+    try {
+      if (file.size > MAX_PROJECT_BYTES) throw new Error('Review project exceeds 40 MB.');
+      const text = await file.text();
+      if (token !== operation.current) return;
+      const restored = openProject(text);
+      setWorkspace(restored);
+      setImportEpoch((n) => n + 1);
+      setPage('desk');
+      setNotice(
+        'Review project restored and recalculated. Prior export history retained; saved approvals require fresh review. Keep original source documents separately.',
+      );
+    } catch (e) {
+      if (token === operation.current)
+        setError(e instanceof Error ? e.message : 'Review project could not be opened.');
+    } finally {
+      if (token === operation.current) setBusy(false);
+    }
+  }
+  function saveProject() {
+    if (!workspace) return;
+    try {
+      downloadText(
+        `review-project-${workspace.runId}.json`,
+        serializeProject(workspace),
+        'application/json',
+      );
+      setNotice(
+        'Review project downloaded with normalized source rows, mappings and history. Keep original source documents separately.',
+      );
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Could not save review project.');
+    }
+  }
   function clear() {
     operation.current++;
     abortRef.current?.abort();
     setBusy(false);
     setWorkspace(null);
+    setImportEpoch((n) => n + 1);
     setError('');
     setNotice('In-memory workspace cleared. Downloaded files are not removed.');
     setClearOpen(false);
@@ -370,6 +428,28 @@ export default function App() {
             </p>
           </div>
           <div className="heading-actions">
+            <label className="button button-secondary">
+              Open review project
+              <input
+                aria-label="Open review project"
+                type="file"
+                accept=".json"
+                hidden
+                disabled={busy}
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (f) void restoreProject(f);
+                  e.target.value = '';
+                }}
+              />
+            </label>
+            <button
+              className="button button-secondary"
+              disabled={!workspace || busy}
+              onClick={saveProject}
+            >
+              Save review project
+            </button>
             {page !== 'import' && (
               <button
                 className="button button-secondary"
@@ -419,17 +499,19 @@ export default function App() {
           workspace ? (
             <DeskPage
               workspace={workspace}
+              onWorkspaceChange={setWorkspace}
               onAddEvidence={() => setEvidenceOpen(true)}
               onExportReview={() => navigate('exports')}
             />
           ) : (
             <EmptyDesk onDemo={loadDemo} onImport={() => navigate('import')} busy={busy} />
           )
-        ) : page === 'import' ? (
-          <ImportPage onRun={runFiles} busy={busy} onDemo={loadDemo} />
-        ) : (
+        ) : page === 'import' ? null : (
           <ExportsPage workspace={workspace} />
         )}
+        <div hidden={page !== 'import'}>
+          <ImportPage key={importEpoch} onRun={runFiles} busy={busy} onDemo={loadDemo} />
+        </div>
         <footer className="app-footer">
           <span>
             <ShieldCheck size={14} />

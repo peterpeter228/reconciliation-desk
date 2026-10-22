@@ -1,3 +1,4 @@
+import { CaseReview } from '../components/CaseReview';
 import { useEffect, useState } from 'react';
 import {
   Download,
@@ -93,10 +94,12 @@ export function DeskPage({
   workspace,
   onAddEvidence,
   onExportReview,
+  onWorkspaceChange,
 }: {
   workspace: Workspace;
   onAddEvidence: () => void;
   onExportReview: () => void;
+  onWorkspaceChange?: (workspace: Workspace) => void;
 }) {
   const sorted = [...workspace.result.groups].sort(
     (a, b) => b.impact_cents - a.impact_cents || a.id.localeCompare(b.id),
@@ -180,6 +183,14 @@ export function DeskPage({
               onAddEvidence={onAddEvidence}
               onExportReview={onExportReview}
             />
+            {onWorkspaceChange && (
+              <CaseReview
+                key={group.id}
+                workspace={workspace}
+                group={group}
+                onChange={onWorkspaceChange}
+              />
+            )}
             <div className="case-actions">
               <button
                 className="button button-secondary button-small"

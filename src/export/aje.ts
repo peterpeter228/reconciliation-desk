@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { canonicalJson, checkedSum, MAX_CENTS, parseDate, sha256 } from '../ingestion/primitives';
-export const FEE_ONLY_RULE_VERSION = 'fee-only-1.1' as const;
+export const FEE_ONLY_RULE_VERSION = 'fee-only-1.2' as const;
 export interface VerifiedAccount {
   id: string;
   name: string;
@@ -18,6 +18,14 @@ export interface PostedLeg {
   creditCents: number;
   posted: boolean;
   evidenceRef: string;
+}
+/** Explicit reviewer association for a complete GL transaction, not a filter. */
+export interface PostedGLRelation {
+  transactionId: string;
+  relation: 'THIS_CASE' | 'OTHER_CASE' | 'UNKNOWN';
+  relatedCaseId: string | null;
+  evidenceRef: string;
+  reviewer: string;
 }
 export interface FeeCase {
   companyId: string;
@@ -46,6 +54,7 @@ export interface FeeCase {
   settlementTransactionId: string;
   /** Full reviewed GL evidence; the case residual uses only the two bound transactions. */
   postedGL: PostedLeg[];
+  postedGLRelations?: PostedGLRelation[];
   ledgerCoverage: {
     periodStart: string;
     periodEnd: string;
@@ -154,7 +163,7 @@ const safeText = z
   .min(1)
   .max(240)
   .refine(
-    (s) => !/^[\s]*[=+\-@]/.test(s) && !/[\x00-\x1f\x7f]/.test(s),
+    (s) => s.trim().length > 0 && !/^[\s]*[=+\-@]/.test(s) && !/[\x00-\x1f\x7f]/.test(s),
     'Dangerous formula/control characters in import text',
   );
 const accountSchema = z
@@ -213,6 +222,19 @@ const caseSchema = z
     receiptTransactionId: safeText,
     settlementTransactionId: safeText,
     postedGL: z.array(legSchema).min(4),
+    postedGLRelations: z
+      .array(
+        z
+          .object({
+            transactionId: safeText,
+            relation: z.enum(['THIS_CASE', 'OTHER_CASE', 'UNKNOWN']),
+            relatedCaseId: safeText.nullable(),
+            evidenceRef: safeText,
+            reviewer: safeText,
+          })
+          .strict(),
+      )
+      .optional(),
     ledgerCoverage: z
       .object({
         periodStart: z.string(),
@@ -337,10 +359,49 @@ export function validateFeeCase(value: FeeCase): FeeCase {
     throw new Error(
       'Compound settlement posting is outside the supported Dr Bank / Cr Clearing fee-only template. Review a separate workpaper.',
     );
-  if (c.postedGL.some((l) => l.accountId === fee.id && (l.debitCents || l.creditCents)))
-    throw new Error(
-      'A fee entry is already present. Review it instead of creating a duplicate fee.',
+  // Retain and classify the entire reviewed ledger. A fee may be posted in a
+  // third journal; unrelated monthly fees require explicit, evidence-bound review.
+  const relations = new Map<string, PostedGLRelation>();
+  for (const relation of c.postedGLRelations ?? []) {
+    if (
+      relations.has(relation.transactionId) ||
+      !c.postedGL.some((leg) => leg.transactionId === relation.transactionId)
+    )
+      throw new Error('GL relationship must name one unique existing transaction.');
+    const bound = [c.receiptTransactionId, c.settlementTransactionId].includes(
+      relation.transactionId,
     );
+    if (
+      (relation.relation === 'THIS_CASE' && relation.relatedCaseId !== c.caseId) ||
+      (relation.relation === 'OTHER_CASE' &&
+        (!relation.relatedCaseId || relation.relatedCaseId === c.caseId || bound)) ||
+      (bound && relation.relation !== 'THIS_CASE')
+    )
+      throw new Error('Contradictory case association for posted GL.');
+    relations.set(relation.transactionId, relation);
+  }
+  for (const leg of c.postedGL) {
+    if (!(leg.debitCents || leg.creditCents)) continue;
+    const bound = [c.receiptTransactionId, c.settlementTransactionId].includes(leg.transactionId);
+    const relation = bound
+      ? 'THIS_CASE'
+      : (relations.get(leg.transactionId)?.relation ?? 'UNKNOWN');
+    if (leg.accountId === fee.id && relation !== 'OTHER_CASE')
+      throw new Error(
+        'A fee entry is already present or its case association is unknown. Review it instead of creating a duplicate fee.',
+      );
+    if (leg.accountId === clearing.id && !bound && relation !== 'OTHER_CASE')
+      throw new Error(
+        'Additional clearing activity is case-linked or unknown. Review residual, partial postings and reversals before any fee-only journal.',
+      );
+    // Association applies to the economic transaction, not just the selected
+    // fee and clearing names. A fee/reversal can use another expense account or
+    // the bank; that does not make it safe to generate this narrow delta.
+    if (!bound && relation === 'THIS_CASE')
+      throw new Error(
+        'Additional case-linked posted transaction is outside the supported fee-only template. Review all case postings before any journal.',
+      );
+  }
   if (
     checkedSum(
       c.postedGL
