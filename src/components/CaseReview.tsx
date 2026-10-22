@@ -2,18 +2,39 @@ import { useEffect, useRef, useState } from 'react';
 import type { Workspace } from './workspace';
 import { downloadText, money } from './workspace';
 import type { EngineGroup } from '../contracts/engine';
+import type { ReviewCase } from '../review/types';
 import { reviewForGroup } from '../review/project';
 import {
   initialFacts,
   proposalFromCase,
+  ufReviewConflicts,
   type CaseFacts,
   type ReviewDocument,
 } from '../review/case-adapter';
+import {
+  companyKey,
+  readExportRegister,
+  registeredExportsFor,
+  releaseExport,
+  reserveExport,
+} from '../review/export-register';
+import { caseSummaryHtml } from '../export/case-summary';
 import { sha256, parseMoney, canonicalJson } from '../ingestion/primitives';
 import { approveProposal } from '../export/aje';
 import { exportQboCsv } from '../export/qbo';
 import { buildUfWorksheet, type UfPayment } from '../export/evidence';
 import { Notice } from './ui';
+
+/** Readable validation errors: never show raw schema JSON to a reviewer. */
+export function reviewErrorMessage(e: unknown): string {
+  const issues = (e as { issues?: { path?: (string | number)[]; message?: string }[] })?.issues;
+  if (Array.isArray(issues) && issues.length)
+    return `Review data is incomplete or invalid: ${issues
+      .slice(0, 3)
+      .map((i) => `${(i.path ?? []).join('.') || 'value'} (${i.message ?? 'invalid'})`)
+      .join('; ')}.`;
+  return e instanceof Error ? e.message : String(e);
+}
 
 export function CaseReview({
   workspace: w,
@@ -29,6 +50,7 @@ export function CaseReview({
   const [busy, setBusy] = useState(false);
   const [purpose, setPurpose] = useState<ReviewDocument['purpose']>('SETTLEMENT');
   const [approved, setApproved] = useState(false);
+  const [registerWarning, setRegisterWarning] = useState('');
   const latest = useRef(w);
   latest.current = w;
   useEffect(() => {
@@ -50,6 +72,28 @@ export function CaseReview({
       </Notice>
     );
   const f = { ...initialFacts(w), ...(r.reviewedFacts as Partial<CaseFacts>) };
+  // Exports recorded by this browser but missing from this project copy (older save, other tab).
+  const browserExports = () =>
+    w.isDemo
+      ? []
+      : registeredExportsFor(readExportRegister(), w.options.companyId, r).filter(
+          (e) => !r.exportHistory.some((h) => h.journalId === e.journalId),
+        );
+  const unseenExports = browserExports();
+  const priorJournals = [
+    ...new Set([...r.exportHistory, ...unseenExports].map((x) => x.journalId)),
+  ];
+  const blockIfExportedHere = () => {
+    const seen = browserExports();
+    if (seen.length)
+      throw new Error(
+        `Journal ${seen.map((e) => e.journalId).join(', ')} was already exported for this case in this browser (${seen
+          .map((e) => e.exportedAt)
+          .join(
+            ', ',
+          )}). This project copy does not show it. Check the books for that journal number; do not create a second journal.`,
+      );
+  };
   function update(patch: Partial<CaseFacts>) {
     const next = structuredClone(w);
     const c = reviewForGroup(next.review!, g.id)!;
@@ -87,6 +131,7 @@ export function CaseReview({
     setBusy(true);
     setError('');
     try {
+      blockIfExportedHere();
       const proposal = await proposalFromCase(w, g, r!, f);
       if (!mounted.current || latest.current !== w)
         throw new Error('Source or review changed; rebuild the draft.');
@@ -95,7 +140,7 @@ export function CaseReview({
       onChange(next);
       setApproved(false);
     } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
+      setError(reviewErrorMessage(e));
     } finally {
       operation.current = false;
       setBusy(false);
@@ -109,6 +154,7 @@ export function CaseReview({
     try {
       if (!r!.proposal || !approved)
         throw new Error('Review the exact two journal lines and explicitly approve.');
+      blockIfExportedHere();
       // Rebuild from current source and facts before approving, not from stale form state.
       const current = await proposalFromCase(w, g, r!, f);
       const p = await approveProposal(current, f.reviewer);
@@ -118,7 +164,7 @@ export function CaseReview({
       reviewForGroup(next.review!, g.id)!.proposal = p;
       onChange(next);
     } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
+      setError(reviewErrorMessage(e));
     } finally {
       operation.current = false;
       setBusy(false);
@@ -134,6 +180,7 @@ export function CaseReview({
         throw new Error(
           'Prior download/import outcome must be reviewed before any new accounting artifact.',
         );
+      blockIfExportedHere();
       const rebuilt = await proposalFromCase(w, g, r!, f);
       if (canonicalJson(rebuilt.feeCase) !== canonicalJson(r!.proposal.feeCase))
         throw new Error('Current facts differ from the approved payload. Rebuild and reapprove.');
@@ -142,16 +189,47 @@ export function CaseReview({
         throw new Error('Source or review changed during export. No file downloaded.');
       const next = structuredClone(w);
       const c = reviewForGroup(next.review!, g.id)!;
+      const exportedAt = new Date().toISOString();
+      // Reserve in this browser before any download: one check-and-record step that a
+      // second tab or an older project copy cannot pass for the same case.
+      const entry = {
+        companyKey: companyKey(w.options.companyId),
+        economicCaseId: c.economicCaseId,
+        accountingActionId: c.accountingActionId,
+        journalId: artifact.manifest.journalId,
+        proposalId: artifact.manifest.proposalId,
+        proposalHash: artifact.manifest.proposalHash,
+        exportedAt,
+        format: 'csv' as const,
+      };
+      const reservation = w.isDemo
+        ? { reserved: true, existing: [], persisted: true }
+        : await reserveExport(entry, w.options.companyId, c);
+      if (!reservation.reserved) blockIfExportedHere();
+      if (!reservation.reserved)
+        throw new Error('This case was already exported in this browser. No file downloaded.');
+      // The lock wait is asynchronous: the case may have been closed or changed meanwhile.
+      // Nothing was downloaded, so the reservation is released rather than left as a
+      // false "already exported" record.
+      if (!mounted.current || latest.current !== w) {
+        if (!w.isDemo) await releaseExport(entry);
+        throw new Error('Source or review changed during export. No file downloaded.');
+      }
       // Record the attempt before browser download; ambiguous download never resets to new.
       c.exportHistory.push({
         journalId: artifact.manifest.journalId,
         proposalId: artifact.manifest.proposalId,
         proposalHash: artifact.manifest.proposalHash,
-        exportedAt: new Date().toISOString(),
+        exportedAt,
         status: 'EXPORTED_NOT_POSTED',
         format: 'csv',
       });
       c.existingImportStatus = 'UNKNOWN';
+      setRegisterWarning(
+        reservation.persisted
+          ? ''
+          : 'This browser could not keep its local export record. Save the review project now; it is the only record of this export.',
+      );
       onChange(next);
       downloadText(artifact.fileName, artifact.content, artifact.mimeType);
       downloadText(
@@ -160,7 +238,7 @@ export function CaseReview({
         'application/json',
       );
     } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
+      setError(reviewErrorMessage(e));
     } finally {
       operation.current = false;
       setBusy(false);
@@ -232,6 +310,21 @@ export function CaseReview({
       'application/json',
     );
   }
+  async function summary() {
+    let blocker: string | null = null;
+    try {
+      blockIfExportedHere();
+      await proposalFromCase(w, g, r!, f);
+    } catch (e) {
+      blocker = reviewErrorMessage(e);
+    }
+    if (!mounted.current || latest.current !== w) return;
+    downloadText(
+      `case-summary-${r!.economicCaseId}.html`,
+      caseSummaryHtml({ workspace: w, group: g, review: r!, facts: f, accountingBlocker: blocker }),
+      'text/html;charset=utf-8',
+    );
+  }
   return (
     <section className="case-review panel" aria-label="Current case accounting review">
       <h3>Review this economic case</h3>
@@ -243,15 +336,28 @@ export function CaseReview({
         <strong>Stable case:</strong> {r.economicCaseId} · {r.identityStatus} · Prior import:{' '}
         {r.existingImportStatus}
       </p>
-      {r.exportHistory.length > 0 && (
+      {priorJournals.length > 0 && (
         <Notice>
-          Previous accounting export recorded. Preserve its journal number and verify the ledger
-          before any retry. Save this review project now.
+          <strong>Accounting file already recorded: {priorJournals.join(', ')}.</strong> A download
+          is not proof of posting, and a failed download is not proof it was never imported. To
+          resolve it: (1) in QuickBooks, search for journal number {priorJournals.join(', ')}; (2)
+          re-export the GL or Transaction Journal for the period and review it; (3) if the entry is
+          absent, prepare any correction manually under your own review. This tool will not create a
+          second journal for this case.
+          {unseenExports.length > 0 &&
+            ' This project copy does not include that export; it was recorded earlier in this browser.'}{' '}
+          Save this review project now.
         </Notice>
       )}
-      <button className="button button-secondary" onClick={workpaper}>
-        Download human-judgment workpaper
-      </button>
+      {registerWarning && <Notice error>{registerWarning}</Notice>}
+      <div className="button-row">
+        <button className="button button-secondary" onClick={() => void summary()}>
+          Download reviewer summary (HTML)
+        </button>
+        <button className="button button-secondary" onClick={workpaper}>
+          Download human-judgment workpaper (JSON)
+        </button>
+      </div>
       <details>
         <summary>Review facts & documented fee-only proposal</summary>
         <fieldset disabled={busy} className="form-stack">
@@ -562,13 +668,15 @@ export function CaseReview({
                 posting.
               </label>
               <button
+                className="button button-primary button-small"
                 disabled={busy || !approved || r.proposal.state === 'APPROVED'}
                 onClick={() => void approve()}
               >
                 Approve exact proposal
               </button>
               <button
-                disabled={busy || r.proposal.state !== 'APPROVED' || !!r.exportHistory.length}
+                className="button button-secondary button-small"
+                disabled={busy || r.proposal.state !== 'APPROVED' || priorJournals.length > 0}
                 onClick={() => void exportJournal()}
               >
                 Download approved QBO CSV
@@ -577,7 +685,7 @@ export function CaseReview({
           )}
         </fieldset>
       </details>
-      <UfReview workspace={w} group={g} facts={f} update={update} />
+      <UfReview workspace={w} group={g} review={r} facts={f} update={update} />
       {error && <Notice error>{error}</Notice>}
     </section>
   );
@@ -586,11 +694,13 @@ export function CaseReview({
 function UfReview({
   workspace: w,
   group: g,
+  review: r,
   facts: f,
   update,
 }: {
   workspace: Workspace;
   group: EngineGroup;
+  review: ReviewCase;
   facts: CaseFacts;
   update: (f: Partial<CaseFacts>) => void;
 }) {
@@ -647,11 +757,12 @@ function UfReview({
           !g.refunds_cents &&
           !g.releases_cents &&
           !g.external_receipts_cents,
+        conflicts: ufReviewConflicts(w, g, r, { ...f, ufPayments: state }),
       });
       downloadText(`uf-worksheet-${g.id}.json`, JSON.stringify(sheet, null, 2), 'application/json');
       setError('');
     } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
+      setError(reviewErrorMessage(e));
     }
   }
   return (
@@ -672,14 +783,23 @@ function UfReview({
             }
           />
           <input
-            aria-label={`Payment cents ${i + 1}`}
-            type="number"
-            value={p.amountCents}
-            onChange={(e) =>
-              save(
-                state.map((x, j) => (j === i ? { ...x, amountCents: Number(e.target.value) } : x)),
-              )
-            }
+            key={`amount-${i}-${p.amountCents}`}
+            aria-label={`Payment amount USD ${i + 1}`}
+            inputMode="decimal"
+            placeholder="e.g. 2,000.00"
+            defaultValue={p.amountCents > 0 ? (p.amountCents / 100).toFixed(2) : ''}
+            onBlur={(e) => {
+              try {
+                const cents = parseMoney(e.target.value);
+                if (cents === null || cents <= 0) throw new Error('positive');
+                setError('');
+                save(state.map((x, j) => (j === i ? { ...x, amountCents: cents } : x)));
+              } catch {
+                setError(
+                  `Payment ${i + 1}: enter the QuickBooks payment amount in USD, for example 2,000.00.`,
+                );
+              }
+            }}
           />
           <input
             aria-label={`Payment status evidence ${i + 1}`}

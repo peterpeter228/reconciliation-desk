@@ -2950,3 +2950,60 @@ td:not(:first-child) {
     padding: 12px;
   }
 }
+
+/* Independent review additions (2026-10-22) */
+.save-state {
+  align-self: center;
+  color: var(--muted);
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+.save-state.unsaved {
+  color: var(--amber);
+  font-weight: 600;
+}
+.save-state.unsaved::before {
+  content: '● ';
+}
+.source-verification {
+  margin-bottom: 18px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--amber);
+}
+.source-verification-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.source-verification-heading h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.source-verification-list {
+  margin: 10px 0 14px;
+  padding: 0;
+  list-style: none;
+}
+.source-verification-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.source-verification-list .pending {
+  color: var(--amber);
+}
+.source-verification-list .verified {
+  color: var(--teal);
+}
+.source-verification-list .verified::before {
+  content: '✓ ';
+}
+.case-review .button-row {
+  margin: 10px 0;
+}

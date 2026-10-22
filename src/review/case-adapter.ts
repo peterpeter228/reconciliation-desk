@@ -8,6 +8,8 @@ import {
   type VerifiedAccount,
 } from '../export/aje';
 import { checkedSum, parseMoney } from '../ingestion/primitives';
+import { contentHash } from '../engine/identities';
+import { sourceTrustBlocker } from './source-verification';
 
 export interface ReviewDocument {
   name: string;
@@ -74,6 +76,8 @@ export function documentRef(f: CaseFacts, purpose: ReviewDocument['purpose']): s
   return `${purpose}:${d.sha256}`;
 }
 export async function proposalFromCase(w: Workspace, g: EngineGroup, r: ReviewCase, f: CaseFacts) {
+  const untrusted = sourceTrustBlocker(w);
+  if (untrusted) throw new Error(untrusted);
   if (r.identityStatus !== 'BOUND')
     throw new Error(
       'Economic case identity is uncertain. Resolve prior activity before creating an import.',
@@ -102,6 +106,13 @@ export async function proposalFromCase(w: Workspace, g: EngineGroup, r: ReviewCa
   )
     throw new Error(
       'This case has unresolved identity, allocation or search conflicts. Use a human-judgment workpaper.',
+    );
+  // The desk and the journal must tell the same story: a fee-only delta presumes the
+  // net settlement is already posted to the bank in QuickBooks and linked to this deposit.
+  const qbBank = g.edges.find((e) => e.kind === 'QB_BANK_SETTLEMENT');
+  if (qbBank?.state !== 'CONFIRMED')
+    throw new Error(
+      `The QuickBooks → bank settlement link is ${qbBank ? qbBank.state.toLowerCase() : 'absent'}, not confirmed. Name the QuickBooks bank GL account on the import page and link the deposit (Linked Deposit ID), or keep this case as a workpaper.`,
     );
   if (
     w.files.some(
@@ -268,7 +279,11 @@ export async function proposalFromCase(w: Workspace, g: EngineGroup, r: ReviewCa
     sourceFileHashes: [
       ...new Set([...w.files.map((x) => x.hash), ...f.documents.map((d) => d.sha256)]),
     ],
-    mappingVersion: w.result.versions.mapping.join('|') || 'reviewed-mapping',
+    // One digest of every source mapping: joining three 80-character versions
+    // exceeded the 240-character import-text bound for every real three-file run.
+    mappingVersion: w.result.versions.mapping.length
+      ? `mapping-set-v1:${contentHash([...w.result.versions.mapping].sort())}`
+      : 'reviewed-mapping',
     ruleVersion: FEE_ONLY_RULE_VERSION,
     journalDate: f.journalDate,
     periodOpenConfirmed: f.periodOpenConfirmed,
@@ -304,4 +319,53 @@ export async function proposalFromCase(w: Workspace, g: EngineGroup, r: ReviewCa
     syntheticOnly: w.isDemo,
   };
   return buildFeeProposal(input);
+}
+
+/**
+ * Ledger and project facts that contradict reviewed UF deposit instructions. Each
+ * item keeps the worksheet a candidate; it never blocks the investigation output.
+ */
+export function ufReviewConflicts(
+  w: Workspace,
+  g: EngineGroup,
+  r: Pick<ReviewCase, 'economicCaseId'>,
+  f: CaseFacts & { ufPayments?: { qbPaymentId: string }[] },
+): string[] {
+  const conflicts: string[] = [];
+  const untrusted = sourceTrustBlocker(w);
+  if (untrusted) conflicts.push(untrusted);
+  const mine = new Set((f.ufPayments ?? []).map((p) => p.qbPaymentId.trim()).filter(Boolean));
+  for (const other of w.review?.cases ?? []) {
+    if (other.economicCaseId === r.economicCaseId) continue;
+    const listed = (other.reviewedFacts as { ufPayments?: { qbPaymentId?: unknown }[] }).ufPayments;
+    for (const p of Array.isArray(listed) ? listed : [])
+      if (typeof p?.qbPaymentId === 'string' && mine.has(p.qbPaymentId.trim()))
+        conflicts.push(
+          `QB Payment ${p.qbPaymentId.trim()} is also listed for case ${other.economicCaseId}. One payment can be deposited only once; resolve which case it belongs to.`,
+        );
+  }
+  const caseRows = w.input.qb.filter((x) => g.qb_ids.includes(x.id));
+  for (const row of caseRows.filter(
+    (x) =>
+      x.debit_cents > 0 &&
+      (x.role === 'BANK' ||
+        x.account_type === 'BANK' ||
+        (!!f.bankAccountName && x.account_full_name === f.bankAccountName)),
+  ))
+    conflicts.push(
+      `The GL already contains a posted bank deposit leg for this case (transaction ${row.transaction_id ?? row.id}, ${(row.debit_cents / 100).toFixed(2)} USD). Match the bank feed to that existing deposit; do not create another deposit.`,
+    );
+  if (f.feeAccountName)
+    for (const row of w.input.qb.filter(
+      (x) =>
+        x.account_full_name === f.feeAccountName &&
+        (x.debit_cents || x.credit_cents) &&
+        !f.relations.some(
+          (rel) => rel.transactionId === x.transaction_id && rel.relation === 'OTHER_CASE',
+        ),
+    ))
+      conflicts.push(
+        `The fee account already has posted activity (transaction ${row.transaction_id ?? row.id}) that is linked to this case or not yet associated. Review it before adding a deposit fee line.`,
+      );
+  return [...new Set(conflicts)];
 }

@@ -327,6 +327,24 @@ export function initializeReview(w: Workspace, previous?: ReviewProjectState): R
     orphanedCases: prior.filter((c) => !consumed.has(c.economicCaseId)).map(invalidate),
   };
 }
+/**
+ * Review identity and history belong to one company, bank and demo/real context.
+ * Carrying them into another workspace would mix real review facts into a synthetic
+ * project (or the reverse) and mark unrelated cases uncertain.
+ */
+export function compatibleReview(
+  previous: Pick<Workspace, 'review' | 'isDemo' | 'options'> | null | undefined,
+  next: Pick<Workspace, 'isDemo' | 'options'>,
+): ReviewProjectState | undefined {
+  if (
+    !previous?.review ||
+    previous.isDemo !== next.isDemo ||
+    previous.options.companyId !== next.options.companyId ||
+    previous.options.bankAccountId !== next.options.bankAccountId
+  )
+    return undefined;
+  return previous.review;
+}
 export function reviewForGroup(state: ReviewProjectState, groupId: string): ReviewCase | undefined {
   return state.cases.find((c) => c.engineGroupId === groupId);
 }
@@ -389,6 +407,8 @@ export function serializeProject(workspace: Workspace): string {
   w.review = initializeReview(w, w.review);
   // Original raw bytes are not silently embedded; canonical rows retain source hashes/locators.
   delete w.options.originalBytes;
+  // Re-verification is session state; a saved file must never claim it.
+  delete w.restoredSources;
   const payload = {
     format: 'reconciliation-review-project',
     schemaVersion: 1,
@@ -478,5 +498,7 @@ export function openProject(serialized: string): Workspace {
   w.review = initializeReview(w, restored);
   w.review.cases = w.review.cases.map(invalidate);
   w.review.orphanedCases = w.review.orphanedCases.map(invalidate);
+  // Saved rows are not bound to original bytes until each source is re-attached.
+  w.restoredSources = { verifiedHashes: [] };
   return w;
 }

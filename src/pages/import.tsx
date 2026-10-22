@@ -87,6 +87,7 @@ export function ImportPage({
   const [asOfDate, setAsOfDate] = useState('2026-09-30');
   const [timezone, setTimezone] = useState('America/New_York');
   const [clearing, setClearing] = useState('');
+  const [qbBankAccount, setQbBankAccount] = useState('');
   const [bankName, setBankName] = useState('');
   const [exportMode, setExportMode] = useState<ParseOptions['exportMode']>('UNKNOWN');
   const [rowGrain, setRowGrain] = useState<ParseOptions['rowGrain']>('PAYMENT');
@@ -121,15 +122,27 @@ export function ImportPage({
     coverageConfirmed: semantic,
     basis: semantic ? 'ACCRUAL' : 'UNKNOWN',
     bankName: bankName.trim(),
-    accountMap: clearing.trim()
-      ? {
-          [clearing.trim()]: {
-            accountType: 'OTHER_CURRENT_ASSET',
-            role: 'CLEARING',
-            isUndepositedFunds: uf,
-          },
-        }
-      : {},
+    accountMap: {
+      // Explicit reviewed semantics only: the bank GL account is never guessed from labels.
+      ...(qbBankAccount.trim() && qbBankAccount.trim() !== clearing.trim()
+        ? {
+            [qbBankAccount.trim()]: {
+              accountType: 'BANK' as const,
+              role: 'BANK' as const,
+              isUndepositedFunds: false,
+            },
+          }
+        : {}),
+      ...(clearing.trim()
+        ? {
+            [clearing.trim()]: {
+              accountType: 'OTHER_CURRENT_ASSET' as const,
+              role: 'CLEARING' as const,
+              isUndepositedFunds: uf,
+            },
+          }
+        : {}),
+    },
   });
   const invalidate = () => {
     if (pendingUpload.current?.token === parseToken.current) {
@@ -413,12 +426,19 @@ export function ImportPage({
       controls: f.result.controls,
       importStatus: f.result.status,
       sheetName: f.sheetName,
+      // Exactly the settings of the final validated parse, so a reopened project can
+      // re-derive these rows from the original bytes.
       parseOptions: {
         ...options(true),
-        profile:
-          kind === 'QBO' && nativeJournal ? 'qbo-transaction-journal-v1' : options(true).profile,
+        ...(kind === 'QBO' && nativeJournal
+          ? {
+              profile: 'qbo-transaction-journal-v1' as const,
+              qboTransactionJournalCompanyName: reportCompanyName.trim(),
+              coverageConfirmed: false,
+            }
+          : {}),
         bindings: f.bindings,
-        headerRow: f.headerRow,
+        headerRow: f.headerRow ?? f.result.mapping?.headerRow,
         excludedTargets: f.excludedTargets,
       },
     }));
@@ -433,6 +453,7 @@ export function ImportPage({
           bank_account_id: bankAccountId.trim(),
           period_cutoff: periodEnd,
           clearing_split_semantics_confirmed: false,
+          ...(qbBankAccount.trim() ? { qb_bank_account_names: [qbBankAccount.trim()] } : {}),
         },
       },
       sourceFiles,
@@ -609,6 +630,18 @@ export function ImportPage({
               placeholder="ServiceTitan Clearing"
               required
             />
+          </label>
+          <label>
+            QuickBooks bank account, exact GL name (optional)
+            <input
+              value={qbBankAccount}
+              onChange={(e) => setQbBankAccount(e.target.value)}
+              placeholder="e.g. Operating Checking"
+            />
+            <small>
+              Needed to recognize the posted bank leg of a deposit in the GL. Leave blank if the GL
+              does not include the bank account.
+            </small>
           </label>
           <label>
             ServiceTitan export mode

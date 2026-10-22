@@ -1,4 +1,5 @@
 import type { ReviewProjectState } from '../review/types';
+import type { RestoredSources } from '../review/source-verification';
 import type { ReconcileInput, ReconcileResult, EngineGroup } from '../contracts/engine';
 import type { Provenance } from '../contracts/canonical';
 import type { ParseOptions, ParseResult, SourceKind } from '../ingestion/types';
@@ -22,6 +23,8 @@ export interface Workspace {
   files: SourceFile[];
   options: ParseOptions;
   runId: string;
+  /** Present only after Open review project; never serialized. */
+  restoredSources?: RestoredSources;
 }
 export const money = (cents: number) =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cents / 100);

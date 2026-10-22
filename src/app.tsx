@@ -1,10 +1,21 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
+  compatibleReview,
   initializeReview,
   serializeProject,
   openProject,
   MAX_PROJECT_BYTES,
 } from './review/project';
+import { applyExportRegister, readExportRegister } from './review/export-register';
+import {
+  compareReparsedSource,
+  markSourceVerified,
+  reparseOptions,
+} from './review/source-verification';
+import { SourceVerification } from './components/SourceVerification';
+import { runXlsxImport } from './workers/xlsx-client';
+import type { XlsxOptions } from './ingestion/xlsx';
+import { sha256 } from './ingestion/primitives';
 import { downloadText } from './components/workspace';
 import { ShieldCheck, Upload, Database, Layers, X, Trash2, Menu } from 'lucide-react';
 import { runImport as parseSource } from './workers/import-client';
@@ -55,6 +66,30 @@ export default function App() {
   const [clearOpen, setClearOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
+  // Review facts, approvals and export records exist only in memory until saved.
+  const [dirty, setDirty] = useState(false);
+  const [savedAt, setSavedAt] = useState('');
+  const [pendingReplace, setPendingReplace] = useState<{ label: string; run: () => void } | null>(
+    null,
+  );
+  useEffect(() => {
+    if (!dirty) return;
+    const warn = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
+    window.addEventListener('beforeunload', warn);
+    return () => window.removeEventListener('beforeunload', warn);
+  }, [dirty]);
+  /** Replacing a workspace with unsaved review work needs an explicit choice. */
+  function guardReplace(label: string, run: () => void) {
+    if (workspace && dirty) setPendingReplace({ label, run });
+    else run();
+  }
+  function changeWorkspace(next: Workspace) {
+    setWorkspace(next);
+    setDirty(true);
+  }
   const abortRef = useRef<AbortController | null>(null);
   const operation = useRef(0);
   function navigate(next: typeof page) {
@@ -68,6 +103,7 @@ export default function App() {
     options: ParseOptions,
     isDemo: boolean,
     token: number,
+    restoredSources?: Workspace['restoredSources'],
   ) {
     // A cancelled parser may finish after a newer run has started. It must not
     // abort that run or install a new worker before its stale token is checked.
@@ -86,14 +122,23 @@ export default function App() {
       files,
       options,
       runId: crypto.randomUUID(),
+      ...(restoredSources ? { restoredSources } : {}),
     };
-    next.review = initializeReview(next, currentWorkspace.current?.review);
+    const carried = compatibleReview(currentWorkspace.current, next);
+    next.review = initializeReview(next, carried);
+    if (!isDemo)
+      next.review = applyExportRegister(next.review, readExportRegister(), options.companyId);
     setWorkspace(next);
+    // Unsaved state ends only when nothing unsaved was carried into the new workspace.
+    if (!carried) setDirty(false);
     setPage('desk');
     setEvidenceOpen(false);
     setNotice('Reconciliation complete. Review evidence before any accounting action.');
   }
-  async function loadDemo() {
+  function loadDemo() {
+    guardReplace('Load the synthetic sample month', () => void loadDemoNow());
+  }
+  async function loadDemoNow() {
     const token = ++operation.current;
     setBusy(true);
     setError('');
@@ -150,7 +195,17 @@ export default function App() {
       if (token === operation.current) setBusy(false);
     }
   }
-  async function runFiles(input: ReconcileInput, files: SourceFile[], options: ParseOptions) {
+  function runFiles(input: ReconcileInput, files: SourceFile[], options: ParseOptions) {
+    return new Promise<void>((resolve) => {
+      guardReplace(
+        'Run reconciliation on the selected files',
+        () => void runFilesNow(input, files, options).finally(resolve),
+      );
+      // A declined replacement simply leaves the existing workspace untouched.
+      if (workspace && dirty) resolve();
+    });
+  }
+  async function runFilesNow(input: ReconcileInput, files: SourceFile[], options: ParseOptions) {
     const token = ++operation.current;
     setBusy(true);
     setError('');
@@ -231,7 +286,16 @@ export default function App() {
           ];
       }
       input.evidence = evidence;
-      await calculate(input, files, workspace.options, workspace.isDemo, token);
+      // Newly parsed evidence is bound to its bytes; earlier restored rows stay unverified.
+      const restored = workspace.restoredSources && {
+        verifiedHashes: [
+          ...new Set([
+            ...workspace.restoredSources.verifiedHashes,
+            ...files.slice(workspace.files.length).map((f) => f.hash),
+          ]),
+        ].sort(),
+      };
+      await calculate(input, files, workspace.options, workspace.isDemo, token, restored);
       if (token === operation.current)
         setNotice(
           'Supporting evidence added. Results were recalculated; no previous accounting approval was carried forward.',
@@ -306,7 +370,10 @@ export default function App() {
       },
     ]);
   }
-  async function restoreProject(file: File) {
+  function restoreProject(file: File) {
+    guardReplace(`Open ${file.name}`, () => void restoreProjectNow(file));
+  }
+  async function restoreProjectNow(file: File) {
     const token = ++operation.current;
     abortRef.current?.abort();
     setBusy(true);
@@ -317,11 +384,21 @@ export default function App() {
       const text = await file.text();
       if (token !== operation.current) return;
       const restored = openProject(text);
+      if (!restored.isDemo && restored.review)
+        restored.review = applyExportRegister(
+          restored.review,
+          readExportRegister(),
+          restored.options.companyId,
+        );
       setWorkspace(restored);
+      setDirty(false);
+      setSavedAt('');
       setImportEpoch((n) => n + 1);
       setPage('desk');
       setNotice(
-        'Review project restored and recalculated. Prior export history retained; saved approvals require fresh review. Keep original source documents separately.',
+        restored.isDemo
+          ? 'Synthetic review project restored and recalculated. Saved approvals require fresh review.'
+          : 'Review project restored and recalculated. Prior export history retained; saved approvals require fresh review. Re-attach the original source files before any accounting draft.',
       );
     } catch (e) {
       if (token === operation.current)
@@ -338,11 +415,78 @@ export default function App() {
         serializeProject(workspace),
         'application/json',
       );
+      setDirty(false);
+      setSavedAt(new Date().toLocaleTimeString());
       setNotice(
-        'Review project downloaded with normalized source rows, mappings and history. Keep original source documents separately.',
+        workspace.isDemo
+          ? 'Synthetic review project downloaded.'
+          : 'Review project downloaded. It contains your normalized financial rows, review notes and export history: store it as carefully as the original exports, and keep those originals separately.',
       );
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not save review project.');
+    }
+  }
+  async function verifySources(list: File[]) {
+    const base = workspace;
+    if (!base?.restoredSources) return;
+    const token = ++operation.current;
+    setBusy(true);
+    setBusyLabel('Re-deriving rows from the original files');
+    setError('');
+    const problems: string[] = [];
+    let next = base,
+      matched = 0;
+    try {
+      for (const file of list) {
+        const bytes = new Uint8Array(await file.arrayBuffer());
+        const hash = await sha256(bytes);
+        const saved = next.files.find((f) => f.hash === hash);
+        if (!saved) {
+          problems.push(
+            `${file.name}: no source in this project has this file's SHA-256. Choose the exact original export (renaming is fine; editing is not).`,
+          );
+          continue;
+        }
+        const opts = reparseOptions(saved, bytes);
+        if (!opts) {
+          problems.push(
+            `${saved.name}: this project does not record the import settings needed to re-derive its rows. Re-import the original files instead.`,
+          );
+          continue;
+        }
+        let reason: string | null;
+        try {
+          const parsed = /\.xlsx$/i.test(saved.name)
+            ? await runXlsxImport(bytes, saved.kind, opts as XlsxOptions)
+            : await parseSource(
+                new TextDecoder('utf-8', { fatal: true }).decode(bytes),
+                saved.kind,
+                opts,
+              );
+          reason = compareReparsedSource(next, saved, parsed);
+        } catch (e) {
+          reason = `${saved.name}: ${e instanceof Error ? e.message : 'could not be re-parsed'}`;
+        }
+        if (token !== operation.current) return;
+        if (reason) problems.push(reason);
+        else {
+          next = markSourceVerified(next, hash);
+          matched++;
+        }
+      }
+      if (token !== operation.current) return;
+      if (currentWorkspace.current !== base)
+        throw new Error('The workspace changed during verification. Choose the files again.');
+      setWorkspace(next);
+      if (problems.length) setError(problems.join(' '));
+      setNotice(
+        `${matched} original file${matched === 1 ? '' : 's'} re-verified against the saved rows. Approvals still require fresh review.`,
+      );
+    } catch (e) {
+      if (token === operation.current)
+        setError(e instanceof Error ? e.message : 'Source verification failed.');
+    } finally {
+      if (token === operation.current) setBusy(false);
     }
   }
   function clear() {
@@ -350,6 +494,8 @@ export default function App() {
     abortRef.current?.abort();
     setBusy(false);
     setWorkspace(null);
+    setDirty(false);
+    setSavedAt('');
     setImportEpoch((n) => n + 1);
     setError('');
     setNotice('In-memory workspace cleared. Downloaded files are not removed.');
@@ -447,9 +593,19 @@ export default function App() {
               className="button button-secondary"
               disabled={!workspace || busy}
               onClick={saveProject}
+              title="Downloads normalized rows, review notes and export history to this device"
             >
               Save review project
             </button>
+            {workspace && (
+              <span className={dirty ? 'save-state unsaved' : 'save-state'} role="status">
+                {dirty
+                  ? 'Unsaved review changes'
+                  : savedAt
+                    ? `Saved ${savedAt}`
+                    : 'No review edits'}
+              </span>
+            )}
             {page !== 'import' && (
               <button
                 className="button button-secondary"
@@ -497,12 +653,15 @@ export default function App() {
         )}
         {page === 'desk' ? (
           workspace ? (
-            <DeskPage
-              workspace={workspace}
-              onWorkspaceChange={setWorkspace}
-              onAddEvidence={() => setEvidenceOpen(true)}
-              onExportReview={() => navigate('exports')}
-            />
+            <>
+              <SourceVerification workspace={workspace} busy={busy} onVerify={verifySources} />
+              <DeskPage
+                workspace={workspace}
+                onWorkspaceChange={changeWorkspace}
+                onAddEvidence={() => setEvidenceOpen(true)}
+                onExportReview={() => navigate('exports')}
+              />
+            </>
           ) : (
             <EmptyDesk onDemo={loadDemo} onImport={() => navigate('import')} busy={busy} />
           )
@@ -537,6 +696,39 @@ export default function App() {
           onFile={addFileEvidence}
         />
       )}{' '}
+      {pendingReplace && (
+        <Modal title="Replace this workspace?" onClose={() => setPendingReplace(null)}>
+          <p>
+            {pendingReplace.label} will replace the current workspace. Its unsaved review facts,
+            approvals and export records will be lost from this tab. Save the review project first
+            if you need them.
+          </p>
+          <div className="button-row">
+            <button className="button button-secondary" onClick={() => setPendingReplace(null)}>
+              Keep workspace
+            </button>
+            <button
+              className="button button-secondary"
+              onClick={() => {
+                saveProject();
+              }}
+            >
+              Save review project
+            </button>
+            <button
+              className="button button-danger"
+              onClick={() => {
+                const run = pendingReplace.run;
+                setPendingReplace(null);
+                // Unsaved state is cleared only after the replacement actually succeeds.
+                run();
+              }}
+            >
+              Replace workspace
+            </button>
+          </div>
+        </Modal>
+      )}
       {clearOpen && (
         <Modal title="Clear this workspace?" onClose={() => setClearOpen(false)}>
           <p>
@@ -564,13 +756,20 @@ export default function App() {
             <h3>What is retained</h3>
             <p>
               Current source data and review state live only in memory. Reloading or clearing the
-              workspace removes them. Downloads remain on your device.
+              workspace removes them; the page warns before reloading with unsaved review changes.
+              Downloads remain on your device. When you download an accounting file, this browser
+              also keeps a small local export record (hashed company label, case ID, journal number
+              and time, no transactions). It blocks a second journal for the same case from an older
+              project copy or another tab in this browser. It is best effort: it is not shared
+              across browsers or devices and is lost if site data is cleared.
             </p>
             <h3>What this build supports</h3>
             <p>
               Single-company, single-bank, USD activity reconciliation with UTF-8 CSV / TSV and
-              guarded, values-only XLSX imports. PDF extraction, real QuickBooks import
-              compatibility, and production ledger validation are not claimed.
+              guarded XLSX imports (recognized QBO report-control formulas are preserved and
+              independently checked, never evaluated; macros, links and posting formulas are
+              blocked). PDF extraction, real QuickBooks import compatibility, and production ledger
+              validation are not claimed.
             </p>
             <h3>Evidence, not automatic approval</h3>
             <p>

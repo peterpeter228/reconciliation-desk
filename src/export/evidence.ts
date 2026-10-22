@@ -119,6 +119,8 @@ export interface UfWorksheetInput {
   feeAccountVerified?: boolean;
   feeEvidenceRef?: string;
   feeNotRecordedConfirmed?: boolean;
+  /** Ledger/project contradictions found by the caller; each keeps this a candidate. */
+  conflicts?: string[];
 }
 export interface UfWorksheet extends UfWorksheetInput {
   kind: 'UF_BANK_DEPOSIT_WORKSHEET';
@@ -182,6 +184,7 @@ export function buildUfWorksheet(input: UfWorksheetInput): UfWorksheet {
     missingEvidence.push(
       'Verify the expense account, documented net fee and that the fee is not already posted.',
     );
+  missingEvidence.push(...(input.conflicts ?? []).filter((c) => c.trim()));
   const reviewed = missingEvidence.length === 0;
   return {
     ...input,
