@@ -1,0 +1,16 @@
+
+
+
+
+
+
+
+
+
+
+
+Sheet1!H9: H7+H8 · CONSISTENT · stored 900 · independent cents 90000
+Sheet1!I9: I7+I8 · CONSISTENT · stored 900 · independent cents 90000
+Sheet1!H10: H9 · CONSISTENT · stored 900 · independent cents 90000
+Sheet1!I10: I9 · CONSISTENT · stored 900 · independent cents 90000
+TRANSACTION_SCOPE_ONLY Validated complete journal groups only. This report does not prove company/account-period coverage, a cleared balance, or a month-end close.

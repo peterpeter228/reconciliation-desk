@@ -1,0 +1,130 @@
+Follow the money.
+
+Sep 1, 2026 – Sep 30, 2026 · Synthetic native browser review
+
+Open review project
+Save review project
+Saved 6:45:46 PM
+Import files
+Reset sample month
+Review project downloaded. It contains your normalized financial rows, review notes and export history: store it as carefully as the original exports, and keep those originals separately.
+ST gross receipts
+$10,000.00
+Positive source payments
+Review queue
+4 cases
+Not an economic-event count
+Supported fee workpapers
+$900.00
+Not approved accounting entries
+Activity reconciliation
+Balance verification incomplete
+Opening / closing evidence may be missing
+Review queue
+4
+Amount
+Needs review
+All activity
+Ambiguous
+$10,000.00
+Settlement fee difference
+1 ST · 1 QB · 1 bank rows
+Partial
+$0.00
+Activity bridge
+0 ST · 1 QB · 0 bank rows
+To review
+$0.00
+Activity bridge
+0 ST · 1 QB · 0 bank rows
+To review
+$0.00
+Activity bridge
+0 ST · 1 QB · 0 bank rows
+To review
+Largest impact first
+J / K to move
+Settlement fee difference
+
+ServiceTitan
+QuickBooks
+Bank
+
+$10,000.00
+Activity bridge
+Equal amounts are not proof of the same transaction. Each source link needs its own evidence.
+ST
+ServiceTitan
+1
+Sep 10, 2026
+Payment
+$10,000.00
+SYN-PMT-900
+
+CARD · Batch SYN-B-900
+
+st_payments.csv
+Row 2
+QB
+QuickBooks
+1
+Sep 10, 2026
+Debit
+$10,000.00
+SYN-B-900
+
+ServiceTitan Clearing
+
+native-style.csv
+Row 2
+BK
+Bank
+1
+Sep 12, 2026
+Posted
+$9,100.00
+SYN-SET-900
+
+DEPOSIT SYN-SET-900
+
+bank_activity.csv
+Row 2
+ST → QuickBooks
+Candidate
+More evidence is needed.
+QuickBooks → Bank
+Absent
+More evidence is needed.
+ST / processor → Bank
+Confirmed
+Identity and amount evidence.
+What the evidence tells us
+Add evidence
+Settlement fee difference
+Supported
+Evidence score 100/100, not a probability
+Still needed
+Reliable payment or batch id
+Qb settlement identity and bank leg
+Qb actual bank posting
+Complete expense and duplicate fee review
+Itemized clearing residual equals component fee
+Amount bridge & accounting eligibility
+$0.00 unexplained
+Review this economic case
+
+Investigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.
+
+Stable case: case-4d1afe504468e813550b605f · BOUND · Prior import: NEVER_IMPORTED
+
+Download reviewer summary (HTML)
+Download human-judgment workpaper (JSON)
+Contains financial information, company labels and reviewer statements. Store securely and share only with authorized recipients.
+Review facts & documented fee-only proposal
+UF candidate / reviewed deposit worksheet
+Download evidence JSON
+Review export eligibility
+Run controls & import manifest
+13.7 ms engine · 4 files
+Read-only by design. Export is not posting.
+Privacy & limits

@@ -1,0 +1,12 @@
+{
+  "syntheticOnly": true,
+  "measurement": "jsdom form change/click events; not wall-clock time",
+  "cases": 10,
+  "transactionsPerCase": 6,
+  "explicitTransactions": 60,
+  "individualOperations": 180,
+  "batchOperations": 40,
+  "savedOperations": 140,
+  "commonPreparationExcluded": "review documents/transaction IDs, attach evidence, reviewer, open panels; one textarea paste counts as one event",
+  "accountingPolicyUnchanged": true
+}

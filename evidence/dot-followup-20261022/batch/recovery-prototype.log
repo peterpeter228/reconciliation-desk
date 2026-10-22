@@ -1,0 +1,1 @@
+PASS: two checks appended, both original export and UNKNOWN unchanged; accountingExportAllowed=false. Synthetic-only sidecar, not a QBO check.

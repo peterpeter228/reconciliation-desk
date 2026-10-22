@@ -1,0 +1,41 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/summary-register.test.ts -t serialized reservation
+
+
+ RUN  v4.1.12 /tmp/reconciliation-ui-mutations
+
+ ❯ tests/dot-ui-review/summary-register.test.ts (5 tests | 1 failed | 4 skipped) 14ms
+   × F08 serialized reservation refuses duplicate and releasing undelivered reservation allows retry 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/summary-register.test.ts > F08 serialized reservation refuses duplicate and releasing undelivered reservation allows retry
+AssertionError: expected [ true, true ] to deeply equal [ false, true ]
+
+- Expected
++ Received
+
+  [
+-   false,
++   true,
+    true,
+  ]
+
+ ❯ tests/dot-ui-review/summary-register.test.ts:103:49
+    101|     reserveExport(entry, 'Synthetic Co', entry, { storage, locks }),
+    102|   ]);
+    103|   expect(results.map((x) => x.reserved).sort()).toEqual([false, true]);
+       |                                                 ^
+    104|   expect(await releaseExport(entry, { storage, locks })).toBe(true);
+    105|   expect((await reserveExport(entry, 'Synthetic Co', entry, { storage,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  18:36:00
+   Duration  1.75s (transform 528ms, setup 0ms, import 690ms, tests 14ms, environment 850ms)
+

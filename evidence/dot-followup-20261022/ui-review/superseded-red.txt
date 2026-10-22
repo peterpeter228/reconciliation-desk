@@ -1,0 +1,38 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/replacement.test.tsx -t superseding
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022
+
+ ❯ tests/dot-ui-review/replacement.test.tsx (7 tests | 1 failed | 6 skipped) 219ms
+   × F02 superseding a pending replacement settles the first caller without running it 217ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02 superseding a pending replacement settles the first caller without running it
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/dot-ui-review/replacement.test.tsx:158:21
+    156|     void importer.onRun(w.input, w.files, w.options).then(() => { seco…
+    157|   });
+    158|   expect(firstDone).toBe(true);
+       |                     ^
+    159|   expect(secondDone).toBe(false);
+    160|   expect(runReconciliation).toHaveBeenCalledTimes(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  18:34:55
+   Duration  2.31s (transform 562ms, setup 0ms, import 898ms, tests 219ms, environment 889ms)
+

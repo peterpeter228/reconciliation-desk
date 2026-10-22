@@ -1,0 +1,1 @@
+Screen reader executable lookup: orca not installed

@@ -1,0 +1,395 @@
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-baseline-20261022
+
+ ❯ tests/dot-source-review/acceptance.test.ts (3 tests | 3 failed) 205ms
+   × F01 baseline: reopened normalized rows cannot draft without originals 139ms
+   × F05 baseline: real parser multi-file versions permit a bounded draft 41ms
+   × F06 baseline: missing bank-account attribution cannot produce a draft 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-source-review/acceptance.test.ts > F01 baseline: reopened normalized rows cannot draft without originals
+AssertionError: promise resolved "{ …(7) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "approval": null,
++   "date": "2026-09-30",
++   "feeCase": {
++     "accounts": [
++       {
++         "exists": true,
++         "id": "Collections Checking",
++         "isUndepositedFunds": false,
++         "name": "Collections Checking",
++         "type": "BANK",
++       },
++       {
++         "exists": true,
++         "id": "ServiceTitan Clearing",
++         "isUndepositedFunds": false,
++         "name": "ServiceTitan Clearing",
++         "type": "OTHER_CURRENT_ASSET",
++       },
++       {
++         "exists": true,
++         "id": "Merchant Processing Fees",
++         "isUndepositedFunds": false,
++         "name": "Merchant Processing Fees",
++         "type": "EXPENSE",
++       },
++       {
++         "exists": true,
++         "id": "Accounts Receivable",
++         "isUndepositedFunds": false,
++         "name": "Accounts Receivable",
++         "type": "OTHER",
++       },
++     ],
++     "adjustmentVersion": "fee-only-v1",
++     "bankAccountId": "Collections Checking",
++     "bankEvidenceRefs": [
++       "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9:row2",
++     ],
++     "bankNetCents": 910000,
++     "caseId": "case-6c217a84f3f1a1de1e58f7d3",
++     "clearingAccountId": "ServiceTitan Clearing",
++     "clearingResidualCents": 90000,
++     "companyId": "Synthetic HVAC Co",
++     "confirmedFeeCents": 90000,
++     "existingImportStatus": "NEVER_IMPORTED",
++     "existingJournalIds": [
++       "SYN-B-900",
++       "SYN-B-900",
++       "SYN-SET-900",
++       "SYN-SET-900",
++     ],
++     "expenseNotRecordedConfirmed": true,
++     "feeAccountId": "Merchant Processing Fees",
++     "feeMode": "NETTED",
++     "grossCents": 1000000,
++     "journalDate": "2026-09-30",
++     "ledgerCoverage": {
++       "accountIds": [
++         "ServiceTitan Clearing",
++         "Accounts Receivable",
++         "Collections Checking",
++         "Merchant Processing Fees",
++       ],
++       "asOfDate": "2026-09-30",
++       "confirmed": true,
++       "evidenceRef": "LEDGER:3333333333333333333333333333333333333333333333333333333333333333;COA:1111111111111111111111111111111111111111111111111111111111111111",
++       "periodEnd": "2026-09-30",
++       "periodStart": "2026-09-01",
++       "reviewer": "Synthetic reviewer",
++     },
++     "mappingVersion": "test-mapping",
++     "netFeeConfirmed": true,
++     "periodOpenConfirmed": true,
++     "postedGL": [
++       {
++         "accountId": "ServiceTitan Clearing",
++         "creditCents": 0,
++         "date": "2026-09-10",
++         "debitCents": 1000000,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row2",
++         "journalId": "SYN-B-900",
++         "posted": true,
++         "transactionId": "SYN-QB-R900",
++       },
++       {
++         "accountId": "Accounts Receivable",
++         "creditCents": 1000000,
++         "date": "2026-09-10",
++         "debitCents": 0,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row3",
++         "journalId": "SYN-B-900",
++         "posted": true,
++         "transactionId": "SYN-QB-R900",
++       },
++       {
++         "accountId": "Collections Checking",
++         "creditCents": 0,
++         "date": "2026-09-12",
++         "debitCents": 910000,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row4",
++         "journalId": "SYN-SET-900",
++         "posted": true,
++         "transactionId": "SYN-QB-D900",
++       },
++       {
++         "accountId": "ServiceTitan Clearing",
++         "creditCents": 910000,
++         "date": "2026-09-12",
++         "debitCents": 0,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row5",
++         "journalId": "SYN-SET-900",
++         "posted": true,
++         "transactionId": "SYN-QB-D900",
++       },
++     ],
++     "postedGLRelations": [],
++     "receiptTransactionId": "SYN-QB-R900",
++     "ruleVersion": "fee-only-1.2",
++     "settlementEvidenceRef": "SETTLEMENT:2222222222222222222222222222222222222222222222222222222222222222",
++     "settlementReference": "fee-3bdc076eaa7e316df268a768",
++     "settlementTransactionId": "SYN-QB-D900",
++     "sourceFileHashes": [
++       "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153",
++       "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
++       "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9",
++       "3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282",
++       "1111111111111111111111111111111111111111111111111111111111111111",
++       "2222222222222222222222222222222222222222222222222222222222222222",
++       "3333333333333333333333333333333333333333333333333333333333333333",
++     ],
++     "stEvidenceRefs": [
++       "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153:row2",
++     ],
++     "syntheticOnly": false,
++   },
++   "journalId": "RD8C9256AC39",
++   "lines": [
++     {
++       "account": "Merchant Processing Fees",
++       "accountId": "Merchant Processing Fees",
++       "creditCents": 0,
++       "debitCents": 90000,
++       "memo": "Approved documented net fee RD8C9256AC39",
++     },
++     {
++       "account": "ServiceTitan Clearing",
++       "accountId": "ServiceTitan Clearing",
++       "creditCents": 90000,
++       "debitCents": 0,
++       "memo": "Approved documented net fee RD8C9256AC39",
++     },
++   ],
++   "proposalId": "8c9256ac3913ad34cf8efb1b006d11be78d9a1b9518c8689485b70f88e649060",
++   "state": "DRAFT",
+  }
+
+ ❯ tests/dot-source-review/acceptance.test.ts:28:3
+     26|   await expect(
+     27|     proposalFromCase(w, g, reviewForGroup(w.review!, g.id)!, documente…
+     28|   ).rejects.toThrow(/original source/);
+       |   ^
+     29| });
+     30| it('F05 baseline: real parser multi-file versions permit a bounded dra…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/dot-source-review/acceptance.test.ts > F05 baseline: real parser multi-file versions permit a bounded draft
+ZodError: [
+  {
+    "code": "too_big",
+    "maximum": 240,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at most 240 character(s)",
+    "path": [
+      "mappingVersion"
+    ]
+  }
+]
+ ❯ Object.get error [as error] ../reconciliation-dot-20261022/node_modules/zod/v3/types.js:39:31
+ ❯ ZodObject.parse ../reconciliation-dot-20261022/node_modules/zod/v3/types.js:114:22
+ ❯ validateFeeCase src/export/aje.ts:259:24
+    257| }
+    258| export function validateFeeCase(value: FeeCase): FeeCase {
+    259|   const c = caseSchema.parse(value);
+       |                        ^
+    260|   if (c.ruleVersion !== FEE_ONLY_RULE_VERSION)
+    261|     throw new Error(
+ ❯ buildFeeProposal src/export/aje.ts:436:13
+ ❯ proposalFromCase src/review/case-adapter.ts:306:10
+ ❯ tests/dot-source-review/acceptance.test.ts:34:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/dot-source-review/acceptance.test.ts > F06 baseline: missing bank-account attribution cannot produce a draft
+AssertionError: promise resolved "{ …(7) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "approval": null,
++   "date": "2026-09-30",
++   "feeCase": {
++     "accounts": [
++       {
++         "exists": true,
++         "id": "Collections Checking",
++         "isUndepositedFunds": false,
++         "name": "Collections Checking",
++         "type": "BANK",
++       },
++       {
++         "exists": true,
++         "id": "ServiceTitan Clearing",
++         "isUndepositedFunds": false,
++         "name": "ServiceTitan Clearing",
++         "type": "OTHER_CURRENT_ASSET",
++       },
++       {
++         "exists": true,
++         "id": "Merchant Processing Fees",
++         "isUndepositedFunds": false,
++         "name": "Merchant Processing Fees",
++         "type": "EXPENSE",
++       },
++       {
++         "exists": true,
++         "id": "Accounts Receivable",
++         "isUndepositedFunds": false,
++         "name": "Accounts Receivable",
++         "type": "OTHER",
++       },
++     ],
++     "adjustmentVersion": "fee-only-v1",
++     "bankAccountId": "Collections Checking",
++     "bankEvidenceRefs": [
++       "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9:row2",
++     ],
++     "bankNetCents": 910000,
++     "caseId": "case-6c217a84f3f1a1de1e58f7d3",
++     "clearingAccountId": "ServiceTitan Clearing",
++     "clearingResidualCents": 90000,
++     "companyId": "Synthetic HVAC Co",
++     "confirmedFeeCents": 90000,
++     "existingImportStatus": "NEVER_IMPORTED",
++     "existingJournalIds": [
++       "SYN-B-900",
++       "SYN-B-900",
++       "SYN-SET-900",
++       "SYN-SET-900",
++     ],
++     "expenseNotRecordedConfirmed": true,
++     "feeAccountId": "Merchant Processing Fees",
++     "feeMode": "NETTED",
++     "grossCents": 1000000,
++     "journalDate": "2026-09-30",
++     "ledgerCoverage": {
++       "accountIds": [
++         "ServiceTitan Clearing",
++         "Accounts Receivable",
++         "Collections Checking",
++         "Merchant Processing Fees",
++       ],
++       "asOfDate": "2026-09-30",
++       "confirmed": true,
++       "evidenceRef": "LEDGER:3333333333333333333333333333333333333333333333333333333333333333;COA:1111111111111111111111111111111111111111111111111111111111111111",
++       "periodEnd": "2026-09-30",
++       "periodStart": "2026-09-01",
++       "reviewer": "Synthetic reviewer",
++     },
++     "mappingVersion": "test-mapping",
++     "netFeeConfirmed": true,
++     "periodOpenConfirmed": true,
++     "postedGL": [
++       {
++         "accountId": "ServiceTitan Clearing",
++         "creditCents": 0,
++         "date": "2026-09-10",
++         "debitCents": 1000000,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row2",
++         "journalId": "SYN-B-900",
++         "posted": true,
++         "transactionId": "SYN-QB-R900",
++       },
++       {
++         "accountId": "Accounts Receivable",
++         "creditCents": 1000000,
++         "date": "2026-09-10",
++         "debitCents": 0,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row3",
++         "journalId": "SYN-B-900",
++         "posted": true,
++         "transactionId": "SYN-QB-R900",
++       },
++       {
++         "accountId": "Collections Checking",
++         "creditCents": 0,
++         "date": "2026-09-12",
++         "debitCents": 910000,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row4",
++         "journalId": "SYN-SET-900",
++         "posted": true,
++         "transactionId": "SYN-QB-D900",
++       },
++       {
++         "accountId": "ServiceTitan Clearing",
++         "creditCents": 910000,
++         "date": "2026-09-12",
++         "debitCents": 0,
++         "evidenceRef": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd:row5",
++         "journalId": "SYN-SET-900",
++         "posted": true,
++         "transactionId": "SYN-QB-D900",
++       },
++     ],
++     "postedGLRelations": [],
++     "receiptTransactionId": "SYN-QB-R900",
++     "ruleVersion": "fee-only-1.2",
++     "settlementEvidenceRef": "SETTLEMENT:2222222222222222222222222222222222222222222222222222222222222222",
++     "settlementReference": "fee-3bdc076eaa7e316df268a768",
++     "settlementTransactionId": "SYN-QB-D900",
++     "sourceFileHashes": [
++       "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153",
++       "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
++       "32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9",
++       "3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282",
++       "1111111111111111111111111111111111111111111111111111111111111111",
++       "2222222222222222222222222222222222222222222222222222222222222222",
++       "3333333333333333333333333333333333333333333333333333333333333333",
++     ],
++     "stEvidenceRefs": [
++       "a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153:row2",
++     ],
++     "syntheticOnly": false,
++   },
++   "journalId": "RD8C9256AC39",
++   "lines": [
++     {
++       "account": "Merchant Processing Fees",
++       "accountId": "Merchant Processing Fees",
++       "creditCents": 0,
++       "debitCents": 90000,
++       "memo": "Approved documented net fee RD8C9256AC39",
++     },
++     {
++       "account": "ServiceTitan Clearing",
++       "accountId": "ServiceTitan Clearing",
++       "creditCents": 90000,
++       "debitCents": 0,
++       "memo": "Approved documented net fee RD8C9256AC39",
++     },
++   ],
++   "proposalId": "8c9256ac3913ad34cf8efb1b006d11be78d9a1b9518c8689485b70f88e649060",
++   "state": "DRAFT",
+  }
+
+ ❯ tests/dot-source-review/acceptance.test.ts:47:3
+     45|   await expect(
+     46|     proposalFromCase(w, g, reviewForGroup(w.review!, g.id)!, documente…
+     47|   ).rejects.toThrow(/bank settlement link/);
+       |   ^
+     48| });
+     49|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  18:30:17
+   Duration  1.07s (transform 479ms, setup 0ms, import 647ms, tests 205ms, environment 0ms)
+

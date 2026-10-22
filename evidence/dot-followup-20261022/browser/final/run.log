@@ -1,0 +1,37 @@
+PASS    ENV-sandbox Sandbox Status | Layer 1 Sandbox	Namespace | PID namespaces	Yes | Network namespaces	Yes | Seccomp-BPF sandbox	Yes | Seccomp-BPF sandbox supports TSYNC	Yes
+PASS    UI-landing-states-scope Demo and own-files entry points are separate
+PASS    FLOW-import-validate three CSVs validated with explicit scope
+PASS    FLOW-processor-evidence processor settlement added and recalculated
+PASS    FLOW-engine-case settlement fee difference on $10,000.00 gross; QB bank leg recognized (not listed as missing)
+PASS    FLOW-build-draft-from-parsed-files exactly Dr fee 900 / Cr clearing 900 from parsed CSV files
+PASS    FLOW-export-bytes RD8C9256AC39_BETA_NOT_POSTED.csv + RD8C9256AC39_BETA_NOT_POSTED.csv.manifest.json; 2 balanced lines, no bank leg; manifest EXPORTED_NOT_POSTED
+PASS    FLOW-repeat-export-blocked button disabled; guidance names the journal number and what to check
+FAIL    DELIVERABLE-reviewer-summary page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/evidence/dot-followup-20261022/browser/final/case-summary-case-6c217a84f3f1a1de1e58f7d3.html
+PASS    PRIVACY-save-notice save notice warns that the project contains financial rows
+PASS    DUP-stale-project-blocked pre-export project copy shows the browser-recorded export
+PASS    SRC-reopened-unverified reopened project marks all 4 sources unverified
+PASS    SRC-reverified-originals all 4 originals re-parsed to identical saved rows
+PASS    SRC-wrong-file-rejected non-matching file rejected with explanation
+PASS    SAVE-state-visible unsaved status visible after an edit
+PASS    SAFE-replace-confirmation demo did not replace unsaved real workspace; Keep workspace retained it
+PASS    ERR-malformed-project concise error; workspace and unsaved protection retained
+PASS    SAFE-beforeunload browser beforeunload prompt shown and dismissing it kept the page
+PASS    XLSX-native-controls-preserved  |  |  |  |  |  |  |  |  |  |  | Sheet1!H9: H7+H8 · CONSISTENT · stored 900 · independent cents 90000 | Sheet1!I9: I7+I8 · CONSISTENT · stored 900 · independent cents 90000 | Sheet1!H10: H9 · CONSISTENT · stored 900 · independent cents 90000 | Sheet1!I10: I9 · CONSISTENT · stored 900 · independent cents 90000 | TRANSACTION_SCOPE_ONLY Validated complete journal groups only. This report does not prove company/account-period coverage, a cleared balance, or a month-end close.
+PASS    XLSX-native-provenance txn 145 from group row; posting physical rows 7/8; original XLSX SHA-256 unchanged
+PASS    XLSX-native-reverify native XLSX + CSV originals re-parsed (worker) to identical saved rows
+PASS    A11Y-keyboard-order Skip to workspace → Reconciliation Desk home → Desk → Import → Exports → Stays in this browser → Import files → Load demo → Try a sample month
+PASS    A11Y-zoom-200 720px CSS viewport (1440px at 200%): {"scrollWidth":720,"innerWidth":720}
+PASS    MOBILE-landing {"scrollWidth":390,"innerWidth":390}
+PASS    MOBILE-desk-status-and-evidence {"scrollWidth":390,"innerWidth":390}
+PASS    MOBILE-case-review-next-step {"scrollWidth":390,"innerWidth":390}
+PASS    MOBILE-exports-page {"scrollWidth":390,"innerWidth":390}
+PASS    EXTRA-two-real-tabs-same-case-export Two actual pages, shared storage and Web Locks; one winner, 2 downloads total
+PASS    EXTRA-print-main-app-PDF Visible Evidence summary Print / Save as PDF control, Chromium print renderer produced PDF; native print dialog not asserted
+BLOCKED EXTRA-screen-reader No supported screen reader integration in this environment; accessibility tree is not screen reader acceptance.
+PASS    EXTRA-keyboard-complete-import Tab/Shift-free sequential Tab, Enter, Space, arrow keys, typing; visible file picker activated with Space; native chooser files selected; full import to Reconciliation complete. Native chooser path selection automated by FileChooser.setFiles.
+PASS    EXTRA-native-GL-native-style.csv 4 parsed rows; saved project and screenshot for independent edge inspection
+PASS    EXTRA-native-GL-supplemented.csv 4 parsed rows; saved project and screenshot for independent edge inspection
+PASS    EXTRA-UF-full-click-flow Complete UF import/evidence/review/payments flow: CANDIDATE → REVIEWED_INSTRUCTIONS worksheet; never accounting import and no QBO write.
+PASS    NET-runtime-egress hosts=127.0.0.1:4173; 55 distinct requests
+PASS    CONSOLE-errors none
+{"counters":{"clicks":58,"fills":39,"selects":33,"checks":29,"uploads":36},"desktopMs":27900,"hosts":["127.0.0.1:4173"]}

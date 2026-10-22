@@ -1,0 +1,1080 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/claude-review/ui-safety.test.tsx -t blocks a second journal
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-baseline-20261022
+
+ ❯ tests/claude-review/ui-safety.test.tsx (15 tests | 1 failed | 14 skipped) 1493ms
+     × blocks a second journal from a stale copy of the same case after one export 1491ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-09 an export from this browser is remembered beyond the in-memory project > blocks a second journal from a stale copy of the same case after one export
+TestingLibraryElementError: Unable to find an element with the text: /already exported .*this browser/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Current case accounting review"[39m
+      [33mclass[39m=[32m"case-review panel"[39m
+    [36m>[39m
+      [36m<h3>[39m
+        [0mReview this economic case[0m
+      [36m</h3>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"body-muted"[39m
+      [36m>[39m
+        [0mInvestigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [36m<strong>[39m
+          [0mStable case:[0m
+        [36m</strong>[39m
+        [0m [0m
+        [0mcase-6c217a84f3f1a1de1e58f7d3[0m
+        [0m · [0m
+        [0mBOUND[0m
+        [0m · Prior import:[0m
+        [0m [0m
+        [0mNEVER_IMPORTED[0m
+      [36m</p>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"button button-secondary"[39m
+      [36m>[39m
+        [0mDownload human-judgment workpaper[0m
+      [36m</button>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mReview facts & documented fee-only proposal[0m
+        [36m</summary>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"form-stack"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mReviewer[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"Synthetic reviewer"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAccounting basis / unresolved questions[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"Synthetic netted processor fee; posted gross receipt and net bank deposit."[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mJournal date[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-30"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mDocument purpose[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SETTLEMENT"[39m
+              [36m>[39m
+                [0mSettlement fee evidence[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COA"[39m
+              [36m>[39m
+                [0mActual chart of accounts[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"LEDGER"[39m
+              [36m>[39m
+                [0mFull GL coverage evidence[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAttach a locally reviewed supporting document[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<small>[39m
+            [0mOnly its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.[0m
+          [36m</small>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mCOA[0m
+              [0m: [0m
+              [0msynthetic-coa.txt[0m
+              [0m · [0m
+              [0m111111111111[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mSETTLEMENT[0m
+              [0m: [0m
+              [0msynthetic-settlement.txt[0m
+              [0m · [0m
+              [0m222222222222[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mLEDGER[0m
+              [0m: [0m
+              [0msynthetic-ledger.txt[0m
+              [0m · [0m
+              [0m333333333333[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+          [36m<label>[39m
+            [0mExact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)[0m
+            [36m<textarea>[39m
+              [0mServiceTitan Clearing
+Accounts Receivable
+Collections Checking
+Merchant Processing Fees[0m
+            [36m</textarea>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage starts[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-01"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage ends[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-30"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<datalist[39m
+            [33mid[39m=[32m"review-account-names"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+            [36m/>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"Accounts Receivable"[39m
+            [36m/>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"Collections Checking"[39m
+            [36m/>[39m
+          [36m</datalist>[39m
+          [36m<label>[39m
+            [0mExisting bank account full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m"Collections Checking"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mExisting ordinary asset clearing full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mExisting fee expense account full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m"Merchant Processing Fees"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<fieldset>[39m
+            [36m<legend>[39m
+              [0mActual chart of accounts review[0m
+            [36m</legend>[39m
+            [36m<small>[39m
+              [0mExplicitly confirm each account against the attached COA. A chosen label never creates or changes an account.[0m
+            [36m</small>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mServiceTitan Clearing[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type ServiceTitan Clearing"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status ServiceTitan Clearing"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mAccounts Receivable[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Accounts Receivable"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Accounts Receivable"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mCollections Checking[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Collections Checking"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Collections Checking"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mMerchant Processing Fees[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Merchant Processing Fees"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Merchant Processing Fees"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+          [36m</fieldset>[39m
+          [36m<label>[39m
+            [0mPosted gross-receipt transaction[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mChoose a current-case QB transaction[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-R900"[39m
+              [36m>[39m
+                [0mSYN-QB-R900[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-D900"[39m
+              [36m>[39m
+                [0mSYN-QB-D900[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mPosted net-bank settlement transaction[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mChoose a current-case QB transaction[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-R900"[39m
+              [36m>[39m
+                [0mSYN-QB-R900[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-D900"[39m
+              [36m>[39m
+                [0mSYN-QB-D900[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mDocumented net fee in USD (not an inferred difference)[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"900.00"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mFee mode[0m
+            [36m<select>[39m
+              [36m<option>[39m
+                [0mUNKNOWN[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mNETTED[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mSEPARATE_INVOICE[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mGROSS_SETTLED[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mI reviewed the actual COA; all named GL accounts exist and their imported types are correct.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mSelected clearing is ordinary asset clearing, not Undeposited Funds or a liability.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mThe supplied GL includes complete relevant bank, clearing and fee activity for this period.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mSource evidence identifies this entire amount as this case’s netted fee, not a reserve/hold.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mI checked all fee journals and confirmed this fee has not already been recorded.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mThe selected accounting period is open and the journal date is appropriate.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+          [36m>[39m
+            [0mBuild supported fee-only draft[0m
+          [36m</button>[39m
+        [36m</fieldset>[39m
+      [36m</details>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mUF candidate / reviewed deposit worksheet[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mST IDs alone produce a candidate list. Supply the actual existing QB Payment IDs and reviewed undeposited status before giving selection instructions. Match an existing bank feed item; do not Categorize a second receipt.[0m
+        [36m</p>[39m
+        [36m<button>[39m
+          [0mAdd actual QB Payment[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mDownload UF review worksheet[0m
+        [36m</button>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"Current case accounting review"[39m
+        [33mclass[39m=[32m"case-review panel"[39m
+      [36m>[39m
+        [36m<h3>[39m
+          [0mReview this economic case[0m
+        [36m</h3>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"body-muted"[39m
+        [36m>[39m
+          [0mInvestigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<strong>[39m
+            [0mStable case:[0m
+          [36m</strong>[39m
+          [0m [0m
+          [0mcase-6c217a84f3f1a1de1e58f7d3[0m
+          [0m · [0m
+          [0mBOUND[0m
+          [0m · Prior import:[0m
+          [0m [0m
+          [0mNEVER_IMPORTED[0m
+        [36m</p>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button button-secondary"[39m
+        [36m>[39m
+          [0mDownload human-judgment workpaper[0m
+        [36m</button>[39m
+        [36m<details>[39m
+          [36m<summary>[39m
+            [0mReview facts & documented fee-only proposal[0m
+          [36m</summary>[39m
+          [36m<fieldset[39m
+            [33mclass[39m=[32m"form-stack"[39m
+          [36m>[39m
+            [36m<label>[39m
+              [0mReviewer[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"Synthetic reviewer"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mAccounting basis / unresolved questions[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"Synthetic netted processor fee; posted gross receipt and net bank deposit."[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mJournal date[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-30"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mDocument purpose[0m
+              [36m<select>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SETTLEMENT"[39m
+                [36m>[39m
+                  [0mSettlement fee evidence[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"COA"[39m
+                [36m>[39m
+                  [0mActual chart of accounts[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LEDGER"[39m
+                [36m>[39m
+                  [0mFull GL coverage evidence[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mAttach a locally reviewed supporting document[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"file"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<small>[39m
+              [0mOnly its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.[0m
+            [36m</small>[39m
+            [36m<ul>[39m
+              [36m<li>[39m
+                [0mCOA[0m
+                [0m: [0m
+                [0msynthetic-coa.txt[0m
+                [0m · [0m
+                [0m111111111111[0m
+              [36m</li>[39m
+              [36m<li>[39m
+                [0mSETTLEMENT[0m
+                [0m: [0m
+                [0msynthetic-settlement.txt[0m
+                [0m · [0m
+                [0m222222222222[0m
+              [36m</li>[39m
+              [36m<li>[39m
+                [0mLEDGER[0m
+                [0m: [0m
+                [0msynthetic-ledger.txt[0m
+                [0m · [0m
+                [0m333333333333[0m
+              [36m</li>[39m
+            [36m</ul>[39m
+            [36m<label>[39m
+              [0mExact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)[0m
+              [36m<textarea>[39m
+                [0mServiceTitan Clearing
+Accounts Receivable
+Collections Checking
+Merchant Processing Fees[0m
+              [36m</textarea>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mReviewed GL coverage starts[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-01"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mReviewed GL coverage ends[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-30"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<datalist[39m
+              [33mid[39m=[32m"review-account-names"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+              [36m/>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"Accounts Receivable"[39m
+              [36m/>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"Collections Checking"[39m
+              [36m/>[39m
+            [36m</datalist>[39m
+            [36m<label>[39m
+              [0mExisting bank account full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"Collections Checking"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mExisting ordinary asset clearing full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mExisting fee expense account full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"Merchant Processing Fees"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<fieldset>[39m
+              [36m<legend>[39m
+                [0mActual chart of accounts review[0m
+              [36m</legend>[39m
+              [36m<small>[39m
+                [0mExplicitly confirm each account against the attached COA. A chosen label never creates or changes an account.[0m
+              [36m</small>[39m
+              [36m<div>[39m
+                [36m<strong>[39m
+                  [0mServiceTitan Clearing[0m
+                [36m</strong>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"COA type ServiceTitan Clearing"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mBANK[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_ASSET[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mEXPENSE[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_LIABILITY[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+                [36m<label>[39m
+                  [36m<input[39m
+                    [33mchecked[39m=[32m""[39m
+                    [33mtype[39m=[32m"checkbox"[39m
+                  [36m/>[39m
+                  [0mExists in reviewed COA[0m
+                [36m</label>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"UF status ServiceTitan Clearing"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mUF[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mNOT_UF[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<strong>[39m
+                  [0mAccounts Receivable[0m
+                [36m</strong>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"COA type Accounts Receivable"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mBANK[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_ASSET[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mEXPENSE[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_LIABILITY[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+                [36m<label>[39m
+                  [36m<input[39m
+                    [33mchecked[39m=[32m""[39m
+                    [33mtype[39m=[32m"checkbox"[39m
+                  [36m/>[39m
+                  [0mExists in reviewed COA[0m
+                [36m</label>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"UF status Accounts Receivable"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mUF[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mNOT_UF[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<strong>[39m
+                  [0mCollections Checking[0m
+                [36m</strong>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"COA type Collections Checking"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mBANK[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_ASSET[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mEXPENSE[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_LIABILITY[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+                [36m<label>[39m
+                  [36m<input[39m
+                    [33mchecked[39m=[32m""[39m
+                    [33mtype[39m=[32m"checkbox"[39m
+                  [36m/>[39m
+                  [0mExists in reviewed COA[0m
+                [36m</label>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"UF status Collections Checking"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mUF[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mNOT_UF[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<strong>[39m
+                  [0mMerchant Processing Fees[0m
+                [36m</strong>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"COA type Merchant Processing Fees"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mBANK[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_ASSET[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mEXPENSE[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER_CURRENT_LIABILITY[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mOTHER[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+                [36m<label>[39m
+                  [36m<input[39m
+                    [33mchecked[39m=[32m""[39m
+                    [33mtype[39m=[32m"checkbox"[39m
+                  [36m/>[39m
+                  [0mExists in reviewed COA[0m
+                [36m</label>[39m
+                [36m<select[39m
+                  [33maria-label[39m=[32m"UF status Merchant Processing Fees"[39m
+                [36m>[39m
+                  [36m<option>[39m
+                    [0mUNKNOWN[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mUF[0m
+                  [36m</option>[39m
+                  [36m<option>[39m
+                    [0mNOT_UF[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+              [36m</div>[39m
+            [36m</fieldset>[39m
+            [36m<label>[39m
+              [0mPosted gross-receipt transaction[0m
+              [36m<select>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m""[39m
+                [36m>[39m
+                  [0mChoose a current-case QB transaction[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SYN-QB-R900"[39m
+                [36m>[39m
+                  [0mSYN-QB-R900[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SYN-QB-D900"[39m
+                [36m>[39m
+                  [0mSYN-QB-D900[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mPosted net-bank settlement transaction[0m
+              [36m<select>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m""[39m
+                [36m>[39m
+                  [0mChoose a current-case QB transaction[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SYN-QB-R900"[39m
+                [36m>[39m
+                  [0mSYN-QB-R900[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SYN-QB-D900"[39m
+                [36m>[39m
+                  [0mSYN-QB-D900[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mDocumented net fee in USD (not an inferred difference)[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"900.00"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mFee mode[0m
+              [36m<select>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNETTED[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mSEPARATE_INVOICE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mGROSS_SETTLED[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"checkbox-line"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mchecked[39m=[32m""[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0mI reviewed the actual COA; all named GL accounts exist and their imported types are correct.[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"checkbox-line"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mchecked[39m=[32m""[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0mSelected clearing is ordinary asset clearing, not Undeposited Funds or a liability.[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"checkbox-line"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mchecked[39m=[32m""[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0mThe supplied GL includes complete relevant bank, clearing and fee activity for this period.[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"checkbox-line"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mchecked[39m=[32m""[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0mSource evidence identifies this entire amount as this case’s netted fee, not a reserve/hold.[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"checkbox-line"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mchecked[39m=[32m""[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0mI checked all fee journals and confirmed this fee has not already been recorded.[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"checkbox-line"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33mchecked[39m=[32m""[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span>[39m
+                [0mThe selected accounting period is open and the journal date is appropriate.[0m
+              [36m</span>[39m
+            [36m</label>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"button button-primary"[39m
+            [36m>[39m
+              [0mBuild supported fee-only draft[0m
+            [36m</button>[39m
+          [36m</fieldset>[39m
+        [36m</details>[39m
+        [36m<details>[39m
+          [36m<summary>[39m
+            [0mUF candidate / reviewed deposit worksheet[0m
+          [36m</summary>[39m
+          [36m<p>[39m
+            [0mST IDs alone produce a candidate list. Supply the actual existing QB Payment IDs and reviewed undeposited status before giving selection instructions. Match an existing bank feed item; do not Categorize a second receipt.[0m
+          [36m</p>[39m
+          [36m<button>[39m
+            [0mAdd actual QB Payment[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [0mDownload UF review worksheet[0m
+          [36m</button>[39m
+        [36m</details>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+ ❯ Proxy.waitForWrapper ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ tests/claude-review/ui-safety.test.tsx:219:11
+    217|     renderCase(structuredClone(stale));
+    218|     fireEvent.click(screen.getByRole('button', { name: 'Build supporte…
+    219|     await waitFor(() => expect(screen.getByText(/already exported .*th…
+       |           ^
+    220|   });
+    221| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 14 skipped (15)
+   Start at  18:35:37
+   Duration  3.48s (transform 726ms, setup 0ms, import 1.22s, tests 1.49s, environment 550ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

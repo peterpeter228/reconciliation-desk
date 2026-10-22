@@ -1,0 +1,16 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 typecheck
+> tsc --noEmit
+
+tests/dot-ui-review/summary-register.test.ts(2,23): error TS7016: Could not find a declaration file for module 'jsdom'. '/workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/node_modules/jsdom/lib/api.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/jsdom` if it exists or add a new declaration (.d.ts) file containing `declare module 'jsdom';`
+tests/dot-ui-review/summary-register.test.ts(17,97): error TS2322: Type '{ reviewer: string; notes: string; documents: { name: string; purpose: "FEE_EVIDENCE"; sha256: string; }[]; journalDate: string; bankAccountName: string; clearingAccountName: string; feeAccountName: string; ... 14 more ...; relations: NonNullable<FeeCase["postedGLRelations"]>; }' is not assignable to type 'CaseFacts'.
+  Types of property 'documents' are incompatible.
+    Type '{ name: string; purpose: "FEE_EVIDENCE"; sha256: string; }[]' is not assignable to type 'ReviewDocument[]'.
+      Property 'sizeBytes' is missing in type '{ name: string; purpose: "FEE_EVIDENCE"; sha256: string; }' but required in type 'ReviewDocument'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

@@ -1,0 +1,45 @@
+Mutation: mappingVersion: mappingSetVersion(w), => mappingVersion: w.result.versions.mapping.join('|') || 'reviewed-mapping',
+Command: vitest run tests/dot-source-review/acceptance.test.ts -t F05 baseline
+
+ RUN  v4.1.12 /tmp/dot-source-mutations-djwmkvc7
+
+ ❯ tests/dot-source-review/acceptance.test.ts (3 tests | 1 failed | 2 skipped) 92ms
+   × F05 baseline: real parser multi-file versions permit a bounded draft 91ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-source-review/acceptance.test.ts > F05 baseline: real parser multi-file versions permit a bounded draft
+ZodError: [
+  {
+    "code": "too_big",
+    "maximum": 240,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at most 240 character(s)",
+    "path": [
+      "mappingVersion"
+    ]
+  }
+]
+ ❯ Object.get error [as error] ../../workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/node_modules/zod/v3/types.js:39:31
+ ❯ ZodObject.parse ../../workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/node_modules/zod/v3/types.js:114:22
+ ❯ validateFeeCase src/export/aje.ts:259:24
+    257| }
+    258| export function validateFeeCase(value: FeeCase): FeeCase {
+    259|   const c = caseSchema.parse(value);
+       |                        ^
+    260|   if (c.ruleVersion !== FEE_ONLY_RULE_VERSION)
+    261|     throw new Error(
+ ❯ buildFeeProposal src/export/aje.ts:436:13
+ ❯ proposalFromCase src/review/case-adapter.ts:383:10
+ ❯ tests/dot-source-review/acceptance.test.ts:34:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  18:32:33
+   Duration  938ms (transform 454ms, setup 0ms, import 622ms, tests 92ms, environment 0ms)
+

@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "id": "PRINT-navigation-hidden",
+      "status": "FAIL",
+      "detail": "Skip to workspace is visible under print media and overlays PDF rows"
+    }
+  ],
+  "consoleErrors": []
+}

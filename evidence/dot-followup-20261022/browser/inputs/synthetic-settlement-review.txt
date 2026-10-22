@@ -1,0 +1,1 @@
+SYNTHETIC acceptance statement: payment p1, deposit d1, gross 10000.00 USD, netted fee 900.00 USD, net 9100.00 USD. No reserve or hold.

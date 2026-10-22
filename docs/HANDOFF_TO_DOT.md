@@ -1,3 +1,13 @@
+# Current handoff after dot independent review — 2026-10-22
+
+Current delivery: `review/dot-followup-20261022`, not merged into main. Read [独立复核结论](DOT_REVIEW_RESULTS_20261022.zh-CN.md) first, then [真实浏览器矩阵](DOT_BROWSER_REVIEW.md). The Claude snapshot below is historical evidence, not the final acceptance status.
+
+Current review adds source-context/mapping ownership binding, stricter OTHER_CASE evidence, correct replacement Promise lifecycle, explicit local-register limitations, batch evidence association, isolated UNKNOWN review prototype, native-GL preparation evidence, and print-only skip-link correction. It does not authorize real accounting writes, outreach, deployments or UNKNOWN re-download.
+
+The final report distinguishes successful synthetic flows from HTML-policy/screen-reader blocks, Enter-only keyboard limitation and mixed-scenario performance failure. A generated CSV or PDF is not proof of posting, demand or profitability. Use the report's single next action and its stop condition.
+
+## Historical Claude Code handoff (retained for traceability)
+
 # Handoff to dot — 2026-10-22
 
 You should be able to continue from this file alone. Reports:

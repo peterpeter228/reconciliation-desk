@@ -1,0 +1,66 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/summary-register.test.ts
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022
+
+ ❯ tests/dot-ui-review/summary-register.test.ts (5 tests | 1 failed) 423ms
+   × F09 escapes every hostile summary field into inert text and warns of financial information 366ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/summary-register.test.ts > F09 escapes every hostile summary field into inert text and warns of financial information
+AssertionError: expected '\nCase review summary\nCase case-6c21…' to match /Contains financial information/i
+
+- Expected:
+/Contains financial information/i
+
++ Received:
+"
+Case review summary
+Case case-6c217a84f3f1a1de1e58f7d3 · generated <img src=\"https://invalid.test/x\" onerror='alert(1)'>&
+Human review summary. Not an accounting import, not proof of posting, and not a recovered-funds claim. Reviewer statements below are recorded as stated; this tool does not authenticate documents or reviewers.
+Scope
+Company label<img src=\"https://invalid.test/x\" onerror='alert(1)'>&Bank label<img src=\"https://invalid.test/x\" onerror='alert(1)'>&Period2026-09-01 – 2026-09-30 (as of 2026-09-30)Case statusMATCHED / VERIFIED_THREE_WAY / search COMPLETEIdentityBOUND · prior import NEVER_IMPORTEDRule versions1.0.0-g1 · g1-2026.10.21.2
+Sources used
+FileKindPeriodRowsImportByte bindingSHA-256<img src=\"https://invalid.test/x\" onerror='alert(1)'>&ST2026-09-01 – 2026-09-301READYParsed from original bytes in this sessiona41f43e0ba43…qbo_general_ledger.csvQBO2026-09-01 – 2026-09-304READYParsed from original bytes in this session31170cb2c0e5…bank_activity.csvBANK2026-09-01 – 2026-09-301READYParsed from original bytes in this session32747e42353e…processor_settlement.csvPROCESSOR2026-09-01 – 2026-09-301READYParsed from original bytes in this session3c9ed0db4bbd…
+Full SHA-256 of each original file (compare with your retained exports):
+<img src=\"https://invalid.test/x\" onerror='alert(1)'>&: a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153qbo_general_ledger.csv: 31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fdbank_activity.csv: 32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9processor_settlement.csv: 3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282
+Amounts (from source rows)
+Gross receipts10000.00 USDRefunds0.00 USDFees (engine-assessed)900.00 USDHolds0.00 USDExternal receipts0.00 USDBank deposits9100.00 USDUnexplained0.00 USD
+What the evidence shows
+NET_FEE_DRIFT: SUPPORTED (evidence score 100/100, not a probability)
+Not yet verified
+Complete expense and duplicate fee review
+Reviewer statements
+Reviewer<img src=\"https://invalid.test/x\" onerror='alert(1)'>&Basis / open questions<img src=\"https://invalid.test/x\" onerror='alert(1)'>&Documented fee900.00 USD (NETTED)Net fee confirmed from settlement evidenceYes (reviewer statement)Fee not already recordedYes (reviewer statement)Complete GL for bank, clearing and fee accountsYes (reviewer statement)Clearing is an ordinary asset (not UF / liability)Yes (reviewer statement)Accounting period openYes (reviewer statement)
+Supporting documents (hash only):
+FEE_EVIDENCE: <img src=\"https://invalid.test/x\" onerror='alert(1)'>& · SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Accounting output
+No accounting draft.
+Recorded exports:
+None recorded in this project.
+Next step and who confirms
+Accounting draft blocked: <img src=\"https://invalid.test/x\" onerror='alert(1)'>&
+A qualified reviewer for this company confirms account types, the fee amount, ledger completeness and period status in the actual books. Only the original exports, not this summary, are source evidence.
+
+"
+
+ ❯ tests/dot-ui-review/summary-register.test.ts:23:32
+     21|   expect(doc.body.textContent).toContain(attack);
+     22|   expect(doc.querySelector('meta[http-equiv="Content-Security-Policy"]…
+     23|   expect(doc.body.textContent).toMatch(/Contains financial information…
+       |                                ^
+     24| });
+     25| it('F10 explicitly suppresses the implicit network favicon request', (…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  18:30:28
+   Duration  2.24s (transform 481ms, setup 0ms, import 1.57s, tests 423ms, environment 0ms)
+

@@ -1,0 +1,5 @@
+Date,Transaction Type,Num,Name,Memo/Description,Account,Split,Debit,Credit,Amount,Clr
+09/10/2026,Journal Entry,SYN-B-900,,ServiceTitan accounting batch SYN-B-900 export,ServiceTitan Clearing,Accounts Receivable,10000.00,,10000.00,
+09/10/2026,Journal Entry,SYN-B-900,,ServiceTitan accounting batch SYN-B-900 export,Accounts Receivable,ServiceTitan Clearing,,10000.00,-10000.00,
+09/12/2026,Deposit,SYN-SET-900,,Processor payout SYN-SET-900,Collections Checking,ServiceTitan Clearing,9100.00,,9100.00,
+09/12/2026,Deposit,SYN-SET-900,,Processor payout SYN-SET-900,ServiceTitan Clearing,Collections Checking,,9100.00,-9100.00,

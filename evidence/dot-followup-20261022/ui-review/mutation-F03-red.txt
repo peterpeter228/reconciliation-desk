@@ -1,0 +1,212 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/presentation.test.tsx -t F03 prior export
+
+
+ RUN  v4.1.12 /tmp/reconciliation-ui-mutations
+
+ ❯ tests/dot-ui-review/presentation.test.tsx (3 tests | 1 failed | 2 skipped) 172ms
+   × F03 prior export shows journal search and fresh GL review before any correction 171ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/presentation.test.tsx > F03 prior export shows journal search and fresh GL review before any correction
+TestingLibraryElementError: Unable to find an element with the text: /search for journal number/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Current case accounting review"[39m
+      [33mclass[39m=[32m"case-review panel"[39m
+    [36m>[39m
+      [36m<h3>[39m
+        [0mReview this economic case[0m
+      [36m</h3>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"body-muted"[39m
+      [36m>[39m
+        [0mInvestigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [36m<strong>[39m
+          [0mStable case:[0m
+        [36m</strong>[39m
+        [0m [0m
+        [0mcase-6c217a84f3f1a1de1e58f7d3[0m
+        [0m · [0m
+        [0mBOUND[0m
+        [0m · Prior import:[0m
+        [0m [0m
+        [0mNEVER_IMPORTED[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"notice "[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-circle-alert"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"17"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"17"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"12"[39m
+            [33mcy[39m=[32m"12"[39m
+            [33mr[39m=[32m"10"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12"[39m
+            [33my1[39m=[32m"8"[39m
+            [33my2[39m=[32m"12"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12.01"[39m
+            [33my1[39m=[32m"16"[39m
+            [33my2[39m=[32m"16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<div>[39m
+          [36m<strong>[39m
+            [0mAccounting file already recorded: [0m
+            [0mRD-SYNTHETIC-PRIOR[0m
+            [0m.[0m
+          [36m</strong>[39m
+          [0m A download is not proof of posting, and a failed download is not proof it was never imported. To resolve it: (1) in QuickBooks, review records elsewhere [0m
+          [0mRD-SYNTHETIC-PRIOR[0m
+          [0m; (2) re-export the GL or Transaction Journal for the period and review it; (3) if the entry is absent, prepare any correction manually under your own review. Further export is blocked while this case’s export history is available. Company-label changes, missing browser locks, cleared site data or other devices can bypass local duplicate protection; always check the actual books.[0m
+          [0m [0m
+          [0mSave this review project now.[0m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"button-row"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button button-secondary"[39m
+        [36m>[39m
+          [0mDownload reviewer summary (HTML)[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button button-secondary"[39m
+        [36m>[39m
+          [0mDownload human-judgment workpaper (JSON)[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<small>[39m
+        [0mContains financial information, company labels and reviewer statements. Store securely and share only with authorized recipients.[0m
+      [36m</small>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mReview facts & documented fee-only proposal[0m
+        [36m</summary>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"form-stack"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mReviewer[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAccounting basis / unresolved questions[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mJournal date[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-30"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mDocument purpose[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SETTLEMENT"[39m
+              [36m>[39m
+                [0mSettlement fee evidence[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COA"[39m
+              [36m>[39m
+                [0mActual chart of accounts[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"LEDGER"[39m
+              [36m>[39m
+                [0mFull GL coverage evidence[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAttach a locally reviewed supporting document[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<small>[39m
+            [0mOnly its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.[0m
+          [36m</small>[39m
+          [36m<ul />[39m
+          [36m<label>[39m
+            [0mExact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)[0m
+            [36m<textarea />[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage starts[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage ends[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<datalist[39m
+            [33mid[39m=[32m"review-account-names"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+            [36m/>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"Accounts Receivable"[39m
+            [36m/>[39m
+            ...
+ ❯ Object.getElementError ../../workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/presentation.test.tsx:32:17
+     30|   });
+     31|   render(<CaseReview workspace={w} group={g} onChange={() => {}} />);
+     32|   expect(screen.getByText(/search for journal number/)).toBeTruthy();
+       |                 ^
+     33|   expect(screen.getByText(/re-export the GL or Transaction Journal/)).…
+     34|   expect(screen.getByText(/failed download is not proof it was never i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 skipped (3)
+   Start at  18:35:53
+   Duration  2.39s (transform 813ms, setup 0ms, import 1.34s, tests 172ms, environment 689ms)
+

@@ -1,0 +1,2 @@
+Statement Line ID,As Of Date,Payment ID,Accounting Batch Number,Processor Batch Number,Settlement Reference,Processor,Status,Gross Amount,Fee Amount,Net Amount,Amount Held,Fee Mode,Scheduled Settlement Date,Actual Settlement Date,Contract Reference,Evidence Document
+SYN-PS-900,09/30/2026,SYN-PMT-900,SYN-B-900,SYN-PB-900,SYN-SET-900,ServiceTitan Payments,SETTLED,10000.00,900.00,9100.00,0.00,netted,,09/12/2026,SYNTHETIC-CONTRACT,synthetic/processor_statement.pdf#SYN-PS-900

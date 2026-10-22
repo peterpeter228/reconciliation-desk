@@ -1,0 +1,11 @@
+KEYBOARD file ServiceTitan
+FOCUS Drop an export or choose a file
+CSV / TSV / XLSX · Up to 10 MB
+KEYBOARD file QuickBooks
+FOCUS Drop an export or choose a file
+CSV / TSV / XLSX · Up to 10 MB
+KEYBOARD file Bank
+FOCUS Drop an export or choose a file
+CSV / TSV / XLSX · Up to 10 MB
+PASS    EXTRA-keyboard-complete-import Complete keyboard import with native FileChooser.setFiles
+PASS    EXTRA-print-main-app-PDF Visible app print control and Chromium PDF renderer

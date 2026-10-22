@@ -1,0 +1,992 @@
+{
+  "schema_version": "1.0",
+  "synthetic_only": true,
+  "measured_at_utc": "2026-10-22T09:41:52.333Z",
+  "execution": "node --import tsx scripts/benchmark-3000.ts",
+  "scope": "Production TypeScript reconciliation engine in Node on exactly 3,000 canonical core rows per scenario. Excludes parser, Web Worker, browser, UI, disk output and test assertions. Not a real-customer, QBO/QBD-import or browser-performance claim.",
+  "fixture_generation": "Explicit deterministic synthetic canonical JSONL content; each source has an actual content SHA-256, each physical source row has a matching raw-row SHA-256, canonical row IDs and within-source stable row keys are unique; cross-source linkage identifiers are deliberately shared. Independent seeds are not supplied-demo answer keys.",
+  "source_snapshot_sha256": "7964e277f7ffe91d8e0e4b3967fa921e4a58a88fa651a83b66142235db9ccdfc",
+  "runtime": {
+    "node": "v24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "platform": "linux",
+    "architecture": "x64",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpus": 9,
+    "total_memory_bytes": 10475819008,
+    "max_rss_kib": 450376,
+    "note": "Shared execution host; no browser, CPU affinity or exclusive-host guarantee. Sequential scenarios; no forced GC or discarded outlier timings."
+  },
+  "results": [
+    {
+      "name": "identity-rich-complete-three-way",
+      "seed": 964103,
+      "fixture_description": "600 independent complete three-way cases, each with one ST payment, receipt clearing debit, settlement clearing credit, actual posted QB bank debit, and bank transaction. Explicit synthetic full-period coverage and per-account balances.",
+      "canonical_rows": 3000,
+      "rows_by_source": {
+        "ST": 600,
+        "QB": 1800,
+        "BANK": 600
+      },
+      "expected_verified_three_way_groups": 600,
+      "uncertain_payment_atoms": 0,
+      "input_sha256": "c90cf698d6e4b7ef98e48c87dbcfd6d2c8b5912b0e0d72c0433410904b4b07fa",
+      "synthetic_source_files": [
+        {
+          "source": "ST",
+          "name": "identity-rich-complete-three-way.ST.synthetic-canonical.jsonl",
+          "sha256": "fe6c596877a7c596e57e2f3ee8f4df799ec1dfe7aa80533495ab0519c0093e3d",
+          "rows": 600,
+          "bytes": 658845
+        },
+        {
+          "source": "QBO",
+          "name": "identity-rich-complete-three-way.QBO.synthetic-canonical.jsonl",
+          "sha256": "2569d02e2fbaf08bfd8541ad5b5709b381edeb865692a85475141388df0ddcf4",
+          "rows": 1800,
+          "bytes": 1803021
+        },
+        {
+          "source": "BANK",
+          "name": "identity-rich-complete-three-way.BANK.synthetic-canonical.jsonl",
+          "sha256": "c586f51c52b20abd9445fac472b6360fcfbde284c1ce572e3555ad010cb0ca14",
+          "rows": 600,
+          "bytes": 383067
+        }
+      ],
+      "production_versions": {
+        "engine": "1.0.0-g1",
+        "rules": "g1-2026.10.21.2",
+        "calendar": "synthetic-september-2026",
+        "mapping": [
+          "canonical-explicit-1.0"
+        ]
+      },
+      "production_search_limits": {
+        "configured_overrides": null,
+        "max_candidates": 28,
+        "max_members": 8,
+        "max_nodes": 100000,
+        "per_search_budget_ms": 80,
+        "total_search_budget_ms": 400
+      },
+      "warmup_runs": 3,
+      "warmup_durations_ms": [
+        446.8169989999999,
+        457.869962,
+        517.672251
+      ],
+      "measured_runs": 20,
+      "percentile_method": "nearest-rank over all 20 measured warm runs, no trimming",
+      "p50_ms": 385.15867199999957,
+      "p95_ms": 449.61972799999967,
+      "min_ms": 301.86387899999954,
+      "max_ms": 466.385905000001,
+      "performance_target_ms": 500,
+      "performance_target": "warm p95 strictly below 500 ms for this disclosed Node scenario",
+      "performance_target_pass": true,
+      "safety_assertions_passed_every_run": true,
+      "runs": [
+        {
+          "duration_ms": 382.1722539999996,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 432.7923609999998,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 396.2149980000004,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 382.95880899999975,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 369.1717410000001,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 393.91355699999986,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 417.06281000000035,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 374.35939000000053,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 385.15867199999957,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 381.88955499999975,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 301.86387899999954,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 380.045067,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 382.06690100000014,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 346.5499260000006,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 412.3817419999996,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 427.8291250000002,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 466.385905000001,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 430.53923900000154,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 402.66720499999974,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 449.61972799999967,
+          "counts": {
+            "groups": 600,
+            "accepted_groups": 600,
+            "verified_three_way_groups": 600,
+            "group_states": {
+              "MATCHED": 600
+            },
+            "searches": 0,
+            "unfinished_searches": 0,
+            "search_statuses": {},
+            "allocations": 3000,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "identity-rich-with-ambiguous-and-capped-mixture",
+      "seed": 204701,
+      "fixture_description": "2,700 identity-rich rows (540 complete three-way cases), 30 rows forming ten equal-amount ambiguous receipts/deposits, and 270 rows forming 100 candidate-capped receipts plus 70 target deposits. No statement is provided for uncertain assignments.",
+      "canonical_rows": 3000,
+      "rows_by_source": {
+        "ST": 650,
+        "QB": 1730,
+        "BANK": 620
+      },
+      "expected_verified_three_way_groups": 540,
+      "uncertain_payment_atoms": 110,
+      "input_sha256": "57798017b28304479ceba659ceecbdf889030a4295b95377347e3da5430c74bf",
+      "synthetic_source_files": [
+        {
+          "source": "ST",
+          "name": "identity-rich-with-ambiguous-and-capped-mixture.ST.synthetic-canonical.jsonl",
+          "sha256": "9c2280d48610c8c890e26176f8f294c82ccd21d596f1d61e5df777996a1adecc",
+          "rows": 650,
+          "bytes": 751195
+        },
+        {
+          "source": "QBO",
+          "name": "identity-rich-with-ambiguous-and-capped-mixture.QBO.synthetic-canonical.jsonl",
+          "sha256": "9c367fb671c3e622317ffefa476b23baac910607b178d3a8c68195b1467f3d02",
+          "rows": 1730,
+          "bytes": 1881056
+        },
+        {
+          "source": "BANK",
+          "name": "identity-rich-with-ambiguous-and-capped-mixture.BANK.synthetic-canonical.jsonl",
+          "sha256": "c4d664c1574c90f0a287a84632d0652b1cfad65f89a3f4d0ce155c4f5a6b7603",
+          "rows": 620,
+          "bytes": 418997
+        }
+      ],
+      "production_versions": {
+        "engine": "1.0.0-g1",
+        "rules": "g1-2026.10.21.2",
+        "calendar": "synthetic-september-2026",
+        "mapping": [
+          "canonical-explicit-1.0"
+        ]
+      },
+      "production_search_limits": {
+        "configured_overrides": null,
+        "max_candidates": 28,
+        "max_members": 8,
+        "max_nodes": 100000,
+        "per_search_budget_ms": 80,
+        "total_search_budget_ms": 400
+      },
+      "warmup_runs": 3,
+      "warmup_durations_ms": [
+        502.92949899999985,
+        493.04880200000116,
+        532.9636979999996
+      ],
+      "measured_runs": 20,
+      "percentile_method": "nearest-rank over all 20 measured warm runs, no trimming",
+      "p50_ms": 469.2462029999988,
+      "p95_ms": 641.2687670000014,
+      "min_ms": 415.61132200000065,
+      "max_ms": 661.0004520000002,
+      "performance_target_ms": 500,
+      "performance_target": "warm p95 strictly below 500 ms for this disclosed Node scenario",
+      "performance_target_pass": false,
+      "safety_assertions_passed_every_run": true,
+      "runs": [
+        {
+          "duration_ms": 619.605402000001,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 496.2874919999995,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 454.7432609999996,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 415.61132200000065,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 469.2462029999988,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 661.0004520000002,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 463.5617459999994,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 420.4019930000013,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 448.083204999999,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 628.9021690000009,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 483.97538899999927,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 453.9800299999988,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 469.9082129999988,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 609.3939090000022,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 468.89237499999945,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 449.5565620000016,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 447.12853499999983,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 641.2687670000014,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 530.7996070000008,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        },
+        {
+          "duration_ms": 487.5727399999996,
+          "counts": {
+            "groups": 810,
+            "accepted_groups": 540,
+            "verified_three_way_groups": 540,
+            "group_states": {
+              "AMBIGUOUS": 100,
+              "CANDIDATE": 170,
+              "MATCHED": 540
+            },
+            "searches": 90,
+            "unfinished_searches": 90,
+            "search_statuses": {
+              "AMBIGUOUS": 10,
+              "CANDIDATE_CAP": 80
+            },
+            "allocations": 2700,
+            "source_atoms": 3000,
+            "blocking_warnings": 0,
+            "conservation_ok": true
+          }
+        }
+      ]
+    }
+  ],
+  "all_safety_assertions_passed": true,
+  "all_measured_node_targets_passed": false,
+  "limitations": [
+    "Only these two disclosed canonical-input distributions are measured.",
+    "Synthetic manifests explicitly assume complete coverage; this is not a claim about real books.",
+    "Ambiguity and candidate caps must remain visible and unallocated; incomplete searches are not failed correctness checks.",
+    "No parsing or end-to-end browser performance was measured."
+  ]
+}

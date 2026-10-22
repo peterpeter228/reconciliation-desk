@@ -1,0 +1,38 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/replacement.test.tsx -t unsaved edit installs unload
+
+
+ RUN  v4.1.12 /tmp/reconciliation-ui-mutations
+
+ ❯ tests/dot-ui-review/replacement.test.tsx (7 tests | 1 failed | 6 skipped) 115ms
+   × F07 unsaved edit installs unload protection and cancel keeps it 113ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F07 unsaved edit installs unload protection and cancel keeps it
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/dot-ui-review/replacement.test.tsx:141:34
+    139|   const event = new Event('beforeunload', { cancelable: true });
+    140|   window.dispatchEvent(event);
+    141|   expect(event.defaultPrevented).toBe(true);
+       |                                  ^
+    142|   await act(async () => {
+    143|     void importer.onRun(w.input, w.files, w.options);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  18:35:48
+   Duration  1.65s (transform 486ms, setup 0ms, import 809ms, tests 115ms, environment 569ms)
+

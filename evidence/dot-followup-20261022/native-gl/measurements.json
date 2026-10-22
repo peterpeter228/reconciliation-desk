@@ -1,0 +1,190 @@
+{
+  "synthetic_only": true,
+  "measured_at": "2026-10-22T09:29:39.755Z",
+  "method": "production parseSource + reconcile; no browser/time/click measurement",
+  "measurements": [
+    {
+      "file": "native-style.csv",
+      "sha256": "5f9eac73cf5a1839e9ade1219267c306acec9155f5439198261f767555b263dd",
+      "headers": [
+        "Date",
+        "Transaction Type",
+        "Num",
+        "Name",
+        "Memo/Description",
+        "Account",
+        "Split",
+        "Debit",
+        "Credit",
+        "Amount",
+        "Clr"
+      ],
+      "rows": 4,
+      "issues": [],
+      "groups": [
+        {
+          "scope": "ACTIVITY_BRIDGE",
+          "accepted": true,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "CANDIDATE"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "CONFIRMED"
+            }
+          ],
+          "amounts": {
+            "gross": 1000000,
+            "bank": 910000,
+            "fees": 90000
+          }
+        },
+        {
+          "scope": "ACTIVITY_BRIDGE",
+          "accepted": false,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "ABSENT"
+            }
+          ],
+          "amounts": {
+            "gross": 0,
+            "bank": 0,
+            "fees": 0
+          }
+        },
+        {
+          "scope": "ACTIVITY_BRIDGE",
+          "accepted": false,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "ABSENT"
+            }
+          ],
+          "amounts": {
+            "gross": 0,
+            "bank": 0,
+            "fees": 0
+          }
+        },
+        {
+          "scope": "ACTIVITY_BRIDGE",
+          "accepted": false,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "ABSENT"
+            }
+          ],
+          "amounts": {
+            "gross": 0,
+            "bank": 0,
+            "fees": 0
+          }
+        }
+      ]
+    },
+    {
+      "file": "supplemented.csv",
+      "sha256": "9fdaadea8c78b07faff66a556b639f9e0ec44f78f5614c48ed96b341638113ac",
+      "headers": [
+        "Date",
+        "Transaction Type",
+        "Num",
+        "Name",
+        "Memo/Description",
+        "Account",
+        "Split",
+        "Debit",
+        "Credit",
+        "Amount",
+        "Clr",
+        "Transaction ID",
+        "Linked Payment ID",
+        "Linked Deposit ID"
+      ],
+      "rows": 4,
+      "issues": [],
+      "groups": [
+        {
+          "scope": "VERIFIED_THREE_WAY",
+          "accepted": true,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "CONFIRMED"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "CONFIRMED"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "CONFIRMED"
+            }
+          ],
+          "amounts": {
+            "gross": 1000000,
+            "bank": 910000,
+            "fees": 90000
+          }
+        },
+        {
+          "scope": "ACTIVITY_BRIDGE",
+          "accepted": false,
+          "edges": [
+            {
+              "kind": "ST_QB_RECEIPT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "QB_BANK_SETTLEMENT",
+              "state": "ABSENT"
+            },
+            {
+              "kind": "ST_BANK_CASH",
+              "state": "ABSENT"
+            }
+          ],
+          "amounts": {
+            "gross": 0,
+            "bank": 0,
+            "fees": 0
+          }
+        }
+      ]
+    }
+  ]
+}

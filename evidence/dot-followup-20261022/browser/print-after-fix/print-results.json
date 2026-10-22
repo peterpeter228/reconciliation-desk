@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "id": "PRINT-navigation-hidden",
+      "status": "PASS",
+      "detail": "Skip navigation is hidden in print"
+    }
+  ],
+  "consoleErrors": []
+}

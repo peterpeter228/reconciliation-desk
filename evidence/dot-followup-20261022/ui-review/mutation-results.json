@@ -1,0 +1,44 @@
+[
+  {
+    "finding": "F02",
+    "test": "keeps import promise pending",
+    "mutatedExit": 1,
+    "restoredExit": 0,
+    "file": "src/app.tsx"
+  },
+  {
+    "finding": "F07",
+    "test": "unsaved edit installs unload",
+    "mutatedExit": 1,
+    "restoredExit": 0,
+    "file": "src/app.tsx"
+  },
+  {
+    "finding": "F03",
+    "test": "F03 prior export",
+    "mutatedExit": 1,
+    "restoredExit": 0,
+    "file": "src/components/CaseReview.tsx"
+  },
+  {
+    "finding": "F08",
+    "test": "serialized reservation",
+    "mutatedExit": 1,
+    "restoredExit": 0,
+    "file": "src/review/export-register.ts"
+  },
+  {
+    "finding": "F09",
+    "test": "escapes every hostile",
+    "mutatedExit": 1,
+    "restoredExit": 0,
+    "file": "src/export/case-summary.ts"
+  },
+  {
+    "finding": "F10",
+    "test": "F10 explicitly",
+    "mutatedExit": 1,
+    "restoredExit": 0,
+    "file": "index.html"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "synthetic_only": true,
+  "note": "Known generator-provided relationships from synthetic fixture, not inferred from amounts or Num. This proves only the experiment construction, not real customer evidence.",
+  "source_file": "tests/fixtures/fee-case-csv/qbo_general_ledger.csv",
+  "source_sha256": "31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd",
+  "native_file": "native-style.csv",
+  "supplemented_file": "supplemented.csv",
+  "bindings": [
+    {
+      "native_physical_row": 2,
+      "source_physical_row": 2,
+      "fields": {
+        "Transaction ID": "SYN-QB-R900",
+        "Linked Payment ID": "SYN-PMT-900",
+        "Linked Deposit ID": ""
+      }
+    },
+    {
+      "native_physical_row": 3,
+      "source_physical_row": 3,
+      "fields": {
+        "Transaction ID": "SYN-QB-R900",
+        "Linked Payment ID": "SYN-PMT-900",
+        "Linked Deposit ID": ""
+      }
+    },
+    {
+      "native_physical_row": 4,
+      "source_physical_row": 4,
+      "fields": {
+        "Transaction ID": "SYN-QB-D900",
+        "Linked Payment ID": "",
+        "Linked Deposit ID": "SYN-SET-900"
+      }
+    },
+    {
+      "native_physical_row": 5,
+      "source_physical_row": 5,
+      "fields": {
+        "Transaction ID": "SYN-QB-D900",
+        "Linked Payment ID": "",
+        "Linked Deposit ID": "SYN-SET-900"
+      }
+    }
+  ]
+}

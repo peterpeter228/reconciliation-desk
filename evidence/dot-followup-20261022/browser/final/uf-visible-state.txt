@@ -1,0 +1,99 @@
+Review this economic case
+
+Investigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.
+
+Stable case: case-4d1afe504468e813550b605f · BOUND · Prior import: NEVER_IMPORTED
+
+Download reviewer summary (HTML)
+Download human-judgment workpaper (JSON)
+Contains financial information, company labels and reviewer statements. Store securely and share only with authorized recipients.
+Review facts & documented fee-only proposal
+Reviewer
+Accounting basis / unresolved questions
+Journal date
+Document purpose
+Settlement fee evidence
+Actual chart of accounts
+Full GL coverage evidence
+Attach a locally reviewed supporting document
+Only its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.
+COA: uf-coa.txt · 705e1eb9af7c
+SETTLEMENT: uf-settlement.txt · 93cdd46c6e15
+LEDGER: uf-ledger.txt · d6dee152c418
+Exact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)
+Reviewed GL coverage starts
+Reviewed GL coverage ends
+Existing bank account full name
+Existing ordinary asset clearing full name
+Existing fee expense account full name
+Actual chart of accounts review
+Explicitly confirm each account against the attached COA. A chosen label never creates or changes an account.
+Undeposited Funds
+UNKNOWN
+BANK
+OTHER_CURRENT_ASSET
+EXPENSE
+OTHER_CURRENT_LIABILITY
+OTHER
+Exists in reviewed COA
+UNKNOWN
+UF
+NOT_UF
+Accounts Receivable
+UNKNOWN
+BANK
+OTHER_CURRENT_ASSET
+EXPENSE
+OTHER_CURRENT_LIABILITY
+OTHER
+Exists in reviewed COA
+UNKNOWN
+UF
+NOT_UF
+Collections Checking
+UNKNOWN
+BANK
+OTHER_CURRENT_ASSET
+EXPENSE
+OTHER_CURRENT_LIABILITY
+OTHER
+Exists in reviewed COA
+UNKNOWN
+UF
+NOT_UF
+Merchant Processing Fees
+UNKNOWN
+BANK
+OTHER_CURRENT_ASSET
+EXPENSE
+OTHER_CURRENT_LIABILITY
+OTHER
+Exists in reviewed COA
+UNKNOWN
+UF
+NOT_UF
+Posted gross-receipt transaction
+Choose a current-case QB transaction
+SYN-QB-P900
+Posted net-bank settlement transaction
+Choose a current-case QB transaction
+SYN-QB-P900
+Documented net fee in USD (not an inferred difference)
+Fee mode
+UNKNOWN
+NETTED
+SEPARATE_INVOICE
+GROSS_SETTLED
+I reviewed the actual COA; all named GL accounts exist and their imported types are correct.
+Selected clearing is ordinary asset clearing, not Undeposited Funds or a liability.
+The supplied GL includes complete relevant bank, clearing and fee activity for this period.
+Source evidence identifies this entire amount as this case’s netted fee, not a reserve/hold.
+I checked all fee journals and confirmed this fee has not already been recorded.
+The selected accounting period is open and the journal date is appropriate.
+Build supported fee-only draft
+UF candidate / reviewed deposit worksheet
+
+ST IDs alone produce a candidate list. Supply the actual existing QB Payment IDs and reviewed undeposited status before giving selection instructions. Match an existing bank feed item; do not Categorize a second receipt.
+
+Reviewed: still in UF, not already deposited
+Add actual QB PaymentDownload UF review worksheet

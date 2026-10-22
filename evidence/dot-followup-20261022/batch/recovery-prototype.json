@@ -1,0 +1,26 @@
+{
+  "kind": "UNKNOWN_RECOVERY_REVIEW_ONLY",
+  "economicCaseId": "case-6c217a84f3f1a1de1e58f7d3",
+  "accountingActionId": "fee-3bdc076eaa7e316df268a768",
+  "exportHistoryHash": "a48296e9ffff686daea139bfc8147fd5f2976917be03978a426d1faefded9205",
+  "history": [
+    {
+      "journalId": "SYN-JOURNAL",
+      "reviewer": "Synthetic reviewer",
+      "checkedAt": "2026-10-22T09:00:00Z",
+      "glReportHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "result": "NOT_FOUND",
+      "scopeAndMethod": "Synthetic September full GL: searched exact journal number; absence not proof of non-posting."
+    },
+    {
+      "journalId": "SYN-JOURNAL",
+      "reviewer": "Synthetic reviewer",
+      "checkedAt": "2026-10-22T10:00:00Z",
+      "glReportHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "result": "FOUND",
+      "scopeAndMethod": "Synthetic later check: found exact journal number; exact lines still require accountant review."
+    }
+  ],
+  "accountingExportAllowed": false,
+  "sameJournalRedownload": "OWNER_POLICY_DECISION_REQUIRED"
+}

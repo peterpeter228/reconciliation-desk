@@ -1,0 +1,1 @@
+SYNTHETIC TEST ONLY: existing Collections Checking BANK, Merchant Processing Fees EXPENSE, Undeposited Funds OTHER_CURRENT_ASSET marked UF, Accounts Receivable OTHER.

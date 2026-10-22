@@ -1,0 +1,32 @@
+Mutation: const caseRows = w.input.qb.filter((x) => g.qb_ids.includes(x.id)); => const caseRows = [];
+Command: vitest run tests/claude-review/ui-safety.test.tsx -t stays a candidate when the GL already
+
+ RUN  v4.1.12 /tmp/dot-source-mutations-djwmkvc7
+
+ ❯ tests/claude-review/ui-safety.test.tsx (15 tests | 1 failed | 14 skipped) 329ms
+     × stays a candidate when the GL already shows the posted bank deposit for this case 327ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-04 UF reviewed instructions ignore contradicting GL and other cases > stays a candidate when the GL already shows the posted bank deposit for this case
+AssertionError: expected 'REVIEWED_INSTRUCTIONS' to be 'CANDIDATE' // Object.is equality
+
+Expected: "CANDIDATE"
+Received: "REVIEWED_INSTRUCTIONS"
+
+ ❯ tests/claude-review/ui-safety.test.tsx:173:26
+    171|     renderCase(w);
+    172|     const sheet = ufWorksheet();
+    173|     expect(sheet.status).toBe('CANDIDATE');
+       |                          ^
+    174|     expect(sheet.missingEvidence.join(' ')).toMatch(/posted bank depos…
+    175|     expect(sheet.steps.join(' ')).not.toMatch(/select these existing Q…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 14 skipped (15)
+   Start at  18:32:27
+   Duration  2.61s (transform 809ms, setup 0ms, import 1.23s, tests 329ms, environment 789ms)
+

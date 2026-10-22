@@ -1,0 +1,1 @@
+SYNTHETIC TEST ONLY: SYN-PMT-900 gross 10000, payout SYN-SET-900 net 9100, netted fee 900. No refunds/holds.

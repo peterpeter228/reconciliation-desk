@@ -1,0 +1,30 @@
+[
+  {
+    "id": "BANK",
+    "name": "Collections Checking",
+    "type": "BANK",
+    "exists": true,
+    "isUndepositedFunds": false
+  },
+  {
+    "id": "CLEARING",
+    "name": "ServiceTitan Clearing",
+    "type": "OTHER_CURRENT_ASSET",
+    "exists": true,
+    "isUndepositedFunds": false
+  },
+  {
+    "id": "FEES",
+    "name": "Merchant Financing Fees",
+    "type": "EXPENSE",
+    "exists": true,
+    "isUndepositedFunds": false
+  },
+  {
+    "id": "AR",
+    "name": "Accounts Receivable",
+    "type": "OTHER",
+    "exists": true,
+    "isUndepositedFunds": false
+  }
+]

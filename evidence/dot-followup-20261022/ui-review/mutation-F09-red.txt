@@ -1,0 +1,40 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/summary-register.test.ts -t escapes every hostile
+
+
+ RUN  v4.1.12 /tmp/reconciliation-ui-mutations
+
+ ❯ tests/dot-ui-review/summary-register.test.ts (5 tests | 1 failed | 4 skipped) 153ms
+   × F09 escapes every hostile summary field into inert text and warns of financial information 151ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/summary-register.test.ts > F09 escapes every hostile summary field into inert text and warns of financial information
+AssertionError: expected <img …(2)></img>
+<img …(2)></img>
+…(7) to have a length of +0 but got 9
+
+- Expected
++ Received
+
+- 0
++ 9
+
+ ❯ tests/dot-ui-review/summary-register.test.ts:40:66
+     38|   });
+     39|   const doc = new DOMParser().parseFromString(html, 'text/html');
+     40|   expect(doc.querySelectorAll('script,img,iframe,object,embed')).toHav…
+       |                                                                  ^
+     41|   expect(doc.querySelector('[onerror]')).toBeNull();
+     42|   expect(doc.body.textContent).toContain(attack);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  18:36:05
+   Duration  1.91s (transform 560ms, setup 0ms, import 720ms, tests 153ms, environment 777ms)
+

@@ -1,0 +1,271 @@
+Reconciliation evidence summary
+Synthetic demonstration. No customer data.
+Run b21e7a9a-080b-4764-b293-e4defa7836ec · 2026-09-01 to 2026-09-30 · As of 2026-09-30
+Export is not posting. Missing records do not establish a cause or platform defect.
+
+Source controls
+ST gross receipts: $242,360.14 · Bank signed activity: $215,648.69
+
+Largest review items
+Impact
+
+State
+
+Cause / evidence
+
+Unexplained
+
+$50,000.00
+
+Candidate
+
+Unexplained (Unknown)
+
+-$50,000.00
+
+$20,000.00
+
+Candidate
+
+Date lag (Supported); Unexplained (Unknown)
+
+$20,000.00
+
+$20,000.00
+
+Partial
+
+Date lag (Supported); Unexplained (Unknown)
+
+$20,000.00
+
+$15,000.00
+
+Partial
+
+Date lag (Supported); Unexplained (Unknown)
+
+$15,000.00
+
+$12,000.00
+
+Candidate
+
+Date lag (Supported); Unexplained (Unknown)
+
+$12,000.00
+
+$3,552.12
+
+Candidate
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$103.91
+
+$3,233.11
+
+Candidate
+
+Unexplained (Unknown)
+
+$0.00
+
+$3,202.62
+
+Candidate
+
+Unexplained (Unknown)
+
+$0.00
+
+$2,779.09
+
+Candidate
+
+Unexplained (Unknown)
+
+$0.00
+
+$2,740.44
+
+Candidate
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$80.38
+
+$2,675.65
+
+Candidate
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$78.50
+
+$2,660.40
+
+Candidate
+
+Unexplained (Unknown)
+
+$0.00
+
+$2,598.34
+
+Candidate
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$76.24
+
+$2,554.24
+
+Candidate
+
+Unexplained (Unknown)
+
+$0.00
+
+$2,447.54
+
+Candidate
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$71.87
+
+$2,382.21
+
+Candidate
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$69.98
+
+$2,352.27
+
+Candidate
+
+Unexplained (Unknown)
+
+$0.00
+
+$2,338.12
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$68.70
+
+$2,332.12
+
+Candidate
+
+Unexplained (Unknown)
+
+$0.00
+
+$2,314.16
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$68.01
+
+$2,314.16
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$44.74
+
+$2,289.67
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$67.30
+
+$2,289.67
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$78.94
+
+$2,289.67
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$43.52
+
+$2,278.78
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$71.86
+
+$2,278.78
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$80.20
+
+Skip to workspace
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$66.99
+
+$2,278.78
+$2,277.69
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$66.96
+
+$2,277.69
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$55.32
+
+Impact
+
+State
+
+Cause / evidence
+
+Unexplained
+
+$2,265.17
+
+Ambiguous
+
+Net fee drift (Suspected); Unexplained (Unknown)
+
+$66.59
+
+Source manifest
+st_export.csv · SHA-256 50b48fc3351743d59acd14cfe7a7383f7b4b832d812345067b6410c0bd1f1fa4
+qbo_clearing_gl.csv · SHA-256 6763e4ff4db727e2ad69c1ef665cd52fdb76e79285fb9a06cf704ce385cded3b
+chase_bank.csv · SHA-256 ae6ed4c2fa4e5919c5b32eef54aeaeaf0b2d976069971d158bca7fc64d7bff94
+
+

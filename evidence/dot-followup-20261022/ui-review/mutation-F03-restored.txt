@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/presentation.test.tsx -t F03 prior export
+
+
+ RUN  v4.1.12 /tmp/reconciliation-ui-mutations
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 2 skipped (3)
+   Start at  18:35:57
+   Duration  2.39s (transform 894ms, setup 0ms, import 1.30s, tests 140ms, environment 737ms)
+

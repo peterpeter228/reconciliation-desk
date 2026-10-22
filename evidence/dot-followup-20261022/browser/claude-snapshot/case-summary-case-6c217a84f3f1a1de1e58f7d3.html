@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case review summary case-6c217a84f3f1a1de1e58f7d3</title>
+<style>
+body{font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:#1d2330;background:#fff;margin:0 auto;max-width:960px;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px;border-bottom:1px solid #d9dde5;padding-bottom:4px}
+.banner{border:2px solid #9a5b00;background:#fff7e6;padding:10px 12px;margin:12px 0;border-radius:6px}
+.muted{color:#5b6475}table{border-collapse:collapse;width:100%;margin:6px 0}th,td{border:1px solid #d9dde5;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f4f6f9;font-weight:600;width:34%}.hash{font:12px ui-monospace,monospace;word-break:break-all}
+.wrap{overflow-x:auto}@media print{.banner{border-color:#000;background:#fff}}
+</style></head><body>
+<h1>Case review summary</h1>
+<p class="muted">Case case-6c217a84f3f1a1de1e58f7d3 · generated 2026-10-22T09:32:30.046Z</p>
+<div class="banner"><strong>Human review summary.</strong> Not an accounting import, not proof of posting, and not a recovered-funds claim. Reviewer statements below are recorded as stated; this tool does not authenticate documents or reviewers.</div>
+<h2>Scope</h2>
+<table><tr><th scope="row">Company label</th><td>Synthetic HVAC Co</td></tr><tr><th scope="row">Bank label</th><td>Collections Checking</td></tr><tr><th scope="row">Period</th><td>2026-09-01 – 2026-09-30 (as of 2026-09-30)</td></tr><tr><th scope="row">Case status</th><td>MATCHED / VERIFIED_THREE_WAY / search COMPLETE</td></tr><tr><th scope="row">Identity</th><td>BOUND · prior import UNKNOWN</td></tr><tr><th scope="row">Rule versions</th><td>1.0.0-g1 · g1-2026.10.21.2</td></tr></table>
+<h2>Sources used</h2>
+<div class="wrap"><table><tr><th>File</th><th>Kind</th><th>Period</th><th>Rows</th><th>Import</th><th>Byte binding</th><th>SHA-256</th></tr><tr><td>st_payments.csv</td><td>ST</td><td>2026-09-01 – 2026-09-30</td><td>1</td><td>READY</td><td>Parsed from original bytes in this session</td><td class="hash">a41f43e0ba43…</td></tr><tr><td>qbo_general_ledger.csv</td><td>QBO</td><td>2026-09-01 – 2026-09-30</td><td>4</td><td>READY</td><td>Parsed from original bytes in this session</td><td class="hash">31170cb2c0e5…</td></tr><tr><td>bank_activity.csv</td><td>BANK</td><td>2026-09-01 – 2026-09-30</td><td>1</td><td>READY</td><td>Parsed from original bytes in this session</td><td class="hash">32747e42353e…</td></tr><tr><td>processor_settlement.csv</td><td>PROCESSOR</td><td>2026-09-01 – 2026-09-30</td><td>1</td><td>READY</td><td>Parsed from original bytes in this session</td><td class="hash">3c9ed0db4bbd…</td></tr></table></div>
+<p><strong>Full SHA-256 of each original file</strong> (compare with your retained exports):</p>
+<div class="hash"><ul><li>st_payments.csv: a41f43e0ba431514f5aff24ce982d322f6e1f64ded14e091c9d4dc57996f7153</li><li>qbo_general_ledger.csv: 31170cb2c0e5f4bae228ff2d91825ca74c36f155792c29228a93c542c3a339fd</li><li>bank_activity.csv: 32747e42353e695344df4a66287054ef13a85590b9e99dc50112c0f6e705d4e9</li><li>processor_settlement.csv: 3c9ed0db4bbdc17546de296535bc104c0cf59ef8f2f477576f3a26bafb1f6282</li></ul></div>
+<h2>Amounts (from source rows)</h2>
+<table><tr><th scope="row">Gross receipts</th><td>10000.00 USD</td></tr><tr><th scope="row">Refunds</th><td>0.00 USD</td></tr><tr><th scope="row">Fees (engine-assessed)</th><td>900.00 USD</td></tr><tr><th scope="row">Holds</th><td>0.00 USD</td></tr><tr><th scope="row">External receipts</th><td>0.00 USD</td></tr><tr><th scope="row">Bank deposits</th><td>9100.00 USD</td></tr><tr><th scope="row">Unexplained</th><td>0.00 USD</td></tr></table>
+<h2>What the evidence shows</h2>
+<ul><li>NET_FEE_DRIFT: SUPPORTED (evidence score 100/100, not a probability)</li></ul>
+<h2>Not yet verified</h2>
+<ul><li>Complete expense and duplicate fee review</li></ul>
+<h2>Reviewer statements</h2>
+<table><tr><th scope="row">Reviewer</th><td>Synthetic QA reviewer</td></tr><tr><th scope="row">Basis / open questions</th><td>Synthetic netted processor fee per settlement SYN-PS-900; not customer data.</td></tr><tr><th scope="row">Documented fee</th><td>900.00 USD (NETTED)</td></tr><tr><th scope="row">Net fee confirmed from settlement evidence</th><td>Yes (reviewer statement)</td></tr><tr><th scope="row">Fee not already recorded</th><td>Yes (reviewer statement)</td></tr><tr><th scope="row">Complete GL for bank, clearing and fee accounts</th><td>Yes (reviewer statement)</td></tr><tr><th scope="row">Clearing is an ordinary asset (not UF / liability)</th><td>Yes (reviewer statement)</td></tr><tr><th scope="row">Accounting period open</th><td>Yes (reviewer statement)</td></tr></table>
+<p><strong>Supporting documents (hash only):</strong></p>
+<ul><li>SETTLEMENT: synthetic-settlement-review.txt · SHA-256 671588c73a7a296b32bfb6fdd9a6fafd772f18e7ca906f44dfe807a5a097454a</li><li>COA: synthetic-coa-review.txt · SHA-256 b8529669be12e3f34bc078beafbb0f4b52a9392956541dd2f9a5b40cbc28dac6</li><li>LEDGER: synthetic-ledger-review.txt · SHA-256 9af926f7afc4530a822a80adb5cbcad7a73c0ba9fd39eb93fc42829880cfeb36</li></ul>
+<h2>Accounting output</h2>
+<p>Proposal RD8C9256AC39 · APPROVED</p><ul><li>Merchant Processing Fees: debit 900.00 USD, credit 0.00 USD</li><li>ServiceTitan Clearing: debit 0.00 USD, credit 900.00 USD</li></ul>
+<p><strong>Recorded exports:</strong></p>
+<ul><li>RD8C9256AC39 · CSV · recorded 2026-10-22T09:32:28.311Z · EXPORTED_NOT_POSTED</li></ul>
+<h2>Next step and who confirms</h2>
+<p>An accounting file was already recorded for this case (RD8C9256AC39). Search the books for that journal number and re-export the GL before any further entry. Do not create a second journal.</p>
+<p class="muted">A qualified reviewer for this company confirms account types, the fee amount, ledger completeness and period status in the actual books. Only the original exports, not this summary, are source evidence.</p>
+</body></html>

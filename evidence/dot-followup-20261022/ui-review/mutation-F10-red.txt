@@ -1,0 +1,38 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/summary-register.test.ts -t F10 explicitly
+
+
+ RUN  v4.1.12 /tmp/reconciliation-ui-mutations
+
+ ❯ tests/dot-ui-review/summary-register.test.ts (5 tests | 1 failed | 4 skipped) 40ms
+   × F10 explicitly suppresses the implicit network favicon request 37ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/summary-register.test.ts > F10 explicitly suppresses the implicit network favicon request
+AssertionError: expected undefined to be 'data:,' // Object.is equality
+
+- Expected:
+"data:,"
+
++ Received:
+undefined
+
+ ❯ tests/dot-ui-review/summary-register.test.ts:50:71
+     48| it('F10 explicitly suppresses the implicit network favicon request', (…
+     49|   const doc = new DOMParser().parseFromString(readFileSync('index.html…
+     50|   expect(doc.querySelector('link[rel="icon"]')?.getAttribute('href')).…
+       |                                                                       ^
+     51| });
+     52| it('F08 exact labels match but spelling case and whitespace changes ar…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  18:36:11
+   Duration  1.71s (transform 491ms, setup 0ms, import 695ms, tests 40ms, environment 746ms)
+

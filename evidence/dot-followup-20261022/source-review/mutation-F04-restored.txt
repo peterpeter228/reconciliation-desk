@@ -1,0 +1,9 @@
+
+ RUN  v4.1.12 /tmp/dot-source-mutations-djwmkvc7
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 14 skipped (15)
+   Start at  18:32:30
+   Duration  2.81s (transform 1.16s, setup 0ms, import 1.67s, tests 325ms, environment 637ms)
+

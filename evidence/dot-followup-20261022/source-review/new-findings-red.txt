@@ -1,0 +1,99 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022
+
+ ❯ tests/dot-source-review/guards.test.ts (7 tests | 6 failed) 278ms
+     × rejects inherited hash-only verification after supplemental evidence recalculation 114ms
+     × invalidates same bytes when parse options change 35ms
+     × invalidates normalized rows modified after verification 38ms
+     × allows display rename but never carries demo verification into real mode 49ms
+     × changes proposal binding when the same mapping-version set is reassigned between files 18ms
+     × does not let an unsupported OTHER_CASE label hide fee activity 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-source-review/guards.test.ts > dot F01 source verification state binding > rejects inherited hash-only verification after supplemental evidence recalculation
+TypeError: .toMatch() expects to receive a string, but got object
+ ❯ tests/dot-source-review/guards.test.ts:23:35
+     21|     const w = await verified();
+     22|     w.restoredSources = { verifiedHashes: w.files.map(f => f.hash) };
+     23|     expect(sourceTrustBlocker(w)).toMatch(/original source/);
+       |                                   ^
+     24|   });
+     25|   it('invalidates same bytes when parse options change', async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/dot-source-review/guards.test.ts > dot F01 source verification state binding > invalidates same bytes when parse options change
+TypeError: .toMatch() expects to receive a string, but got object
+ ❯ tests/dot-source-review/guards.test.ts:28:35
+     26|     const w = await verified();
+     27|     w.files[0].parseOptions = { ...w.files[0].parseOptions!, coverageC…
+     28|     expect(sourceTrustBlocker(w)).toMatch(/original source/);
+       |                                   ^
+     29|   });
+     30|   it('invalidates normalized rows modified after verification', async …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/dot-source-review/guards.test.ts > dot F01 source verification state binding > invalidates normalized rows modified after verification
+TypeError: .toMatch() expects to receive a string, but got object
+ ❯ tests/dot-source-review/guards.test.ts:33:35
+     31|     const w = await verified();
+     32|     w.input.st[0].gross_cents++;
+     33|     expect(sourceTrustBlocker(w)).toMatch(/original source/);
+       |                                   ^
+     34|   });
+     35|   it('allows display rename but never carries demo verification into r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/dot-source-review/guards.test.ts > dot F01 source verification state binding > allows display rename but never carries demo verification into real mode
+TypeError: .toMatch() expects to receive a string, but got object
+ ❯ tests/dot-source-review/guards.test.ts:42:38
+     40|     const demo = markSourceVerified(w, w.files[0].hash);
+     41|     demo.isDemo = false;
+     42|     expect(sourceTrustBlocker(demo)).toMatch(/original source/);
+       |                                      ^
+     43|   });
+     44| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/dot-source-review/guards.test.ts > dot F05 mapping ownership > changes proposal binding when the same mapping-version set is reassigned between files
+AssertionError: expected 'mapping-set-v1:33e8b14cd09d8bf2e00cb0…' not to be 'mapping-set-v1:33e8b14cd09d8bf2e00cb0…' // Object.is equality
+ ❯ tests/dot-source-review/guards.test.ts:52:48
+     50|     [a.mapping_version,b.mapping_version] = [b.mapping_version,a.mappi…
+     51|     const changed = await draft(w);
+     52|     expect(changed.feeCase.mappingVersion).not.toBe(original.feeCase.m…
+       |                                                ^
+     53|     const approved = await approveProposal(original, 'Synthetic review…
+     54|     approved.feeCase.mappingVersion = changed.feeCase.mappingVersion;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/dot-source-review/guards.test.ts > dot F04 UF scope > does not let an unsupported OTHER_CASE label hide fee activity
+AssertionError: expected '' to match /fee account/
+
+- Expected:
+/fee account/
+
++ Received:
+""
+
+ ❯ tests/dot-source-review/guards.test.ts:72:72
+     70|     w.input.qb.push(fee);
+     71|     f.relations.push({transactionId:'fee-tx',relation:'OTHER_CASE',rel…
+     72|     expect(ufReviewConflicts(w,g,{economicCaseId:'mine'},f).join(' '))…
+       |                                                                        ^
+     73|   });
+     74| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 1 passed (7)
+   Start at  18:28:20
+   Duration  1.17s (transform 494ms, setup 0ms, import 655ms, tests 278ms, environment 0ms)
+

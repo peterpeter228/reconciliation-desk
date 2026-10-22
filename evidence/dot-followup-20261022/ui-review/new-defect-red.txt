@@ -1,0 +1,58 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review/replacement.test.tsx
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022
+
+ ❯ tests/dot-ui-review/replacement.test.tsx (6 tests | 2 failed) 534ms
+   × F02/F07 keeps import promise pending until cancel and preserves editable workspace 243ms
+   × F02/F07 confirms replacement but resolves only after the worker finishes 51ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02/F07 keeps import promise pending until cancel and preserves editable workspace
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/dot-ui-review/replacement.test.tsx:44:20
+     42|   await act(async () => { pending = importer.onRun(w.input, w.files, w…
+     43|   expect(screen.getByText('Replace this workspace?')).toBeTruthy();
+     44|   expect(finished).toBe(false);
+       |                    ^
+     45|   expect(runReconciliation).toHaveBeenCalledTimes(1);
+     46|   await act(async () => { fireEvent.click(screen.getByText('Keep works…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02/F07 confirms replacement but resolves only after the worker finishes
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/dot-ui-review/replacement.test.tsx:59:20
+     57|   let finished = false;
+     58|   await act(async () => { void importer.onRun(w.input, w.files, w.opti…
+     59|   expect(finished).toBe(false);
+       |                    ^
+     60|   await act(async () => { fireEvent.click(screen.getByText('Replace wo…
+     61|   expect(finished).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  18:28:51
+   Duration  3.29s (transform 883ms, setup 0ms, import 1.38s, tests 534ms, environment 1.02s)
+

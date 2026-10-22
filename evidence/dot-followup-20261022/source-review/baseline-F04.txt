@@ -1,0 +1,50 @@
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-baseline-20261022
+
+ ❯ tests/claude-review/ui-safety.test.tsx (15 tests | 2 failed | 13 skipped) 307ms
+     × stays a candidate when the GL already shows the posted bank deposit for this case 254ms
+     × stays a candidate when the same QB Payment is listed for another case 51ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-04 UF reviewed instructions ignore contradicting GL and other cases > stays a candidate when the GL already shows the posted bank deposit for this case
+AssertionError: expected 'REVIEWED_INSTRUCTIONS' to be 'CANDIDATE' // Object.is equality
+
+Expected: "CANDIDATE"
+Received: "REVIEWED_INSTRUCTIONS"
+
+ ❯ tests/claude-review/ui-safety.test.tsx:173:26
+    171|     renderCase(w);
+    172|     const sheet = ufWorksheet();
+    173|     expect(sheet.status).toBe('CANDIDATE');
+       |                          ^
+    174|     expect(sheet.missingEvidence.join(' ')).toMatch(/posted bank depos…
+    175|     expect(sheet.steps.join(' ')).not.toMatch(/select these existing Q…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-04 UF reviewed instructions ignore contradicting GL and other cases > stays a candidate when the same QB Payment is listed for another case
+AssertionError: expected '' to match /also listed/i
+
+- Expected:
+/also listed/i
+
++ Received:
+""
+
+ ❯ tests/claude-review/ui-safety.test.tsx:184:53
+    182|     other.reviewedFacts = { ufPayments: [ufPayment] };
+    183|     renderCase(w);
+    184|     expect(ufWorksheet().missingEvidence.join(' ')).toMatch(/also list…
+       |                                                     ^
+    185|   });
+    186| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 13 skipped (15)
+   Start at  18:30:19
+   Duration  2.43s (transform 804ms, setup 0ms, import 1.18s, tests 307ms, environment 730ms)
+

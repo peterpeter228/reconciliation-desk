@@ -1,0 +1,16 @@
+node:fs:2483
+    return binding.writeFileUtf8(
+                   ^
+
+Error: ENOENT: no such file or directory, open '(name) => path.join(OUT, name)/computed-style.json'
+    at Object.writeFileSync (node:fs:2483:20)
+    at file:///workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022/evidence/dot-followup-20261022/browser/qa-print-regression.mjs:87:642
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:502:9) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '(name) => path.join(OUT, name)/computed-style.json'
+}
+
+Node.js v24.19.0

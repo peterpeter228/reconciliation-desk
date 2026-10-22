@@ -1,0 +1,406 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022
+
+ ❯ tests/ui/import-validation.test.ts (5 tests | 1 failed) 20817ms
+     × retains the selected XLSX sheet and resolved header through validation 2982ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/import-validation.test.ts > Resolved import headers survive validation (real parsers, jsdom) > retains the selected XLSX sheet and resolved header through validation
+TestingLibraryElementError: Unable to find role="button" and name `/qbo_clearing_gl\.csv/`
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"import-page"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"section-intro"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h2>[39m
+            [0mBring the evidence together.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mThree local exports, reviewed before a single match is made.[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mExplore the sample instead [0m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-arrow-right"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"16"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"16"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M5 12h14"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 5 7 7-7 7"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"notice "[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-circle-alert"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"17"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"17"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"12"[39m
+            [33mcy[39m=[32m"12"[39m
+            [33mr[39m=[32m"10"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12"[39m
+            [33my1[39m=[32m"8"[39m
+            [33my2[39m=[32m"12"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12.01"[39m
+            [33my1[39m=[32m"16"[39m
+            [33my2[39m=[32m"16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<div>[39m
+          [36m<strong>[39m
+            [0mYour files stay in this browser.[0m
+          [36m</strong>[39m
+          [0m This build supports UTF-8 CSV / TSV and guarded XLSX (recognized QBO report control formulas are preserved, never evaluated; macros and external links remain blocked). No raw transactions are uploaded, no model is called, and no accounting system is changed. Clear workspace removes the in-memory data.[0m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"import-steps"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"current"[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m1[0m
+          [36m</b>[39m
+          [0mChoose files[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m2[0m
+          [36m</b>[39m
+          [0mMap & confirm[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m3[0m
+          [36m</b>[39m
+          [0mReview quality[0m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"upload-grid"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"upload-card has-file "[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"upload-title"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"source-monogram"[39m
+            [36m>[39m
+              [0mST[0m
+            [36m</span>[39m
+            [36m<h3>[39m
+              [0mServiceTitan[0m
+            [36m</h3>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-check"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M20 6 9 17l-5-5"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<p>[39m
+            [0mPayments with actual receipt amounts[0m
+          [36m</p>[39m
+          [36m<input[39m
+            [33maccept[39m=[32m".csv,.tsv,.xlsx,text/csv,text/tab-separated-values"[39m
+            [33maria-label[39m=[32m"Choose ServiceTitan CSV"[39m
+            [33mclass[39m=[32m"visually-hidden"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"file"[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"file-picker"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-file-text"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"21"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"21"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M14 2v4a2 2 0 0 0 2 2h4"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M10 9H8"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[3...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"import-page"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"section-intro"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h2>[39m
+            [0mBring the evidence together.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mThree local exports, reviewed before a single match is made.[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mExplore the sample instead [0m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-arrow-right"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"16"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"16"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M5 12h14"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 5 7 7-7 7"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"notice "[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-circle-alert"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"17"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"17"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"12"[39m
+            [33mcy[39m=[32m"12"[39m
+            [33mr[39m=[32m"10"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12"[39m
+            [33my1[39m=[32m"8"[39m
+            [33my2[39m=[32m"12"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12.01"[39m
+            [33my1[39m=[32m"16"[39m
+            [33my2[39m=[32m"16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<div>[39m
+          [36m<strong>[39m
+            [0mYour files stay in this browser.[0m
+          [36m</strong>[39m
+          [0m This build supports UTF-8 CSV / TSV and guarded XLSX (recognized QBO report control formulas are preserved, never evaluated; macros and external links remain blocked). No raw transactions are uploaded, no model is called, and no accounting system is changed. Clear workspace removes the in-memory data.[0m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"import-steps"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"current"[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m1[0m
+          [36m</b>[39m
+          [0mChoose files[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m2[0m
+          [36m</b>[39m
+          [0mMap & confirm[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [36m<b>[39m
+            [0m3[0m
+          [36m</b>[39m
+          [0mReview quality[0m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"upload-grid"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"upload-card has-file "[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"upload-title"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"source-monogram"[39m
+            [36m>[39m
+              [0mST[0m
+            [36m</span>[39m
+            [36m<h3>[39m
+              [0mServiceTitan[0m
+            [36m</h3>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-check"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M20 6 9 17l-5-5"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<p>[39m
+            [0mPayments with actual receipt amounts[0m
+          [36m</p>[39m
+          [36m<input[39m
+            [33maccept[39m=[32m".csv,.tsv,.xlsx,text/csv,text/tab-separated-values"[39m
+            [33maria-label[39m=[32m"Choose ServiceTitan CSV"[39m
+            [33mclass[39m=[32m"visually-hidden"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+            [33mtype[39m=[32m"file"[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"file-picker"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-file-text"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"21"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"21"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M14 2v4a2 2 0 0 0 2 2h4"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M10 9H8"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[3...
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ uploadBytes tests/ui/import-validation.test.ts:41:16
+     39|   Object.defineProperty(file, 'arrayBuffer', { value: async () => byte…
+     40|   fireEvent.change(screen.getByLabelText(label), { target: { files: [f…
+     41|   await screen.findByRole('button', { name: new RegExp(name.replaceAll…
+       |                ^
+     42|   await waitFor(
+     43|     () =>
+ ❯ upload tests/ui/import-validation.test.ts:35:9
+ ❯ tests/ui/import-validation.test.ts:99:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 42 passed (43)
+      Tests  1 failed | 782 passed (783)
+   Start at  18:37:13
+   Duration  26.10s (transform 6.11s, setup 0ms, import 21.92s, tests 105.73s, environment 12.67s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

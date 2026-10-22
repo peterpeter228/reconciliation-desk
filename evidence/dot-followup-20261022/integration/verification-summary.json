@@ -1,0 +1,55 @@
+{
+  "date_utc": "2026-10-22",
+  "synthetic_only": true,
+  "code_parent": "7b479631cd4ceaede355d825818b78a04b7f13c3",
+  "checks": [
+    {
+      "command": "npm ci --ignore-scripts --cache /tmp/reconciliation-npm-cache",
+      "result": "PASS",
+      "log": "npm-ci.txt"
+    },
+    {
+      "command": "npm test",
+      "result": "PASS: 784 tests",
+      "log": "final-vitest-print.txt"
+    },
+    {
+      "command": "npm run typecheck (also part of final build)",
+      "result": "PASS",
+      "log": "build-print.txt"
+    },
+    {
+      "command": "npm run test:reference",
+      "result": "PASS: 33 tests",
+      "log": "reference.txt"
+    },
+    {
+      "command": "npm run build",
+      "result": "PASS",
+      "log": "build-print.txt"
+    },
+    {
+      "command": "npm run format:check",
+      "result": "PASS",
+      "log": "format-final.txt"
+    },
+    {
+      "command": "npm run check:artifacts",
+      "result": "PASS",
+      "log": "artifacts-final.txt"
+    },
+    {
+      "command": "npm run benchmark:3000 -- --output <new path>",
+      "result": "FAIL: mixed p95 641.27ms; ordinary p95 449.62ms; all safety assertions pass",
+      "log": "benchmark-3000-quiet.json"
+    }
+  ],
+  "preserved_failures": [
+    "final-vitest-first.txt",
+    "final-vitest.txt",
+    "benchmark-3000.json",
+    "benchmark-original-comparison.json"
+  ],
+  "unknown_export_policy_changed": false,
+  "accounting_system_writes": false
+}

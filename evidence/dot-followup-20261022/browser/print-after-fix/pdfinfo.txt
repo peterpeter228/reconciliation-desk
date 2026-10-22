@@ -1,0 +1,19 @@
+Title:           Reconciliation Desk
+Creator:         Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36
+Producer:        Skia/PDF m155
+CreationDate:    Thu Oct 22 18:50:39 2026 KST
+ModDate:         Thu Oct 22 18:50:39 2026 KST
+Custom Metadata: no
+Metadata Stream: no
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           2
+Encrypted:       no
+Page size:       595.92 x 842.88 pts (A4)
+Page rot:        0
+File size:       33099 bytes
+Optimized:       no
+PDF version:     1.4

@@ -1,0 +1,4253 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> reconciliation-desk@0.1.0 test
+> vitest run tests/dot-ui-review tests/claude-review/ui-safety.test.tsx -t F02|F07|F03|F09|F08|F10|F-02|F-09
+
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-baseline-20261022
+
+ ❯ tests/dot-ui-review/favicon.test.ts (1 test | 1 failed) 18ms
+   × F10 baseline contains explicit local favicon 15ms
+ ❯ tests/dot-ui-review/presentation.test.tsx (3 tests | 3 failed) 768ms
+   × F03 prior export shows journal search and fresh GL review before any correction 163ms
+   × F09 provides human-readable summary rather than only machine workpaper 506ms
+   × F08 privacy states company-label and missing-lock limitations without absolute guarantee 97ms
+ ❯ tests/dot-ui-review/replacement.test.tsx (7 tests | 7 failed) 1133ms
+   × F02/F07 keeps import promise pending until cancel and preserves editable workspace 203ms
+   × F02/F07 confirms replacement but resolves only after the worker finishes 79ms
+   × F02 cancellation by Close dialog settles without replacement 97ms
+   × F02 cancellation by escape settles without replacement 458ms
+   × F02 cancellation by backdrop settles without replacement 135ms
+   × F07 unsaved edit installs unload protection and cancel keeps it 40ms
+   × F02 superseding a pending replacement settles the first caller without running it 118ms
+ ❯ tests/claude-review/ui-safety.test.tsx (15 tests | 3 failed | 12 skipped) 2578ms
+     × asks before the demo replaces a real workspace with unsaved review edits 986ms
+     × never carries real review facts into a synthetic demo project 530ms
+     × blocks a second journal from a stale copy of the same case after one export 1059ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-02 replacing a workspace with unsaved review work > asks before the demo replaces a real workspace with unsaved review edits
+TestingLibraryElementError: Unable to find an element with the text: /Replace this workspace\?/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"skip-link"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mSkip to workspace[0m
+    [36m</a>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"app-header"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+        [33mclass[39m=[32m"brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"brand-mark"[39m
+        [36m>[39m
+          [36m<i />[39m
+          [36m<i />[39m
+          [36m<i />[39m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mReconciliation Desk[0m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Main navigation"[39m
+        [33mclass[39m=[32m"main-nav"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"active"[39m
+        [36m>[39m
+          [0mDesk[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mImport[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mExports[0m
+        [36m</button>[39m
+      [36m</nav>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"header-end"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"privacy-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mStays in this browser[0m
+          [36m</span>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Clear workspace"[39m
+          [33mclass[39m=[32m"icon-button clear-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-trash2"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 6h18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"10"[39m
+              [33mx2[39m=[32m"10"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"14"[39m
+              [33mx2[39m=[32m"14"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Toggle navigation"[39m
+          [33mclass[39m=[32m"icon-button mobile-menu"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-menu"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"21"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"21"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"12"[39m
+              [33my2[39m=[32m"12"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"6"[39m
+              [33my2[39m=[32m"6"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"18"[39m
+              [33my2[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-main"[39m
+      [33mid[39m=[32m"main"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFollow the money.[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0mSep 1, 2026 – Sep 30, 2026 · Synthetic HVAC Co[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"heading-actions"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mOpen review project[0m
+            [36m<input[39m
+              [33maccept[39m=[32m".json"[39m
+              [33maria-label[39m=[32m"Open review project"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mhidden[39m=[32m""[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+    ...
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/claude-review/ui-safety.test.tsx:128:19
+    126|     });
+    127|     fireEvent.click(screen.getByRole('button', { name: 'Reset sample m…
+    128|     expect(screen.getByText(/Replace this workspace\?/)).toBeTruthy();
+       |                   ^
+    129|     expect(fetch).not.toHaveBeenCalled();
+    130|     expect(screen.getAllByText(/Synthetic HVAC Co/).length).toBeGreate…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-02 replacing a workspace with unsaved review work > never carries real review facts into a synthetic demo project
+AssertionError: expected '{\n  "format": "reconciliation-review…' not to contain 'Synthetic reviewer (edited)'
+
+- Expected
++ Received
+
+- Synthetic reviewer (edited)
++ {
++   "format": "reconciliation-review-project",
++   "schemaVersion": 1,
++   "savedAt": "2026-10-22T09:35:35.755Z",
++   "workspace": {
++     "input": {
++       "st": [],
++       "qb": [],
++       "bank": [],
++       "manifests": [
++         {
++           "company_id": "SYNTHETIC_DEMO",
++           "source_system": "ST",
++           "source_file_sha256": "ST00000000000000000000000000000000000000000000000000000000000000",
++           "report_name": "st_export.csv",
++           "report_grain": "TEST",
++           "period_start": "2026-09-01",
++           "period_end": "2026-09-30",
++           "as_of_date": "2026-09-30",
++           "company_timezone": "America/New_York",
++           "basis": "ACCRUAL",
++           "accounts": [],
++           "account_balances": [],
++           "header_row": 1,
++           "raw_row_count": 0,
++           "normalized_row_count": 0,
++           "excluded_summary_rows": [],
++           "opening_debit_balance_cents": null,
++           "closing_debit_balance_cents": null,
++           "coverage_confirmed": false,
++           "missing_required_fields": []
++         },
++         {
++           "company_id": "SYNTHETIC_DEMO",
++           "source_system": "QBO",
++           "source_file_sha256": "QBO0000000000000000000000000000000000000000000000000000000000000",
++           "report_name": "qbo_clearing_gl.csv",
++           "report_grain": "TEST",
++           "period_start": "2026-09-01",
++           "period_end": "2026-09-30",
++           "as_of_date": "2026-09-30",
++           "company_timezone": "America/New_York",
++           "basis": "ACCRUAL",
++           "accounts": [],
++           "account_balances": [],
++           "header_row": 1,
++           "raw_row_count": 0,
++           "normalized_row_count": 0,
++           "excluded_summary_rows": [],
++           "opening_debit_balance_cents": null,
++           "closing_debit_balance_cents": null,
++           "coverage_confirmed": false,
++           "missing_required_fields": []
++         },
++         {
++           "company_id": "SYNTHETIC_DEMO",
++           "source_system": "BANK",
++           "source_file_sha256": "BANK000000000000000000000000000000000000000000000000000000000000",
++           "report_name": "chase_bank.csv",
++           "report_grain": "TEST",
++           "period_start": "2026-09-01",
++           "period_end": "2026-09-30",
++           "as_of_date": "2026-09-30",
++           "company_timezone": "America/New_York",
++           "basis": "ACCRUAL",
++           "accounts": [],
++           "account_balances": [],
++           "header_row": 1,
++           "raw_row_count": 0,
++           "normalized_row_count": 0,
++           "excluded_summary_rows": [],
++           "opening_debit_balance_cents": null,
++           "closing_debit_balance_cents": null,
++           "coverage_confirmed": false,
++           "missing_required_fields": []
++         }
++       ],
++       "config": {
++         "company_id": "SYNTHETIC_DEMO",
++         "bank_account_id": "DEMO_BANK",
++         "period_cutoff": "2026-09-30",
++         "qb_bank_account_names": [
++           "Collections Checking"
++         ],
++         "clearing_split_semantics_confirmed": true
++       }
++     },
++     "result": {
++       "groups": [],
++       "controls": {
++         "st_gross_cents": 0,
++         "st_refunds_cents": 0,
++         "st_corrections_cents": 0,
++         "qb_debits_cents": 0,
++         "qb_credits_cents": 0,
++         "bank_signed_cents": 0,
++         "accounts": [],
++         "atoms": [],
++         "conservation_ok": true,
++         "coverage_confirmed": false
++       },
++       "warnings": [],
++       "allocations": [],
++       "searches": [],
++       "rejected_candidates": [],
++       "versions": {
++         "engine": "TEST",
++         "rules": "TEST",
++         "calendar": "TEST",
++         "mapping": []
++       }
++     },
++     "duration": 1,
++     "isDemo": true,
++     "files": [
++       {
++         "name": "st_export.csv",
++         "kind": "ST",
++         "hash": "ST00000000000000000000000000000000000000000000000000000000000000"
++       },
++       {
++         "name": "qbo_clearing_gl.csv",
++         "kind": "QBO",
++         "hash": "QBO0000000000000000000000000000000000000000000000000000000000000"
++       },
++       {
++         "name": "chase_bank.csv",
++         "kind": "BANK",
++         "hash": "BANK000000000000000000000000000000000000000000000000000000000000"
++       }
++     ],
++     "options": {
++       "companyId": "SYNTHETIC_DEMO",
++       "bankAccountId": "DEMO_BANK",
++       "companyTimezone": "America/New_York",
++       "periodStart": "2026-09-01",
++       "periodEnd": "2026-09-30",
++       "asOfDate": "2026-09-30",
++       "currency": "USD",
++       "profile": "synthetic-v1",
++       "rowGrain": "PAYMENT",
++       "exportMode": "JE_TO_CLEARING",
++       "postedLedgerConfirmed": true,
++       "bankPostedConfirmed": true,
++       "coverageConfirmed": true,
++       "basis": "ACCRUAL"
++     },
++     "runId": "47959a32-27b5-41b4-8ae3-7777a3c162a7",
++     "review": {
++       "schemaVersion": 1,
++       "inputDigest": "30095c057869eea2c38de5d4460abe1d808541f5049c99c3144d486f7efeb0e6",
++       "cases": [],
++       "orphanedCases": [
++         {
++           "economicCaseId": "case-6c217a84f3f1a1de1e58f7d3",
++           "accountingActionId": "fee-3bdc076eaa7e316df268a768",
++           "engineGroupId": "84f99c4ff4ca5a394520fdca3df5742c7a1258b66b15a397b3e2d2d760032cb7",
++           "anchors": [
++             "[\"Synthetic HVAC Co\",\"BANK\",\"deposit\",\"[\\\"Collections Checking\\\",\\\"SYN-SET-900\\\"]\"]",
++             "[\"Synthetic HVAC Co\",\"ST\",\"payment\",\"[\\\"Collections Checking\\\",\\\"SYN-PMT-900\\\"]\"]"
++           ],
++           "inputDigest": "3493f4fca19b9430e326f2a230baa6023caec5cda43f712548fa93b5a8cfc022",
++           "identityStatus": "BOUND",
++           "reviewedFacts": {
++             "reviewer": "Synthetic reviewer (edited)",
++             "notes": "Synthetic netted processor fee; posted gross receipt and net bank deposit.",
++             "journalDate": "2026-09-30",
++             "bankAccountName": "Collections Checking",
++             "clearingAccountName": "ServiceTitan Clearing",
++             "feeAccountName": "Merchant Processing Fees",
++             "receiptTransactionId": "SYN-QB-R900",
++             "settlementTransactionId": "SYN-QB-D900",
++             "documentedFee": "900.00",
++             "feeMode": "NETTED",
++             "netFeeConfirmed": true,
++             "periodOpenConfirmed": true,
++             "expenseNotRecordedConfirmed": true,
++             "completeLedgerConfirmed": true,
++             "ledgerCoveredAccountNames": "ServiceTitan Clearing\nAccounts Receivable\nCollections Checking\nMerchant Processing Fees",
++             "ledgerPeriodStart": "2026-09-01",
++             "ledgerPeriodEnd": "2026-09-30",
++             "accountsReviewed": true,
++             "clearingIsOrdinaryAsset": true,
++             "documents": [
++               {
++                 "name": "synthetic-coa.txt",
++                 "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
++                 "purpose": "COA",
++                 "sizeBytes": 10
++               },
++               {
++                 "name": "synthetic-settlement.txt",
++                 "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
++                 "purpose": "SETTLEMENT",
++                 "sizeBytes": 10
++               },
++               {
++                 "name": "synthetic-ledger.txt",
++                 "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
++                 "purpose": "LEDGER",
++                 "sizeBytes": 10
++               }
++             ],
++             "reviewedAccounts": [
++               {
++                 "id": "Collections Checking",
++                 "name": "Collections Checking",
++                 "type": "BANK",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               },
++               {
++                 "id": "ServiceTitan Clearing",
++                 "name": "ServiceTitan Clearing",
++                 "type": "OTHER_CURRENT_ASSET",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               },
++               {
++                 "id": "Merchant Processing Fees",
++                 "name": "Merchant Processing Fees",
++                 "type": "EXPENSE",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               },
++               {
++                 "id": "Accounts Receivable",
++                 "name": "Accounts Receivable",
++                 "type": "OTHER",
++                 "exists": true,
++                 "isUndepositedFunds": false
++               }
++             ],
++             "relations": []
++           },
++           "exportHistory": [],
++           "existingImportStatus": "NEVER_IMPORTED"
++         },
++         {
++           "economicCaseId": "case-26430aeeb027454dbb3c3a8c",
++           "accountingActionId": "fee-e18d3a4a95ca5a88ecaa3195",
++           "engineGroupId": "06d875fcce0863c4a11601619e8cfc1f47155364486ac2a15515c03ed8024fb3",
++           "anchors": [
++             "[\"Synthetic HVAC Co\",\"QBO\",\"transaction\",\"[\\\"Collections Checking\\\",\\\"SYN-QB-R900\\\"]\"]"
++           ],
++           "inputDigest": "3493f4fca19b9430e326f2a230baa6023caec5cda43f712548fa93b5a8cfc022",
++           "identityStatus": "BOUND",
++           "reviewedFacts": {},
++           "exportHistory": [],
++           "existingImportStatus": "NEVER_IMPORTED"
++         }
++       ]
++     }
++   },
++   "integrity": "92f7bb79fea57e8c3c7ea4ec2d8058fa69d9cc644cff02f4b7c179e56d3f944d"
++ }
+
+ ❯ tests/claude-review/ui-safety.test.tsx:143:31
+    141|     fireEvent.click(screen.getByRole('button', { name: 'Save review pr…
+    142|     const saved = downloads.find((d) => d.name.startsWith('review-proj…
+    143|     expect(saved.content).not.toContain('Synthetic reviewer (edited)');
+       |                               ^
+    144|     expect(saved.content).not.toContain('Synthetic HVAC Co');
+    145|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/14]⎯
+
+ FAIL  tests/claude-review/ui-safety.test.tsx > F-09 an export from this browser is remembered beyond the in-memory project > blocks a second journal from a stale copy of the same case after one export
+AssertionError: expected "vi.fn()" to be called at least once
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"Current case accounting review"[39m
+        [33mclass[39m=[32m"case-review panel"[39m
+      [36m>[39m
+        [36m<h3>[39m
+          [0mReview this economic case[0m
+        [36m</h3>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"body-muted"[39m
+        [36m>[39m
+          [0mInvestigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<strong>[39m
+            [0mStable case:[0m
+          [36m</strong>[39m
+          [0m [0m
+          [0mcase-6c217a84f3f1a1de1e58f7d3[0m
+          [0m · [0m
+          [0mBOUND[0m
+          [0m · Prior import:[0m
+          [0m [0m
+          [0mNEVER_IMPORTED[0m
+        [36m</p>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button button-secondary"[39m
+        [36m>[39m
+          [0mDownload human-judgment workpaper[0m
+        [36m</button>[39m
+        [36m<details>[39m
+          [36m<summary>[39m
+            [0mReview facts & documented fee-only proposal[0m
+          [36m</summary>[39m
+          [36m<fieldset[39m
+            [33mclass[39m=[32m"form-stack"[39m
+          [36m>[39m
+            [36m<label>[39m
+              [0mReviewer[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"Synthetic reviewer"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mAccounting basis / unresolved questions[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"text"[39m
+                [33mvalue[39m=[32m"Synthetic netted processor fee; posted gross receipt and net bank deposit."[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mJournal date[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-30"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mDocument purpose[0m
+              [36m<select>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"SETTLEMENT"[39m
+                [36m>[39m
+                  [0mSettlement fee evidence[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"COA"[39m
+                [36m>[39m
+                  [0mActual chart of accounts[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"LEDGER"[39m
+                [36m>[39m
+                  [0mFull GL coverage evidence[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mAttach a locally reviewed supporting document[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"file"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<small>[39m
+              [0mOnly its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.[0m
+            [36m</small>[39m
+            [36m<ul>[39m
+              [36m<li>[39m
+                [0mCOA[0m
+                [0m: [0m
+                [0msynthetic-coa.txt[0m
+                [0m · [0m
+                [0m111111111111[0m
+              [36m</li>[39m
+              [36m<li>[39m
+                [0mSETTLEMENT[0m
+                [0m: [0m
+                [0msynthetic-settlement.txt[0m
+                [0m · [0m
+                [0m222222222222[0m
+              [36m</li>[39m
+              [36m<li>[39m
+                [0mLEDGER[0m
+                [0m: [0m
+                [0msynthetic-ledger.txt[0m
+                [0m · [0m
+                [0m333333333333[0m
+              [36m</li>[39m
+            [36m</ul>[39m
+            [36m<label>[39m
+              [0mExact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)[0m
+              [36m<textarea>[39m
+                [0mServiceTitan Clearing
+Accounts Receivable
+Collections Checking
+Merchant Processing Fees[0m
+              [36m</textarea>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mReviewed GL coverage starts[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-01"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mReviewed GL coverage ends[0m
+              [36m<input[39m
+                [33mtype[39m=[32m"date"[39m
+                [33mvalue[39m=[32m"2026-09-30"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<datalist[39m
+              [33mid[39m=[32m"review-account-names"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+              [36m/>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"Accounts Receivable"[39m
+              [36m/>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"Collections Checking"[39m
+              [36m/>[39m
+            [36m</datalist>[39m
+            [36m<label>[39m
+              [0mExisting bank account full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"Collections Checking"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mExisting ordinary asset clearing full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mExisting fee expense account full name[0m
+              [36m<input[39m
+                [33mlist[39m=[32m"review-account-names"[39m
+                [33mvalue[39m=[32m"Merchant Processing Fees"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<fieldset>[39m
+              [36m<legend>[39m
+                [0mActual chart of accounts review[0m
+              [36m</legend>[39m
+              [36m<small>[39m
+                [0mExplicitly confirm each account against the attached COA. A chosen label never creates or changes an account.[0m
+              [36m</small>[39m
+              [36m<...
+ ❯ tests/claude-review/ui-safety.test.tsx:202:42
+    200|       );
+    201|     fireEvent.click(screen.getByRole('button', { name: 'Build supporte…
+    202|     await waitFor(() => expect(onChange).toHaveBeenCalled());
+       |                                          ^
+    203|     rerender();
+    204|     fireEvent.click(screen.getByLabelText(/I reviewed these exact acco…
+ ❯ runWithExpensiveErrorDiagnosticsDisabled ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/14]⎯
+
+ FAIL  tests/dot-ui-review/favicon.test.ts > F10 baseline contains explicit local favicon
+AssertionError: expected '<!doctype html><html lang="en"><head>…' to contain '<link rel="icon" href="data:,"/>'
+
+- Expected
++ Received
+
+- <link rel="icon" href="data:,"/>
++ <!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A private, file-based reconciliation workbench. Inspect evidence, not just matching amounts."/><title>Reconciliation Desk</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>
++
+
+ ❯ tests/dot-ui-review/favicon.test.ts:4:45
+      2| import { readFileSync } from 'node:fs';
+      3| it('F10 baseline contains explicit local favicon', () => {
+      4|   expect(readFileSync('index.html','utf8')).toContain('<link rel="icon…
+       |                                             ^
+      5| });
+      6|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/14]⎯
+
+ FAIL  tests/dot-ui-review/presentation.test.tsx > F03 prior export shows journal search and fresh GL review before any correction
+TestingLibraryElementError: Unable to find an element with the text: /search for journal number/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Current case accounting review"[39m
+      [33mclass[39m=[32m"case-review panel"[39m
+    [36m>[39m
+      [36m<h3>[39m
+        [0mReview this economic case[0m
+      [36m</h3>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"body-muted"[39m
+      [36m>[39m
+        [0mInvestigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [36m<strong>[39m
+          [0mStable case:[0m
+        [36m</strong>[39m
+        [0m [0m
+        [0mcase-6c217a84f3f1a1de1e58f7d3[0m
+        [0m · [0m
+        [0mBOUND[0m
+        [0m · Prior import:[0m
+        [0m [0m
+        [0mNEVER_IMPORTED[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"notice "[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-circle-alert"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"17"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"17"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"12"[39m
+            [33mcy[39m=[32m"12"[39m
+            [33mr[39m=[32m"10"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12"[39m
+            [33my1[39m=[32m"8"[39m
+            [33my2[39m=[32m"12"[39m
+          [36m/>[39m
+          [36m<line[39m
+            [33mx1[39m=[32m"12"[39m
+            [33mx2[39m=[32m"12.01"[39m
+            [33my1[39m=[32m"16"[39m
+            [33my2[39m=[32m"16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<div>[39m
+          [0mPrevious accounting export recorded. Preserve its journal number and verify the ledger before any retry. Save this review project now.[0m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"button button-secondary"[39m
+      [36m>[39m
+        [0mDownload human-judgment workpaper[0m
+      [36m</button>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mReview facts & documented fee-only proposal[0m
+        [36m</summary>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"form-stack"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mReviewer[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAccounting basis / unresolved questions[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mJournal date[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-30"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mDocument purpose[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SETTLEMENT"[39m
+              [36m>[39m
+                [0mSettlement fee evidence[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COA"[39m
+              [36m>[39m
+                [0mActual chart of accounts[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"LEDGER"[39m
+              [36m>[39m
+                [0mFull GL coverage evidence[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAttach a locally reviewed supporting document[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<small>[39m
+            [0mOnly its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.[0m
+          [36m</small>[39m
+          [36m<ul />[39m
+          [36m<label>[39m
+            [0mExact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)[0m
+            [36m<textarea />[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage starts[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage ends[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<datalist[39m
+            [33mid[39m=[32m"review-account-names"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+            [36m/>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"Accounts Receivable"[39m
+            [36m/>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"Collections Checking"[39m
+            [36m/>[39m
+          [36m</datalist>[39m
+          [36m<label>[39m
+            [0mExisting bank account full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mExisting ordinary asset clearing full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mExisting fee expense account full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<fieldset>[39m
+            [36m<legend>[39m
+              [0mActual chart of accounts review[0m
+            [36m</legend>[39m
+            [36m<small>[39m
+              [0mExplicitly confirm each account against the attached COA. A chosen label never creates or changes an account.[0m
+            [36m</small>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mServiceTitan Clearing[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type ServiceTitan Clearing"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status ServiceTitan Clearing"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mAccounts Receivable[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Accounts Receivable"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Accounts Receivable"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mCollections Checking[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Collections Checking"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Collections Checking"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+          [36m</fieldset>[39m
+          [36m<label>[39m
+            [0mPosted gross-receipt transaction[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mChoose a current-case QB transaction[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-R900"[39m
+              [36m>[39m
+                [0mSYN-QB-R900[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-D900"[39m
+              [36m>[39m
+                [0mSYN-QB-D900[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mPosted net-bank settlement transaction[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mChoose a current-case QB transaction[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-R900"[39m
+              [36m>[39m
+                [0mSYN-QB-R900[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-D900"[39m
+              [36m>[39m
+                [0mSYN-QB-D900[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mDocumented net fee in USD (not an inferred difference)[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mFee mode[0m
+            [36m<select>[39m
+              [36m<option>[39m
+                [0mUNKNOWN[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mNETTED[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mSEPARATE_INVOICE[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mGROSS_SETTLED[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mI reviewed the actual COA; all named GL accounts exist and their imported types are correct.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mSelected clearing is ordinary asset clearing, not Undeposited Funds or a liability.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mThe supplied GL includes complete relevant bank, clearing and fee activity for this period.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mSource evidence identifies this entire amount as this case’s netted fee, not a reserve/hold.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mI checked all fee journals and confirmed this fee has not already been recorded.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mThe selected accounting period is open and the journal date is appropriate.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+          [36m>[39m
+            [0mBuild supported fee-only draft[0m
+          [36m</button>[39m
+        [36m</fieldset>[39m
+      [36m</details>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mUF candidate / reviewed deposit worksheet[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mST IDs alone produce a candidate list. Supply the actual existing QB Payment IDs and reviewed undeposited status before giving selection instructions. Match an existing bank feed item; do not Categorize a second receipt.[0m
+        [36m</p>[39m
+        [36m<button>[39m
+          [0mAdd actual QB Payment[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mDownload UF review worksheet[0m
+        [36m</button>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/presentation.test.tsx:32:17
+     30|   });
+     31|   render(<CaseReview workspace={w} group={g} onChange={() => {}} />);
+     32|   expect(screen.getByText(/search for journal number/)).toBeTruthy();
+       |                 ^
+     33|   expect(screen.getByText(/re-export the GL or Transaction Journal/)).…
+     34|   expect(screen.getByText(/failed download is not proof it was never i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/14]⎯
+
+ FAIL  tests/dot-ui-review/presentation.test.tsx > F09 provides human-readable summary rather than only machine workpaper
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Download reviewer summary (HTML)"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Current case accounting review":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Current case accounting review"[39m
+    [33mclass[39m=[32m"case-review panel"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Review this economic case":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"body-muted"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Download human-judgment workpaper":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-secondary"[39m
+  [36m/>[39m
+
+  Name "Build supported fee-only draft":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-primary"[39m
+  [36m/>[39m
+
+  Name "Add actual QB Payment":
+  [36m<button />[39m
+
+  Name "Download UF review worksheet":
+  [36m<button />[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<fieldset[39m
+    [33mclass[39m=[32m"form-stack"[39m
+  [36m/>[39m
+
+  Name "Actual chart of accounts review":
+  [36m<fieldset />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Reviewer":
+  [36m<input[39m
+    [33mtype[39m=[32m"text"[39m
+    [33mvalue[39m=[32m"Synthetic reviewer"[39m
+  [36m/>[39m
+
+  Name "Accounting basis / unresolved questions":
+  [36m<input[39m
+    [33mtype[39m=[32m"text"[39m
+    [33mvalue[39m=[32m"Synthetic netted processor fee; posted gross receipt and net bank deposit."[39m
+  [36m/>[39m
+
+  Name "Exact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)":
+  [36m<textarea />[39m
+
+  Name "Documented net fee in USD (not an inferred difference)":
+  [36m<input[39m
+    [33mtype[39m=[32m"text"[39m
+    [33mvalue[39m=[32m"900.00"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Document purpose":
+  [36m<select />[39m
+
+  Name "Existing bank account full name":
+  [36m<input[39m
+    [33mlist[39m=[32m"review-account-names"[39m
+    [33mvalue[39m=[32m"Collections Checking"[39m
+  [36m/>[39m
+
+  Name "Existing ordinary asset clearing full name":
+  [36m<input[39m
+    [33mlist[39m=[32m"review-account-names"[39m
+    [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+  [36m/>[39m
+
+  Name "Existing fee expense account full name":
+  [36m<input[39m
+    [33mlist[39m=[32m"review-account-names"[39m
+    [33mvalue[39m=[32m"Merchant Processing Fees"[39m
+  [36m/>[39m
+
+  Name "COA type ServiceTitan Clearing":
+  [36m<select[39m
+    [33maria-label[39m=[32m"COA type ServiceTitan Clearing"[39m
+  [36m/>[39m
+
+  Name "UF status ServiceTitan Clearing":
+  [36m<select[39m
+    [33maria-label[39m=[32m"UF status ServiceTitan Clearing"[39m
+  [36m/>[39m
+
+  Name "COA type Accounts Receivable":
+  [36m<select[39m
+    [33maria-label[39m=[32m"COA type Accounts Receivable"[39m
+  [36m/>[39m
+
+  Name "UF status Accounts Receivable":
+  [36m<select[39m
+    [33maria-label[39m=[32m"UF status Accounts Receivable"[39m
+  [36m/>[39m
+
+  Name "COA type Collections Checking":
+  [36m<select[39m
+    [33maria-label[39m=[32m"COA type Collections Checking"[39m
+  [36m/>[39m
+
+  Name "UF status Collections Checking":
+  [36m<select[39m
+    [33maria-label[39m=[32m"UF status Collections Checking"[39m
+  [36m/>[39m
+
+  Name "COA type Merchant Processing Fees":
+  [36m<select[39m
+    [33maria-label[39m=[32m"COA type Merchant Processing Fees"[39m
+  [36m/>[39m
+
+  Name "UF status Merchant Processing Fees":
+  [36m<select[39m
+    [33maria-label[39m=[32m"UF status Merchant Processing Fees"[39m
+  [36m/>[39m
+
+  Name "Posted gross-receipt transaction":
+  [36m<select />[39m
+
+  Name "Posted net-bank settlement transaction":
+  [36m<select />[39m
+
+  Name "Fee mode":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "Settlement fee evidence":
+  [36m<option[39m
+    [33mvalue[39m=[32m"SETTLEMENT"[39m
+  [36m/>[39m
+
+  Name "Actual chart of accounts":
+  [36m<option[39m
+    [33mvalue[39m=[32m"COA"[39m
+  [36m/>[39m
+
+  Name "Full GL coverage evidence":
+  [36m<option[39m
+    [33mvalue[39m=[32m"LEDGER"[39m
+  [36m/>[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "BANK":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_ASSET":
+  [36m<option />[39m
+
+  Name "EXPENSE":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_LIABILITY":
+  [36m<option />[39m
+
+  Name "OTHER":
+  [36m<option />[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "UF":
+  [36m<option />[39m
+
+  Name "NOT_UF":
+  [36m<option />[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "BANK":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_ASSET":
+  [36m<option />[39m
+
+  Name "EXPENSE":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_LIABILITY":
+  [36m<option />[39m
+
+  Name "OTHER":
+  [36m<option />[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "UF":
+  [36m<option />[39m
+
+  Name "NOT_UF":
+  [36m<option />[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "BANK":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_ASSET":
+  [36m<option />[39m
+
+  Name "EXPENSE":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_LIABILITY":
+  [36m<option />[39m
+
+  Name "OTHER":
+  [36m<option />[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "UF":
+  [36m<option />[39m
+
+  Name "NOT_UF":
+  [36m<option />[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "BANK":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_ASSET":
+  [36m<option />[39m
+
+  Name "EXPENSE":
+  [36m<option />[39m
+
+  Name "OTHER_CURRENT_LIABILITY":
+  [36m<option />[39m
+
+  Name "OTHER":
+  [36m<option />[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "UF":
+  [36m<option />[39m
+
+  Name "NOT_UF":
+  [36m<option />[39m
+
+  Name "Choose a current-case QB transaction":
+  [36m<option[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "SYN-QB-R900":
+  [36m<option[39m
+    [33mvalue[39m=[32m"SYN-QB-R900"[39m
+  [36m/>[39m
+
+  Name "SYN-QB-D900":
+  [36m<option[39m
+    [33mvalue[39m=[32m"SYN-QB-D900"[39m
+  [36m/>[39m
+
+  Name "Choose a current-case QB transaction":
+  [36m<option[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "SYN-QB-R900":
+  [36m<option[39m
+    [33mvalue[39m=[32m"SYN-QB-R900"[39m
+  [36m/>[39m
+
+  Name "SYN-QB-D900":
+  [36m<option[39m
+    [33mvalue[39m=[32m"SYN-QB-D900"[39m
+  [36m/>[39m
+
+  Name "UNKNOWN":
+  [36m<option />[39m
+
+  Name "NETTED":
+  [36m<option />[39m
+
+  Name "SEPARATE_INVOICE":
+  [36m<option />[39m
+
+  Name "GROSS_SETTLED":
+  [36m<option />[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Exists in reviewed COA":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Exists in reviewed COA":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Exists in reviewed COA":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Exists in reviewed COA":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "I reviewed the actual COA; all named GL accounts exist and their imported types are correct.":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Selected clearing is ordinary asset clearing, not Undeposited Funds or a liability.":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "The supplied GL includes complete relevant bank, clearing and fee activity for this period.":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Source evidence identifies this entire amount as this case’s netted fee, not a reserve/hold.":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "I checked all fee journals and confirmed this fee has not already been recorded.":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "The selected accounting period is open and the journal date is appropriate.":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Current case accounting review"[39m
+      [33mclass[39m=[32m"case-review panel"[39m
+    [36m>[39m
+      [36m<h3>[39m
+        [0mReview this economic case[0m
+      [36m</h3>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"body-muted"[39m
+      [36m>[39m
+        [0mInvestigation remains available even when an accounting import is blocked. Review statements are human judgments, not automatic source verification.[0m
+      [36m</p>[39m
+      [36m<p>[39m
+        [36m<strong>[39m
+          [0mStable case:[0m
+        [36m</strong>[39m
+        [0m [0m
+        [0mcase-6c217a84f3f1a1de1e58f7d3[0m
+        [0m · [0m
+        [0mBOUND[0m
+        [0m · Prior import:[0m
+        [0m [0m
+        [0mNEVER_IMPORTED[0m
+      [36m</p>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"button button-secondary"[39m
+      [36m>[39m
+        [0mDownload human-judgment workpaper[0m
+      [36m</button>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mReview facts & documented fee-only proposal[0m
+        [36m</summary>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"form-stack"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mReviewer[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"Synthetic reviewer"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAccounting basis / unresolved questions[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"Synthetic netted processor fee; posted gross receipt and net bank deposit."[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mJournal date[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-30"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mDocument purpose[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SETTLEMENT"[39m
+              [36m>[39m
+                [0mSettlement fee evidence[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"COA"[39m
+              [36m>[39m
+                [0mActual chart of accounts[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"LEDGER"[39m
+              [36m>[39m
+                [0mFull GL coverage evidence[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mAttach a locally reviewed supporting document[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<small>[39m
+            [0mOnly its name, byte digest and review purpose are saved; the document is not sent anywhere or automatically interpreted. Keep the original with your review project.[0m
+          [36m</small>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mCOA[0m
+              [0m: [0m
+              [0msynthetic-coa.txt[0m
+              [0m · [0m
+              [0m111111111111[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mSETTLEMENT[0m
+              [0m: [0m
+              [0msynthetic-settlement.txt[0m
+              [0m · [0m
+              [0m222222222222[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mLEDGER[0m
+              [0m: [0m
+              [0msynthetic-ledger.txt[0m
+              [0m · [0m
+              [0m333333333333[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+          [36m<label>[39m
+            [0mExact accounts covered by reviewed full GL (one full name per line, including zero-activity fee account)[0m
+            [36m<textarea>[39m
+              [0mServiceTitan Clearing
+Accounts Receivable
+Collections Checking
+Merchant Processing Fees[0m
+            [36m</textarea>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage starts[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-01"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mReviewed GL coverage ends[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"date"[39m
+              [33mvalue[39m=[32m"2026-09-30"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<datalist[39m
+            [33mid[39m=[32m"review-account-names"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+            [36m/>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"Accounts Receivable"[39m
+            [36m/>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"Collections Checking"[39m
+            [36m/>[39m
+          [36m</datalist>[39m
+          [36m<label>[39m
+            [0mExisting bank account full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m"Collections Checking"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mExisting ordinary asset clearing full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m"ServiceTitan Clearing"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mExisting fee expense account full name[0m
+            [36m<input[39m
+              [33mlist[39m=[32m"review-account-names"[39m
+              [33mvalue[39m=[32m"Merchant Processing Fees"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<fieldset>[39m
+            [36m<legend>[39m
+              [0mActual chart of accounts review[0m
+            [36m</legend>[39m
+            [36m<small>[39m
+              [0mExplicitly confirm each account against the attached COA. A chosen label never creates or changes an account.[0m
+            [36m</small>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mServiceTitan Clearing[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type ServiceTitan Clearing"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status ServiceTitan Clearing"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mAccounts Receivable[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Accounts Receivable"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Accounts Receivable"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mCollections Checking[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Collections Checking"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Collections Checking"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+            [36m<div>[39m
+              [36m<strong>[39m
+                [0mMerchant Processing Fees[0m
+              [36m</strong>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"COA type Merchant Processing Fees"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mBANK[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_ASSET[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mEXPENSE[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER_CURRENT_LIABILITY[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mOTHER[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<label>[39m
+                [36m<input[39m
+                  [33mchecked[39m=[32m""[39m
+                  [33mtype[39m=[32m"checkbox"[39m
+                [36m/>[39m
+                [0mExists in reviewed COA[0m
+              [36m</label>[39m
+              [36m<select[39m
+                [33maria-label[39m=[32m"UF status Merchant Processing Fees"[39m
+              [36m>[39m
+                [36m<option>[39m
+                  [0mUNKNOWN[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mUF[0m
+                [36m</option>[39m
+                [36m<option>[39m
+                  [0mNOT_UF[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</div>[39m
+          [36m</fieldset>[39m
+          [36m<label>[39m
+            [0mPosted gross-receipt transaction[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mChoose a current-case QB transaction[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-R900"[39m
+              [36m>[39m
+                [0mSYN-QB-R900[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-D900"[39m
+              [36m>[39m
+                [0mSYN-QB-D900[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mPosted net-bank settlement transaction[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mChoose a current-case QB transaction[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-R900"[39m
+              [36m>[39m
+                [0mSYN-QB-R900[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"SYN-QB-D900"[39m
+              [36m>[39m
+                [0mSYN-QB-D900[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mDocumented net fee in USD (not an inferred difference)[0m
+            [36m<input[39m
+              [33mtype[39m=[32m"text"[39m
+              [33mvalue[39m=[32m"900.00"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mFee mode[0m
+            [36m<select>[39m
+              [36m<option>[39m
+                [0mUNKNOWN[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mNETTED[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mSEPARATE_INVOICE[0m
+              [36m</option>[39m
+              [36m<option>[39m
+                [0mGROSS_SETTLED[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mI reviewed the actual COA; all named GL accounts exist and their imported types are correct.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mSelected clearing is ordinary asset clearing, not Undeposited Funds or a liability.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mThe supplied GL includes complete relevant bank, clearing and fee activity for this period.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mSource evidence identifies this entire amount as this case’s netted fee, not a reserve/hold.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mI checked all fee journals and confirmed this fee has not already been recorded.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"checkbox-line"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mchecked[39m=[32m""[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mThe selected accounting period is open and the journal date is appropriate.[0m
+            [36m</span>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+          [36m>[39m
+            [0mBuild supported fee-only draft[0m
+          [36m</button>[39m
+        [36m</fieldset>[39m
+      [36m</details>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mUF candidate / reviewed deposit worksheet[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mST IDs alone produce a candidate list. Supply the actual existing QB Payment IDs and reviewed undeposited status before giving selection instructions. Match an existing bank feed item; do not Categorize a second receipt.[0m
+        [36m</p>[39m
+        [36m<button>[39m
+          [0mAdd actual QB Payment[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mDownload UF review worksheet[0m
+        [36m</button>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/presentation.test.tsx:40:17
+     38|   const w = withFacts(base, documentedFacts(base));
+     39|   render(<CaseReview workspace={w} group={feeGroup(w)} onChange={() =>…
+     40|   expect(screen.getByRole('button', { name: 'Download reviewer summary…
+       |                 ^
+     41| });
+     42| it('F08 privacy states company-label and missing-lock limitations with…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/14]⎯
+
+ FAIL  tests/dot-ui-review/presentation.test.tsx > F08 privacy states company-label and missing-lock limitations without absolute guarantee
+AssertionError: expected 'Your data, kept localFiles are parsed…' to match /Company-label changes.*spelling or ca…/
+
+- Expected:
+/Company-label changes.*spelling or case/
+
++ Received:
+"Your data, kept localFiles are parsed in this browser. Reconciliation runs in a local Web Worker. There are no financial-account connections, analytics, model calls, or transaction uploads.What is retainedCurrent source data and review state live only in memory. Reloading or clearing the workspace removes them. Downloads remain on your device.What this build supportsSingle-company, single-bank, USD activity reconciliation with UTF-8 CSV / TSV and guarded, values-only XLSX imports. PDF extraction, real QuickBooks import compatibility, and production ledger validation are not claimed.Evidence, not automatic approvalMissing records remain unknown. Financial adjustments require verified account and posting evidence. A download never becomes “verified in QuickBooks” without re-imported ledger evidence."
+
+ ❯ tests/dot-ui-review/presentation.test.tsx:52:16
+     50|   fireEvent.click(screen.getByText('Privacy & limits'));
+     51|   const text = screen.getByRole('dialog').textContent!;
+     52|   expect(text).toMatch(/Company-label changes.*spelling or case/);
+       |                ^
+     53|   expect(text).toMatch(/Without Web Locks/);
+     54|   expect(text).toMatch(/lost if site data is cleared/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/14]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02/F07 keeps import promise pending until cancel and preserves editable workspace
+TestingLibraryElementError: Unable to find an element with the text: Replace this workspace?. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"skip-link"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mSkip to workspace[0m
+    [36m</a>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"app-header"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+        [33mclass[39m=[32m"brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"brand-mark"[39m
+        [36m>[39m
+          [36m<i />[39m
+          [36m<i />[39m
+          [36m<i />[39m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mReconciliation Desk[0m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Main navigation"[39m
+        [33mclass[39m=[32m"main-nav"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"active"[39m
+        [36m>[39m
+          [0mDesk[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mImport[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mExports[0m
+        [36m</button>[39m
+      [36m</nav>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"header-end"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"privacy-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mStays in this browser[0m
+          [36m</span>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Clear workspace"[39m
+          [33mclass[39m=[32m"icon-button clear-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-trash2"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 6h18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"10"[39m
+              [33mx2[39m=[32m"10"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"14"[39m
+              [33mx2[39m=[32m"14"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Toggle navigation"[39m
+          [33mclass[39m=[32m"icon-button mobile-menu"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-menu"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"21"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"21"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"12"[39m
+              [33my2[39m=[32m"12"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"6"[39m
+              [33my2[39m=[32m"6"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"18"[39m
+              [33my2[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-main"[39m
+      [33mid[39m=[32m"main"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFollow the money.[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0mSep 1, 2026 – Sep 30, 2026 · Synthetic HVAC Co[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"heading-actions"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mOpen review project[0m
+            [36m<input[39m
+              [33maccept[39m=[32m".json"[39m
+              [33maria-label[39m=[32m"Open review project"[39m
+              [33mhidden[39m=[32m""[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mSave review project[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-upload"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"[39m
+              [36m/>[39m
+              [36m<polyline[39m
+                [33mpoints[39m=[32m"17 8 12 3 7 8"[39m
+              [36m/>[39m
+              [36m<line[39m
+                [33mx1[39m=[32m"12"[39m
+                [33mx2[39m=[32m"12"[39m
+                [33my1[39m=[32m"3"[39m
+                [33my2[39m=[32m"15"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mImport files[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-database"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<ellipse[39m
+                [33mcx[39m=[32m"12"[39m
+                [33mcy[39m=[32m"5"[39m
+                [33mrx[39m=[32m"9"[39m
+                [33mry[39m=[32m"3"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 5V19A9 3 0 0 0 21 19V5"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12A9 3 0 0 0 21 12"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mReset sample month[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"toast-notice"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mReconciliation complete. Review evidence before any accounting action.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Dismiss update"[39m
+          [33mclass[39m=[32m"icon-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-x"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"15"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"15"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M18 6 6 18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m6 6 12 12"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<button>[39m
+        [0mEdit review[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mhidden[39m=[32m""[39m
+      [36m/>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"app-footer"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"14"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"14"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mRead-only by design. Export is not posting.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+        [36m>[39m
+          [0mPrivacy & limits[0m
+        [36m</button>[39m
+      [36m</footer>[39m
+    [36m</main>[39m
+    [0m [0m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/replacement.test.tsx:75:17
+     73|     });
+     74|   });
+     75|   expect(screen.getByText('Replace this workspace?')).toBeTruthy();
+       |                 ^
+     76|   expect(finished).toBe(false);
+     77|   expect(runReconciliation).toHaveBeenCalledTimes(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/14]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02/F07 confirms replacement but resolves only after the worker finishes
+TestingLibraryElementError: Unable to find an element with the text: Replace workspace. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"skip-link"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mSkip to workspace[0m
+    [36m</a>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"app-header"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+        [33mclass[39m=[32m"brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"brand-mark"[39m
+        [36m>[39m
+          [36m<i />[39m
+          [36m<i />[39m
+          [36m<i />[39m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mReconciliation Desk[0m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Main navigation"[39m
+        [33mclass[39m=[32m"main-nav"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"active"[39m
+        [36m>[39m
+          [0mDesk[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mImport[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mExports[0m
+        [36m</button>[39m
+      [36m</nav>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"header-end"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"privacy-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mStays in this browser[0m
+          [36m</span>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Clear workspace"[39m
+          [33mclass[39m=[32m"icon-button clear-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-trash2"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 6h18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"10"[39m
+              [33mx2[39m=[32m"10"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"14"[39m
+              [33mx2[39m=[32m"14"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Toggle navigation"[39m
+          [33mclass[39m=[32m"icon-button mobile-menu"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-menu"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"21"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"21"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"12"[39m
+              [33my2[39m=[32m"12"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"6"[39m
+              [33my2[39m=[32m"6"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"18"[39m
+              [33my2[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-main"[39m
+      [33mid[39m=[32m"main"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFollow the money.[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0mSep 1, 2026 – Sep 30, 2026 · Synthetic HVAC Co[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"heading-actions"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mOpen review project[0m
+            [36m<input[39m
+              [33maccept[39m=[32m".json"[39m
+              [33maria-label[39m=[32m"Open review project"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mhidden[39m=[32m""[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [0mSave review project[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-upload"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"[39m
+              [36m/>[39m
+              [36m<polyline[39m
+                [33mpoints[39m=[32m"17 8 12 3 7 8"[39m
+              [36m/>[39m
+              [36m<line[39m
+                [33mx1[39m=[32m"12"[39m
+                [33mx2[39m=[32m"12"[39m
+                [33my1[39m=[32m"3"[39m
+                [33my2[39m=[32m"15"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mImport files[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-database"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<ellipse[39m
+                [33mcx[39m=[32m"12"[39m
+                [33mcy[39m=[32m"5"[39m
+                [33mrx[39m=[32m"9"[39m
+                [33mry[39m=[32m"3"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 5V19A9 3 0 0 0 21 19V5"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12A9 3 0 0 0 21 12"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mReset sample month[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"processing-bar"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"inline-loading"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-loader-circle spin"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mFollowing each source link locally[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<button>[39m
+        [0mEdit review[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mhidden[39m=[32m""[39m
+      [36m/>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"app-footer"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"14"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"14"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mRead-only by design. Export is not posting.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+        [36m>[39m
+          [0mPrivacy & limits[0m
+        [36m</button>[39m
+      [36m</footer>[39m
+    [36m</main>[39m
+    [0m [0m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/replacement.test.tsx:105:28
+    103|   expect(finished).toBe(false);
+    104|   await act(async () => {
+    105|     fireEvent.click(screen.getByText('Replace workspace'));
+       |                            ^
+    106|   });
+    107|   expect(finished).toBe(false);
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:47:24
+ ❯ process.env.NODE_ENV.exports.act ../reconciliation-dot-20261022/node_modules/react/cjs/react.development.js:814:22
+ ❯ Proxy.<anonymous> ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:46:25
+ ❯ tests/dot-ui-review/replacement.test.tsx:104:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/14]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02 cancellation by Close dialog settles without replacement
+TestingLibraryElementError: Unable to find a label with the text of: Close dialog
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"skip-link"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mSkip to workspace[0m
+    [36m</a>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"app-header"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+        [33mclass[39m=[32m"brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"brand-mark"[39m
+        [36m>[39m
+          [36m<i />[39m
+          [36m<i />[39m
+          [36m<i />[39m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mReconciliation Desk[0m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Main navigation"[39m
+        [33mclass[39m=[32m"main-nav"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"active"[39m
+        [36m>[39m
+          [0mDesk[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mImport[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mExports[0m
+        [36m</button>[39m
+      [36m</nav>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"header-end"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"privacy-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mStays in this browser[0m
+          [36m</span>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Clear workspace"[39m
+          [33mclass[39m=[32m"icon-button clear-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-trash2"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 6h18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"10"[39m
+              [33mx2[39m=[32m"10"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"14"[39m
+              [33mx2[39m=[32m"14"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Toggle navigation"[39m
+          [33mclass[39m=[32m"icon-button mobile-menu"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-menu"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"21"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"21"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"12"[39m
+              [33my2[39m=[32m"12"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"6"[39m
+              [33my2[39m=[32m"6"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"18"[39m
+              [33my2[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-main"[39m
+      [33mid[39m=[32m"main"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFollow the money.[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0mSep 1, 2026 – Sep 30, 2026 · Synthetic HVAC Co[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"heading-actions"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mOpen review project[0m
+            [36m<input[39m
+              [33maccept[39m=[32m".json"[39m
+              [33maria-label[39m=[32m"Open review project"[39m
+              [33mhidden[39m=[32m""[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mSave review project[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-upload"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"[39m
+              [36m/>[39m
+              [36m<polyline[39m
+                [33mpoints[39m=[32m"17 8 12 3 7 8"[39m
+              [36m/>[39m
+              [36m<line[39m
+                [33mx1[39m=[32m"12"[39m
+                [33mx2[39m=[32m"12"[39m
+                [33my1[39m=[32m"3"[39m
+                [33my2[39m=[32m"15"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mImport files[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-database"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<ellipse[39m
+                [33mcx[39m=[32m"12"[39m
+                [33mcy[39m=[32m"5"[39m
+                [33mrx[39m=[32m"9"[39m
+                [33mry[39m=[32m"3"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 5V19A9 3 0 0 0 21 19V5"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12A9 3 0 0 0 21 12"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mReset sample month[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"toast-notice"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mReconciliation complete. Review evidence before any accounting action.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Dismiss update"[39m
+          [33mclass[39m=[32m"icon-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-x"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"15"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"15"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M18 6 6 18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m6 6 12 12"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<button>[39m
+        [0mEdit review[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mhidden[39m=[32m""[39m
+      [36m/>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"app-footer"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"14"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"14"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mRead-only by design. Export is not posting.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+        [36m>[39m
+          [0mPrivacy & limits[0m
+        [36m</button>[39m
+      [36m</footer>[39m
+    [36m</main>[39m
+    [0m [0m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getAllByLabelText ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/queries/label-text.js:111:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/replacement.test.tsx:124:61
+    122|     });
+    123|     await act(async () => {
+    124|       if (method === 'Close dialog') fireEvent.click(screen.getByLabel…
+       |                                                             ^
+    125|       else if (method === 'escape')
+    126|         fireEvent(
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:47:24
+ ❯ process.env.NODE_ENV.exports.act ../reconciliation-dot-20261022/node_modules/react/cjs/react.development.js:814:22
+ ❯ Proxy.<anonymous> ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:46:25
+ ❯ tests/dot-ui-review/replacement.test.tsx:123:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/14]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02 cancellation by escape settles without replacement
+TestingLibraryElementError: Unable to find an accessible element with the role "dialog"
+
+Here are the accessible roles:
+
+  link:
+
+  Name "Skip to workspace":
+  [36m<a[39m
+    [33mclass[39m=[32m"skip-link"[39m
+    [33mhref[39m=[32m"#main"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"app-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Reconciliation Desk home":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+    [33mclass[39m=[32m"brand"[39m
+  [36m/>[39m
+
+  Name "Desk":
+  [36m<button[39m
+    [33maria-current[39m=[32m"page"[39m
+    [33mclass[39m=[32m"active"[39m
+  [36m/>[39m
+
+  Name "Import":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Exports":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Stays in this browser":
+  [36m<button[39m
+    [33mclass[39m=[32m"privacy-button"[39m
+  [36m/>[39m
+
+  Name "Clear workspace":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Clear workspace"[39m
+    [33mclass[39m=[32m"icon-button clear-button"[39m
+  [36m/>[39m
+
+  Name "Toggle navigation":
+  [36m<button[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Toggle navigation"[39m
+    [33mclass[39m=[32m"icon-button mobile-menu"[39m
+  [36m/>[39m
+
+  Name "Save review project":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-secondary"[39m
+  [36m/>[39m
+
+  Name "Import files":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-secondary"[39m
+  [36m/>[39m
+
+  Name "Reset sample month":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-primary"[39m
+  [36m/>[39m
+
+  Name "Dismiss update":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Dismiss update"[39m
+    [33mclass[39m=[32m"icon-button"[39m
+  [36m/>[39m
+
+  Name "Edit review":
+  [36m<button />[39m
+
+  Name "Privacy & limits":
+  [36m<button[39m
+    [33mclass[39m=[32m"text-button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Main navigation":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Main navigation"[39m
+    [33mclass[39m=[32m"main-nav"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"app-main"[39m
+    [33mid[39m=[32m"main"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Follow the money.":
+  [36m<h1 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"toast-notice"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"app-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"skip-link"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mSkip to workspace[0m
+    [36m</a>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"app-header"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+        [33mclass[39m=[32m"brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"brand-mark"[39m
+        [36m>[39m
+          [36m<i />[39m
+          [36m<i />[39m
+          [36m<i />[39m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mReconciliation Desk[0m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Main navigation"[39m
+        [33mclass[39m=[32m"main-nav"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"active"[39m
+        [36m>[39m
+          [0mDesk[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mImport[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mExports[0m
+        [36m</button>[39m
+      [36m</nav>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"header-end"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"privacy-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mStays in this browser[0m
+          [36m</span>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Clear workspace"[39m
+          [33mclass[39m=[32m"icon-button clear-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-trash2"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 6h18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"10"[39m
+              [33mx2[39m=[32m"10"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"14"[39m
+              [33mx2[39m=[32m"14"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Toggle navigation"[39m
+          [33mclass[39m=[32m"icon-button mobile-menu"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-menu"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"21"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"21"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"12"[39m
+              [33my2[39m=[32m"12"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"6"[39m
+              [33my2[39m=[32m"6"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"18"[39m
+              [33my2[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-main"[39m
+      [33mid[39m=[32m"main"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFollow the money.[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0mSep 1, 2026 – Sep 30, 2026 · Synthetic HVAC Co[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"heading-actions"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mOpen review project[0m
+            [36m<input[39m
+              [33maccept[39m=[32m".json"[39m
+              [33maria-label[39m=[32m"Open review project"[39m
+              [33mhidden[39m=[32m""[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mSave review project[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-upload"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"[39m
+              [36m/>[39m
+              [36m<polyline[39m
+                [33mpoints[39m=[32m"17 8 12 3 7 8"[39m
+              [36m/>[39m
+              [36m<line[39m
+                [33mx1[39m=[32m"12"[39m
+                [33mx2[39m=[32m"12"[39m
+                [33my1[39m=[32m"3"[39m
+                [33my2[39m=[32m"15"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mImport files[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-database"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<ellipse[39m
+                [33mcx[39m=[32m"12"[39m
+                [33mcy[39m=[32m"5"[39m
+                [33mrx[39m=[32m"9"[39m
+                [33mry[39m=[32m"3"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 5V19A9 3 0 0 0 21 19V5"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12A9 3 0 0 0 21 12"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mReset sample month[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"toast-notice"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mReconciliation complete. Review evidence before any accounting action.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Dismiss update"[39m
+          [33mclass[39m=[32m"icon-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-x"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"15"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"15"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M18 6 6 18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m6 6 12 12"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<button>[39m
+        [0mEdit review[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mhidden[39m=[32m""[39m
+      [36m/>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"app-footer"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"14"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"14"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mRead-only by design. Export is not posting.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+        [36m>[39m
+          [0mPrivacy & limits[0m
+        [36m</button>[39m
+      [36m</footer>[39m
+    [36m</main>[39m
+    [0m [0m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/replacement.test.tsx:127:18
+    125|       else if (method === 'escape')
+    126|         fireEvent(
+    127|           screen.getByRole('dialog'),
+       |                  ^
+    128|           new Event('cancel', { bubbles: true, cancelable: true }),
+    129|         );
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:47:24
+ ❯ process.env.NODE_ENV.exports.act ../reconciliation-dot-20261022/node_modules/react/cjs/react.development.js:814:22
+ ❯ Proxy.<anonymous> ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:46:25
+ ❯ tests/dot-ui-review/replacement.test.tsx:123:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/14]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02 cancellation by backdrop settles without replacement
+TestingLibraryElementError: Unable to find an accessible element with the role "dialog"
+
+Here are the accessible roles:
+
+  link:
+
+  Name "Skip to workspace":
+  [36m<a[39m
+    [33mclass[39m=[32m"skip-link"[39m
+    [33mhref[39m=[32m"#main"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"app-header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Reconciliation Desk home":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+    [33mclass[39m=[32m"brand"[39m
+  [36m/>[39m
+
+  Name "Desk":
+  [36m<button[39m
+    [33maria-current[39m=[32m"page"[39m
+    [33mclass[39m=[32m"active"[39m
+  [36m/>[39m
+
+  Name "Import":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Exports":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Stays in this browser":
+  [36m<button[39m
+    [33mclass[39m=[32m"privacy-button"[39m
+  [36m/>[39m
+
+  Name "Clear workspace":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Clear workspace"[39m
+    [33mclass[39m=[32m"icon-button clear-button"[39m
+  [36m/>[39m
+
+  Name "Toggle navigation":
+  [36m<button[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Toggle navigation"[39m
+    [33mclass[39m=[32m"icon-button mobile-menu"[39m
+  [36m/>[39m
+
+  Name "Save review project":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-secondary"[39m
+  [36m/>[39m
+
+  Name "Import files":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-secondary"[39m
+  [36m/>[39m
+
+  Name "Reset sample month":
+  [36m<button[39m
+    [33mclass[39m=[32m"button button-primary"[39m
+  [36m/>[39m
+
+  Name "Dismiss update":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Dismiss update"[39m
+    [33mclass[39m=[32m"icon-button"[39m
+  [36m/>[39m
+
+  Name "Edit review":
+  [36m<button />[39m
+
+  Name "Privacy & limits":
+  [36m<button[39m
+    [33mclass[39m=[32m"text-button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Main navigation":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Main navigation"[39m
+    [33mclass[39m=[32m"main-nav"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"app-main"[39m
+    [33mid[39m=[32m"main"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Follow the money.":
+  [36m<h1 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"toast-notice"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  contentinfo:
+
+  Name "":
+  [36m<footer[39m
+    [33mclass[39m=[32m"app-footer"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"skip-link"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mSkip to workspace[0m
+    [36m</a>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"app-header"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Reconciliation Desk home"[39m
+        [33mclass[39m=[32m"brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"brand-mark"[39m
+        [36m>[39m
+          [36m<i />[39m
+          [36m<i />[39m
+          [36m<i />[39m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mReconciliation Desk[0m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Main navigation"[39m
+        [33mclass[39m=[32m"main-nav"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"active"[39m
+        [36m>[39m
+          [0mDesk[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mImport[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m""[39m
+        [36m>[39m
+          [0mExports[0m
+        [36m</button>[39m
+      [36m</nav>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"header-end"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"privacy-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mStays in this browser[0m
+          [36m</span>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Clear workspace"[39m
+          [33mclass[39m=[32m"icon-button clear-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-trash2"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"17"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"17"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 6h18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"10"[39m
+              [33mx2[39m=[32m"10"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"14"[39m
+              [33mx2[39m=[32m"14"[39m
+              [33my1[39m=[32m"11"[39m
+              [33my2[39m=[32m"17"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+          [33maria-label[39m=[32m"Toggle navigation"[39m
+          [33mclass[39m=[32m"icon-button mobile-menu"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-menu"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"21"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"21"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"12"[39m
+              [33my2[39m=[32m"12"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"6"[39m
+              [33my2[39m=[32m"6"[39m
+            [36m/>[39m
+            [36m<line[39m
+              [33mx1[39m=[32m"4"[39m
+              [33mx2[39m=[32m"20"[39m
+              [33my1[39m=[32m"18"[39m
+              [33my2[39m=[32m"18"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-main"[39m
+      [33mid[39m=[32m"main"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<h1>[39m
+            [0mFollow the money.[0m
+          [36m</h1>[39m
+          [36m<p>[39m
+            [0mSep 1, 2026 – Sep 30, 2026 · Synthetic HVAC Co[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"heading-actions"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mOpen review project[0m
+            [36m<input[39m
+              [33maccept[39m=[32m".json"[39m
+              [33maria-label[39m=[32m"Open review project"[39m
+              [33mhidden[39m=[32m""[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [0mSave review project[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-secondary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-upload"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"[39m
+              [36m/>[39m
+              [36m<polyline[39m
+                [33mpoints[39m=[32m"17 8 12 3 7 8"[39m
+              [36m/>[39m
+              [36m<line[39m
+                [33mx1[39m=[32m"12"[39m
+                [33mx2[39m=[32m"12"[39m
+                [33my1[39m=[32m"3"[39m
+                [33my2[39m=[32m"15"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mImport files[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button button-primary"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-database"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"17"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"17"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<ellipse[39m
+                [33mcx[39m=[32m"12"[39m
+                [33mcy[39m=[32m"5"[39m
+                [33mrx[39m=[32m"9"[39m
+                [33mry[39m=[32m"3"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 5V19A9 3 0 0 0 21 19V5"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12A9 3 0 0 0 21 12"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mReset sample month[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"toast-notice"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mReconciliation complete. Review evidence before any accounting action.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Dismiss update"[39m
+          [33mclass[39m=[32m"icon-button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-x"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"15"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"15"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M18 6 6 18"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m6 6 12 12"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<button>[39m
+        [0mEdit review[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mhidden[39m=[32m""[39m
+      [36m/>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"app-footer"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-shield-check"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"14"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"14"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9 12 2 2 4-4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mRead-only by design. Export is not posting.[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"text-button"[39m
+        [36m>[39m
+          [0mPrivacy & limits[0m
+        [36m</button>[39m
+      [36m</footer>[39m
+    [36m</main>[39m
+    [0m [0m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ tests/dot-ui-review/replacement.test.tsx:130:35
+    128|           new Event('cancel', { bubbles: true, cancelable: true }),
+    129|         );
+    130|       else fireEvent.click(screen.getByRole('dialog'));
+       |                                   ^
+    131|     });
+    132|     expect(finished).toBe(true);
+ ❯ ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:47:24
+ ❯ process.env.NODE_ENV.exports.act ../reconciliation-dot-20261022/node_modules/react/cjs/react.development.js:814:22
+ ❯ Proxy.<anonymous> ../reconciliation-dot-20261022/node_modules/@testing-library/react/dist/act-compat.js:46:25
+ ❯ tests/dot-ui-review/replacement.test.tsx:123:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/14]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F07 unsaved edit installs unload protection and cancel keeps it
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/dot-ui-review/replacement.test.tsx:141:34
+    139|   const event = new Event('beforeunload', { cancelable: true });
+    140|   window.dispatchEvent(event);
+    141|   expect(event.defaultPrevented).toBe(true);
+       |                                  ^
+    142|   await act(async () => {
+    143|     void importer.onRun(w.input, w.files, w.options);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/14]⎯
+
+ FAIL  tests/dot-ui-review/replacement.test.tsx > F02 superseding a pending replacement settles the first caller without running it
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/dot-ui-review/replacement.test.tsx:159:22
+    157|   });
+    158|   expect(firstDone).toBe(true);
+    159|   expect(secondDone).toBe(false);
+       |                      ^
+    160|   expect(runReconciliation).toHaveBeenCalledTimes(1);
+    161|   await act(async () => { fireEvent.click(screen.getByText('Keep works…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/14]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  14 failed | 12 skipped (26)
+   Start at  18:35:31
+   Duration  5.34s (transform 2.20s, setup 0ms, import 4.14s, tests 4.50s, environment 3.19s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

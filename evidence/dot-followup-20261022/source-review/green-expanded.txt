@@ -1,0 +1,10 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v4.1.12 /workspace/scratch/c01bd6fe117d/reconciliation-dot-20261022
+
+
+ Test Files  4 passed (4)
+      Tests  24 passed (24)
+   Start at  18:31:16
+   Duration  1.67s (transform 2.33s, setup 0ms, import 3.32s, tests 1.36s, environment 1ms)
+

@@ -1,0 +1,30 @@
+{
+  "results": [
+    {
+      "id": "EXTRA-keyboard-complete-import",
+      "status": "PASS",
+      "detail": "Complete keyboard import with native FileChooser.setFiles"
+    },
+    {
+      "id": "EXTRA-print-main-app-PDF",
+      "status": "PASS",
+      "detail": "Visible app print control and Chromium PDF renderer"
+    }
+  ],
+  "network": [
+    "keyboard-import GET http://127.0.0.1:4173/",
+    "keyboard-import GET http://127.0.0.1:4173/assets/index-CS6f11yB.js",
+    "keyboard-import GET http://127.0.0.1:4173/assets/index-UP0E9UCZ.css",
+    "keyboard-import GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "keyboard-import GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js",
+    "print GET http://127.0.0.1:4173/",
+    "print GET http://127.0.0.1:4173/assets/index-CS6f11yB.js",
+    "print GET http://127.0.0.1:4173/assets/index-UP0E9UCZ.css",
+    "print GET http://127.0.0.1:4173/demo/st_export.csv",
+    "print GET http://127.0.0.1:4173/demo/qbo_clearing_gl.csv",
+    "print GET http://127.0.0.1:4173/demo/chase_bank.csv",
+    "print GET http://127.0.0.1:4173/assets/import.worker-BU4F6fyM.js",
+    "print GET http://127.0.0.1:4173/assets/reconcile.worker-BukbUJxY.js"
+  ],
+  "consoleErrors": []
+}

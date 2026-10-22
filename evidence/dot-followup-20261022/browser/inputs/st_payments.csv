@@ -1,0 +1,2 @@
+Payment ID,Related Payment ID,Record Type,Payment Date,Batch Number,Batch Close Date,Batch Post Date,Invoice #,Customer Name,Business Unit,Payment Type,Processor,Gross Amount,Net Amount,GL Account Code,Export Status,Payment Status,Reference,Currency,Deposit ID
+SYN-PMT-900,,PAYMENT,09/10/2026,SYN-B-900,09/10/2026,09/10/2026,SYN-INV-900,Synthetic Customer,Synthetic HVAC,Credit Card,ServiceTitan Payments,10000.00,9100.00,1055,Exported,Completed,SYN-AUTH-900,USD,SYN-SET-900

@@ -2794,6 +2794,7 @@ td:not(:first-child) {
   body {
     background: white;
   }
+  .skip-link,
   .app-header,
   .page-heading,
   .app-footer,

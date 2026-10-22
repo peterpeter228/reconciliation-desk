@@ -1,0 +1,8 @@
+KEYBOARD file ServiceTitan
+FOCUS Drop an export or choose a file
+CSV / TSV / XLSX · Up to 10 MB
+KEYBOARD file QuickBooks
+FOCUS Drop an export or choose a file
+CSV / TSV / XLSX · Up to 10 MB
+FAIL    EXTRA-keyboard-complete-import page.waitForEvent: Timeout 30000ms exceeded while waiting for event "filechooser"
+PASS    EXTRA-print-main-app-PDF Visible app print control and Chromium PDF renderer
