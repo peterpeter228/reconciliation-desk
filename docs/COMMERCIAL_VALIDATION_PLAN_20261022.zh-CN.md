@@ -1,8 +1,8 @@
 # 商业验证方案（2026-10-22）：证据与假设分开
 
 本文件不是销售承诺，也不是已接受的价格。没有联系任何人、没有注册任何账户、没有发出任何外联。
-公开网页于 2026-10-22 读取；“事实”项均附来源，其中标 ✔ 的三条由审查者逐页回读核对，其余来自子代理调研
-（原始调研笔记未入库，可按 URL 复查）。
+公开网页于 2026-10-22 读取；“事实”项均附来源，其中标 ✔ 的条目由审查者逐页回读核对，其余来自子代理调研
+（原始调研笔记未入库，可按 URL 复查），只能作为线索。
 
 ## 1. 已知事实（公开来源）
 
@@ -14,7 +14,8 @@
 | E4 | ServiceTitan 默认把付款导出为 Dr Undeposited Funds / Cr A/R，资金到银行后再移入银行 | https://help.servicetitan.com/docs/deposit-funds-into-your-quickbooks-bank-accounts |
 | E5 | QBO 银行 feed：费用或折扣改变总额、多笔合并存款时不给匹配建议；Match 表示记录已存在，Categorize 新建记录 | https://quickbooks.intuit.com/learn-support/en-us/help-article/bank-feeds/match-online-bank-transactions-quickbooks-online/L6qyw0PvP_US_en_US |
 | E6 | QBD IIF：错误检查有限，Intuit 不提供 IIF 辅助支持；缺失科目会被创建为新银行科目 | https://quickbooks.intuit.com/learn-support/en-us/manage-lists/iif-overview-import-kit-sample-files-and-headers/00/201577 |
-| E7 | 补账/清理公开报价：约 $300–$750/落后月起步；多家提供免费诊断（如 Flow Bookkeeping、Books and Trucks ServiceTitan 方案 $995/月起） | https://www.flowbookkeepingservices.com/ · https://booksandtrucks.com/pricing · https://www.sdocpa.com/catch-up-bookkeeping-services/ |
+| E7 ✔ | 两家公开报价（仅两例，不代表行情）：Flow Bookkeeping 清理 “Starting at $750” 对应 “1–3 months behind”，并提供 “Free Books Diagnostic”；Books and Trucks ServiceTitan 方案 “from $995 a month”，含 ServiceTitan→QuickBooks 月度对账，并提供三个工作日内的免费查看 | https://www.flowbookkeepingservices.com/ · https://booksandtrucks.com/pricing |
+| E7b | 未核实线索：子代理报告 SDO CPA 约 $320/落后月、Civita $300–$675/落后月等；SDO CPA 页面回读返回 HTTP 403，其余未回读 | https://www.sdocpa.com/catch-up-bookkeeping-services/ · https://civitataxsolutions.com/quickbooks-cleanup |
 | E8 | 公开讨论存在 ServiceTitan→QBO 同步与 Undeposited Funds 混乱的抱怨；直接描述“净额手续费漏记”的帖子未找到（未找到不等于不存在） | 例：https://www.reddit.com/r/Bookkeeping/comments/1ujlmqh/syncing_quickbooks_with_service_titan/ |
 
 **推断**：E1 说明“没人知道净额手续费问题”不能作为卖点；E2 说明同价位已有连接 QBO、按月订阅的直接竞品。本工具可能的差异
@@ -39,9 +40,9 @@
 
 ## 4. 报价假设
 
-`$199` 单期辅助诊断仍是**未验证报价**。依据 E7，付费清理通常按落后月 $300 起，而诊断常免费；E2 的 $199 是**按月订阅且连接 QBO**。
+`$199` 单期辅助诊断仍是**未验证报价**。已核实的两例（E7）中，一家清理报价 $750 起（1–3 个落后月）并提供免费诊断，另一家 ServiceTitan 方案 $995/月起并提供免费查看；样本太少，不能推断普遍行情。E2 的 $199 是**按月订阅且连接 QBO**。
 建议在访谈中对比两个方案，而不是假设 $199：
-- A：免费诊断（一个期间，交付调查摘要），清理按期间另行报价（假设区间 $300–$500/期，需验证）。
+- A：免费诊断（一个期间，交付调查摘要），清理按期间另行报价（金额待访谈确定，不预设区间）。
 - B：$199 单期“证据包”（不含任何入账），作为对照。
 
 ## 5. 最小试点服务范围（尚未执行）
