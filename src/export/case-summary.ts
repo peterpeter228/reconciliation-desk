@@ -99,6 +99,7 @@ th{background:#f4f6f9;font-weight:600;width:34%}.hash{font:12px ui-monospace,mon
 <h1>Case review summary</h1>
 <p class="muted">Case ${escapeHtml(r.economicCaseId)} · generated ${escapeHtml(generatedAt)}</p>
 <div class="banner"><strong>${w.isDemo ? 'SYNTHETIC SAMPLE — NOT CUSTOMER DATA. ' : ''}Human review summary.</strong> Not an accounting import, not proof of posting, and not a recovered-funds claim. Reviewer statements below are recorded as stated; this tool does not authenticate documents or reviewers.</div>
+<p><strong>Contains financial information, company labels and reviewer statements.</strong> Store securely and share only with authorized recipients.</p>
 <h2>Scope</h2>
 ${rows([
   ['Company label', w.options.companyId],

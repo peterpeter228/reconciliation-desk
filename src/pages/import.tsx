@@ -369,6 +369,10 @@ export function ImportPage({
         throw new Error(
           'Complete the local company, bank label, clearing account, and ServiceTitan export mode before validation.',
         );
+      if (qbBankAccount.trim() && qbBankAccount.trim() === clearing.trim())
+        throw new Error(
+          'Bank and clearing must be different GL accounts. Check the exact account names in the original ledger; no bank role has been assumed.',
+        );
       if (!confirmed)
         throw new Error('Confirm the report semantics and coverage before validation.');
       if (nativeJournal && !reportCompanyName.trim())

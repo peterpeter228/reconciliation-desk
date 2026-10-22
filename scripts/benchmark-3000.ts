@@ -7,7 +7,8 @@
 import assert from 'node:assert/strict';
 import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import { cpus, platform, arch, totalmem } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 import { reconcile, sha256, stableJSON } from '../src/engine';
 import type {
@@ -19,7 +20,15 @@ import type {
 } from '../src/contracts/canonical';
 import type { ReconcileInput, ReconcileResult } from '../src/contracts/engine';
 
-const OUTPUT = 'evidence/implementation-20261021/benchmark-3000.json';
+// Explicit --output wins over BENCHMARK_OUTPUT. New runs never overwrite evidence.
+const args = process.argv.slice(2);
+if (args.length && (args.length !== 2 || args[0] !== '--output' || !args[1]?.trim()))
+  throw new Error('Usage: npm run benchmark:3000 -- --output <new-output.json>');
+const OUTPUT =
+  args[1] ??
+  process.env.BENCHMARK_OUTPUT ??
+  `evidence/benchmark-runs/benchmark-3000-${new Date().toISOString().replaceAll(':', '-')}-${randomUUID()}.json`;
+if (!OUTPUT.trim()) throw new Error('Benchmark output path must not be empty.');
 const COMPANY = 'benchmark-synthetic-company';
 const BANK = 'benchmark-collections';
 const CLEARING = 'benchmark-clearing';
@@ -542,8 +551,8 @@ const output = {
     'No parsing or end-to-end browser performance was measured.',
   ],
 };
-await mkdir('evidence/implementation-20261021', { recursive: true });
-await writeFile(OUTPUT, JSON.stringify(output, null, 2) + '\n');
+await mkdir(dirname(OUTPUT), { recursive: true });
+await writeFile(OUTPUT, JSON.stringify(output, null, 2) + '\n', { flag: 'wx' });
 console.log(
   JSON.stringify(
     {

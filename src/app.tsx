@@ -69,9 +69,12 @@ export default function App() {
   // Review facts, approvals and export records exist only in memory until saved.
   const [dirty, setDirty] = useState(false);
   const [savedAt, setSavedAt] = useState('');
-  const [pendingReplace, setPendingReplace] = useState<{ label: string; run: () => void } | null>(
-    null,
-  );
+  const [pendingReplace, setPendingReplace] = useState<{
+    label: string;
+    run: () => void;
+    cancel?: () => void;
+  } | null>(null);
+  const pendingReplaceRef = useRef(pendingReplace);
   useEffect(() => {
     if (!dirty) return;
     const warn = (e: BeforeUnloadEvent) => {
@@ -82,9 +85,20 @@ export default function App() {
     return () => window.removeEventListener('beforeunload', warn);
   }, [dirty]);
   /** Replacing a workspace with unsaved review work needs an explicit choice. */
-  function guardReplace(label: string, run: () => void) {
-    if (workspace && dirty) setPendingReplace({ label, run });
-    else run();
+  function guardReplace(label: string, run: () => void, cancel?: () => void) {
+    // A second request cancels the first caller, including requests in one render tick.
+    pendingReplaceRef.current?.cancel?.();
+    pendingReplaceRef.current = null;
+    if (workspace && dirty) {
+      const next = { label, run, cancel };
+      pendingReplaceRef.current = next;
+      setPendingReplace(next);
+    } else run();
+  }
+  function cancelReplace() {
+    pendingReplaceRef.current?.cancel?.();
+    pendingReplaceRef.current = null;
+    setPendingReplace(null);
   }
   function changeWorkspace(next: Workspace) {
     setWorkspace(next);
@@ -200,9 +214,9 @@ export default function App() {
       guardReplace(
         'Run reconciliation on the selected files',
         () => void runFilesNow(input, files, options).finally(resolve),
+        resolve,
       );
-      // A declined replacement simply leaves the existing workspace untouched.
-      if (workspace && dirty) resolve();
+      // Keep the caller pending until the user cancels or the replacement run finishes.
     });
   }
   async function runFilesNow(input: ReconcileInput, files: SourceFile[], options: ParseOptions) {
@@ -286,15 +300,15 @@ export default function App() {
           ];
       }
       input.evidence = evidence;
-      // Newly parsed evidence is bound to its bytes; earlier restored rows stay unverified.
-      const restored = workspace.restoredSources && {
-        verifiedHashes: [
-          ...new Set([
-            ...workspace.restoredSources.verifiedHashes,
-            ...files.slice(workspace.files.length).map((f) => f.hash),
-          ]),
-        ].sort(),
-      };
+      // Preserve exact trust bindings for existing sources and bind newly parsed evidence
+      // to this session's bytes, settings, normalized rows and company context.
+      let verifiedWorkspace = { ...workspace, input, files };
+      if (workspace.restoredSources) {
+        for (const file of files.slice(workspace.files.length)) {
+          verifiedWorkspace = markSourceVerified(verifiedWorkspace, file.hash);
+        }
+      }
+      const restored = verifiedWorkspace.restoredSources;
       await calculate(input, files, workspace.options, workspace.isDemo, token, restored);
       if (token === operation.current)
         setNotice(
@@ -697,14 +711,14 @@ export default function App() {
         />
       )}{' '}
       {pendingReplace && (
-        <Modal title="Replace this workspace?" onClose={() => setPendingReplace(null)}>
+        <Modal title="Replace this workspace?" onClose={cancelReplace}>
           <p>
             {pendingReplace.label} will replace the current workspace. Its unsaved review facts,
             approvals and export records will be lost from this tab. Save the review project first
             if you need them.
           </p>
           <div className="button-row">
-            <button className="button button-secondary" onClick={() => setPendingReplace(null)}>
+            <button className="button button-secondary" onClick={cancelReplace}>
               Keep workspace
             </button>
             <button
@@ -719,6 +733,7 @@ export default function App() {
               className="button button-danger"
               onClick={() => {
                 const run = pendingReplace.run;
+                pendingReplaceRef.current = null;
                 setPendingReplace(null);
                 // Unsaved state is cleared only after the replacement actually succeeds.
                 run();
@@ -759,9 +774,13 @@ export default function App() {
               workspace removes them; the page warns before reloading with unsaved review changes.
               Downloads remain on your device. When you download an accounting file, this browser
               also keeps a small local export record (hashed company label, case ID, journal number
-              and time, no transactions). It blocks a second journal for the same case from an older
-              project copy or another tab in this browser. It is best effort: it is not shared
-              across browsers or devices and is lost if site data is cleared.
+              and time, no transactions). It can block a second journal for the same case from an
+              older project copy or another tab in this browser only when the same company label and
+              case identity are retained. This is best-effort risk reduction, not guaranteed
+              duplicate prevention. Company-label changes (including spelling or case) are not
+              protected. Without Web Locks, simultaneous tabs are not protected reliably. Records
+              are not shared across browsers or devices and are lost if site data is cleared. Always
+              check the actual books.
             </p>
             <h3>What this build supports</h3>
             <p>

@@ -34,6 +34,8 @@ const entrySchema = z
   })
   .strict();
 
+// Exact label intentionally retained: normalization could conflate distinct companies,
+// and case/action identity also depends on company context. Label changes are not protected.
 export const companyKey = (companyId: string) => contentHash({ company: companyId });
 
 function browserStorage(): StorageLike | null {

@@ -9,7 +9,7 @@ import {
 } from '../export/aje';
 import { checkedSum, parseMoney } from '../ingestion/primitives';
 import { contentHash } from '../engine/identities';
-import { sourceTrustBlocker } from './source-verification';
+import { savedRowsFor, sourceParsingSettings, sourceTrustBlocker } from './source-verification';
 
 export interface ReviewDocument {
   name: string;
@@ -75,6 +75,72 @@ export function documentRef(f: CaseFacts, purpose: ReviewDocument['purpose']): s
     );
   return `${purpose}:${d.sha256}`;
 }
+/** Bounded approval field retaining each file's mapping and parser provenance. */
+export function mappingSetVersion(w: Workspace): string {
+  const sources = w.files
+    .map((file) => ({
+      hash: file.hash,
+      kind: file.kind,
+      mapping: file.mapping ?? null,
+      options: sourceParsingSettings(file),
+      provenance: savedRowsFor(w, file.hash)
+        .flatMap((row) =>
+          (
+            row as {
+              source_refs: {
+                file_sha256: string;
+                mapping_version: string;
+                parser_version: string;
+                physical_row: number;
+                sheet: string | null;
+              }[];
+            }
+          ).source_refs
+            .filter((ref) => ref.file_sha256 === file.hash)
+            .map((ref) => [ref.sheet, ref.physical_row, ref.mapping_version, ref.parser_version]),
+        )
+        .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b))),
+    }))
+    .sort((a, b) => a.hash.localeCompare(b.hash) || a.kind.localeCompare(b.kind));
+  return `mapping-set-v1:${contentHash({ sources, versions: [...w.result.versions.mapping].sort() })}`;
+}
+
+function provenOtherCase(
+  w: Workspace,
+  currentCaseId: string,
+  f: CaseFacts,
+  transactionId: string | null,
+): boolean {
+  if (!transactionId) return false;
+  const knownHashes = new Set([
+    ...w.files.map((file) => file.hash),
+    ...f.documents.map((d) => d.sha256),
+  ]);
+  return f.relations.some((rel) => {
+    if (
+      rel.transactionId !== transactionId ||
+      rel.relation !== 'OTHER_CASE' ||
+      !rel.reviewer.trim() ||
+      !/^[a-f0-9]{64}(?::row[1-9][0-9]*)?$/.test(rel.evidenceRef) ||
+      !knownHashes.has(rel.evidenceRef.split(':')[0])
+    )
+      return false;
+    const other = w.review?.cases.find(
+      (c) =>
+        c.economicCaseId === rel.relatedCaseId &&
+        c.economicCaseId !== currentCaseId &&
+        c.identityStatus === 'BOUND',
+    );
+    const group = other && w.result.groups.find((g) => g.id === other.engineGroupId);
+    return (
+      !!group &&
+      w.input.qb.some(
+        (row) => group.qb_ids.includes(row.id) && row.transaction_id === transactionId,
+      )
+    );
+  });
+}
+
 export async function proposalFromCase(w: Workspace, g: EngineGroup, r: ReviewCase, f: CaseFacts) {
   const untrusted = sourceTrustBlocker(w);
   if (untrusted) throw new Error(untrusted);
@@ -279,11 +345,8 @@ export async function proposalFromCase(w: Workspace, g: EngineGroup, r: ReviewCa
     sourceFileHashes: [
       ...new Set([...w.files.map((x) => x.hash), ...f.documents.map((d) => d.sha256)]),
     ],
-    // One digest of every source mapping: joining three 80-character versions
-    // exceeded the 240-character import-text bound for every real three-file run.
-    mappingVersion: w.result.versions.mapping.length
-      ? `mapping-set-v1:${contentHash([...w.result.versions.mapping].sort())}`
-      : 'reviewed-mapping',
+    // Bind mapping ownership, not just an unordered set of mapping versions.
+    mappingVersion: mappingSetVersion(w),
     ruleVersion: FEE_ONLY_RULE_VERSION,
     journalDate: f.journalDate,
     periodOpenConfirmed: f.periodOpenConfirmed,
@@ -360,9 +423,8 @@ export function ufReviewConflicts(
       (x) =>
         x.account_full_name === f.feeAccountName &&
         (x.debit_cents || x.credit_cents) &&
-        !f.relations.some(
-          (rel) => rel.transactionId === x.transaction_id && rel.relation === 'OTHER_CASE',
-        ),
+        (!provenOtherCase(w, r.economicCaseId, f, x.transaction_id) ||
+          caseRows.some((row) => row.transaction_id === x.transaction_id)),
     ))
       conflicts.push(
         `The fee account already has posted activity (transaction ${row.transaction_id ?? row.id}) that is linked to this case or not yet associated. Review it before adding a deposit fee line.`,

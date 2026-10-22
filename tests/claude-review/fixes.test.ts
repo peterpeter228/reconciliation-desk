@@ -8,7 +8,7 @@ import {
   serializeProject,
   reviewForGroup,
 } from '../../src/review/project';
-import { proposalFromCase, type CaseFacts } from '../../src/review/case-adapter';
+import { mappingSetVersion, proposalFromCase, type CaseFacts } from '../../src/review/case-adapter';
 import {
   compareReparsedSource,
   markSourceVerified,
@@ -113,9 +113,7 @@ describe('F-05 real three-file runs fit the approval text bounds', () => {
     const g = feeGroup(w);
     const r = reviewForGroup(w.review!, g.id)!;
     const draft = await proposalFromCase(w, g, r, r.reviewedFacts as unknown as CaseFacts);
-    expect(draft.feeCase.mappingVersion).toBe(
-      `mapping-set-v1:${contentHash([...base.result.versions.mapping].sort())}`,
-    );
+    expect(draft.feeCase.mappingVersion).toBe(mappingSetVersion(base));
   });
 });
 

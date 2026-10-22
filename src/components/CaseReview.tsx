@@ -24,6 +24,7 @@ import { approveProposal } from '../export/aje';
 import { exportQboCsv } from '../export/qbo';
 import { buildUfWorksheet, type UfPayment } from '../export/evidence';
 import { Notice } from './ui';
+import { associateEvidenceBatch } from '../review/evidence-batch';
 
 /** Readable validation errors: never show raw schema JSON to a reviewer. */
 export function reviewErrorMessage(e: unknown): string {
@@ -51,6 +52,9 @@ export function CaseReview({
   const [purpose, setPurpose] = useState<ReviewDocument['purpose']>('SETTLEMENT');
   const [approved, setApproved] = useState(false);
   const [registerWarning, setRegisterWarning] = useState('');
+  const [batchHash, setBatchHash] = useState('');
+  const [batchCase, setBatchCase] = useState('');
+  const [batchIds, setBatchIds] = useState('');
   const latest = useRef(w);
   latest.current = w;
   useEffect(() => {
@@ -342,8 +346,10 @@ export function CaseReview({
           is not proof of posting, and a failed download is not proof it was never imported. To
           resolve it: (1) in QuickBooks, search for journal number {priorJournals.join(', ')}; (2)
           re-export the GL or Transaction Journal for the period and review it; (3) if the entry is
-          absent, prepare any correction manually under your own review. This tool will not create a
-          second journal for this case.
+          absent, prepare any correction manually under your own review. Further export is blocked
+          while this case’s export history is available. Company-label changes, missing browser
+          locks, cleared site data or other devices can bypass local duplicate protection; always
+          check the actual books.
           {unseenExports.length > 0 &&
             ' This project copy does not include that export; it was recorded earlier in this browser.'}{' '}
           Save this review project now.
@@ -358,6 +364,10 @@ export function CaseReview({
           Download human-judgment workpaper (JSON)
         </button>
       </div>
+      <small>
+        Contains financial information, company labels and reviewer statements. Store securely and
+        share only with authorized recipients.
+      </small>
       <details>
         <summary>Review facts & documented fee-only proposal</summary>
         <fieldset disabled={busy} className="form-stack">
@@ -575,6 +585,87 @@ export function CaseReview({
                 Do not discard these rows. Unknown relation blocks an accounting import; documented
                 other-case activity does not.
               </small>
+              <details>
+                <summary>Associate an explicit transaction list by evidence</summary>
+                <p>
+                  Review the document and each transaction first. No amounts are inferred and no
+                  rows are removed. All accounting gates still apply.
+                </p>
+                <label>
+                  Batch evidence document / source SHA-256
+                  <select
+                    aria-label="Batch evidence"
+                    value={batchHash}
+                    onChange={(e) => setBatchHash(e.target.value)}
+                  >
+                    <option value="">Choose known evidence</option>
+                    {[
+                      ...new Map([
+                        ...w.files.map((x) => [x.hash, x.name] as const),
+                        ...f.documents.map((x) => [x.sha256, x.name] as const),
+                      ]).entries(),
+                    ].map(([hash, name]) => (
+                      <option key={hash} value={hash}>
+                        {name} · {hash}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Different bound economic case
+                  <select
+                    aria-label="Batch other case"
+                    value={batchCase}
+                    onChange={(e) => setBatchCase(e.target.value)}
+                  >
+                    <option value="">Choose reviewed other case</option>
+                    {w.review?.cases
+                      .filter(
+                        (x) =>
+                          x.economicCaseId !== r.economicCaseId && x.identityStatus === 'BOUND',
+                      )
+                      .map((x) => (
+                        <option key={x.economicCaseId} value={x.economicCaseId}>
+                          {x.economicCaseId}
+                        </option>
+                      ))}
+                  </select>
+                </label>
+                <label>
+                  Explicit transaction IDs, one per line (no automatic selection)
+                  <textarea
+                    aria-label="Batch transaction IDs"
+                    value={batchIds}
+                    onChange={(e) => setBatchIds(e.target.value)}
+                  />
+                </label>
+                <p>
+                  {batchIds.split(/\r?\n/).filter((x) => x.trim()).length} explicitly listed
+                  transaction(s). Applying records your review, not independent verification.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    try {
+                      const relations = associateEvidenceBatch(w, r, f, {
+                        evidenceHash: batchHash,
+                        relatedCaseId: batchCase,
+                        transactionIds: batchIds
+                          .split(/\r?\n/)
+                          .map((x) => x.trim())
+                          .filter(Boolean),
+                        reviewer: f.reviewer,
+                      });
+                      update({ relations });
+                      setBatchIds('');
+                    } catch (e) {
+                      setError(reviewErrorMessage(e));
+                    }
+                  }}
+                >
+                  Apply reviewed OTHER_CASE list
+                </button>
+              </details>
               {extraTx.map((id) => {
                 const relation = f.relations.find((x) => x.transactionId === id);
                 return (

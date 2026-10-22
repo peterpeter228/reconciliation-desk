@@ -38,7 +38,11 @@ async function uploadBytes(label: string, name: string, bytes: Uint8Array<ArrayB
   const file = new File([bytes], name);
   Object.defineProperty(file, 'arrayBuffer', { value: async () => bytes.buffer });
   fireEvent.change(screen.getByLabelText(label), { target: { files: [file] } });
-  await screen.findByRole('button', { name: new RegExp(name.replaceAll('.', '\\.')) });
+  await screen.findByRole(
+    'button',
+    { name: new RegExp(name.replaceAll('.', '\\.')) },
+    { timeout: 10000 },
+  );
   await waitFor(
     () =>
       expect(
@@ -96,6 +100,16 @@ describe('Resolved import headers survive validation (real parsers, jsdom)', () 
     ).toBe(true);
     fireEvent.change(screen.getByLabelText('Worksheet'), { target: { value: 'Payments' } });
     await waitFor(() => expect(screen.queryByText('CHOOSE_WORKSHEET')).toBeNull());
+    // Selecting a sheet clears its prompt before parsing completes. Wait for the
+    // visible upload lock to release, as an actual user must, before the next file.
+    await waitFor(
+      () =>
+        expect(
+          (screen.getByRole('button', { name: /Explore the sample instead/ }) as HTMLButtonElement)
+            .disabled,
+        ).toBe(false),
+      { timeout: 10000 },
+    );
     await upload('Choose QuickBooks CSV', 'qbo_clearing_gl.csv', source('qbo_clearing_gl.csv'));
     await upload('Choose Bank CSV', 'chase_bank.csv', source('chase_bank.csv'));
     await validate();
@@ -149,5 +163,20 @@ describe('Resolved import headers survive validation (real parsers, jsdom)', () 
     fireEvent.click(within(card).getByRole('button', { name: 'Reload selected header' }));
     await waitFor(() => expect(vi.mocked(runImport).mock.calls).toHaveLength(2));
     expect(vi.mocked(runImport).mock.calls[1][2].headerRow).toBe(2);
+  });
+});
+
+// Regression for dot follow-up: account roles must not silently collide.
+describe('Distinct bank and clearing account semantics', () => {
+  it('rejects the same exact GL account in bank and clearing fields before parsing', async () => {
+    setup();
+    await loadAll();
+    fireEvent.change(screen.getByLabelText(/QuickBooks bank account, exact GL name/), {
+      target: { value: 'ServiceTitan Clearing' },
+    });
+    await validate();
+    expect(screen.getByText(/Bank and clearing must be different GL accounts/)).toBeTruthy();
+    expect(vi.mocked(runImport).mock.calls.filter((c) => c[2].coverageConfirmed)).toHaveLength(0);
+    expect(screen.queryByText('Validation passed')).toBeNull();
   });
 });

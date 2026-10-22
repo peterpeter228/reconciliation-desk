@@ -1,6 +1,7 @@
 import type { SourceFile, Workspace } from '../components/workspace';
 import type { ParseOptions, ParseResult } from '../ingestion/types';
 import { canonicalJson } from '../ingestion/primitives';
+import { contentHash } from '../engine/identities';
 
 /**
  * A reopened project holds normalized rows, not original bytes. Its integrity hash
@@ -10,6 +11,8 @@ import { canonicalJson } from '../ingestion/primitives';
  */
 export interface RestoredSources {
   verifiedHashes: string[];
+  /** Session-only bindings. Hash possession alone never authenticates normalized rows. */
+  verifiedBindings?: Record<string, string>;
 }
 
 const plain = <T>(value: T): T => JSON.parse(JSON.stringify(value ?? null)) as T;
@@ -29,10 +32,42 @@ export function savedRowsFor(w: Workspace, hash: string): unknown[] {
   return all.filter((row) => row.source_refs?.some((ref) => ref.file_sha256 === hash));
 }
 
+export function sourceParsingSettings(file: SourceFile): Partial<ParseOptions> {
+  const {
+    originalBytes: _bytes,
+    seenFileHashes: _seen,
+    fileName: _name,
+    existingTotalBytes: _total,
+    ...options
+  } = file.parseOptions ?? {};
+  return options;
+}
+
+export function sourceVerificationBinding(w: Workspace, file: SourceFile): string {
+  const options = sourceParsingSettings(file);
+  return contentHash(
+    plain({
+      hash: file.hash,
+      kind: file.kind,
+      sheetName: file.sheetName ?? null,
+      options,
+      isDemo: w.isDemo,
+      companyId: w.options.companyId,
+      bankAccountId: w.options.bankAccountId,
+      rows: byId(savedRowsFor(w, file.hash)),
+      manifests: w.input.manifests.filter((m) => m.source_file_sha256 === file.hash),
+    }),
+  );
+}
+
 export function unverifiedSources(w: Workspace): SourceFile[] {
   if (!w.restoredSources || w.isDemo) return [];
   const verified = new Set(w.restoredSources.verifiedHashes);
-  return w.files.filter((f) => !verified.has(f.hash));
+  return w.files.filter(
+    (f) =>
+      !verified.has(f.hash) ||
+      w.restoredSources?.verifiedBindings?.[f.hash] !== sourceVerificationBinding(w, f),
+  );
 }
 
 /** Null when an accounting draft may rely on the workspace rows. */
@@ -81,10 +116,16 @@ export function compareReparsedSource(
 
 export function markSourceVerified(w: Workspace, hash: string): Workspace {
   if (!w.restoredSources) return w;
+  const file = w.files.find((f) => f.hash === hash);
+  if (!file) return w;
   return {
     ...w,
     restoredSources: {
       verifiedHashes: [...new Set([...w.restoredSources.verifiedHashes, hash])].sort(),
+      verifiedBindings: {
+        ...w.restoredSources.verifiedBindings,
+        [hash]: sourceVerificationBinding(w, file),
+      },
     },
   };
 }
